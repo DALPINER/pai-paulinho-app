@@ -2,8 +2,6 @@
 .tmp/
 /Gravando *.mp4
 /Gravando*.mp4
-/sublogo.mp4
-/bemvindo.mp4
 Thumbs.db
 .DS_Store
 node_modules/
