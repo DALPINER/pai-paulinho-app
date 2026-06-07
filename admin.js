@@ -40,7 +40,10 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
 
   mensagem_espiritual_do_dia: 'Que Xangô Aganjú ilumine os seus passos e que os orixás abram os caminhos da prosperidade, da saúde e do amor em sua vida.',
   whatsapp_numero: '',
-  redes_sociais: { instagram: '', facebook: '' }
+  redes_sociais: {
+    instagram: 'https://www.instagram.com/paulogandor',
+    facebook:  'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
+  }
 };
 
 /* ================================================================
