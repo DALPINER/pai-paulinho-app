@@ -4,8 +4,8 @@
   "description": "Direcionamento espiritual, uma palavra de conforto, acolhimento e a força dos guias abrindo seus caminhos.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0d0d0d",
+  "background_color": "#FCFAF8",
+  "theme_color": "#8B1C1C",
   "orientation": "portrait",
   "icons": [
     {
