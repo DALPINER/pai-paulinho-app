@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paulo Silveira Gandor — Orientação & Direcionamento Espiritual</title>
+  <meta name="description"
+    content="Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos. Encontre luz, clareza e paz com o Sacerdote Paulo Silveira Gandor.">
+  <meta name="keywords"
+    content="Paulo Silveira Gandor, orientador espiritual, sacerdote de luz, consulta espiritual, umbanda, candomblé, Xangô, direcionamento espiritual, jogo de búzios">
+  <meta property="og:title" content="Sacerdote Paulo Silveira Gandor">
+  <meta property="og:description" content="Acolhimento, orientação e caminhos de luz sob a regência de Xangô Aganjú.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PWA & Mobile Optimization -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Paulo Silveira">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+</head>
+
+<body>
+
+  <!-- ===== VIDEO PRELOADER MÍSTICO ===== -->
+  <div id="video-preloader">
+    <!-- Portal de entrada para pedir licença e liberar áudio -->
+    <div id="portal-entrada" class="portal-container">
+      <div class="portal-content">
+        <div class="portal-avatar-wrapper">
+          <img src="assets/pai_paulinho_portal.png" alt="Sacerdote Paulo Silveira Gandor" class="portal-avatar">
+          <div class="portal-avatar-glow" aria-hidden="true"></div>
+        </div>
+        <p class="portal-eyebrow">Que os orixás abram seus caminhos</p>
+        <h2 class="portal-title">Peça licença para entrar na casa de Xangô Aganjú</h2>
+        <button id="enterBtn" class="portal-btn">Entrar com Respeito (Acessar)</button>
+      </div>
+    </div>
+
+    <!-- Contêiner do vídeo (oculto inicialmente) -->
+    <div class="video-container hidden" id="videoWrapper">
+      <video src="assets/bemvindo.mp4" playsinline id="introVideo" class="preloader-video"></video>
+      <button id="skipIntro" class="skip-btn">Pular Introdução ➔</button>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header id="siteHeader">
+    <nav class="nav container">
+      <a href="#" class="nav-brand">
+        <span class="nav-brand-icon">⚡</span>
+        <span class="nav-brand-text">Paulo Silveira</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="#oraculo" class="nav-link">Oráculo</a></li>
+        <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+        <li id="installAppLi" class="hidden">
+          <a href="#" class="nav-link" id="installAppBtn">
+            <span>⚡</span> Instalar Aplicativo
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-cta whatsapp-trigger" id="navWhatsApp">
+            <span>💬</span> Agendar
+          </a>
+        </li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-emblem" aria-hidden="true">
+        <div class="hero-emblem-ring"></div>
+        <img src="assets/pai_paulinho_portal.png" alt="Paulo Silveira Gandor" class="hero-emblem-img">
+      </div>
+      <p class="hero-eyebrow reveal">Xangô Aganjú</p>
+      <h1 class="hero-title reveal">
+        Paulo Silveira Gandor
+        <span class="hero-title-sub">Sacerdote de Xangô Aganjú</span>
+      </h1>
+      <div class="hero-divider reveal" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-ornament">✦ ✦ ✦</span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="hero-slogan reveal">
+        Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos.<br>
+        Encontre paz de espírito e clareza para a sua jornada.
+      </p>
+      <p class="hero-tagline reveal">Aqui você encontra <em>luz</em>, <em>acolhimento</em> e <em>verdade</em>.</p>
+      <a href="#" class="btn-whatsapp whatsapp-trigger hero-cta reveal" id="heroWhatsApp">
+        <span class="btn-icon">💬</span>
+        <span>Falar com Paulo Silveira Gandor</span>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+    <a href="#sobre" class="hero-scroll-hint" aria-label="Rolar para baixo">
+      <span class="scroll-text">Conheça mais</span>
+      <span class="scroll-chevron">↓</span>
+    </a>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">Conheça</span>
+        <h2 class="section-title reveal">O Sacerdote</h2>
+        <div class="section-ornament reveal" aria-hidden="true">✦</div>
+      </div>
+      <div class="sobre-layout">
+        <div class="sobre-image reveal">
+          <div class="sobre-image-frame">
+            <img src="assets/pai_paulinho_portal.png" alt="Sacerdote Paulo Silveira Gandor" class="sobre-img"
+              id="sobreImg">
+            <div class="sobre-image-glow" aria-hidden="true"></div>
+          </div>
+          <div class="sobre-badge" aria-hidden="true">
+            <span>⚡</span>
+            <span>Paulo Silveira Gandor</span>
+          </div>
+        </div>
+        <div class="sobre-text reveal">
+          <p class="sobre-intro">Com a graça dos orixás e a força dos guias ancestrais</p>
+          <div class="sobre-corpo" id="sobreCorpo">
+            <!-- Preenchido pelo app.js -->
+          </div>
+          <a href="#" class="btn-whatsapp whatsapp-trigger" id="sobreWhatsApp">
+            <span class="btn-icon">💬</span>
+            <span>Agendar uma consulta</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVIÇOS ===== -->
+  <section id="servicos" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">O que ofereço</span>
+        <h2 class="section-title reveal">Serviços Espirituais</h2>
+        <div class="section-ornament reveal" aria-hidden="true">✦</div>
+        <p class="section-subtitle reveal">Cada atendimento é conduzido com amor, ética e a força dos orixás.</p>
+      </div>
+      <!-- Stats bar — prova social e autoridade -->
+      <div class="sc-stats-bar reveal">
+        <div class="sc-stat">
+          <span class="sc-stat-num">30+</span>
+          <span class="sc-stat-label">Anos de experiência</span>
+        </div>
+        <span class="sc-stat-divider">✦</span>
+        <div class="sc-stat">
+          <span class="sc-stat-num">500+</span>
+          <span class="sc-stat-label">Atendimentos realizados</span>
+        </div>
+        <span class="sc-stat-divider">✦</span>
+        <div class="sc-stat">
+          <span class="sc-stat-num">100%</span>
+          <span class="sc-stat-label">Sigilo garantido</span>
+        </div>
+      </div>
+      <div class="servicos-grid" id="servicosGrid">
+        <!-- Preenchido pelo app.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== ORÁCULO ESPIRITUAL ===== -->
+  <section id="oraculo" class="section">
+    <div class="container">
+      <div class="mensagem-card oracle-card reveal" id="oracleCard">
+
+        <!-- Velas — animação de brilho durante a consulta -->
+        <div class="mensagem-candles oracle-candles" id="oracleCandles" aria-hidden="true">
+          <span class="candle">🕯️</span>
+          <span class="candle">🕯️</span>
+          <span class="candle">🕯️</span>
+        </div>
+
+        <span class="section-eyebrow">Orientação de Luz</span>
+        <h2 class="mensagem-titulo">Mensagem de Luz dos Orixás</h2>
+        <div class="mensagem-divider" aria-hidden="true">✦ ✦ ✦</div>
+
+        <!-- Estado 1: CTA inicial -->
+        <div class="oracle-cta" id="oracleCta">
+          <p class="oracle-intro">Concentre-se em sua questão e peça orientação aos guias espirituais</p>
+          <button class="oracle-btn" id="oracleBtn" type="button">
+            <span class="oracle-btn-icon" aria-hidden="true">🔮</span>
+            <span>Receber Conselho de Luz ✨</span>
+          </button>
+        </div>
+
+        <!-- Estado 2: Resultado (oculto inicialmente) -->
+        <div class="oracle-result hidden" id="oracleResult">
+          <blockquote class="mensagem-texto oracle-msg" id="oracleMsgText"></blockquote>
+          <div class="oracle-footer hidden" id="oracleFooter">
+            <p class="mensagem-assinatura">— Sacerdote Paulo Silveira Gandor</p>
+            <button class="oracle-btn-again" id="oracleBtnAgain" type="button">
+              ✨ Nova orientação
+            </button>
+          </div>
+        </div>
+
+        <div class="mensagem-flores" aria-hidden="true">🌺 ✨ 🌺</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section id="depoimentos" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">Histórias de luz</span>
+        <h2 class="section-title reveal">O que dizem os filhos espirituais</h2>
+        <div class="section-ornament reveal" aria-hidden="true">✦</div>
+      </div>
+      <div class="depoimentos-wrapper reveal">
+        <div class="depoimentos-viewport">
+          <div class="depoimentos-track" id="depoimentosTrack">
+            <!-- Preenchido pelo app.js -->
+          </div>
+        </div>
+        <div class="depoimentos-nav">
+          <button class="dep-arrow" id="depPrev" aria-label="Depoimento anterior">‹</button>
+          <div class="dep-dots" id="depDots"></div>
+          <button class="dep-arrow" id="depNext" aria-label="Próximo depoimento">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA CONTATO ===== -->
+  <section id="contato" class="section section-cta">
+    <div class="cta-bg-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta-content">
+        <div class="cta-emblem reveal" aria-hidden="true">⚡</div>
+        <h2 class="cta-titulo reveal">Abra seus caminhos hoje</h2>
+        <p class="cta-texto reveal">
+          Dê o primeiro passo. Uma conversa com Paulo Silveira Gandor pode mudar tudo.<br>
+          Os orixás estão te esperando com os braços abertos.
+        </p>
+        <a href="#" class="btn-whatsapp btn-whatsapp-lg whatsapp-trigger reveal" id="ctaWhatsApp">
+          <span class="btn-icon">💬</span>
+          <span>Agendar pelo WhatsApp</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <p class="cta-info reveal">📅 Atendimento com hora marcada · Presencial e à distância</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer id="rodape">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="footer-emblem" aria-hidden="true">⚡</div>
+          <h3 class="footer-nome">Paulo Silveira Gandor<br><span>Sacerdote de Xangô Aganjú</span></h3>
+          <p class="footer-slogan">Luz, acolhimento e verdade.</p>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#mensagem">Mensagem</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Agendar</a></li>
+          </ul>
+        </div>
+        <div class="footer-social-col">
+          <h4 class="footer-heading">Redes Sociais</h4>
+          <div class="footer-social" id="footerSocial">
+            <!-- Preenchido pelo app.js -->
+          </div>
+          <a href="#" class="btn-whatsapp btn-whatsapp-sm whatsapp-trigger footer-whatsapp" id="footerWhatsApp">
+            <span>💬</span> WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Paulo Silveira Gandor · Todos os direitos reservados</p>
+        <a href="admin.html" class="footer-admin-link" aria-label="Painel administrativo" title="Admin">⚙</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Firebase SDK (compat v9) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

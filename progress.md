@@ -1,0 +1,254 @@
+# progress.md — Registro de Progresso
+
+> **Diário de bordo** do projeto Terreira Paulinho App.
+> Registre aqui: o que foi feito, erros encontrados, testes executados, resultados obtidos.
+
+---
+
+## 📅 2026-06-04 — Protocolo 0: Inicialização
+
+### ✅ O que foi feito
+- Protocolo V.L.A.E.G. carregado e compreendido pelo Piloto (Antigravity).
+- Estrutura de memória do projeto inicializada:
+  - `gemini.md` criado — Constituição do Projeto (schemas, regras, invariantes).
+  - `task_plan.md` criado — Fases, objetivos e checklists.
+  - `findings.md` criado — Pesquisas, descobertas, restrições.
+  - `progress.md` criado — Este arquivo de progresso.
+- Diretório base do projeto auditado: estrutura limpa, sem código existente.
+
+### ⚠️ Bloqueios Ativos
+- **Execução de código PROIBIDA** até que:
+  1. As 5 Perguntas de Descoberta sejam respondidas (Fase V).
+  2. O JSON Data Schema seja definido e confirmado em `gemini.md`.
+  3. O Blueprint do `task_plan.md` seja aprovado.
+
+### 🧪 Testes
+- Nenhum teste executado (sem código ainda).
+
+### 🚀 Próximo Passo
+- Apresentar as 5 Perguntas de Descoberta ao usuário (Fase V — Visão).
+
+---
+
+## 📅 2026-06-04 — Fase V (Visão) e Fase A (Arquitetura) — Transição e Validação
+
+### ✅ O que foi feito
+- As 5 Perguntas de Descoberta foram confirmadas e respondidas no [gemini.md](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/gemini.md).
+- O JSON Data Schema do payload de entrada e saída foi consolidado.
+- Os POPs de arquitetura A.N.T. ([POP_01](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/architecture/POP_01_site_publico.md), [POP_02](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/architecture/POP_02_admin_panel.md), [POP_03](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/architecture/POP_03_whatsapp_payload.md)) estão criados e ativos.
+- O [task_plan.md](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/task_plan.md) foi atualizado para marcar a Fase V como concluída e a Fase A como aguardando aprovação do Blueprint.
+- Um plano de implementação detalhado ([implementation_plan.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/implementation_plan.md)) foi gerado e enviado para validação do usuário.
+
+### ❌ Erros encontrados
+- Nenhum erro até o momento.
+
+### 🧪 Testes
+- Sincronização e estruturas de arquivos analisadas com sucesso.
+
+### 🚀 Próximo Passo
+- Obter aprovação do usuário para o Blueprint de arquitetura e iniciar a validação dos fluxos locais.
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Implementação do Portal de Entrada e Validação de Áudio
+
+### ✅ O que foi feito
+- O [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) foi modificado com o novo container `#portal-entrada` contendo mensagem de boas-vindas e botão de entrada, deixando o vídeo oculto inicialmente.
+- O [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi atualizado com estilos místicos para o portal e um botão dourado premium com animação pulsante.
+- O [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) foi ajustado para escutar o clique no portal, exibir o vídeo, ativar o volume em 1.0 com `muted = false` e rodar a reprodução. Adicionou-se a parada do vídeo no skip para sanar a falha de áudio fantasma.
+- O arquivo [task.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/task.md) foi criado e atualizado marcando todas as tarefas de desenvolvimento e testes como concluídas.
+- O walkthrough [walkthrough.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/walkthrough.md) foi gerado registrando as evidências das etapas.
+
+### ❌ Erros encontrados
+- Erro de bloqueio do navegador ao tentar carregar a URL por protocolo `file://` durante os testes do subagente. Contornado carregando via `http://localhost:3000`.
+
+### 🧪 Testes
+- Teste do fluxo do preloader e reprodução de som efetuados com sucesso pelo subagente no navegador Chrome, gerando screenshots e gravação de vídeo (`preloader_audio_test.webp`).
+
+### 🚀 Próximo Passo
+- Apresentar o resultado final e as evidências de teste ao usuário para encerramento da fase.
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Inclusão da Foto do Pai Paulinho no Portal de Entrada
+
+### ✅ O que foi feito
+- A foto anexada pelo usuário foi copiada com sucesso para o workspace em `assets/pai_paulinho_portal.png`.
+- O [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) foi modificado para substituir o ícone de raio ⚡ pela imagem do Pai Paulinho encapsulada no wrapper `.portal-avatar-wrapper`.
+- O [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi atualizado para formatar a foto do Pai Paulinho em formato circular premium com bordas douradas e efeitos de sombra.
+- Adicionou-se um halo dourado pulsante (`breatheGlow`) no fundo do avatar e uma animação suave de flutuação vertical (`floatAvatar`) para trazer profundidade espiritual e elegância mística ao preloader.
+- O [walkthrough.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/walkthrough.md) foi atualizado para registrar a nova captura de tela do portal de entrada contendo a foto.
+
+### ❌ Erros encontrados
+- Nenhum erro de lógica. Apenas problemas de validação de caminhos absolutos no validador Markdown do Windows do Antigravity.
+
+### 🧪 Testes
+- Teste visual executado via subagente, capturando a tela do portal de entrada com a foto renderizada perfeitamente e validando as transições.
+
+### 🚀 Próximo Passo
+- Apresentar o resultado visual completo ao usuário.
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Ajuste de Responsividade e Qualidade de Vídeos (Contain)
+
+### ✅ O que foi feito
+- O [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi modificado para trocar a propriedade `object-fit: cover` por `object-fit: contain` em `#introVideo` e `.preloader-video`. Isso garante que as proporções originais do vídeo sejam mantidas sem cortes (laterais ou verticais) e sem distorcer a qualidade.
+- Removeu-se a restrição de largura fixa (`400px`) de desktop para o `.video-container`, permitindo que os vídeos ocupem 100% de largura e altura da tela em qualquer dispositivo (celular e computador).
+- O [walkthrough.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/walkthrough.md) foi atualizado com as capturas de tela responsivas do subagente de navegação.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Validado por meio de um fluxo de navegação responsivo simulado via subagente, registrando o vídeo da sublogo e de boas-vindas centralizados em tela cheia com barras pretas integradas invisíveis nas bordas.
+
+### 🚀 Próximo Passo
+- Apresentar o resultado e solicitar validação visual final do usuário.
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Integração da Foto do Pai Paulinho no Emblema do Hero
+
+### ✅ O que foi feito
+- O [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) foi alterado substituindo a `span` do emoji de raio `⚡` no Hero pela foto do Pai Paulinho (`assets/pai_paulinho_portal.png`) com a classe `.hero-emblem-img`.
+- O [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi modificado para suportar o avatar circular no Hero. Aumentou-se o diâmetro do emblema para `110px` e da imagem para `90px` para uma proporção harmônica e centralizada dentro do anel místico giratório.
+
+### ❌ Erros encontrados
+- O usuário notou que o avatar ficou com duas bordas douradas (um anel colado e outro girando por fora), gerando redundância visual ("dois círculos amarelos").
+
+### 🧪 Testes
+- Teste visual efetuado pelo subagente (`hero_avatar_final.png`).
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Polimento do Emblema do Hero (Remoção de Círculo Duplicado)
+
+### ✅ O que foi feito
+- O [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi alterado para remover a propriedade `border: 2px solid var(--gold)` de `.hero-emblem-img`.
+- Isso eliminou o círculo amarelo interno de forma a deixar apenas o anel dourado místico girando ao redor da foto flutuante, resultando em um design muito mais elegante, limpo e profissional.
+- O [walkthrough.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/walkthrough.md) foi atualizado com a captura de tela final limpa.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Validado com teste do subagente de navegação, capturando o resultado do Hero com visualização perfeita e limpa (`hero_avatar_clean.png`).
+
+### 🚀 Próximo Passo
+- Apresentar o resultado polido ao usuário.
+
+---
+
+## 📅 2026-06-04 — Fase A (Arquitetura) — Substituição da Foto da Biografia e Ajuste de Enquadramento (Sobre)
+
+### ✅ O que foi feito
+- A foto de estúdio do Pai Paulinho vestindo capa e chapéu preto com detalhes dourados (`C:\Users\thiag\Downloads\paisobre.jpeg`) foi copiada com sucesso para o workspace em `assets/pai_paulinho_sobre.jpg`.
+- O arquivo [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) foi modificado na classe `.sobre-img` para adicionar `object-position: center 15%`.
+- Isso permitiu que a nova imagem (com proporção vertical 9:16.5) coubesse de forma excelente e harmoniosa no frame de proporção 4:5 da seção "Sobre" sem cortar o topo do chapéu e focando no rosto do Pai Paulinho.
+- O [walkthrough.md](file:///C:/Users/thiag/.gemini/antigravity-ide/brain/d4574a9b-3aa6-40d0-a5f7-4d9f7112ae40/walkthrough.md) foi atualizado com a captura de tela e gravação da sessão de teste.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Testado localmente e validado por subagente de navegação no site local (`sobre_section_check.png` e gravação em vídeo). O enquadramento ficou perfeito.
+
+### 🚀 Próximo Passo
+- Apresentar o resultado para feedback do usuário.
+
+---
+
+## 📅 2026-06-05 — Fase A (Arquitetura) — Remoção da Vinheta da Sublogo no Preloader
+
+### ✅ O que foi feito
+- Removido o vídeo da vinheta (`assets/sublogo.mp4` / ID `#logoVideo`) do arquivo [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html).
+- Simplificada a função `initVideoPreloader` no [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) para eliminar referências ao `logoVideo`.
+- Ajustado o fluxo de reprodução para que, após o clique em "Entrar com Respeito (Saravá)" e o respectivo efeito de zoom/fade no avatar (1.1s), toque diretamente o vídeo de boas-vindas (`assets/bemvindo.mp4` / ID `#introVideo`) com som ativo, ocultando o preloader ao seu término ou no clique de pular.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Código revisado localmente para garantir consistência estrutural e prevenir erros de elementos nulos no JavaScript.
+
+### 🚀 Próximo Passo
+- Executar testes automatizados no navegador com subagente para validar visualmente o fluxo se o usuário julgar necessário, ou prosseguir para o desenvolvimento do painel administrativo.
+
+---
+
+## 📅 2026-06-05 — Fase A (Arquitetura) — Transformação em PWA (Aplicativo Móvel Instalável)
+
+### ✅ O que foi feito
+- Gerados os ícones PWA oficiais (`assets/icon-192.png` e `assets/icon-512.png`) com base no avatar original do Pai Paulinho usando ferramentas de redimensionamento de imagem de desenvolvimento local no PowerShell.
+- Criado o manifesto [manifest.json](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/manifest.json) para configurar a exibição em tela cheia (standalone) e metadados do app.
+- Desenvolvido o Service Worker [sw.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/sw.js) com estratégias de cache offline inteligentes: Cache-First para arquivos estáticos e fontes, Stale-While-Revalidate para lógica HTML/JS/CSS locais, e bypass transparente para arquivos de vídeo `.mp4` para prevenir falhas de reprodução em iPhones (iOS).
+- Modificado o [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) para incluir tags meta de PWA para Safari (iOS) e o item oculto do botão de instalação `⚡ Instalar Aplicativo` no menu.
+- Atualizado o [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) para registrar o Service Worker e acionar o prompt de instalação personalizada ao clicar no menu no evento `beforeinstallprompt`.
+- Atualizado o [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) para dar o destaque dourado e místico ao botão de instalar aplicativo no menu de navegação.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Validação visual e de console rodando localmente na porta 3000 executada com êxito via subagente de navegação no Chrome. O console registrou o Service Worker registrado com sucesso e a captura do prompt de instalação. Gravado arquivo de vídeo de evidência (`pwa_verification_1780691338704.webp`).
+
+### 🚀 Próximo Passo
+- Prosseguir com a estruturação e desenvolvimento dos campos no Painel Admin (`admin.html`).
+
+---
+
+## 📅 2026-06-05 — Fase A (Arquitetura) — Otimização de Autoplay e Resiliência no Preloader de Vídeo
+
+### ✅ O que foi feito
+- **Autoplay Síncrono:** Atualizada a lógica em [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) para iniciar a reprodução do vídeo de boas-vindas (`introVideo`) de forma síncrona no exato momento do clique no botão "Entrar com Respeito (Saravá)". Isso garante que o navegador herde a permissão de áudio do gesto do usuário e nunca bloqueie o vídeo com som por políticas de autoplay.
+- **Proteção contra Término Precoce:** Ajustada a escuta do evento `ended` em [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) para monitorar se a reprodução durou pelo menos 6 segundos. Caso o navegador reporte `ended` prematuramente devido a buffering progressivo ou problemas locais de index em servidores de desenvolvimento, o preloader aplica um timer de segurança complementar para garantir a exibição integral do vídeo de 10 segundos para o visitante.
+- **Bypass de Mídia Otimizado:** Atualizado o [sw.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/sw.js) para interceptar requisições com `event.request.destination === 'video' || event.request.destination === 'audio'`, garantindo que requisições de mídias passem sempre direto pela rede sem interferência de cache.
+
+### ❌ Erros encontrados
+- O vídeo de abertura sumia prematuramente após 1.5 segundos na tela devido a limitações de streaming do servidor local em MP4 e políticas de bloqueio de autoplay com som quando executado assincronamente (após o delay de 1.1s).
+
+### 🧪 Testes
+- Validado por meio de logs de console e screenshots via subagente, atestando que a inicialização do vídeo agora é robusta e a tela permanece ativa.
+
+### 🚀 Próximo Passo
+- Iniciar a formatação final do Painel Administrativo.
+
+---
+
+## 📅 2026-06-05 — Fase A (Arquitetura) — Resolução do Flash Visual e Opacidade do Preloader de Vídeo
+
+### ✅ O que foi feito
+- **Opacidade Sólida no Preloader:** Modificado o estilo do `#video-preloader` em [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) para usar `background: #050209` (a cor de fundo base mística do site) de forma **100% opaca** e removidos os filtros de blur de fundo. Isso impede que qualquer elemento inferior na árvore de renderização (como a foto e o Hero) fique visível de fundo no caso de delay de decodificação e buffer do player de vídeo.
+- **Transição Suave de Vídeo:** Com a ocultação instantânea do portal e o início síncrono do vídeo já presentes no JavaScript, a transição agora ocorre com o vídeo de boas-vindas fazendo fade-in sobre um fundo preto místico sólido e uniforme, gerando uma experiência premium sem "piscadas" ou quebras de imersão.
+- **Atualização do Cache (SW v2):** Atualizado o cache de PWA para garantir a propagação imediata da correção para dispositivos móveis com cache anterior ativo.
+
+### ❌ Erros encontrados
+- O preloader translúcido permitia visualizar a foto do Hero por trás do portal nos instantes iniciais pós-clique, enquanto o navegador realizava o buffering do vídeo `bemvindo.mp4`.
+
+### 🧪 Testes
+- Testado e validado no servidor local porta 3001 via subagente de navegação. Foram capturados screenshots em intervalos de 200ms, 600ms, 1.5s e 3.0s confirmando que a foto do Hero não pisca e o vídeo toca suavemente. Evidência registrada em vídeo (`preloader_fixed_check_1780700607990.webp`).
+
+### 🚀 Próximo Passo
+- Prosseguir para a formatação final e desenvolvimento do Painel Administrativo (/admin.html).
+
+---
+
+## 📋 Template para Entradas Futuras
+
+```
+## 📅 YYYY-MM-DD — [Fase] — [Descrição]
+
+### ✅ O que foi feito
+-
+
+### ❌ Erros encontrados
+-
+
+### 🧪 Testes
+-
+
+### 🚀 Próximo Passo
+-
+```
+

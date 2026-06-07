@@ -1,0 +1,8 @@
+.env
+.tmp/
+/Gravando *.mp4
+*.mp4
+Thumbs.db
+.DS_Store
+node_modules/
+dist/

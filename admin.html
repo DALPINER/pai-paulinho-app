@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Admin — Terreira Paulinho</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ===== TELA DE LOGIN ===== -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="login-emblem" aria-hidden="true">⚡</div>
+      <h1 class="login-title">Painel Admin</h1>
+      <p class="login-subtitle">Terreira Paulinho de Xangô Aganjú</p>
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginSenha" class="form-label">Senha de Acesso</label>
+          <input
+            type="password"
+            id="loginSenha"
+            class="form-input"
+            placeholder="Digite a senha..."
+            autocomplete="current-password"
+            required
+          >
+        </div>
+        <div class="login-error" id="loginError" aria-live="polite"></div>
+        <button type="submit" class="btn-primary" id="loginBtn">
+          <span>Entrar</span>
+          <span class="btn-icon-right">→</span>
+        </button>
+      </form>
+      <a href="index.html" class="login-back">← Voltar ao site</a>
+    </div>
+  </div>
+
+  <!-- ===== PAINEL PRINCIPAL ===== -->
+  <div class="admin-panel hidden" id="adminPanel">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="adminSidebar">
+      <div class="sidebar-brand">
+        <span class="sidebar-emblem">⚡</span>
+        <div>
+          <div class="sidebar-title">Pai Paulinho</div>
+          <div class="sidebar-subtitle">Painel Admin</div>
+          <div class="sidebar-db-status" id="dbStatus">⏳ Verificando...</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-btn active" data-tab="sobre">
+          <span>👤</span> Sobre
+        </button>
+        <button class="sidebar-btn" data-tab="servicos">
+          <span>🔮</span> Serviços
+        </button>
+        <button class="sidebar-btn" data-tab="depoimentos">
+          <span>💬</span> Depoimentos
+        </button>
+        <button class="sidebar-btn" data-tab="mensagem">
+          <span>🙏</span> Mensagem Espiritual
+        </button>
+        <button class="sidebar-btn" data-tab="contato">
+          <span>📱</span> Contato & Redes
+        </button>
+        <button class="sidebar-btn" data-tab="seguranca">
+          <span>🔒</span> Segurança
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="sidebar-preview-btn">
+          <span>👁</span> Ver Site
+        </a>
+        <button class="sidebar-logout" id="logoutBtn" title="Sair">
+          <span>⎋</span> Sair
+        </button>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="admin-main">
+
+      <!-- Toast notification -->
+      <div class="toast" id="adminToast" role="status" aria-live="polite"></div>
+
+      <!-- Tab: Sobre -->
+      <section class="admin-tab active" id="tab-sobre">
+        <div class="tab-header">
+          <h2 class="tab-title">Sobre Pai Paulinho</h2>
+          <p class="tab-desc">Este texto aparece na seção "Sobre" do site.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="sobreTexto" class="form-label">Texto (separe parágrafos com uma linha em branco)</label>
+            <textarea id="sobreTexto" class="form-textarea" rows="10" placeholder="Escreva a história e missão de Pai Paulinho..."></textarea>
+          </div>
+          <button class="btn-save" data-section="sobre">
+            <span>💾</span> Salvar Sobre
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab: Serviços -->
+      <section class="admin-tab" id="tab-servicos">
+        <div class="tab-header">
+          <h2 class="tab-title">Serviços Espirituais</h2>
+          <p class="tab-desc">Gerencie os serviços exibidos no site.</p>
+        </div>
+        <div class="form-card">
+          <div id="servicosList" class="items-list"></div>
+          <button class="btn-add" id="addServico">
+            <span>+</span> Adicionar Serviço
+          </button>
+          <button class="btn-save" data-section="servicos">
+            <span>💾</span> Salvar Serviços
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab: Depoimentos -->
+      <section class="admin-tab" id="tab-depoimentos">
+        <div class="tab-header">
+          <h2 class="tab-title">Depoimentos</h2>
+          <p class="tab-desc">Gerencie os depoimentos exibidos no carrossel.</p>
+        </div>
+        <div class="form-card">
+          <div id="depoimentosList" class="items-list"></div>
+          <button class="btn-add" id="addDepoimento">
+            <span>+</span> Adicionar Depoimento
+          </button>
+          <button class="btn-save" data-section="depoimentos">
+            <span>💾</span> Salvar Depoimentos
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab: Mensagem Espiritual -->
+      <section class="admin-tab" id="tab-mensagem">
+        <div class="tab-header">
+          <h2 class="tab-title">Mensagem Espiritual do Dia</h2>
+          <p class="tab-desc">Esta mensagem aparece na seção de destaque espiritual do site.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="mensagemDia" class="form-label">Mensagem / Oração do Dia</label>
+            <textarea id="mensagemDia" class="form-textarea" rows="5" placeholder="Escreva a mensagem espiritual do dia..."></textarea>
+          </div>
+          <button class="btn-save" data-section="mensagem">
+            <span>💾</span> Salvar Mensagem
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab: Contato e Redes -->
+      <section class="admin-tab" id="tab-contato">
+        <div class="tab-header">
+          <h2 class="tab-title">Contato & Redes Sociais</h2>
+          <p class="tab-desc">Configure o número do WhatsApp e os links das redes sociais.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="whatsappNumero" class="form-label">
+              Número do WhatsApp
+              <span class="form-hint">Com código do país. Ex: 5511987654321</span>
+            </label>
+            <input type="tel" id="whatsappNumero" class="form-input" placeholder="5511987654321">
+          </div>
+          <div class="form-group">
+            <label for="instagramUrl" class="form-label">
+              Link do Instagram
+              <span class="form-hint">URL completa. Ex: https://instagram.com/seuperfil</span>
+            </label>
+            <input type="url" id="instagramUrl" class="form-input" placeholder="https://instagram.com/...">
+          </div>
+          <div class="form-group">
+            <label for="facebookUrl" class="form-label">
+              Link do Facebook
+              <span class="form-hint">URL completa. Ex: https://facebook.com/suapagina</span>
+            </label>
+            <input type="url" id="facebookUrl" class="form-input" placeholder="https://facebook.com/...">
+          </div>
+          <button class="btn-save" data-section="contato">
+            <span>💾</span> Salvar Contato
+          </button>
+        </div>
+      </section>
+
+      <!-- Tab: Segurança -->
+      <section class="admin-tab" id="tab-seguranca">
+        <div class="tab-header">
+          <h2 class="tab-title">Segurança</h2>
+          <p class="tab-desc">Altere a senha de acesso ao painel administrativo.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="senhaAtual" class="form-label">Senha Atual</label>
+            <input type="password" id="senhaAtual" class="form-input" placeholder="Digite a senha atual...">
+          </div>
+          <div class="form-group">
+            <label for="senhaNova" class="form-label">Nova Senha</label>
+            <input type="password" id="senhaNova" class="form-input" placeholder="Digite a nova senha...">
+          </div>
+          <div class="form-group">
+            <label for="senhaConfirm" class="form-label">Confirmar Nova Senha</label>
+            <input type="password" id="senhaConfirm" class="form-input" placeholder="Repita a nova senha...">
+          </div>
+          <div class="security-info">
+            <span>ℹ️</span>
+            <p>A senha padrão é <strong>Paulinho2024</strong>. Recomendamos alterar no primeiro acesso.</p>
+          </div>
+          <button class="btn-save" id="alterarSenha">
+            <span>🔒</span> Alterar Senha
+          </button>
+        </div>
+
+        <div class="form-card danger-zone">
+          <h3 class="danger-title">⚠️ Zona de Risco</h3>
+          <p class="danger-desc">Resetar todos os dados para os valores padrão do sistema. Esta ação não pode ser desfeita.</p>
+          <button class="btn-danger" id="resetarDados">
+            🗑️ Resetar para Dados Padrão
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Firebase SDK (compat v9) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
