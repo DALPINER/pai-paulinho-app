@@ -234,6 +234,29 @@
 
 ---
 
+## 📅 2026-06-07 — Fase G (Gatilho) — Setup do Repositório Git, Envio ao GitHub e Ajuste de Mídias
+
+### ✅ O que foi feito
+- Criação e configuração do arquivo `.gitignore` inicial para proteger segredos (`.env`) e ignorar arquivos de desenvolvimento.
+- Inicialização do repositório Git local e configuração da identidade local do Git para o repositório (`DALPINER`).
+- Vinculação do remote e primeiro envio (`push`) bem-sucedido para o GitHub público do usuário (`https://github.com/DALPINER/terreira-paulinho-app.git`).
+- Correção no `.gitignore`: removida a regra recursiva `*.mp4` que impedia o envio de mídias de produção da pasta `assets/`.
+- Upload dos vídeos legítimos de produção (`assets/bemvindo.mp4`) para o GitHub para solucionar a falta de mídia no preloader no Netlify.
+- Remoção definitiva de `assets/sublogo.mp4` do Git local e remoto a pedido do usuário, e consequente limpeza do `.gitignore`.
+- Fornecimento de passo a passo detalhado para hospedagem contínua via Netlify.
+
+### ❌ Erros encontrados
+- Falha na tentativa de commit inicial por falta de identidade do Git configurada no sistema do usuário. Corrigido definindo `user.name` e `user.email` apenas no escopo local do repositório.
+- Ausência de vídeos no deploy inicial por conta do padrão `*.mp4` no `.gitignore`. Corrigido ajustando o arquivo e fazendo novo push.
+
+### 🧪 Testes
+- Simulação de inicialização, commit e push executadas localmente e verificadas com sucesso na URL oficial do repositório remoto.
+
+### 🚀 Próximo Passo
+- Conclusão do deploy no Netlify e continuidade no desenvolvimento do painel administrativo (/admin.html) e integração final.
+
+---
+
 ## 📋 Template para Entradas Futuras
 
 ```
@@ -251,4 +274,5 @@
 ### 🚀 Próximo Passo
 -
 ```
+
 
