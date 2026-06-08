@@ -238,6 +238,7 @@
   <section id="oraculo" class="section">
     <div class="container">
       <div class="mensagem-card oracle-card reveal" id="oracleCard">
+        <canvas id="oracleCanvas" class="oracle-canvas"></canvas>
 
         <!-- Velas — animação de brilho durante a consulta -->
         <div class="mensagem-candles oracle-candles" id="oracleCandles" aria-hidden="true">
@@ -371,6 +372,21 @@
 
   <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
   <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
+
+  <!-- ===== LIGHTBOX CINEMÁTICO GALERIA ===== -->
+  <div class="galeria-lightbox hidden" id="galeriaLightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Fotos">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar Visualizador" type="button">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Foto Anterior" type="button">&#10094;</button>
+    
+    <div class="lightbox-content">
+      <div class="lightbox-img-wrapper">
+        <img src="" alt="" id="lightboxImg">
+      </div>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+    
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Próxima Foto" type="button">&#10095;</button>
+  </div>
 
   <!-- Firebase SDK (compat v9) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>

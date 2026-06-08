@@ -449,6 +449,11 @@ function initOracle() {
     chips.forEach(btn => btn.disabled = true);
     if (btnAgain) btnAgain.disabled = true;
 
+    // — Dispara a mudança de tema e física do Canvas de partículas —
+    if (typeof window.setOracleTheme === 'function') {
+      window.setOracleTheme(category);
+    }
+
     // — Ativar animação de brilho e pulso no card —
     card.classList.add('oracle-shining');
 
@@ -507,6 +512,11 @@ function initOracle() {
 
   // Reset para nova orientação (retorna ao menu de chips)
   btnAgain?.addEventListener('click', () => {
+    // Retorna as partículas para o estado flutuante padrão
+    if (typeof window.setOracleTheme === 'function') {
+      window.setOracleTheme('default');
+    }
+
     // Fade out suave do resultado
     resultEl.classList.add('hidden');
     msgEl.textContent = '';
@@ -622,6 +632,148 @@ function initParticles() {
   window.addEventListener('resize', () => { resize(); initPool(); }, { passive: true });
   initPool();
   tick();
+}
+
+/* ================================================================
+   ORACLE CANVAS PARTICLES — Partículas dinâmicas e interativas no Oráculo
+   ================================================================ */
+function initOracleParticles() {
+  const canvas = document.getElementById('oracleCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let currentCategory = 'default';
+  let forceFieldCenter = { x: 0, y: 0 };
+  let isVortexActive = false;
+
+  const COLORS = {
+    default:   ['#c9a84c', '#e8c96a', '#b5923b'],
+    amor:      ['#8b1c1c', '#ff5a5a', '#ff85a1', '#e29578'],
+    caminhos:  ['#c9a84c', '#ffb703', '#ffd166', '#ffffff'],
+    paz:       ['#ffffff', '#cbd5e1', '#b0c4de', '#f0f8ff'],
+    protecao:  ['#2a9d8f', '#a65d37', '#52796f', '#e76f51']
+  };
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    forceFieldCenter.x = canvas.width / 2;
+    forceFieldCenter.y = canvas.height / 2;
+  }
+
+  class OracleParticle {
+    constructor() {
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * canvas.width;
+      this.y = initial ? Math.random() * canvas.height : canvas.height + 15;
+      this.size = Math.random() * 2.2 + 0.6;
+      this.alpha = Math.random() * 0.5 + 0.1;
+      this.baseAlpha = this.alpha;
+      this.life = 0;
+      this.maxLife = Math.random() * 200 + 150;
+      
+      this.speedY = Math.random() * 0.4 + 0.15;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      
+      const dx = this.x - forceFieldCenter.x;
+      const dy = this.y - forceFieldCenter.y;
+      this.radius = Math.sqrt(dx * dx + dy * dy);
+      this.angle = Math.atan2(dy, dx);
+      this.orbitSpeed = (Math.random() * 0.01 + 0.004) * (Math.random() > 0.5 ? 1 : -1);
+
+      const palette = COLORS[currentCategory] || COLORS.default;
+      this.color = palette[Math.floor(Math.random() * palette.length)];
+    }
+
+    update() {
+      this.life++;
+      
+      if (isVortexActive) {
+        this.angle += this.orbitSpeed * 1.5;
+        this.radius -= 0.6;
+        if (this.radius < 5) {
+          this.reset(false);
+          this.radius = Math.max(canvas.width, canvas.height) * 0.6;
+        }
+        this.x = forceFieldCenter.x + Math.cos(this.angle) * this.radius;
+        this.y = forceFieldCenter.y + Math.sin(this.angle) * this.radius;
+      } else {
+        this.x += this.speedX;
+        this.y -= this.speedY;
+        
+        if (this.orbitSpeed) {
+          this.x += Math.cos(this.life * 0.02) * 0.15;
+        }
+      }
+
+      if (this.life > this.maxLife * 0.8) {
+        this.alpha -= 0.01;
+      }
+      
+      if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20 || this.alpha <= 0) {
+        this.reset(false);
+      }
+    }
+
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, this.alpha);
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function initPool() {
+    particles = Array.from({ length: 65 }, () => new OracleParticle());
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(tick);
+  }
+
+  resize();
+  initPool();
+  tick();
+
+  window.addEventListener('resize', () => {
+    resize();
+    initPool();
+  }, { passive: true });
+
+  window.setOracleTheme = function(category) {
+    currentCategory = category;
+    if (category === 'default') {
+      isVortexActive = false;
+    } else {
+      isVortexActive = true;
+      setTimeout(() => {
+        isVortexActive = false;
+      }, 3500);
+    }
+    
+    particles.forEach(p => {
+      const palette = COLORS[currentCategory] || COLORS.default;
+      p.color = palette[Math.floor(Math.random() * palette.length)];
+      if (isVortexActive) {
+        const dx = p.x - forceFieldCenter.x;
+        const dy = p.y - forceFieldCenter.y;
+        p.radius = Math.sqrt(dx * dx + dy * dy);
+        p.angle = Math.atan2(dy, dx);
+      }
+    });
+  };
 }
 
 /* ================================================================
@@ -958,6 +1110,118 @@ function initGalleryScroll() {
 }
 
 /* ================================================================
+   GALERIA LIGHTBOX — Visualização 4K e Legendas Poéticas
+   ================================================================ */
+const GALERIA_CAPTIONS = {
+  "1": "O fogo que purifica a alma e consagra trinta anos de caminhada sob as bênçãos de Xangô.",
+  "3": "A doçura de Oxum guiando e abraçando cada filho que busca uma palavra de esperança.",
+  "4": "Caminhos abertos e corações renovados pela força mística e pelo calor do nosso terreiro.",
+  "5": "A energia das oferendas sagradas que abrem portais de amor, prosperidade e proteção.",
+  "6": "União e axé: a grande família unida no propósito sagrado da caridade e do acolhimento.",
+  "7": "A firmeza e a lei de Xangô Aganjú estruturando nossos passos sobre a rocha da justiça.",
+  "8": "Direcionamento místico sob as luzes das velas que iluminam nossas preces e intenções.",
+  "9": "Sorrisos e a força dos guias abrindo caminhos para todos os que aqui encontram luz.",
+  "10": "A caridade silenciosa e acolhedora que abraça, cura e acalma os aflitos.",
+  "11": "Ritual sagrado de purificação e fortalecimento espiritual da nossa egrégora mística.",
+  "12": "Sob o olhar protetor dos orixás, nossa fé se renova a cada comemoração de amor.",
+  "13": "Sacerdote Paulo conduzindo com dedicação e amor as bênçãos para nossa comunidade.",
+  "14": "O Axé que emana das pedreiras sagradas e se espalha para o coração de cada filho.",
+  "15": "Celebração das três décadas de dedicação ao sagrado com profunda reverência à ancestralidade.",
+  "16": "A beleza do Altar que irradia as vibrações elevadas de paz, saúde e tranquilidade.",
+  "18": "Momento solene de gratidão pela jornada de luz iniciada há trinta anos.",
+  "19": "Flores e oferendas em reverência à pureza das mães das águas doces e salgadas.",
+  "20": "A energia mística das ervas sagradas que descarregam o peso e devolvem a leveza.",
+  "21": "Pai Paulinho de Xangô Aganjú: trinta anos estendendo a mão para trazer luz e conforto."
+};
+
+function initLightbox() {
+  const lightbox = document.getElementById('galeriaLightbox');
+  const img = document.getElementById('lightboxImg');
+  const caption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  
+  const items = Array.from(document.querySelectorAll('.galeria-item img'));
+  if (!lightbox || !img || !caption || !items.length) return;
+  
+  let currentIndex = 0;
+  
+  function openLightbox(index) {
+    currentIndex = index;
+    lightbox.classList.remove('hidden');
+    lightbox.offsetWidth; // Força reflow
+    lightbox.classList.add('active');
+    updateContent();
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      lightbox.classList.add('hidden');
+    }, 500);
+  }
+  
+  function updateContent() {
+    const currentImg = items[currentIndex];
+    if (!currentImg) return;
+    
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+      img.src = currentImg.src;
+      img.alt = currentImg.alt;
+      
+      const filename = currentImg.src.substring(currentImg.src.lastIndexOf('/') + 1);
+      const num = filename.split('.')[0];
+      
+      caption.textContent = GALERIA_CAPTIONS[num] || currentImg.alt || 'Celebração de Três Décadas';
+      
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1)';
+    }, 200);
+  }
+  
+  function showNext() {
+    currentIndex = (currentIndex + 1) % items.length;
+    updateContent();
+  }
+  
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    updateContent();
+  }
+  
+  items.forEach((item, index) => {
+    item.parentElement.style.cursor = 'pointer';
+    item.parentElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(index);
+    });
+  });
+  
+  closeBtn?.addEventListener('click', closeLightbox);
+  prevBtn?.addEventListener('click', showPrev);
+  nextBtn?.addEventListener('click', showNext);
+  
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
+}
+
+/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -970,10 +1234,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // — Features que não dependem de dados —
   initParticles();
+  initOracleParticles();
   initNav();
   initMagneticBtn();
   initOracle();
   initGalleryScroll();
+  initLightbox();
   observeRevealElements();
 
   // — TASK 3: Dados em tempo real (Firestore → fallback localStorage) —
