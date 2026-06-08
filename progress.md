@@ -304,6 +304,32 @@
 
 ---
 
+## 📅 2026-06-08 — Fase E (Integração) — Evolução Estética Mística e Estabilização de Navegação Mobile
+
+### ✅ O que foi feito
+- **Navegação Horizontal por Gestos e Mouse no Desktop:** Adicionamos setas de navegação flutuantes (com hover e Glassmorphism) no carrossel de fotos, suporte a clique, arrasto com o mouse (*drag-to-scroll*) e conversão inteligente de roda vertical de mouse para rolagem horizontal (com escape suave de travamento de body nas pontas).
+- **Feixe de Luz de Xangô (Border Beam):** Implementado no card do Oráculo e no botão de agendamento principal da seção Sobre uma borda fina dourada luminosa contínua e rotativa baseada em CSS moderno e animado nativamente via GPU (`@property`).
+- **Canvas de Partículas com Reação e Vórtice:** Criado canvas interno em `#oracleCard` que renderiza partículas flutuantes douradas em repouso. Ao selecionar chips de intenção, as partículas mudam de cor para tons representativos das divindades e aceleram em espiral (vórtice orbital) por 3.5 segundos.
+- **Lightbox Cinemático 4K:** Desenvolvido visualizador de fotos em tela cheia com desfoque de fundo em `blur(20px)` e molduras com sombra carmim. Mapeamos um conjunto de 19 legendas místicas personalizadas (`GALERIA_CAPTIONS`) exibidas dinamicamente ao abrir ou navegar no lightbox por teclado ou cliques.
+- **Redes Sociais Animadas na Biografia:** Inseridos botões do Facebook e Instagram ao lado do CTA de agendamento, com ícones SVG puros que realizam hover dinâmico acendendo com as cores das marcas, sombra colorida correspondente e elevação física elástica.
+- **Shimmer Effect (Reflexo de Luz WhatsApp):** Aplicado efeito de reflexo de luz metálica inclinada contínuo atravessando as formas dos botões do WhatsApp de forma sutil a cada 3.5 segundos.
+- **Correção e Estabilização do Menu Mobile:**
+  - Travamento de scroll de body (`overflow: hidden`) ao abrir o menu responsivo.
+  - Fechamento inteligente do menu ao clicar fora das opções ou no hamburger.
+  - Resolvido bug do desfoque de cabeçalho (`backdrop-filter`) que quebrava o posicionamento fixed do menu fora do topo. O `#siteHeader` agora expande estruturalmente a sua altura para `100dvh` com fundo marfim translúcido quando aberto.
+- **Bump do PWA (Service Worker):** Incrementada a versão de cache no `sw.js` para `v9` para invalidar caches antigos e propagar os novos recursos a todos os usuários.
+
+### ❌ Erros encontrados
+- Bug de contexto do posicionamento `fixed` gerado pelo `backdrop-filter` no navegador móvel (Safari/Chrome). Resolvido expandindo a altura total do cabeçalho pai para `100dvh` de forma limpa.
+
+### 🧪 Testes
+- Verificado localmente e implantado com absoluto sucesso no repositório remoto Git. Testado visualmente e responsivamente.
+
+### 🚀 Próximo Passo
+- Continuar com as etapas planejadas de integração com banco e novas otimizações estéticas.
+
+---
+
 ## 📋 Template para Entradas Futuras
 
 ```
