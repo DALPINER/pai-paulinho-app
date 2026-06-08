@@ -898,12 +898,14 @@ function initNav() {
   function openMenu() {
     hamburger.classList.add('open');
     navLinks.classList.add('open');
+    header?.classList.add('menu-open'); // Remove backdrop-filter para manter fixed estável
     document.body.style.overflow = 'hidden'; // Bloqueia rolagem do fundo
   }
 
   function closeMenu() {
     hamburger.classList.remove('open');
     navLinks.classList.remove('open');
+    header?.classList.remove('menu-open'); // Restaura filtros do header
     document.body.style.overflow = ''; // Restaura rolagem
   }
 
