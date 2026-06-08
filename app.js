@@ -887,6 +887,77 @@ function initPWA() {
 }
 
 /* ================================================================
+   GALERIA HORIZONTAL — drag-to-scroll, wheel-scroll e navegação por setas
+   ================================================================ */
+function initGalleryScroll() {
+  const carrossel = document.querySelector('.galeria-carrossel');
+  const btnPrev = document.querySelector('.galeria-nav-btn.prev');
+  const btnNext = document.querySelector('.galeria-nav-btn.next');
+  if (!carrossel) return;
+
+  // 1. Navegação pelas setas laterais
+  const cardWidth = 290 + 29; // 290px + gap (aprox 29px)
+
+  btnPrev?.addEventListener('click', () => {
+    carrossel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  });
+
+  btnNext?.addEventListener('click', () => {
+    carrossel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+  });
+
+  // 2. Comportamento Drag-to-Scroll (arrastar com o mouse)
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  carrossel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carrossel.classList.add('dragging');
+    startX = e.pageX - carrossel.offsetLeft;
+    scrollLeft = carrossel.scrollLeft;
+    carrossel.style.scrollSnapType = 'none';
+  });
+
+  carrossel.addEventListener('mouseleave', () => {
+    if (isDown) {
+      isDown = false;
+      carrossel.classList.remove('dragging');
+      carrossel.style.scrollSnapType = 'x mandatory';
+    }
+  });
+
+  carrossel.addEventListener('mouseup', () => {
+    if (isDown) {
+      isDown = false;
+      carrossel.classList.remove('dragging');
+      carrossel.style.scrollSnapType = 'x mandatory';
+    }
+  });
+
+  carrossel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carrossel.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    carrossel.scrollLeft = scrollLeft - walk;
+  });
+
+  // 3. Wheel Scroll Horizontal Inteligente (roda do mouse vertical vira horizontal)
+  carrossel.addEventListener('wheel', (e) => {
+    if (e.deltaY !== 0) {
+      const isAtStart = carrossel.scrollLeft <= 2;
+      const isAtEnd = carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 5;
+      
+      if ((e.deltaY < 0 && !isAtStart) || (e.deltaY > 0 && !isAtEnd)) {
+        e.preventDefault();
+        carrossel.scrollLeft += e.deltaY * 0.9;
+      }
+    }
+  }, { passive: false });
+}
+
+/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -902,6 +973,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initMagneticBtn();
   initOracle();
+  initGalleryScroll();
   observeRevealElements();
 
   // — TASK 3: Dados em tempo real (Firestore → fallback localStorage) —
