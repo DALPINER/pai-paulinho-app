@@ -253,7 +253,54 @@
 - Simulação de inicialização, commit e push executadas localmente e verificadas com sucesso na URL oficial do repositório remoto.
 
 ### 🚀 Próximo Passo
-- Conclusão do deploy no Netlify e continuidade no desenvolvimento do painel administrativo (/admin.html) e integração final.
+- Configurar o deploy do Terreira Paulinho App na Vercel e apontar o domínio personalizado na Cloudflare.
+
+---
+
+## 📅 2026-06-07 — Fase A (Arquitetura) — Resolução de Infraestrutura e Nova Galeria 30 Anos de Axé
+
+### ✅ O que foi feito
+- **Migração do Netlify para a Vercel (Maylly Nail App):** Diante do esgotamento de créditos de build no Netlify, foi efetuada a migração do frontend da Maylly Fontoura para a Vercel de forma 100% gratuita no plano Hobby/Personal.
+  - Configuradas as variáveis de ambiente de produção no painel da Vercel (`VITE_API_URL`, `VITE_ADSENSE_CLIENT`, `VITE_ADSENSE_SLOT`).
+  - Ativado o domínio oficial `www.mayllyfnail.com` com configuração automática de DNS via integração Cloudflare. O site encontra-se ativo e operacional na Vercel.
+- **Sobre Mim Expandido (Retrato Principal):** Substituída a imagem principal da biografia no [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) para `./assets/30anos/pai.png` com o ID `#sobreImg`.
+- **Estilos da Imagem de Biografia:** Adicionada sombra suave e difusa em tons quentes de terracota/café na classe `.sobre-image-frame` e efeito suave de transição tridimensional (`translateY(-4px)` e scale) no hover.
+- **Corrigido Bug de Tradução:** Corrigido o termo tipográfico no cabeçalho da seção Sobre de `O Pau Paulinho` para `O Pai Paulinho`.
+- **Nova Galeria de Fotos 30 Anos:** Implementada subseção mística `.sobre-galeria-secao` contendo a lista ordenada de 19 fotografias legítimas com `loading="lazy"` para máxima performance de renderização.
+- **Carrossel Magnético Horizontal:** Estilizada a galeria em [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) com propriedades modernas de `scroll-snap-type: x mandatory` e ocultação de barras de rolagem nativas, além de zoom interno suave (`transform: scale(1.08)`) no hover.
+- **Envio ao GitHub:** Commits criados e enviados com sucesso para a branch `main` no repositório remoto.
+
+### ❌ Erros encontrados
+- Falha na sintaxe do encadeador `&&` no PowerShell do Windows no terminal local do Git. Corrigido encadeando as chamadas com ponto e vírgula `;`.
+
+### 🧪 Testes
+- Validado o carregamento estático local dos assets de mídia (`pai.png` e imagens de `1.jpg` a `21.jpg` na pasta `30anos`) com logs de sucesso do servidor HTTP estático do Python.
+
+### 🚀 Próximo Passo
+- Realizar o deploy do Terreira Paulinho App na Vercel a partir do painel do usuário e configurar o domínio personalizado.
+
+---
+
+## 📅 2026-06-07 — Fase E (Integração) — Oráculo Guiado por Intenção e Visual Glassmorphism 4K
+
+### ✅ O que foi feito
+- **Estrutura de Entrada de Intenções (HTML):** Removido o botão de sorteio geral antigo em [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html) e inserido o contêiner `.oracle-intentions` com 4 botões e chips táteis para a escolha de áreas específicas da vida (Amor, Caminhos, Paz e Proteção).
+- **Design System Premium (Glassmorphism):** Estilizado o card do oráculo `#oracleCard` em [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) como uma placa de vidro translúcida com `backdrop-filter: blur(16px)` e bordas de alto brilho e contraste.
+- **Micro-interações de Clique Tátil:** Adicionado efeito de elevação suave nos chips de intenção com um leve *micro-bounce* (`transform: scale(0.96)`) no clique ativo.
+- **Efeito de Giro Etéreo Desfocado (CSS/JS):** Desenvolvida animação de embaralhar textos rápidos com desfoque de movimento real (`filter: blur(3px)`) e opacidade reduzida (`.cycling`), desacelerando exponencialmente até a revelação da mensagem definitiva.
+- **Tipografia e Cores:** A mensagem final surge com fade-in em tipografia *Cinzel* de cor café absoluto para alta legibilidade.
+- **Copywriting Espiritual Premium:** Removido o array de mensagens antigas em [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) e implementado o objeto `ORACLE_MESSAGES_BY_CATEGORY` contendo 20 mensagens longas, profundas e curativas ligadas aos orixás (Oxum, Exu, Ogum, Xangô Aganjú, Iemanjá e Oxalá).
+- **Lógica e Reset do Oráculo:** Refatorada a função `initOracle` em [app.js](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/app.js) para escutar os novos botões, rodar a desaceleração etérea e reativar suavemente o estado inicial de escolha de chips ao clicar em *"Nova orientação"*.
+- **Commit e Push:** Atualizações commitadas e enviadas ao repositório remoto sob o novo nome `pai-paulinho-app` no GitHub.
+
+### ❌ Erros encontrados
+- Bug de sintaxe temporário na mescla automática da função `initOracle` que corrompeu o fechamento da função `renderAll` e `initCarousel`. Corrigido e restaurado manualmente a partir dos backups do arquivo.
+
+### 🧪 Testes
+- Código revisado localmente para garantir consistência estrutural e prevenir erros de elementos nulos no JavaScript.
+
+### 🚀 Próximo Passo
+- Apoiar o usuário no teste do link do GitHub Pages e na configuração de domínios se aplicável.
 
 ---
 
@@ -274,5 +321,7 @@
 ### 🚀 Próximo Passo
 -
 ```
+
+
 
 
