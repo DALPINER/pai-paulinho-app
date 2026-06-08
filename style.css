@@ -2801,3 +2801,107 @@ a               { text-decoration: none; color: inherit; }
   }
 }
 
+/* ================================================================
+   4. SHIMMER EFFECT E REDES SOCIAIS VIVAS (SEÇÃO SOBRE)
+   ================================================================ */
+.btn-whatsapp {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 1;
+  animation: shimmer-btn 3.5s infinite ease-in-out;
+}
+
+@keyframes shimmer-btn {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+.sobre-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.sobre-redes {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.sobre-rede-link {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(252, 250, 248, 0.85); /* marfim de fundo */
+  border: 1px solid rgba(166, 93, 55, 0.22); /* terracota suave */
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 12px rgba(43, 29, 20, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sobre-rede-link svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+/* Hovers Vivos e Coloridos */
+.sobre-rede-link.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285ae5 90%);
+  color: var(--white);
+  border-color: transparent;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(214, 36, 159, 0.35);
+}
+
+.sobre-rede-link.facebook:hover {
+  background: #1877f2;
+  color: var(--white);
+  border-color: transparent;
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 24px rgba(24, 119, 242, 0.35);
+}
+
+.sobre-rede-link:hover svg {
+  transform: scale(1.1);
+  stroke: currentColor;
+}
+
+/* Responsividade mobile */
+@media (max-width: 576px) {
+  .sobre-action-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.2rem;
+  }
+  .sobre-redes {
+    justify-content: center;
+  }
+}
+

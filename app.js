@@ -403,6 +403,38 @@ function renderSociais(redes) {
   }
 }
 
+function renderSobreSociais(redes) {
+  const container = document.getElementById('sobreRedes');
+  if (!container) return;
+
+  const ig = (redes?.instagram || '').trim() || DEFAULT_DATA.redes_sociais.instagram;
+  const fb = (redes?.facebook  || '').trim() || DEFAULT_DATA.redes_sociais.facebook;
+
+  const elements = [];
+  if (ig && ig !== '#') {
+    elements.push(`
+      <a href="${ig}" target="_blank" rel="noopener noreferrer" class="sobre-rede-link instagram" aria-label="Acessar Instagram de Pai Paulinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+    `);
+  }
+  if (fb && fb !== '#') {
+    elements.push(`
+      <a href="${fb}" target="_blank" rel="noopener noreferrer" class="sobre-rede-link facebook" aria-label="Acessar Facebook de Pai Paulinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+        </svg>
+      </a>
+    `);
+  }
+
+  container.innerHTML = elements.join('');
+}
+
 /* ================================================================
    renderAll — Orquestra todos os renderers com um único dataset
    ================================================================ */
@@ -412,6 +444,7 @@ function renderAll(data) {
   renderSobre(data.sobre_pai_paulinho);
   renderServicos(data.servicos);
   renderSociais(data.redes_sociais);
+  renderSobreSociais(data.redes_sociais);
   setupWhatsAppButtons(data.whatsapp_numero);
 
   if (!_carouselReady && data.depoimentos?.length) {
