@@ -893,22 +893,65 @@ function initNav() {
   const navLinks  = document.getElementById('navLinks');
   const backToTop = document.getElementById('backToTop');
 
+  if (!hamburger || !navLinks) return;
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    navLinks.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Bloqueia rolagem do fundo
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    document.body.style.overflow = ''; // Restaura rolagem
+  }
+
+  function toggleMenu() {
+    const isOpen = navLinks.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation(); // Impede propagação para não disparar clique fora
+    toggleMenu();
+  });
+
+  // Fecha o menu ao clicar em qualquer opção (links de navegação)
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  // Fecha o menu ao clicar fora do menu (em qualquer lugar da tela fora das opções e do hamburger)
+  document.addEventListener('click', (e) => {
+    const isOpen = navLinks.classList.contains('open');
+    if (!isOpen) return;
+
+    const clickedInsideMenu = navLinks.contains(e.target);
+    const clickedHamburger = hamburger.contains(e.target);
+
+    if (!clickedInsideMenu && !clickedHamburger) {
+      closeMenu();
+    }
+  });
+
+  // Destrava e fecha ao redimensionar a tela para desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 640 && navLinks.classList.contains('open')) {
+      closeMenu();
+    }
+  }, { passive: true });
+
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 60);
     backToTop?.classList.toggle('visible', window.scrollY > 400);
   }, { passive: true });
-
-  hamburger?.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navLinks?.classList.toggle('open');
-  });
-
-  navLinks?.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      hamburger?.classList.remove('open');
-      navLinks.classList.remove('open');
-    });
-  });
 
   backToTop?.addEventListener('click', () =>
     window.scrollTo({ top: 0, behavior: 'smooth' })
