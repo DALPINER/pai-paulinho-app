@@ -114,7 +114,18 @@ const DataManager = {
   load() {
     try {
       const raw = localStorage.getItem(this.KEY);
-      return raw ? { ...DEFAULT_DATA, ...JSON.parse(raw) } : { ...DEFAULT_DATA };
+      if (!raw) return { ...DEFAULT_DATA };
+      const saved = JSON.parse(raw);
+      // Deep merge: objetos aninhados (ex: redes_sociais) são mesclados campo a campo
+      // para que DEFAULT_DATA preencha campos vazios do localStorage antigo
+      return {
+        ...DEFAULT_DATA,
+        ...saved,
+        redes_sociais: {
+          ...DEFAULT_DATA.redes_sociais,
+          ...(saved.redes_sociais || {})
+        }
+      };
     } catch (e) {
       console.warn('[LocalStorage] Dados corrompidos — usando padrão.', e);
       return { ...DEFAULT_DATA };
@@ -371,14 +382,14 @@ function renderSociais(redes) {
   const footer = document.getElementById('footerSocial');
   if (!footer) return;
 
+  // Usa DEFAULT_DATA como fallback para campos vazios (ex: localStorage antigo)
+  const ig = (redes?.instagram || '').trim() || DEFAULT_DATA.redes_sociais.instagram;
+  const fb = (redes?.facebook  || '').trim() || DEFAULT_DATA.redes_sociais.facebook;
+
   const links = [];
-  const ig = redes?.instagram;
-  const fb = redes?.facebook;
+  if (ig && ig !== '#') links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer"><span>📸</span> Instagram</a>`);
+  if (fb && fb !== '#') links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer"><span>📘</span> Facebook</a>`);
 
-  if (ig && ig !== '#' && ig.trim()) links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer"><span>📸</span> Instagram</a>`);
-  if (fb && fb !== '#' && fb.trim()) links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer"><span>📘</span> Facebook</a>`);
-
-  // Só atualiza o DOM se houver links reais — caso contrário mantém o HTML já existente
   if (links.length) {
     footer.innerHTML = links.join('');
   }
