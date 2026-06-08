@@ -377,7 +377,11 @@ function renderSociais(redes) {
 
   if (ig && ig !== '#' && ig.trim()) links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer"><span>📸</span> Instagram</a>`);
   if (fb && fb !== '#' && fb.trim()) links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer"><span>📘</span> Facebook</a>`);
-  footer.innerHTML = links.length ? links.join('') : `<p style="color:var(--text-muted);font-size:0.85rem;">Em breve</p>`;
+
+  // Só atualiza o DOM se houver links reais — caso contrário mantém o HTML já existente
+  if (links.length) {
+    footer.innerHTML = links.join('');
+  }
 }
 
 /* ================================================================
