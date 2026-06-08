@@ -9,28 +9,36 @@
 /* ================================================================
    TASK 1 — ORÁCULO: 20 Mensagens Espirituais
    ================================================================ */
-const ORACLE_MESSAGES = [
-  "Os caminhos se abrem para aquele que confia nos orixás. Sua hora chegará.",
-  "Xangô traz justiça. O que é seu, ninguém toma. Aguarde com fé.",
-  "Tempos de mudança chegam. Abrace-os com coragem — os guias te amparam.",
-  "A luz que você busca já mora dentro de você. Confie no que sente.",
-  "Não é fraqueza pedir ajuda. Os guias te esperam de braços abertos.",
-  "O que parece bloqueio é uma proteção divina. Confie no processo sagrado.",
-  "Sua ancestralidade te ampara. Você nunca está só nessa jornada.",
-  "Um novo ciclo se inicia. Solte o que ficou para trás com amor e gratidão.",
-  "A prosperidade flui para quem se mantém firme na fé e no axé.",
-  "O amor que você dá ao mundo retorna multiplicado pelos orixás.",
-  "Oxalá te cobre com seu manto de paz. Respira fundo — tudo passa.",
-  "Iemanjá te guarda como mãe que zela por seus filhos. Você está amparado.",
-  "O presente é sagrado. Viva cada momento com gratidão e presença plena.",
-  "Seus sonhos não foram esquecidos pelos orixás. Eles trabalham por você.",
-  "A cura vem em camadas. Tenha paciência com a sua própria jornada.",
-  "Ogum abre o caminho. O que parecia difícil se tornará simples em breve.",
-  "Seja gentil consigo. Você fez o melhor que pôde com o que tinha.",
-  "A força dos seus ancestrais corre no seu sangue. Lembre-se sempre disso.",
-  "Momentos de silêncio são necessários. Os guias falam no silêncio interior.",
-  "O que for de Deus e dos orixás para você, nada e ninguém poderá tirar."
-];
+const ORACLE_MESSAGES_BY_CATEGORY = {
+  amor: [
+    "Oraieiêô, Mamãe Oxum! As águas doces da cachoeira limpam e curam a alma. O amor verdadeiro só floresce onde há solo fértil de amor-próprio e respeito. Cure as feridas do passado, perdoe-se e compreenda que você não precisa aceitar migalhas afetivas. O amor que é seu te cobrirá de ouro e paz.",
+    "O amor não prende, não sufoca e não machuca. Oxum sussurra que a responsabilidade afetiva começa consigo mesmo. Antes de buscar o abraço do outro, acolha a si mesmo. Quando a sua própria fonte transbordar, o afeto de verdade chegará sem esforço para somar à sua felicidade.",
+    "Nas águas de Oxum reside a alquimia do afeto. Curar o próprio coração é um processo paciente, feito gota a gota. Não tenha pressa em preencher espaços vazios. Deixe o rio fluir naturalmente. O amor de qualidade exige maturidade e cura mútua.",
+    "A doçura de Oxum não deve ser confundida com fraqueza. Amar exige limites. Proteja a sua energia e não permita que drenem a sua paz em nome de um afeto incompleto. Seja assertivo em suas relações. O verdadeiro direcionamento amoroso vem de quem se valoriza primeiro.",
+    "O rio de Oxum sempre encontra o oceano, não importa o caminho. O amor sincero e curador chegará no momento exato em que você estiver pronto para receber a reciprocidade. Cure o que dói no silêncio e confie na doçura dos orixás para reerguer a sua vida afetiva."
+  ],
+  caminhos: [
+    "Sob a força de Ogum que empunha a espada da lei, nenhuma barreira ficará de pé diante do seu avanço. Os caminhos não apenas se abrirão: você está sendo preparado para liderar e prosperar. Mantenha o foco em seus objetivos e lembre-se de que a vitória é de quem tem coragem de dar o primeiro passo.",
+    "Laroyé, Exu! A boca do mundo fala quando o mensageiro da encruzilhada se move. Abertura financeira não é sorte, é merecimento e movimento. Saia da inércia. As chaves das portas que pareciam trancadas já estão em suas mãos, basta ter a determinação de girá-las com fé e sabedoria.",
+    "A força de Ogum abre as matas da indecisão. Se as finanças pareciam travadas, compreenda que o reajuste energético exige que você limpe a sua mente de crenças limitantes. Você é merecedor da abundância da terra. Foque na ação e o axé guiará os seus negócios.",
+    "Ogum não vence batalhas no silêncio da dúvida, ele vence marchando. A prosperidade que você busca demanda atitude e clareza de intenções. Não espere pelas circunstâncias perfeitas. Inicie o que precisa hoje e os guias abrirão os atalhos invisíveis para o seu sucesso.",
+    "O mensageiro das encruzilhadas avisa: o dinheiro é energia fluida que corre para quem respeita o trabalho e sabe pedir licença. Exu abre os caminhos de quem age com verdade e ética. Mantenha a cabeça erguida, livre-se da autopiedade e avance em direção ao seu destino financeiro."
+  ],
+  paz: [
+    "Odoyá, Iemanjá! Epa Babá, Oxalá! Deite a sua mente ansiosa no mar de leite e deixe que as ondas limpem a perturbação do seu espírito. A paz que você procura não está nas respostas externas, mas na calma que você cultiva no silêncio. Entregue os seus anseios e confie no manto branco protetor.",
+    "As águas de Iemanjá lavam o peito apertado e a mente cansada. Respire fundo e sinta o acolhimento da mãe de todas as cabeças (Ori). A ansiedade é o medo do amanhã, mas o amanhã é guardado pelo olhar terno de Oxalá. Acalme o seu coração; nada de ruim vai te acontecer.",
+    "Oxalá derrama a sua luz branca e pacífica sobre o seu pensamento acelerado. Quando o barulho do mundo estiver ensurdecedor, feche os olhos e peça licença para silenciar. A paz é uma escolha de entrega aos orixás. Deixe que a calma guie as suas decisões.",
+    "Iemanjá acalma as marés mais tempestuosas da sua mente. Confie que a angústia que hoje aperta o seu peito é passageira. O oceano leva embora todas as cargas e traz de volta a lucidez. Mantenha a maré firme e vista-se com a serenidade dos sábios.",
+    "No colo de Iemanjá e sob a coroa de Oxalá, a sua cabeça encontra o descanso necessário para recobrar as forces. Não tente carregar o peso do mundo nas suas costas. Entregue o controle ao fluxo do sagrado e permita-se viver em paz."
+  ],
+  protecao: [
+    "Kaô Kabecilê! A justiça de Xangô Aganjú é como o raio que corta a tempestade: implacável e verdadeira. Na firmeza da pedreira, nenhuma inveja ou maldade disfarçada de amizade tem poder para te derrubar. Deixe que o tribunal divino pese as ações de cada um. Você está blindado pelo machado da lei.",
+    "Xangô Aganjú sustenta a rocha onde você apoia os seus pés. Quando os ventos da maledicência e do olho gordo soprarem forte, mantenha-se em silêncio. A lei do retorno é exata e age no tempo certo. O escudo invisível dos seus guias bloqueia as setas enviadas contra a sua estabilidade.",
+    "Nenhum mal resiste ao calor do fogo purificador de Xangô. Se o momento exige vigilância, saiba que a sua proteção está garantida desde que você ande na retidão. A inveja alheia é apenas um reflexo da incapacidade do outro de gerar sua própria luz. Siga firme na justiça divina.",
+    "A rocha não se move com o vento. Da mesma forma, a sua proteção espiritual está calcada na força ancestral de Xangô Aganjú. A inveja tenta perturbar, mas o seu axé é um escudo intransponível. A verdade sempre prevalecerá e os seus inimigos cairão por terra.",
+    "O julgamento de Xangô é calmo, justo e absoluto. Confie a ele os seus temores e as injustiças que sofreu. Concentre-se em fazer o bem e a sua casa espiritual estará guardada. O mal que te desejaram se transformará em combustível para o seu crescimento pessoal."
+  ]
+};
 
 /* ================================================================
    DADOS PADRÃO (fallback se Firestore não estiver configurado)
@@ -406,7 +414,6 @@ function renderAll(data) {
   renderSociais(data.redes_sociais);
   setupWhatsAppButtons(data.whatsapp_numero);
 
-  // Carrossel: inicializa apenas uma vez para evitar duplicar listeners
   if (!_carouselReady && data.depoimentos?.length) {
     renderDepoimentos(data.depoimentos);
     initCarousel(data.depoimentos.length);
@@ -418,60 +425,60 @@ function renderAll(data) {
 }
 
 /* ================================================================
-   TASK 1 — ORÁCULO INTERATIVO
-   Animação: brilho intenso nas velas (2s) + slot-machine de texto
+   TASK 1 — ORÁCULO INTERATIVO (GUIADO POR INTENÇÃO)
    ================================================================ */
 function initOracle() {
-  const oracleBtn = document.getElementById('oracleBtn');
-  const btnAgain  = document.getElementById('oracleBtnAgain');
-  if (!oracleBtn) return;
+  const chips    = document.querySelectorAll('.intention-chip');
+  const btnAgain = document.getElementById('oracleBtnAgain');
+  const card     = document.getElementById('oracleCard');
+  const ctaEl    = document.getElementById('oracleCta');
+  const resultEl = document.getElementById('oracleResult');
+  const footerEl = document.getElementById('oracleFooter');
+  const msgEl    = document.getElementById('oracleMsgText');
 
-  function runOracle() {
-    const card     = document.getElementById('oracleCard');
-    const ctaEl    = document.getElementById('oracleCta');
-    const resultEl = document.getElementById('oracleResult');
-    const footerEl = document.getElementById('oracleFooter');
-    const msgEl    = document.getElementById('oracleMsgText');
-    if (!card || !msgEl) return;
+  if (!chips.length || !card || !msgEl) return;
 
-    // Sorteia a mensagem final
-    const chosen = ORACLE_MESSAGES[Math.floor(Math.random() * ORACLE_MESSAGES.length)];
+  function runOracle(category) {
+    const messages = ORACLE_MESSAGES_BY_CATEGORY[category];
+    if (!messages || !messages.length) return;
 
-    // — Desabilitar controles —
-    oracleBtn.disabled = true;
+    // Sorteia a mensagem final da categoria correspondente
+    const chosen = messages[Math.floor(Math.random() * messages.length)];
+
+    // — Desabilitar todos os chips para evitar cliques múltiplos —
+    chips.forEach(btn => btn.disabled = true);
     if (btnAgain) btnAgain.disabled = true;
 
-    // — Ativar animação de brilho —
+    // — Ativar animação de brilho e pulso no card —
     card.classList.add('oracle-shining');
 
-    // — Trocar estados: esconde CTA, mostra área de resultado —
+    // — Transição suave: esconde os chips, mostra resultado —
     ctaEl.classList.add('hidden');
     if (footerEl) footerEl.classList.add('hidden');
     resultEl.classList.remove('hidden');
     msgEl.classList.add('cycling');
 
-    // — Slot Machine: embaralha mensagens com desaceleração —
+    // — Slot Machine / Giro Etéreo: embaralha mensagens com desfoque —
     let cycles  = 0;
-    const TOTAL = 22; // número de trocas antes do reveal
+    const TOTAL = 22;
 
     function cycle() {
-      // Exibe mensagem aleatória durante o embaralhamento
-      msgEl.textContent = ORACLE_MESSAGES[Math.floor(Math.random() * ORACLE_MESSAGES.length)];
+      // Exibe mensagem aleatória da mesma categoria no giro
+      msgEl.textContent = messages[Math.floor(Math.random() * messages.length)];
       cycles++;
 
       if (cycles < TOTAL) {
-        // Desaceleração exponencial na segunda metade
         const progress = cycles / TOTAL;
-        const delay    = 55 + (progress > 0.55 ? Math.pow((progress - 0.55) * 2.2, 2.8) * 380 : 0);
+        // Desaceleração exponencial (freio no giro etéreo)
+        const delay = 50 + (progress > 0.55 ? Math.pow((progress - 0.55) * 2.2, 2.8) * 380 : 0);
         setTimeout(cycle, delay);
       } else {
-        // — Reveal final —
+        // — Revelação final com fade-in e desfoque removido —
         card.classList.remove('oracle-shining');
         msgEl.classList.remove('cycling');
         msgEl.textContent = chosen;
         msgEl.classList.add('oracle-animate-in');
 
-        // Remove classe de animação após completar (permite re-animar)
         setTimeout(() => {
           msgEl.classList.remove('oracle-animate-in');
 
@@ -481,7 +488,7 @@ function initOracle() {
             setTimeout(() => footerEl.classList.remove('oracle-animate-in'), 700);
           }
 
-          oracleBtn.disabled = false;
+          chips.forEach(btn => btn.disabled = false);
           if (btnAgain) btnAgain.disabled = false;
         }, 650);
       }
@@ -490,8 +497,25 @@ function initOracle() {
     cycle();
   }
 
-  oracleBtn.addEventListener('click', runOracle);
-  btnAgain?.addEventListener('click', runOracle);
+  // Cliques nos chips de intenção
+  chips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.category;
+      runOracle(cat);
+    });
+  });
+
+  // Reset para nova orientação (retorna ao menu de chips)
+  btnAgain?.addEventListener('click', () => {
+    // Fade out suave do resultado
+    resultEl.classList.add('hidden');
+    msgEl.textContent = '';
+    
+    // Mostra os chips novamente
+    ctaEl.classList.remove('hidden');
+    ctaEl.classList.add('oracle-animate-in');
+    setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
+  });
 }
 
 /* ================================================================

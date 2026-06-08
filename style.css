@@ -1939,25 +1939,45 @@ a               { text-decoration: none; color: inherit; }
 .hidden { display: none !important; }
 
 /* ===== ORACLE SECTION ===== */
-#oraculo { background: var(--bg-base); }
+#oraculo {
+  background: var(--bg-base);
+  position: relative;
+}
 
-/* Sobreescreve o alias da seção antiga */
+#oraculo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(166, 93, 55, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Glassmorphism de Alta Fidelidade no card */
 .oracle-card {
-  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+  background: rgba(252, 250, 248, 0.6) !important; /* Fundo marfim translúcido */
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 30px 60px rgba(43, 29, 20, 0.06), 
+              inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-/* Estado: consultando — brilho intenso nas velas e card */
+/* Estado: consultando — brilho intenso nas velas e card (Terracota + Carmim) */
 .oracle-card.oracle-shining {
   box-shadow:
-    0 0 55px rgba(139, 28, 28, 0.28),
-    0 0 120px rgba(166, 93, 55, 0.16),
-    inset 0 0 40px rgba(139, 28, 28, 0.06);
-  border-color: rgba(139, 28, 28, 0.52) !important;
+    0 0 55px rgba(166, 93, 55, 0.25),
+    0 0 120px rgba(139, 28, 28, 0.16),
+    inset 0 0 40px rgba(166, 93, 55, 0.08);
+  border-color: rgba(166, 93, 55, 0.45) !important;
+  transform: scale(0.99);
 }
 
 .oracle-card.oracle-shining .oracle-candles {
-  animation: candleIntense 0.25s ease-in-out infinite !important;
+  animation: candleIntense 0.22s ease-in-out infinite !important;
 }
 
 @keyframes candleIntense {
@@ -1967,7 +1987,7 @@ a               { text-decoration: none; color: inherit; }
   }
   50% {
     filter: brightness(2.4) drop-shadow(0 0 22px rgba(255, 180, 0, 1));
-    transform: scale(1.08);
+    transform: scale(1.06);
   }
 }
 
@@ -1976,74 +1996,79 @@ a               { text-decoration: none; color: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.4rem;
-  padding: 0.5rem 0 0.25rem;
+  gap: 1.8rem;
+  padding: 0.5rem 0 0.5rem;
 }
 
 .oracle-intro {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  font-style: italic;
-  max-width: 420px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  max-width: 460px;
   text-align: center;
-  line-height: 1.7;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
 }
 
-/* ===== ORACLE BUTTON ===== */
-.oracle-btn {
+/* Contêiner de Chips de Intenção */
+.oracle-intentions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 580px;
+  margin-top: 0.5rem;
+}
+
+/* Estilo dos Chips */
+.intention-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.95rem 2.2rem;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-  border: 1px solid rgba(139, 28, 28, 0.22);
+  padding: 0.85rem 1.6rem;
+  background: rgba(252, 250, 248, 0.95);
+  border: 1px solid var(--border);
   border-radius: 50px;
-  color: #FCFAF8;
-  font-family: 'Cinzel', serif;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 24px rgba(139, 28, 28, 0.35);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(43, 29, 20, 0.05); /* Sombra amendoada */
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.25s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease,
+              color 0.3s ease;
+  will-change: transform;
 }
 
-.oracle-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s;
+.intention-chip:hover {
+  background: #FCFAF8;
+  border-color: var(--wine);
+  color: var(--wine);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(139, 28, 28, 0.08); /* Sombra carmim leve */
 }
 
-.oracle-btn:hover {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  border-color: rgba(139, 28, 28, 0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 38px rgba(139, 28, 28, 0.45), 0 0 28px rgba(166, 93, 55, 0.22);
-}
-.oracle-btn:hover::before { opacity: 1; }
-.oracle-btn:active { transform: translateY(-1px); }
-.oracle-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none;
+.intention-chip:active {
+  transform: scale(0.96); /* Micro-bounce tátil */
+  box-shadow: 0 2px 6px rgba(43, 29, 20, 0.03);
 }
 
-.oracle-btn-icon {
-  font-size: 1.25em;
-  animation: oracleFloat 2.5s ease-in-out infinite;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
+.chip-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@keyframes oracleFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-5px) rotate(8deg); }
+.intention-chip:hover .chip-icon {
+  transform: scale(1.2) rotate(-6deg);
+}
+
+.chip-text {
+  letter-spacing: 0.02em;
 }
 
 /* ===== ORACLE RESULT ===== */
@@ -2051,18 +2076,30 @@ a               { text-decoration: none; color: inherit; }
   width: 100%;
 }
 
-/* .oracle-msg — herda estilos de .mensagem-texto. Animação de entrada aplicada via JS com .oracle-animate-in */
+/* A mensagem final em Cinzel cor café absoluto */
+.oracle-msg {
+  font-family: 'Cinzel', serif;
+  color: var(--text-primary) !important; /* Café absoluto */
+  font-size: 1.4rem;
+  line-height: 1.75;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  font-weight: 600;
+  font-style: normal;
+  will-change: transform, opacity, filter;
+}
 
 /* Animação de entrada para o texto revelado */
 .oracle-animate-in {
-  animation: oracleReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation: oracleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both !important;
 }
 
 @keyframes oracleReveal {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.97);
-    filter: blur(5px);
+    transform: translateY(24px) scale(0.96);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
@@ -2071,43 +2108,52 @@ a               { text-decoration: none; color: inherit; }
   }
 }
 
-/* Texto durante o embaralhamento (slot machine) */
+/* Giro Etéreo (Slot machine com desfoque de movimento) */
 .oracle-msg.cycling {
-  opacity: 0.45;
-  filter: blur(0.8px);
-  transition: opacity 0.05s, filter 0.05s;
+  opacity: 0.2;
+  filter: blur(3px); /* Efeito blur de velocidade */
+  transform: scale(0.95);
+  transition: opacity 0.04s, filter 0.04s, transform 0.04s;
 }
 
 /* ===== ORACLE FOOTER ===== */
 .oracle-footer {
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .oracle-btn-again {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 1.4rem;
-  background: rgba(139, 28, 28, 0.08);
-  border: 1px solid rgba(139, 28, 28, 0.22);
+  padding: 0.65rem 1.6rem;
+  background: rgba(139, 28, 28, 0.06);
+  border: 1px solid rgba(139, 28, 28, 0.18);
   border-radius: 50px;
-  color: var(--gold);
+  color: var(--wine);
   font-family: 'Lato', sans-serif;
   font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(139, 28, 28, 0.03);
 }
+
 .oracle-btn-again:hover {
-  background: rgba(139, 28, 28, 0.15);
-  border-color: var(--gold);
+  background: rgba(139, 28, 28, 0.12);
+  border-color: var(--wine);
   transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(139, 28, 28, 0.08);
 }
+
 .oracle-btn-again:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
   opacity: 0.4;
   cursor: not-allowed;
   transform: none;
