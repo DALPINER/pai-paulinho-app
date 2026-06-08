@@ -497,6 +497,7 @@ a               { text-decoration: none; color: inherit; }
 }
 
 /* ===== SOBRE ===== */
+/* ===== SOBRE ===== */
 .sobre-layout {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -513,7 +514,8 @@ a               { text-decoration: none; color: inherit; }
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 20px 40px rgba(166, 93, 55, 0.12), 0 1px 3px rgba(43, 29, 20, 0.05); /* Tons quentes terracota/café */
+  transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sobre-img {
@@ -523,10 +525,17 @@ a               { text-decoration: none; color: inherit; }
   object-position: center 15%;
   aspect-ratio: 4/5;
   border-radius: var(--radius-xl);
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sobre-image-frame:hover .sobre-img { transform: scale(1.03); }
+.sobre-image-frame:hover {
+  box-shadow: 0 30px 60px rgba(139, 28, 28, 0.16), 0 2px 6px rgba(43, 29, 20, 0.08); /* Tons quentes carmim */
+  transform: translateY(-4px);
+}
+
+.sobre-image-frame:hover .sobre-img {
+  transform: scale(1.04);
+}
 
 .sobre-image-glow {
   position: absolute;
@@ -550,8 +559,13 @@ a               { text-decoration: none; color: inherit; }
   font-family: 'Cinzel', serif;
   font-size: 0.75rem;
   color: var(--gold);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 8px 20px rgba(43, 29, 20, 0.06);
   letter-spacing: 0.05em;
+  transition: transform 0.3s ease;
+}
+
+.sobre-image-frame:hover ~ .sobre-badge {
+  transform: translateY(-2px) scale(1.02);
 }
 
 .sobre-corpo {
@@ -563,6 +577,131 @@ a               { text-decoration: none; color: inherit; }
 
 .sobre-corpo p { margin-bottom: 1rem; }
 .sobre-corpo p:last-child { margin-bottom: 0; }
+
+/* ===== GALERIA 30 ANOS ===== */
+.sobre-galeria-secao {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px dashed rgba(166, 93, 55, 0.15); /* Divisor místico pontilhado terracota */
+}
+
+.galeria-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galeria-eyebrow {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--wine);
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.galeria-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.galeria-ornament {
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin: 0.8rem 0;
+  letter-spacing: 0.3em;
+}
+
+.galeria-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Contêiner do Carrossel */
+.galeria-carrossel {
+  display: flex;
+  gap: 1.8rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 0.5rem 2.5rem 0.5rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.galeria-carrossel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Slides do Carrossel */
+.galeria-item {
+  flex: 0 0 290px;
+  scroll-snap-align: start;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgba(43, 29, 20, 0.05);
+  aspect-ratio: 3/4;
+  position: relative;
+  background: var(--bg-base);
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.galeria-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Efeito Hover e Interação */
+.galeria-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(139, 28, 28, 0.12), 0 2px 8px rgba(43, 29, 20, 0.05); /* Carmim e Café */
+  border-color: rgba(139, 28, 28, 0.25);
+}
+
+.galeria-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Indicador e Dica de Scroll */
+.galeria-scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  opacity: 0.6;
+}
+
+.hint-line {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, var(--wine), transparent);
+}
+
+.hint-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
 
 /* ===== SERVIÇOS ===== */
 #servicos { position: relative; overflow: hidden; }
