@@ -587,6 +587,89 @@ a               { text-decoration: none; color: inherit; }
 .sobre-corpo p { margin-bottom: 1rem; }
 .sobre-corpo p:last-child { margin-bottom: 0; }
 
+/* ===== VÍDEO DOCUMENTAL ===== */
+.sobre-documental-secao {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px dashed rgba(166, 93, 55, 0.15); /* Divisor místico pontilhado terracota */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.documental-player-container {
+  width: 100%;
+  max-width: 960px; /* Destaque de 80% em telas de 1200px */
+  margin: 0 auto 3rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(139, 28, 28, 0.08); /* Carmim suave */
+  box-shadow: 0 24px 64px rgba(166, 93, 55, 0.16), 0 0 32px rgba(139, 28, 28, 0.04);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+  will-change: transform;
+}
+
+.documental-player-container:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 0 32px 80px rgba(166, 93, 55, 0.22), 0 0 40px rgba(139, 28, 28, 0.08);
+  border-color: rgba(139, 28, 28, 0.25);
+}
+
+.documental-aspect-ratio {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Mantém proporção de 16:9 responsiva */
+}
+
+.documental-aspect-ratio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.documental-info {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.documental-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.documental-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.08rem;
+  color: #2B1D14; /* Cor Café Absoluto */
+  line-height: 1.9;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .sobre-documental-secao {
+    margin-top: 4rem;
+    padding-top: 3rem;
+  }
+  
+  .documental-player-container {
+    margin-bottom: 2rem;
+    border-radius: 12px;
+  }
+}
+
 /* ===== GALERIA 30 ANOS ===== */
 .sobre-galeria-secao {
   margin-top: 6rem;

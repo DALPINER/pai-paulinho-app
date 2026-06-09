@@ -326,7 +326,26 @@
 - Verificado localmente e implantado com absoluto sucesso no repositório remoto Git. Testado visualmente e responsivamente.
 
 ### 🚀 Próximo Passo
-- Continuar com as etapas planejadas de integração com banco e novas otimizações estéticas.
+
+---
+
+## 📅 2026-06-09 — Fase E (Integração) — Inclusão do Vídeo Documental de 30 Anos de Axé
+
+### ✅ O que foi feito
+- **Estrutura HTML do Player de Vídeo:** Adicionado o contêiner responsivo `16:9` (`.sobre-documental-secao`) para o iframe do YouTube (`https://www.youtube.com/embed/ZDaTSNCOBqg`) exatamente acima do carrossel da Galeria de Fotos no [index.html](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/index.html).
+- **Copywriting Minimalista e Emocionante:** Adicionado bloco de texto integrado com o título *"30 Anos de Axé, Fé e Tradição"* (família tipográfica *Cinzel*) e descrição emocional minimalista (família tipográfica *Lato* com espaçamento de `line-height: 1.9`) com a cor Café Absoluto (`#2B1D14`).
+- **Moldura Premium e Sombra Cinemática:** Estilizado o container do player no [style.css](file:///c:/Users/thiag/Desktop/terreira-paulinho-app/style.css) com `border-radius: 16px`, borda clara sutil e `box-shadow` difuso de base terracota (`rgba(166, 93, 55, 0.16)`), além de um efeito hover sutil (`translateY(-6px)`).
+- **Integração de Animações:** O bloco documental herda automaticamente a classe `.reveal` para ativação de animação via `IntersectionObserver` assim que o elemento entra no viewport do usuário.
+
+### ❌ Erros encontrados
+- Nenhum.
+
+### 🧪 Testes
+- Inicializado servidor local HTTP estático na porta 3000.
+- Executada verificação automatizada via subagente de navegação no Chrome, validando com sucesso a rolagem, a reprodução de animações e salvando screenshots de verificação (`secao_sobre_topo` e `secao_documental_video`).
+
+### 🚀 Próximo Passo
+- Obter aprovação final e concluir a tarefa.
 
 ---
 
