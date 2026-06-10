@@ -935,6 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStudyAccordion();
   initStudyPlatform();
   initDynamicData();
+  initLightbox();
 });
 
 /* ============================================================
@@ -1347,4 +1348,59 @@ function applyDynamicData(data) {
       footerSocial.innerHTML = links.join('');
     }
   }
+}
+
+/* ============================================================
+   6. LIGHTBOX (GALERIA DE IMAGENS)
+   ============================================================ */
+function initLightbox() {
+  // Cria os elementos do Lightbox dinamicamente
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.innerHTML = `
+    <div class="lightbox-img-container">
+      <button class="lightbox-close" aria-label="Fechar">&times;</button>
+      <img class="lightbox-img" src="" alt="Imagem expandida">
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const lightboxImg = overlay.querySelector('.lightbox-img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+
+  // Abre o Lightbox ao clicar nas imagens do artigo
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('artigo-imagem')) {
+      const imgSrc = e.target.getAttribute('src');
+      const imgAlt = e.target.getAttribute('alt');
+      
+      lightboxImg.src = imgSrc;
+      lightboxImg.alt = imgAlt || 'Imagem Expandida';
+      
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Impede o scroll de fundo
+    }
+  });
+
+  // Fecha o Lightbox
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    // Limpa a fonte após a animação para não piscar
+    setTimeout(() => { lightboxImg.src = ''; }, 400);
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target.classList.contains('lightbox-img-container')) {
+      closeLightbox();
+    }
+  });
+  
+  // Fecha com tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
 }
