@@ -67,7 +67,7 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
   ],
 
   mensagem_espiritual_do_dia: 'Que Xangô Aganjú ilumine os seus passos e que os orixás abram os caminhos da prosperidade, da saúde e do amor em sua vida.',
-  whatsapp_numero: '',
+  whatsapp_numero: '5555999176726',
   redes_sociais: {
     instagram: 'https://www.instagram.com/paulogandor',
     facebook:  'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
@@ -1300,6 +1300,27 @@ function initLightbox() {
 }
 
 /* ================================================================
+   ACORDEÃO DOCUMENTAL (LER MAIS)
+   ================================================================ */
+function initAccordion() {
+  const trigger = document.querySelector('.accordion-trigger');
+  const content = document.getElementById('accordion-content');
+  if (!trigger || !content) return;
+
+  trigger.addEventListener('click', () => {
+    const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+    
+    // Toggle dos atributos de acessibilidade
+    trigger.setAttribute('aria-expanded', !isExpanded);
+    content.setAttribute('aria-hidden', isExpanded);
+    
+    // Toggle das classes visuais
+    trigger.classList.toggle('active');
+    content.classList.toggle('active');
+  });
+}
+
+/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1318,6 +1339,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initOracle();
   initGalleryScroll();
   initLightbox();
+  initAccordion();
   observeRevealElements();
 
   // — TASK 3: Dados em tempo real (Firestore → fallback localStorage) —
