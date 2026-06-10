@@ -810,7 +810,7 @@ const ESTUDOS_DB = {
     modulo: 'Módulo 4: Rituais e Práticas',
     tag: 'Módulo 4 · Rituais · Práticas Sagradas',
     titulo: 'Firmeza Espiritual: Fixando o Axé e Protegendo o Lar',
-    imagem: './assets/estudos/axe_criacao.png',
+    imagem: './assets/estudos/firmeza.jpg',
     legenda: 'As velas, as pedras e os elementos sagrados que ancoraram o Axé no mundo material.',
     htmlCorpo: `
       <p class="capitular">Na tradição umbandista e candomblecista, a firmeza espiritual é o ato ritual de fixar, ancorar e consolidar a energia sagrada de um Orixá ou de um Guia em um determinado ponto, objeto ou espaço físico. É o processo que transforma um local comum em um local sagrado, e um objeto comum em um instrumento de Axé. Sem firmeza, a energia espiritual circula livremente sem ponto de ancoragem — o que gera dispersão e ineficácia ritual.</p>
@@ -845,7 +845,7 @@ const ESTUDOS_DB = {
     modulo: 'Módulo 4: Rituais e Práticas',
     tag: 'Módulo 4 · Rituais · Práticas Sagradas',
     titulo: 'O Jogo de Búzios: O Oráculo Sagrado dos Orixás',
-    imagem: './assets/estudos/axe_criacao.png',
+    imagem: './assets/estudos/buzios.jpg',
     legenda: 'Os búzios revelam ao sacerdote iniciado a mensagem dos Orixás para cada consulente.',
     htmlCorpo: `
       <p class="capitular">O jogo de búzios (Dilogum no Candomblé; Merindilogun em Ioruba) é o sistema de adivinhação sagrado mais importante das religiões de matriz africana. Não se trata de "adivinhação" no sentido popular e pejorativo do termo — é um sistema sofisticado de consulta às forças espirituais que regem o destino de uma pessoa, utilizando os búzios (conchas do cauri africano) como interface entre o mundo dos Orixás e o mundo dos humanos. É um oráculo — uma escuta formal e ritualizada da voz dos ancestrais.</p>
@@ -1147,7 +1147,7 @@ function initStudyPlatform() {
     modulo: 'Módulo 4: Rituais e Práticas',
     tag: 'Estudos · Glossário Sagrado',
     titulo: 'O Dicionário do Axé',
-    imagem: './assets/estudos/axe_criacao.png',
+    imagem: './assets/estudos/dicionario.jpg',
     legenda: 'Preservando as palavras sagradas que dão voz ao nosso axé.',
     prompt: 'Cinematic 4K photography, ancient sacred book on table, light rays shining on pages, temple background, warm acolhedor lighting, spiritual glow.',
     htmlCorpo: '' // Montado programaticamente acima
