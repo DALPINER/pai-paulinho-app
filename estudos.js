@@ -87,6 +87,60 @@ const ESTUDOS_DB = {
   },
 
   // ============================================================
+  // --- Módulo 1: Quimbanda ---
+  // ============================================================
+
+  'quimbanda-fundamentos': {
+    modulo: 'Módulo 1: Fundamentos',
+    tag: 'Módulo 1 · Fundamentos e Diferenças',
+    titulo: 'Quimbanda: A Força, a Lei e o Trono da Esquerda',
+    imagem: './assets/estudos/quimbanda_fundamentos.jpg',
+    legenda: 'A chama vermelha e negra da proteção, do movimento e do descarrego.',
+    prompt: 'Ultra-realistic 4K portrait, cinematic lighting, representing the African-Brazilian Quimbanda tradition, sacred fire, tridents, red and black glowing aura.',
+    htmlCorpo: `
+      <p class="capitular">A Quimbanda não é o oposto da Umbanda, mas sim a outra face da mesma moeda sagrada. Enquanto a Umbanda opera majoritariamente na vibração da Direita, trazendo a expansão espiritual, o passe de cura e o acalento, a Quimbanda é o Trono da Esquerda — o sistema espiritual focado na estabilização terrena, na proteção absoluta, na quebra de demandas complexas e na abertura de caminhos materiais.</p>
+
+      <div class="artigo-subsecao">
+        <h3 class="artigo-subtitulo">1. O Trono da Esquerda: A Essência da Quimbanda</h3>
+        <p>Ela é a força que lida diretamente com as densidades do plano humano, transmutando sombras em luz e garantindo o equilíbrio necessário para que o ser humano possa caminhar firme na Terra.</p>
+
+        <h3 class="artigo-subtitulo">2. O Comando Supremo: O Maioral e a Ordem Cósmica</h3>
+        <p>Longe das visões dualistas e do preconceito histórico, a Quimbanda reconhece uma inteligência suprema e centralizada que coordena as falanges da Esquerda: O Maioral. Ele não representa uma figura de maldade ou rebeldia, mas sim a consciência macrocosmica que gerencia o caos e a ordem profunda do universo. Sob o seu comando sutil, as grandes dinastias e chefias da Esquerda se organizam, garantindo que a aplicação da justiça distributiva e o livre-arbítrio humano operem em perfeito equilíbrio com as leis divinas.</p>
+
+        <h3 class="artigo-subtitulo">3. A Engenharia Astral: Os 7 Reinos da Quimbanda</h3>
+        <p>A Quimbanda se organiza de forma extremamente hierárquica e séria, dividida em 7 Reinos astrais, onde cada um governa uma faixa vibratória e uma necessidade humana específica:</p>
+        <ul class="artigo-lista">
+          <li class="artigo-lista-item"><strong>Reino das Encruzilhadas:</strong> Governado pela necessidade de movimento. É o reino que gerencia as encruzilhadas físicas e astrais, abrindo portas, desatando nós e ditando as escolhas e os rumos da vida.</li>
+          <li class="artigo-lista-item"><strong>Reino dos Cruzeiros:</strong> O ponto de transição e o eixo de decisões. Cuida dos cruzamentos em formato de cruz, gerenciando a passagem de energias e o equilíbrio entre o mundo visível e o invisível.</li>
+          <li class="artigo-lista-item"><strong>Reino das Matas:</strong> Onde a força rústica da natureza se encontra com a Esquerda. Atua na cura através de elementos densos da mata, no descarrego de feitiçarias e no manejo de energias ligadas à sobrevivência.</li>
+          <li class="artigo-lista-item"><strong>Reino da Calunga Pequena (Cemitério):</strong> O campo sagrado da ancestralidade e da transformação. É o reino responsável por absorver as energias mais pesadas, quebrar magias negras, cortar eguns e promover o fim de ciclos nocivos.</li>
+          <li class="artigo-lista-item"><strong>Reino das Almas:</strong> O Trono dos lugares altos e de transição espiritual. Lida com o direcionamento de espíritos sofredores, o equilíbrio da mente e o amparo em locais de dor, como hospitais e santuários elevados.</li>
+          <li class="artigo-lista-item"><strong>Reino da Lira:</strong> O reino das artes, do comércio, do ouro e da vida noturna. Gerencia a criatividade, a circulação da moeda, a prosperidade material e a evolução social do homem através da matéria.</li>
+          <li class="artigo-lista-item"><strong>Reino da Praia:</strong> A faixa magnética onde o mar encontra a terra. Utiliza o poder das águas salgadas da Esquerda para a limpeza emocional profunda, descarrego de angústias e equilíbrio das correntes espirituais aquáticas.</li>
+        </ul>
+
+        <h3 class="artigo-subtitulo">4. As Polaridades Sagradas: A Atuação de Exu e Pombagira</h3>
+        <p>Eles são Entidades de sotaque humano — espíritos ancestrais de alta evolução que compreendem perfeitamente as dores, as paixões, as ambições e as quedas do homem. Exu é a vitalidade em movimento, a quebra de bloqueios e a execução dinâmica da Lei Espiritual no plano físico. Pombagira é o eixo feminino da Esquerda, a senhora do desejo, da clareza emocional, do magnetismo e da quebra de amarras ocultas. Juntos, formam o binômio perfeito de proteção, devolvendo com exatidão a vibração que o ser humano planta.</p>
+
+        <h3 class="artigo-subtitulo">5. Alquimia Sagrada: O Magnetismo dos Elementos Quentes</h3>
+        <p>A manipulação de elementos na Quimbanda baseia-se em alta alquimia astral. O fumo (charutos e cigarros) não possui fins profanos; ele atua como um defumador denso e direcionado, cuja fumaça limpa o campo áurico e rompe miasmas mentais. As bebidas (marafo, vinhos, espumantes) funcionam como condutores etéricos de alta volatilidade, servindo para descarregar o ambiente, absorver energias negativas e condensar o éter vital necessário para desobsessões complexas. A pólvora (fundanga) e o fogo entram como agentes de corte instantâneo e transmutação drástica de feitiçarias.</p>
+
+        <h3 class="artigo-subtitulo">6. As Chaves de Acesso: Pontos Riscados e Cantados</h3>
+        <p>A comunicação e a manifestação da Quimbanda ocorrem por frequências visuais e sonoras precisas. O Ponto Riscado é um portal geométrico sagrado: cada linha, tridente, estrela ou curva desenhada com a pemba funciona como uma coordenada matemática para ancorar o Axé e ditar a ordem do guia no plano físico. O Ponto Cantado é o mantra de ativação: frequências sonoras e curas verbais que alteram o magnetismo do ambiente, chamando as falanges, quebrando defesas densas e direcionando a força dos guardiões com exatidão.</p>
+
+        <h3 class="artigo-subtitulo">7. A Tronqueira e o Assentamento: Fortalezas de Defesa</h3>
+        <p>A tronqueira é a fortaleza física e magnética da Esquerda. Localizada na entrada do solo sagrado, ela atua como uma guarita astral que retém, filtra e desarma qualquer energia nociva ou espírito desequilibrado que tente cruzar os portais da casa. Dentro dela e dos santuários, os assentamentos (combinações de metais, terras de reinos, ferramentas e pedras consagradas) servem como o 'reator de energia estável', mantendo a presença contínua, o foco magnético e a irradiação protetora das entidades ativa 24 horas por dia.</p>
+
+        <h3 class="artigo-subtitulo">8. O Padê e a Oferenda: A Tecnologia da Restituição Energética</h3>
+        <p>Na Quimbanda, a oferenda e o padê (mistura sagrada de farinha, azeite de dendê, mel ou bebidas) não são subornos espirituais, mas sim ferramentas de pura física energética. Ao consagrar esses elementos naturais e rituais aos pés dos Guardiões, ocorre uma liberação controlada de axé material e etérico. Essa energia vitalizada é utilizada pelas entidades para reequilibrar o campo áurico do consulente, alimentar as falanges protetoras que combatem na Esquerda e movimentar as correntes da matéria, restituindo a harmonia e abrindo caminhos obstruídos.</p>
+
+        <h3 class="artigo-subtitulo">9. A Aliança Evolutiva: Lealdade entre Médium e Guardião</h3>
+        <p>A verdadeira relação com o Exu e a Pombagira de frente baseia-se em uma aliança inquebrável de lealdade, retidão e evolução mútua. O guardião não apoia caprichos, vaidades ou vinganças egoicas; ele atua como um mestre de inteligência estratégica e proteção nos caminhos materiais do seu médium. Através da caridade, da disciplina ritualística e do auxílio correto aos que sofrem, essas entidades canalizam sua força para o bem e expandem o seu próprio grau de evolução no plano astral. É uma parceria de respeito, crescimento e honra.</p>
+      </div>
+    `
+  },
+
+  // ============================================================
   // --- Módulo 2: Panteão dos Orixás ---
   // ============================================================
 
@@ -1003,10 +1057,10 @@ function initStudyPlatform() {
   const overlay = document.getElementById('sidebarOverlay');
   const btnToggleSidebar = document.getElementById('btnToggleSidebar');
   const btnCloseSidebar = document.getElementById('btnCloseSidebar');
-  
+
   const topicoBtns = document.querySelectorAll('.topico-btn');
   const moduloTriggers = document.querySelectorAll('.modulo-trigger');
-  
+
   const palcoWrap = document.getElementById('leituraPalco');
   const tagEl = document.getElementById('leituraTag');
   const tituloEl = document.getElementById('leituraTitulo');
@@ -1029,7 +1083,7 @@ function initStudyPlatform() {
       // Atualiza textos
       tagEl.textContent = data.tag;
       tituloEl.textContent = data.titulo;
-      
+
       // Atualiza imagem
       if (data.imagem) {
         imgEl.src = data.imagem;
@@ -1082,7 +1136,7 @@ function initStudyPlatform() {
     topicoBtns.forEach(btn => {
       if (btn.dataset.topico === topicoId) {
         btn.classList.add('active');
-        
+
         // Garante que o módulo pai esteja aberto
         const moduloPai = btn.closest('.modulo-item');
         if (moduloPai) {
@@ -1169,7 +1223,7 @@ function initStudyPlatform() {
     btn.addEventListener('click', () => {
       const topicoId = btn.dataset.topico;
       carregarTopico(topicoId);
-      
+
       // Fecha a gaveta (drawer) no mobile após selecionar
       if (sidebar.classList.contains('open')) {
         fecharDrawer();
@@ -1199,7 +1253,7 @@ function initStudyPlatform() {
     const hash = window.location.hash.substring(1);
     if (hash && ESTUDOS_DB[hash]) {
       carregarTopico(hash, false);
-      
+
       // Satura scroll do botão da sidebar ativa após renderizar
       setTimeout(() => {
         const activeBtn = document.querySelector(`.topico-btn[data-topico="${hash}"]`);
@@ -1250,7 +1304,7 @@ function initRevealAnimations() {
 function initTopicRevealAnimations() {
   const palco = document.getElementById('leituraPalco');
   if (!palco) return;
-  
+
   const imgs = palco.querySelectorAll('.artigo-imagem-wrapper');
   const quotes = palco.querySelectorAll('.artigo-citacao');
   const subs = palco.querySelectorAll('.artigo-subsecao');
@@ -1283,7 +1337,7 @@ function initDynamicData() {
     whatsapp_numero: '5555999176726',
     redes_sociais: {
       instagram: 'https://www.instagram.com/paulogandor',
-      facebook:  'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
+      facebook: 'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
     }
   };
 
@@ -1339,11 +1393,11 @@ function applyDynamicData(data) {
   if (footerSocial) {
     const ig = (data.redes_sociais?.instagram || '').trim() || 'https://www.instagram.com/paulogandor';
     const fb = (data.redes_sociais?.facebook || '').trim() || 'https://www.facebook.com/babalorixapaulinho.dexangoaganju';
-    
+
     const links = [];
     if (ig && ig !== '#') links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer"><span>📸</span> Instagram</a>`);
     if (fb && fb !== '#') links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer"><span>📘</span> Facebook</a>`);
-    
+
     if (links.length) {
       footerSocial.innerHTML = links.join('');
     }
@@ -1373,10 +1427,10 @@ function initLightbox() {
     if (e.target.classList.contains('artigo-imagem')) {
       const imgSrc = e.target.getAttribute('src');
       const imgAlt = e.target.getAttribute('alt');
-      
+
       lightboxImg.src = imgSrc;
       lightboxImg.alt = imgAlt || 'Imagem Expandida';
-      
+
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden'; // Impede o scroll de fundo
     }
@@ -1396,7 +1450,7 @@ function initLightbox() {
       closeLightbox();
     }
   });
-  
+
   // Fecha com tecla ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && overlay.classList.contains('active')) {
