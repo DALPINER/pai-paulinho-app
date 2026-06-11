@@ -97,10 +97,57 @@ document.addEventListener('DOMContentLoaded', () => {
     adminVelasList.innerHTML = html;
   }
 
-  // --- Função de Impressão ---
+  // --- Função de Impressão (Desktop) ---
   if (printBtn) {
     printBtn.addEventListener('click', () => {
       window.print();
+    });
+  }
+
+  // --- Função de PDF e Compartilhamento (Mobile) ---
+  const pdfBtn = document.getElementById('pdfVelasBtn');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', async () => {
+      const originalText = pdfBtn.innerHTML;
+      pdfBtn.innerHTML = '<span>⏳</span> Gerando...';
+      pdfBtn.disabled = true;
+
+      // Opções do html2pdf
+      const opt = {
+        margin:       10,
+        filename:     'velas-virtuais-pai-paulinho.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      try {
+        // Gera o arquivo em memória (blob)
+        const pdfBlob = await html2pdf().set(opt).from(adminVelasList).output('blob');
+
+        // Cria o arquivo virtual
+        const file = new File([pdfBlob], opt.filename, { type: 'application/pdf' });
+
+        // Tenta usar o compartilhamento nativo do celular
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: 'Velas Virtuais - Pai Paulinho',
+            text: 'Segue o relatório de velas para oração no Congá.'
+          });
+        } else {
+          // Fallback (Plano B): Força o download se o navegador não suportar share
+          html2pdf().set(opt).from(adminVelasList).save();
+          alert('PDF baixado na sua pasta de Downloads. O seu navegador não suporta compartilhamento direto.');
+        }
+
+      } catch (err) {
+        console.error('Erro ao gerar/compartilhar PDF:', err);
+        alert('Falha ao gerar o arquivo PDF.');
+      } finally {
+        pdfBtn.innerHTML = originalText;
+        pdfBtn.disabled = false;
+      }
     });
   }
 
