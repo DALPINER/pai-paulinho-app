@@ -1,0 +1,422 @@
+/* ================================================================
+   SANTUÁRIO DE VELAS VIRTUAIS
+   Estilos Exclusivos - Zero Conflito
+   ================================================================ */
+
+/* ----- Base e Fundo ----- */
+.santuario-body {
+  background-color: #08060a;
+  color: #f5efe6;
+}
+
+.santuario-main {
+  padding-top: 80px; /* Compensa o header fixo */
+  min-height: 100vh;
+}
+
+/* ----- Hero Místico ----- */
+.santuario-hero {
+  position: relative;
+  padding: 5rem 1rem 3rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.santuario-hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(166, 93, 55, 0.15) 0%, #08060a 70%);
+  z-index: -1;
+}
+
+.santuario-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f5efe6;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(166, 93, 55, 0.4);
+  line-height: 1.2;
+}
+
+.santuario-subtitle {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #d1c8bd;
+  line-height: 1.6;
+}
+
+/* ----- Layout Bifocal ----- */
+.santuario-bifocal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 5rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .santuario-bifocal {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.santuario-section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: #f5efe6;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(166, 93, 55, 0.3);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* ----- Formulário (Glassmorphism) ----- */
+.santuario-form-wrapper {
+  background: rgba(15, 10, 20, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #d1c8bd;
+}
+
+.santuario-form input[type="text"],
+.santuario-form textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(166, 93, 55, 0.3);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  color: #f5efe6;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.santuario-form input[type="text"]:focus,
+.santuario-form textarea:focus {
+  outline: none;
+  border-color: #a65d37;
+  box-shadow: 0 0 10px rgba(166, 93, 55, 0.2);
+}
+
+.privacy-note {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #9e9389;
+  font-style: italic;
+}
+
+/* --- Seletor de Cores de Vela --- */
+.color-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.color-option input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.color-swatch {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.color-option input:checked ~ .color-swatch {
+  transform: scale(1.15);
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.color-description-panel {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #a65d37;
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+  font-family: 'Lato', sans-serif;
+}
+
+#colorTitle {
+  display: block;
+  font-size: 1rem;
+  color: #f5efe6;
+  margin-bottom: 0.3rem;
+}
+
+#colorText {
+  font-size: 0.85rem;
+  color: #d1c8bd;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --- Botão Enviar --- */
+.santuario-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #8b1c1c 0%, #5a1212 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.santuario-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 28, 28, 0.4);
+}
+
+.form-success {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  color: #81c784;
+  text-align: center;
+  font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.form-success.hidden {
+  display: none;
+}
+
+/* ----- Mural de Luz Comunitário ----- */
+.santuario-mural-wrapper {
+  padding: 1rem;
+}
+
+.santuario-mural-desc {
+  font-family: 'Lato', sans-serif;
+  color: #d1c8bd;
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.mural-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 2rem 1.5rem;
+  justify-items: center;
+  min-height: 300px; /* Espaço mínimo mesmo vazio */
+}
+
+/* ----- Estilização da Vela ----- */
+.vela-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* O corpo da vela */
+.vela-corpo {
+  width: 20px;
+  height: 60px;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  box-shadow: inset 0 -15px 15px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.2);
+}
+
+/* O pavio */
+.vela-corpo::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 4px;
+  background: #333;
+}
+
+/* A base da vela (pingo de cera ou sombra) */
+.vela-corpo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -2px;
+  right: -2px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+  filter: brightness(0.7);
+  z-index: -1;
+}
+
+/* A chama (Flame) */
+.vela-chama {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(ellipse at bottom, #fff 10%, #ffd54f 40%, transparent 80%);
+  border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+  animation: flicker 0.5s infinite alternate;
+  transform-origin: bottom center;
+}
+
+/* Brilho neon / Halo (Glow) baseado na cor */
+.vela-glow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: none;
+  animation: glow-pulse 2s infinite alternate;
+}
+
+/* Tooltip de Privacidade (Glassmorphism) */
+.vela-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-25px);
+  background: rgba(15, 10, 20, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  z-index: 10;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.vela-tooltip strong {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #f5efe6;
+}
+
+.vela-tooltip span {
+  color: #a65d37;
+  font-style: italic;
+  font-size: 0.7rem;
+}
+
+/* Seta do tooltip */
+.vela-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(15, 10, 20, 0.95) transparent transparent transparent;
+}
+
+.vela-wrapper:hover .vela-tooltip,
+.vela-wrapper:active .vela-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-15px);
+}
+
+/* ----- Cores Específicas das Velas ----- */
+
+/* Branca */
+.vela-branca .vela-corpo { background: #fdfdfd; }
+.vela-branca .vela-glow { box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.3); }
+.vela-branca .vela-chama { animation-delay: 0.1s; }
+
+/* Vermelha */
+.vela-vermelha .vela-corpo { background: #c62828; }
+.vela-vermelha .vela-glow { box-shadow: 0 0 30px 10px rgba(229, 57, 53, 0.4); }
+.vela-vermelha .vela-chama { animation-delay: 0.2s; }
+
+/* Azul Clara */
+.vela-azul-clara .vela-corpo { background: #42a5f5; }
+.vela-azul-clara .vela-glow { box-shadow: 0 0 30px 10px rgba(100, 181, 246, 0.4); }
+.vela-azul-clara .vela-chama { animation-delay: 0.3s; }
+
+/* Amarela */
+.vela-amarela .vela-corpo { background: #ffca28; }
+.vela-amarela .vela-glow { box-shadow: 0 0 30px 10px rgba(255, 213, 79, 0.4); }
+.vela-amarela .vela-chama { animation-delay: 0.4s; }
+
+/* Verde */
+.vela-verde .vela-corpo { background: #43a047; }
+.vela-verde .vela-glow { box-shadow: 0 0 30px 10px rgba(102, 187, 106, 0.4); }
+.vela-verde .vela-chama { animation-delay: 0.5s; }
+
+/* Preta e Vermelha (Gradiente) */
+.vela-preta-vermelha .vela-corpo { 
+  background: linear-gradient(to bottom, #111 50%, #b71c1c 50%); 
+}
+.vela-preta-vermelha .vela-glow { box-shadow: 0 0 30px 10px rgba(183, 28, 28, 0.5); }
+.vela-preta-vermelha .vela-chama { animation-delay: 0.6s; }
+
+/* ----- Keyframes / Animações ----- */
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1) skewX(2deg); opacity: 0.9; }
+  25% { transform: translateX(-50%) scale(1.05) skewX(-2deg); opacity: 1; }
+  50% { transform: translateX(-50%) scale(0.95) skewX(1deg); opacity: 0.85; }
+  75% { transform: translateX(-50%) scale(1.02) skewX(-1deg); opacity: 0.95; }
+  100% { transform: translateX(-50%) scale(1) skewX(2deg); opacity: 0.9; }
+}
+
+@keyframes glow-pulse {
+  0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
+  100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}

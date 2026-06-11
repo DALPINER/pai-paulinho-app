@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santuário de Velas Virtuais — Pai Paulinho</title>
+  <meta name="description" content="Santuário de Velas Virtuais: Corrente de Fé e Intenções. Um espaço sagrado e seguro para firmar pensamentos e unir preces à distância.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="santuario.css">
+</head>
+
+<body class="santuario-body">
+
+  <!-- ===== NAVIGATION ===== -->
+  <header id="siteHeader">
+    <nav class="nav container">
+      <a href="index.html" class="nav-brand">
+        <span class="nav-brand-icon">⚡</span>
+        <span class="nav-brand-text">Pai Paulinho de Xangô</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="index.html#oraculo" class="nav-link">Oráculo</a></li>
+        <li><a href="index.html#depoimentos" class="nav-link">Depoimentos</a></li>
+        <li><a href="estudos.html" class="nav-link">Estudos</a></li>
+        <li><a href="santuario.html" class="nav-link active">Santuário</a></li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="santuario-main">
+    <!-- Hero Section -->
+    <section class="santuario-hero">
+      <div class="santuario-hero-bg"></div>
+      <div class="container text-center">
+        <h1 class="santuario-title">Santuário de Velas Virtuais:<br>Corrente de Fé e Intenções</h1>
+        <p class="santuario-subtitle">Um espaço sagrado e seguro para firmar pensamentos, pedir proteção e unir preces à distância. A sua fé não tem fronteiras.</p>
+      </div>
+    </section>
+
+    <!-- Layout Bifocal -->
+    <section class="santuario-bifocal container">
+      
+      <!-- Lado Esquerdo: Formulário de Firmeza -->
+      <div class="santuario-form-wrapper">
+        <h2 class="santuario-section-title">Acenda sua Vela</h2>
+        <form id="velaForm" class="santuario-form">
+          <div class="form-group">
+            <label for="velaNome">Nome Completo (ou de quem deseja proteger)</label>
+            <input type="text" id="velaNome" required placeholder="Digite o nome aqui..." autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="velaIntencao">Sua Intenção / Prece</label>
+            <textarea id="velaIntencao" rows="3" required placeholder="Escreva sua prece, agradecimento ou pedido de proteção..." autocomplete="off"></textarea>
+            <small class="privacy-note">🔒 O seu nome e a sua oração ficarão ocultos. Apenas a luz da sua intenção brilhará no mural público.</small>
+          </div>
+
+          <div class="form-group">
+            <label>Cor da Vela (Vibração Litúrgica)</label>
+            <div class="color-selector" id="colorSelector">
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="branca" checked>
+                <span class="color-swatch" style="background: #ffffff;"></span>
+              </label>
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="vermelha">
+                <span class="color-swatch" style="background: #e53935;"></span>
+              </label>
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="azul-clara">
+                <span class="color-swatch" style="background: #64b5f6;"></span>
+              </label>
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="amarela">
+                <span class="color-swatch" style="background: #ffd54f;"></span>
+              </label>
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="verde">
+                <span class="color-swatch" style="background: #66bb6a;"></span>
+              </label>
+              <label class="color-option">
+                <input type="radio" name="velaCor" value="preta-vermelha">
+                <span class="color-swatch bicolor" style="background: linear-gradient(135deg, #212121 50%, #b71c1c 50%);"></span>
+              </label>
+            </div>
+            
+            <div id="colorDescription" class="color-description-panel">
+              <strong id="colorTitle">Branca (Oxalá)</strong>
+              <p id="colorText">Paz universal, cura espiritual, clareza mental e harmonia familiar.</p>
+            </div>
+          </div>
+
+          <button type="submit" class="santuario-submit-btn">
+            <span class="btn-icon">🕯️</span> Firmar Pensamento e Acender Vela
+          </button>
+          <div id="formSuccessMsg" class="form-success hidden">A sua chama foi acesa e unida à nossa corrente de luz!</div>
+        </form>
+      </div>
+
+      <!-- Lado Direito: Mural de Luz Comunitário -->
+      <div class="santuario-mural-wrapper">
+        <h2 class="santuario-section-title">Corrente de Axé</h2>
+        <p class="santuario-mural-desc">Velas firmadas e brilhando nas últimas 24 horas</p>
+        
+        <div id="muralGrid" class="mural-grid">
+          <!-- As velas serão injetadas aqui via JavaScript -->
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+  <script src="santuario.js"></script>
+</body>
+</html>
