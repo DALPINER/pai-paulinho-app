@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <p class="vela-admin-intencao">"${escapeHTML(vela.intencao)}"</p>
           <div class="vela-admin-footer">
-            Cor: ${formatarNomeCor(vela.cor_vela)} | Força: ${escapeHTML(vela.categoria_intencao)}
+            Cor: ${formatarNomeCor(vela.cor_vela)} | Força: ${formatarOrixaDaCor(vela.categoria_intencao)}
           </div>
         </div>
       `;
@@ -218,5 +218,17 @@ document.addEventListener('DOMContentLoaded', () => {
       'preta-vermelha': 'Preta e Vermelha'
     };
     return formatadas[corStr] || corStr;
+  }
+
+  function formatarOrixaDaCor(corStr) {
+    const orixas = {
+      'branca': 'Oxalá',
+      'vermelha': 'Ogum / Xangô / Boiadeiros',
+      'azul-clara': 'Iemanjá',
+      'amarela': 'Oxum',
+      'verde': 'Oxóssi / Caboclos',
+      'preta-vermelha': 'Esquerda / Quimbanda'
+    };
+    return orixas[corStr] || 'Força Divina';
   }
 });
