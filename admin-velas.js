@@ -102,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
     printBtn.addEventListener('click', () => {
       // Salva os dados na memória do navegador de forma infalível
       localStorage.setItem('velas_print_data', JSON.stringify(velasLocais));
-      window.open('relatorio-velas.html', '_blank');
+      // BURLANDO O CACHE: adiciona um número aleatório no final para o celular achar que é uma página nova
+      window.open('relatorio-velas.html?v=' + new Date().getTime(), '_blank');
     });
   }
 
