@@ -8,11 +8,18 @@
 
 /* ===== CONSTANTS ===== */
 const DATA_KEY = 'terreira_data';
-const PASS_KEY = 'terreira_admin_pass';
-const SESSION_KEY = 'terreira_admin_authed';
-const DEFAULT_PASS = 'Paulinho2024';
 const FS_COL = 'site_config';
 const FS_DOC = 'dados';
+
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+const SUPABASE_URL = 'https://damdszytfqwgpfghffgo.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbWRzenl0ZnF3Z3BmZ2hmZmdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDI2MTgsImV4cCI6MjA5NjcxODYxOH0.i9Vsih5_OKiUWLYXAeuLZmLVtgTqMB9ZCf6KYLIiphA';
+
+let supabaseAuth = null;
+if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+  supabaseAuth = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
 
 /* ===== DEFAULT DATA (espelho do app.js) ===== */
 const DEFAULT_DATA = {
@@ -141,14 +148,23 @@ async function loadCurrentData() {
 }
 
 /* ================================================================
-   AUTH MANAGER
+   AUTH MANAGER (Supabase Auth)
    ================================================================ */
 const Auth = {
-  getPass() { return localStorage.getItem(PASS_KEY) || DEFAULT_PASS; },
-  setPass(newPass) { localStorage.setItem(PASS_KEY, newPass); },
-  login(pass) { const ok = pass === this.getPass(); if (ok) sessionStorage.setItem(SESSION_KEY, '1'); return ok; },
-  logout() { sessionStorage.removeItem(SESSION_KEY); },
-  isLoggedIn() { return sessionStorage.getItem(SESSION_KEY) === '1'; }
+  async login(email, password) {
+    if (!supabaseAuth) throw new Error("Supabase não configurado.");
+    const { data, error } = await supabaseAuth.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    return true;
+  },
+  async logout() {
+    if (supabaseAuth) await supabaseAuth.auth.signOut();
+  },
+  async isLoggedIn() {
+    if (!supabaseAuth) return false;
+    const { data: { session } } = await supabaseAuth.auth.getSession();
+    return !!session;
+  }
 };
 
 /* ================================================================
@@ -437,23 +453,7 @@ async function initAdminPanel() {
     if (btn) btn.closest('.item-row')?.remove();
   });
 
-  // — Alterar Senha —
-  document.getElementById('alterarSenha')?.addEventListener('click', () => {
-    const atual = document.getElementById('senhaAtual')?.value;
-    const nova = document.getElementById('senhaNova')?.value;
-    const confirm = document.getElementById('senhaConfirm')?.value;
-
-    if (atual !== Auth.getPass()) { showToast('Senha atual incorreta.', 'error'); return; }
-    if (!nova || nova.length < 6) { showToast('Mínimo de 6 caracteres na nova senha.', 'error'); return; }
-    if (nova !== confirm) { showToast('As senhas não coincidem.', 'error'); return; }
-
-    Auth.setPass(nova);
-    ['senhaAtual', 'senhaNova', 'senhaConfirm'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
-    showToast('🔒 Senha alterada com sucesso!', 'success');
-  });
+  // — Aba Segurança removida —
 
   // — Resetar Dados (DELETE + CREATE padrão) —
   document.getElementById('resetarDados')?.addEventListener('click', async () => {
@@ -479,8 +479,8 @@ async function initAdminPanel() {
   });
 
   // — Logout —
-  document.getElementById('logoutBtn')?.addEventListener('click', () => {
-    Auth.logout();
+  document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+    await Auth.logout();
     location.reload();
   });
 }
@@ -491,19 +491,30 @@ async function initAdminPanel() {
 function initLogin() {
   const form = document.getElementById('loginForm');
   const errorEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
 
-  form?.addEventListener('submit', e => {
+  form?.addEventListener('submit', async e => {
     e.preventDefault();
+    const email = document.getElementById('loginEmail')?.value || '';
     const senha = document.getElementById('loginSenha')?.value || '';
 
-    if (Auth.login(senha)) {
+    errorEl.textContent = '';
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span>⏳</span> Autenticando...';
+
+    try {
+      await Auth.login(email, senha);
       document.getElementById('loginScreen').classList.add('hidden');
       document.getElementById('adminPanel').classList.remove('hidden');
       initAdminPanel();
-    } else {
-      errorEl.textContent = '❌ Senha incorreta. Tente novamente.';
+    } catch (err) {
+      errorEl.textContent = '❌ Credenciais inválidas ou erro de conexão.';
       const loginInput = document.getElementById('loginSenha');
       if (loginInput) { loginInput.value = ''; loginInput.focus(); }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
     }
   });
 }
@@ -511,8 +522,9 @@ function initLogin() {
 /* ================================================================
    ENTRY POINT
    ================================================================ */
-document.addEventListener('DOMContentLoaded', () => {
-  if (Auth.isLoggedIn()) {
+document.addEventListener('DOMContentLoaded', async () => {
+  const logged = await Auth.isLoggedIn();
+  if (logged) {
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('adminPanel').classList.remove('hidden');
     initAdminPanel();

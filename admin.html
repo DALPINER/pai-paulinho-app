@@ -20,19 +20,30 @@
       <p class="login-subtitle">Terreira Paulinho de Xangô Aganjú</p>
       <form class="login-form" id="loginForm" novalidate>
         <div class="form-group">
+          <label for="loginEmail" class="form-label">E-mail Administrativo</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="form-input"
+            placeholder="admin@terreira.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+        <div class="form-group">
           <label for="loginSenha" class="form-label">Senha de Acesso</label>
           <input
             type="password"
             id="loginSenha"
             class="form-input"
-            placeholder="Digite a senha..."
+            placeholder="••••••••"
             autocomplete="current-password"
             required
           >
         </div>
         <div class="login-error" id="loginError" aria-live="polite"></div>
         <button type="submit" class="btn-primary" id="loginBtn">
-          <span>Entrar</span>
+          <span>Autenticar Nuvem</span>
           <span class="btn-icon-right">→</span>
         </button>
       </form>
@@ -68,9 +79,6 @@
         </button>
         <button class="sidebar-btn" data-tab="contato">
           <span>📱</span> Contato & Redes
-        </button>
-        <button class="sidebar-btn" data-tab="seguranca">
-          <span>🔒</span> Segurança
         </button>
         <button class="sidebar-btn" data-tab="velas">
           <span>🕯️</span> Velas Virtuais
@@ -194,70 +202,13 @@
         </div>
       </section>
 
-      <!-- Tab: Segurança -->
-      <section class="admin-tab" id="tab-seguranca">
-        <div class="tab-header">
-          <h2 class="tab-title">Segurança</h2>
-          <p class="tab-desc">Altere a senha de acesso ao painel administrativo.</p>
-        </div>
-        <div class="form-card">
-          <div class="form-group">
-            <label for="senhaAtual" class="form-label">Senha Atual</label>
-            <input type="password" id="senhaAtual" class="form-input" placeholder="Digite a senha atual...">
-          </div>
-          <div class="form-group">
-            <label for="senhaNova" class="form-label">Nova Senha</label>
-            <input type="password" id="senhaNova" class="form-input" placeholder="Digite a nova senha...">
-          </div>
-          <div class="form-group">
-            <label for="senhaConfirm" class="form-label">Confirmar Nova Senha</label>
-            <input type="password" id="senhaConfirm" class="form-input" placeholder="Repita a nova senha...">
-          </div>
-          <div class="security-info">
-            <span>ℹ️</span>
-            <p>A senha padrão é <strong>Paulinho2024</strong>. Recomendamos alterar no primeiro acesso.</p>
-          </div>
-          <button class="btn-save" id="alterarSenha">
-            <span>🔒</span> Alterar Senha
-          </button>
-        </div>
 
-        <div class="form-card danger-zone">
-          <h3 class="danger-title">⚠️ Zona de Risco</h3>
-          <p class="danger-desc">Resetar todos os dados para os valores padrão do sistema. Esta ação não pode ser desfeita.</p>
-          <button class="btn-danger" id="resetarDados">
-            🗑️ Resetar para Dados Padrão
-          </button>
-        </div>
-      </section>
 
       <!-- Tab: Velas Virtuais -->
       <section class="admin-tab" id="tab-velas">
         
-        <!-- Estado 1: Deslogado (Supabase Auth) -->
-        <div id="velasAuthBlock" class="velas-auth-container">
-          <div class="tab-header" style="text-align: center; border-bottom: none;">
-            <h2 class="tab-title">🔐 Área Restrita</h2>
-            <p class="tab-desc">Acesso exclusivo com autenticação Supabase (JWT).</p>
-          </div>
-          <form id="velasLoginForm" class="form-card" style="max-width: 400px; margin: 0 auto;" novalidate>
-            <div class="form-group">
-              <label for="velasEmail" class="form-label">E-mail Administrativo</label>
-              <input type="email" id="velasEmail" class="form-input" placeholder="admin@terreira.com" required>
-            </div>
-            <div class="form-group">
-              <label for="velasSenha" class="form-label">Senha de Segurança</label>
-              <input type="password" id="velasSenha" class="form-input" placeholder="••••••••" required>
-            </div>
-            <div id="velasAuthError" class="login-error" style="display: none; color: #d32f2f; background: #ffebee; padding: 0.5rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.9rem;"></div>
-            <button type="submit" class="btn-primary" id="velasAuthBtn" style="width: 100%;">
-              <span>Autenticar Nuvem</span>
-            </button>
-          </form>
-        </div>
-
-        <!-- Estado 2: Logado (Lista de Velas) -->
-        <div id="velasDataBlock" class="hidden">
+        <!-- Lista de Velas (Segura) -->
+        <div id="velasDataBlock">
           <div class="tab-header" style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <h2 class="tab-title">Velas Virtuais (Área Segura)</h2>
@@ -266,9 +217,6 @@
             <div style="display: flex; gap: 1rem;">
               <button class="btn-primary btn-print" id="printVelasBtn">
                 <span>🖨️</span> Imprimir Preces
-              </button>
-              <button class="btn-danger btn-print" id="velasLogoutBtn" style="padding: 0.8rem 1.5rem; font-weight: 600;">
-                Sair (Auth)
               </button>
             </div>
           </div>
@@ -289,7 +237,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
-  <script src="admin.js"></script>
+  <script type="module" src="admin.js"></script>
   <script type="module" src="admin-velas.js"></script>
 </body>
 </html>

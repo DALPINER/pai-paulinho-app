@@ -20,99 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const adminVelasList = document.getElementById('adminVelasList');
   const printBtn = document.getElementById('printVelasBtn');
   
-  // Elementos de Auth
-  const authBlock = document.getElementById('velasAuthBlock');
-  const dataBlock = document.getElementById('velasDataBlock');
-  const loginForm = document.getElementById('velasLoginForm');
-  const authError = document.getElementById('velasAuthError');
-  const logoutBtn = document.getElementById('velasLogoutBtn');
-  const authSubmitBtn = document.getElementById('velasAuthBtn');
-  
   // Escutar clique na aba de Velas (gerenciado pelo admin.js)
   const btnAbaVelas = document.querySelector('.sidebar-btn[data-tab="velas"]');
   
   if (btnAbaVelas) {
     btnAbaVelas.addEventListener('click', () => {
-      checkSessionAndLoad();
-    });
-  }
-
-  // --- Lógica de Autenticação Supabase ---
-
-  async function checkSessionAndLoad() {
-    if (!supabase) {
-      showError("Supabase não configurado.");
-      return;
-    }
-
-    const { data: { session }, error } = await supabase.auth.getSession();
-    
-    if (session) {
-      showDataBlock();
       carregarVelasSeguras();
       setupRealtime();
-    } else {
-      showAuthBlock();
-    }
-  }
-
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!supabase) return;
-
-    authError.style.display = 'none';
-    const originalBtnText = authSubmitBtn.innerHTML;
-    authSubmitBtn.disabled = true;
-    authSubmitBtn.innerHTML = '⏳ Autenticando...';
-
-    const email = document.getElementById('velasEmail').value;
-    const password = document.getElementById('velasSenha').value;
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
     });
-
-    authSubmitBtn.disabled = false;
-    authSubmitBtn.innerHTML = originalBtnText;
-
-    if (error) {
-      authError.textContent = '❌ Credenciais inválidas ou erro no servidor.';
-      authError.style.display = 'block';
-      console.error('Auth error:', error.message);
-    } else {
-      // Sucesso no login
-      loginForm.reset();
-      showDataBlock();
-      carregarVelasSeguras();
-      setupRealtime();
-    }
-  });
-
-  logoutBtn.addEventListener('click', async () => {
-    if (!supabase) return;
-    await supabase.auth.signOut();
-    if (realtimeChannel) {
-      await supabase.removeChannel(realtimeChannel);
-      realtimeChannel = null;
-    }
-    showAuthBlock();
-    adminVelasList.innerHTML = '';
-  });
-
-  function showAuthBlock() {
-    authBlock.classList.remove('hidden');
-    dataBlock.classList.add('hidden');
-  }
-
-  function showDataBlock() {
-    authBlock.classList.add('hidden');
-    dataBlock.classList.remove('hidden');
-  }
-
-  function showError(msg) {
-    authError.textContent = '❌ ' + msg;
-    authError.style.display = 'block';
   }
 
   // --- Lógica de Carregamento e Realtime ---
@@ -120,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let velasLocais = [];
 
   async function carregarVelasSeguras() {
+    if (!supabase) return;
     adminVelasList.innerHTML = '<p style="color: #9e9389; padding: 1rem;">⏳ Buscando intenções sagradas no banco de dados...</p>';
 
     try {
@@ -138,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error('Erro ao buscar velas seguras:', err);
-      adminVelasList.innerHTML = '<p style="color: red;">❌ Erro ao buscar dados. O seu usuário do Supabase Auth tem permissão na política RLS?</p>';
+      adminVelasList.innerHTML = '<p style="color: red;">❌ Erro ao buscar dados. Autenticação JWT falhou ou sessão expirada.</p>';
     }
   }
 
   function setupRealtime() {
-    if (realtimeChannel) return;
+    if (!supabase || realtimeChannel) return;
 
     realtimeChannel = supabase.channel('admin_velas_virtuais')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'velas_virtuais' }, payload => {
