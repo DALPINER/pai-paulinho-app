@@ -3215,3 +3215,149 @@ a               { text-decoration: none; color: inherit; }
   color: #c9a84c;
 }
 
+/* ================================================================
+   MÓDULO 2 — ALQUIMIA DAS ERVAS E BANHOS
+   Prefixo exclusivo: .ervas-  |  Zero conflito com estilos globais
+   ================================================================ */
+
+/* Grid responsivo de cards */
+.ervas-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 700px) {
+  .ervas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Card base (glassmorphism) */
+.ervas-card {
+  background: rgba(15, 10, 20, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left-width: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: default;
+}
+
+/* Hover elegante nos cards */
+.ervas-card:hover {
+  transform: translateY(-4px) translateX(3px);
+  background: rgba(20, 14, 30, 0.72);
+}
+
+/* ---- Variantes de cor por temperatura ---- */
+
+/* 🔥 Quente — âmbar / cobre */
+.ervas-card--quente {
+  border-left-color: #c9762b;
+  box-shadow: 0 4px 18px rgba(201, 118, 43, 0.12);
+}
+.ervas-card--quente:hover {
+  box-shadow: 0 8px 28px rgba(201, 118, 43, 0.25);
+}
+
+/* 🪵 Morna — verde sálvia suave */
+.ervas-card--morna {
+  border-left-color: #5a9a6e;
+  box-shadow: 0 4px 18px rgba(90, 154, 110, 0.12);
+}
+.ervas-card--morna:hover {
+  box-shadow: 0 8px 28px rgba(90, 154, 110, 0.25);
+}
+
+/* ❄️ Fria — azul-cristal */
+.ervas-card--fria {
+  border-left-color: #5b9ecf;
+  box-shadow: 0 4px 18px rgba(91, 158, 207, 0.12);
+}
+.ervas-card--fria:hover {
+  box-shadow: 0 8px 28px rgba(91, 158, 207, 0.25);
+}
+
+/* Cabeçalho do card (ícone + nome + regente) */
+.ervas-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.85rem;
+}
+
+.ervas-icone {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Nome da erva */
+.ervas-nome {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5efe6;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.2;
+}
+
+/* Orixá / Entidade regente */
+.ervas-regente {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  color: #fcfaf8;
+}
+
+/* Linha de ação (negrito) */
+.ervas-acao {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  color: #fcfaf8;
+  opacity: 0.9;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* Cores de destaque no strong por temperatura */
+.ervas-card--quente .ervas-acao strong { color: #e89c50; }
+.ervas-card--morna  .ervas-acao strong { color: #7ec892; }
+.ervas-card--fria   .ervas-acao strong { color: #85c0f0; }
+
+/* Descrição */
+.ervas-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.83rem;
+  color: #fcfaf8;
+  opacity: 0.72;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---- Responsivo Mobile — padding confortável ---- */
+@media (max-width: 640px) {
+  .ervas-card {
+    padding: 1.1rem 1.15rem;
+  }
+
+  .ervas-nome {
+    font-size: 0.95rem;
+  }
+
+  .ervas-desc,
+  .ervas-acao {
+    font-size: 0.85rem;
+  }
+
+  .ervas-icone {
+    font-size: 1.4rem;
+  }
+}

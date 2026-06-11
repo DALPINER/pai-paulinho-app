@@ -141,8 +141,313 @@ const ESTUDOS_DB = {
   },
 
   // ============================================================
-  // --- Módulo 2: Panteão dos Orixás ---
+  // --- Módulo 2: Alquimia das Ervas e Banhos ---
   // ============================================================
+
+  'ervas-quentes': {
+    modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
+    tag: 'Módulo 2 · Ervas Quentes · Descarrego Pesado',
+    titulo: '🔥 Ervas Quentes: Descarrego Pesado e Corte de Demanda',
+    imagem: '',
+    legenda: '',
+    htmlCorpo: `
+      <p class="capitular">As ervas quentes são ferramentas de alta vibração magnética destinadas ao trabalho de descarrego, corte de demanda, quebra de feitiçaria e limpeza de energias densas. Por sua potência, <strong>não devem ser aplicadas diretamente sobre a cabeça (Ori)</strong>, pois sua frequência é demasiado forte para o centro espiritual. Utilizadas em banhos de corpo, defumações ou firmezas, elas atuam como agentes de transmutação e proteção profunda.</p>
+
+      <div class="ervas-grid">
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Arruda</h3>
+              <span class="ervas-regente">Exu · Ogum</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Descarrego e corte de inveja.</p>
+          <p class="ervas-desc">Limpa o campo áurico de energias de olho-gordo e larvas mentais. Uma das ervas mais poderosas da tradição, cria uma barreira de proteção vibracional ao redor do corpo.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Guiné</h3>
+              <span class="ervas-regente">Exu · Pretos Velhos</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Quebra de demanda e feitiçaria.</p>
+          <p class="ervas-desc">Atua cortando cordões energéticos negativos, desfazendo trabalhos e quebrando amarrações que bloqueiam o livre-arbítrio e o fluxo natural da vida.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Aroeira</h3>
+              <span class="ervas-regente">Exu · Quimbanda</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Descarrego pesado e fixação de Axé.</p>
+          <p class="ervas-desc">Descarrega acúmulos densos de eguns e energias estagnadas. Excelente para ambientes que receberam muita energia negativa ou que ficaram longos períodos sem limpeza espiritual.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Pinhão Roxo</h3>
+              <span class="ervas-regente">Exu de Quimbanda</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Destruição de magia negra.</p>
+          <p class="ervas-desc">Agente de choque magnético contra ataques astrais violentos. Atua de forma drástica e imediata na dissolução de cargas energéticas enviadas com intenção destrutiva.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Fumo em Folha</h3>
+              <span class="ervas-regente">Exu · Pombagira · Pretos Velhos</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Expulsão de miasmas.</p>
+          <p class="ervas-desc">Limpeza da energia densa acumulada no dia a dia. A fumaça carregada do fumo forma um véu protetor que expulsa influências astrais negativas do ambiente e do corpo.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Comigo-Ninguém-Pode</h3>
+              <span class="ervas-regente">Ogum · Exu</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Blindagem contra rituais destrutivos.</p>
+          <p class="ervas-desc">Absorve a negatividade direcionada com intenção e a transforma, impedindo que trabalhos espirituais contra você consigam ancorar no seu campo energético.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--quente">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌿</span>
+            <div>
+              <h3 class="ervas-nome">Espada de São Jorge</h3>
+              <span class="ervas-regente">Ogum</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Quebra de estagnação.</p>
+          <p class="ervas-desc">Rasga e limpa caminhos severamente trancados. Atua como a espada de Ogum no plano etérico: desbrava obstáculos, quebra bloqueios profissionais e espirituais e abre passagem onde havia parede.</p>
+        </div>
+
+      </div>
+
+      <blockquote class="artigo-citacao">
+        "Uma erva quente mal usada não faz milagre — faz confusão. O respeito pelo elemento, a intenção clara e a licença pedida são o que transforma uma folha simples em instrumento sagrado de cura e proteção."
+        <span class="artigo-citacao-autor">— Pai Paulinho de Xangô Aganjú</span>
+      </blockquote>
+    `
+  },
+
+  'ervas-mornas': {
+    modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
+    tag: 'Módulo 2 · Ervas Mornas · Equilíbrio Geral',
+    titulo: '🪵 Ervas Mornas: Equilíbrio, Paz e Uso Geral',
+    imagem: '',
+    legenda: '',
+    htmlCorpo: `
+      <p class="capitular">As ervas mornas são as grandes equilíbradoras. Funcionam como pontes entre o denso e o sutil, sendo <strong>seguras para uso no Ori (cabeça)</strong> e em banhos de corpo completo. São as ervas do cotidiano espiritual: regulam, alinham, reconectam e fortalecem o campo áurico sem o impacto drástico das ervas quentes ou a delicadeza excessiva das frias. São o ponto de equilíbrio da alquimia sagrada.</p>
+
+      <div class="ervas-grid">
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Manjericão</h3>
+              <span class="ervas-regente">Oxalá · Xangô</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Alinhamento áurico e paz mental.</p>
+          <p class="ervas-desc">Traz clareza e acalma o espírito agitado. Harmoniza o ambiente, eleva a vibração de locais de trabalho e estudo, e alinha o Ori para receber orientação espiritual com mais nitidez.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Boldo / Tapete de Oxalá</h3>
+              <span class="ervas-regente">Oxalá</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Limpeza profunda da mente.</p>
+          <p class="ervas-desc">Afasta pensamentos obsessivos e reconecta com o divino. Excelente para pessoas que vivem períodos de ansiedade mental intensa ou que sentem dificuldade de silenciar os pensamentos.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Alecrim</h3>
+              <span class="ervas-regente">Oxalá · Oxóssi</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Vitalidade, foco e alegria.</p>
+          <p class="ervas-desc">Recarrega as baterias energéticas do corpo. Ideal para momentos de cansaço profundo, abatimento espiritual ou falta de motivação. Também é excelente para ambientes de estudo e trabalho criativo.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Sálvia</h3>
+              <span class="ervas-regente">Pretos Velhos · Nanã</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Sabedoria e aterramento.</p>
+          <p class="ervas-desc">Acalma o sistema nervoso e ancora a ancestralidade. Conecta o ser humano com a sabedoria dos mais velhos e com os ensinamentos que vêm da linhagem espiritual e familiar.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Cana-do-Brejo</h3>
+              <span class="ervas-regente">Xangô</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Equilíbrio de justiça e purificação.</p>
+          <p class="ervas-desc">Limpa os canais de energia dos chakras inferiores, equilibrando o fluxo de Axé no corpo e promovendo um senso renovado de justiça, clareza e propósito no ser.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Capim-Limão</h3>
+              <span class="ervas-regente">Oxóssi · Logun Edé</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Alívio de ansiedade e sono reparador.</p>
+          <p class="ervas-desc">Elimina o estresse acumulado no corpo e na mente. Muito indicado para banhos noturnos de equilíbrio emocional, trazendo leveza e promovendo um descanso profundo e restaurador.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--morna">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌱</span>
+            <div>
+              <h3 class="ervas-nome">Folha de Louro</h3>
+              <span class="ervas-regente">Xangô · Iansã · Ciganos</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Sucesso e foco mental.</p>
+          <p class="ervas-desc">Atrai a força e a liderança para vencer batalhas cotidianas. Muito usada em rituais de prosperidade e abertura de caminhos profissionais, além de fortalecer a mente para tomada de decisões.</p>
+        </div>
+
+      </div>
+
+      <blockquote class="artigo-citacao">
+        "As ervas mornas são o equilíbrio da natureza que a gente esquece de buscar no dia a dia. Um banho simples de alecrim com sálvia ao fim de uma semana pesada faz o que nenhuma consulta apressada consegue: devolve você para si mesmo."
+        <span class="artigo-citacao-autor">— Pai Paulinho de Xangô Aganjú</span>
+      </blockquote>
+    `
+  },
+
+  'ervas-frias': {
+    modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
+    tag: 'Módulo 2 · Ervas Frias · Atração e Sutileza',
+    titulo: '❄️ Ervas Frias: Atração, Magnetismo e Pós-Limpeza',
+    imagem: '',
+    legenda: '',
+    htmlCorpo: `
+      <p class="capitular">As ervas frias são a última camada da alquimia sagrada dos banhos. Utilizadas <strong>após a limpeza com ervas quentes ou mornas</strong>, elas agem como um imã espiritual — atraindo amor, prosperidade, harmonia e equilíbrio emocional. São as mais sutis e as mais elegantes, suas energias operam no nível das emoções, das relações e da expansão do campo de luz pessoal.</p>
+
+      <div class="ervas-grid">
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Alfazema / Lavanda</h3>
+              <span class="ervas-regente">Iemanjá · Oxum</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Doçura espiritual e magnetismo.</p>
+          <p class="ervas-desc">Harmoniza as emoções e expande a intuição. Cria um campo áurico de suavidade e abertura que facilita conexões afetivas genuínas e aproxima a influência espiritual dos guias de luz.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Rosa Branca</h3>
+              <span class="ervas-regente">Oxalá · Iemanjá</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Cura emocional e perdão.</p>
+          <p class="ervas-desc">Purifica os sentimentos e cura mágoas antigas da alma. Atua diretamente no chakra cardíaco, dissolve ressentimentos guardados e prepara o campo emocional para receber amor genuíno.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Rosa Vermelha</h3>
+              <span class="ervas-regente">Pombagira · Cigano</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Atração material, amor-próprio e brilho.</p>
+          <p class="ervas-desc">Desperta o magnetismo pessoal e abre caminhos relacionais e financeiros. A rosa vermelha é a assinatura de Pombagira: quem a usa com intenção de amor-próprio irradia uma presença que atrai e encanta.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Hortelã</h3>
+              <span class="ervas-regente">Oxóssi · Exu</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Atração rápida e vitalidade física.</p>
+          <p class="ervas-desc">Acelera o fluxo de prosperidade e traz insights rápidos. Excelente para situações em que se precisa de resultados em curto prazo, especialmente em finanças, vendas e novos projetos.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Pétalas de Girassol</h3>
+              <span class="ervas-regente">Oxum</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Prosperidade, ouro e expansão.</p>
+          <p class="ervas-desc">Magnetiza o corpo com a frequência do sucesso e reconhecimento. O girassol é o ouro de Oxum: quando suas pétalas são usadas em banhos de prosperidade, atraem visibilidade, valorização e abundância.</p>
+        </div>
+
+        <div class="ervas-card ervas-card--fria">
+          <div class="ervas-card-header">
+            <span class="ervas-icone">🌸</span>
+            <div>
+              <h3 class="ervas-nome">Erva-Doce</h3>
+              <span class="ervas-regente">Oxum</span>
+            </div>
+          </div>
+          <p class="ervas-acao"><strong>Ação:</strong> Conforto familiar e paz interna.</p>
+          <p class="ervas-desc">Atrai a energia da harmonia nos relacionamentos. Suaviza conflitos familiares, traz doçura para ambientes tensos e cria um campo de conforto emocional que facilita o diálogo e a reconciliação.</p>
+        </div>
+
+      </div>
+
+      <blockquote class="artigo-citacao">
+        "Depois de limpar com as ervas quentes, você cria um espaço vazio. As ervas frias são o que você coloca dentro desse espaço. Se você planta amor, harmonia e prosperidade no campo limpo — eles crescem. A alquimia das ervas é tão simples e tão profunda quanto isso."
+        <span class="artigo-citacao-autor">— Pai Paulinho de Xangô Aganjú</span>
+      </blockquote>
+    `
+  },
+
+  // ============================================================
+  // --- Módulo 3: Panteão dos Orixás ---
+  // ============================================================
+
 
   'exu-orixa': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
