@@ -73,43 +73,38 @@ function escapeHTML(str = '') {
   }[tag]));
 }
 
-function getCorHex(corObj) {
-  if (!corObj || !corObj.top) return '#ccc';
-  const c = corObj.top.toLowerCase();
+function getCorHex(corName) {
+  if (!corName) return '#ccc';
+  const c = corName.toLowerCase();
   switch (c) {
-    case 'white': return '#aaaaaa'; // Branco com contorno para aparecer na impressão
-    case 'red': return '#dc2626';
-    case 'blue': return '#2563eb';
-    case 'green': return '#16a34a';
-    case 'yellow': return '#ca8a04';
-    case 'purple': return '#9333ea';
-    case 'pink': return '#db2777';
-    case 'black': return '#171717';
-    case 'brown': return '#78350f';
-    case 'orange': return '#ea580c';
-    case 'lightblue': return '#38bdf8';
+    case 'branca': return '#aaaaaa'; // Cinza claro para aparecer no papel branco
+    case 'vermelha': return '#dc2626';
+    case 'amarela': return '#ca8a04';
+    case 'azul-clara': return '#38bdf8';
+    case 'verde': return '#16a34a';
+    case 'preta-vermelha': return '#171717'; // Preto
     default: return '#ccc';
   }
 }
 
-function formatarNomeCor(corObj) {
-  if (!corObj || !corObj.top) return 'Indefinida';
-  if (corObj.isBicolor && corObj.bottom) {
-    return traduzirCor(corObj.top) + ' / ' + traduzirCor(corObj.bottom);
-  }
-  return traduzirCor(corObj.top);
-}
-
-function traduzirCor(corEn) {
+function formatarNomeCor(corName) {
+  if (!corName) return 'Branca';
   const map = {
-    'white': 'Branca', 'red': 'Vermelha', 'blue': 'Azul', 'green': 'Verde',
-    'yellow': 'Amarela', 'purple': 'Roxa', 'pink': 'Rosa', 'black': 'Preta',
-    'brown': 'Marrom', 'orange': 'Laranja', 'lightblue': 'Azul Claro'
+    'branca': 'Branca', 'amarela': 'Amarela', 'vermelha': 'Vermelha',
+    'azul-clara': 'Azul-Clara', 'verde': 'Verde', 'preta-vermelha': 'Preta/Vermelha'
   };
-  return map[corEn.toLowerCase()] || corEn;
+  return map[corName.toLowerCase()] || corName;
 }
 
-function formatarOrixaDaCor(forca) {
-  if (!forca) return 'Orixá/Força não definida';
-  return forca.charAt(0).toUpperCase() + forca.slice(1);
+function formatarOrixaDaCor(corName) {
+  if (!corName) return 'Força Espiritual';
+  const map = {
+    'branca': 'Oxalá / Pretos Velhos',
+    'amarela': 'Oxum / Iansã',
+    'vermelha': 'Ogum / Pomba Gira',
+    'azul-clara': 'Iemanjá / Crianças',
+    'verde': 'Oxóssi / Caboclos',
+    'preta-vermelha': 'Exu'
+  };
+  return map[corName.toLowerCase()] || 'Força Espiritual';
 }
