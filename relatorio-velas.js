@@ -1,13 +1,6 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-// Mesmas credenciais
-const SUPABASE_URL = 'https://damdszytfqwgpfghffgo.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbWRzenl0ZnF3Z3BmZ2hmZmdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDI2MTgsImV4cCI6MjA5NjcxODYxOH0.i9Vsih5_OKiUWLYXAeuLZmLVtgTqMB9ZCf6KYLIiphA';
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 const velasGrid = document.getElementById('velasGrid');
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Lógica de botões
   document.getElementById('btnVoltar').addEventListener('click', () => {
     window.close(); // Fecha a aba
@@ -17,40 +10,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.print(); // Chama a janela nativa de impressão/Salvar PDF
   });
 
-  // Busca inicial das velas
-  await fetchVelas();
+  // Busca inicial das velas diretamente da memória (Infalível contra RLS/Sessões)
+  carregarVelasDaMemoria();
 });
 
-async function fetchVelas() {
-  const limiteTempo = new Date();
-  limiteTempo.setHours(limiteTempo.getHours() - 24);
-  const limiteISO = limiteTempo.toISOString();
-
+function carregarVelasDaMemoria() {
   try {
-    // 1. Aguardar o Supabase restaurar a sessão do localStorage
-    const { data: { session }, error: authError } = await supabase.auth.getSession();
-    
-    if (authError || !session) {
-      velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Acesso negado. Por favor, volte ao painel e faça login novamente.</div>`;
+    const dataStr = localStorage.getItem('velas_print_data');
+    if (!dataStr) {
+      velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Nenhum dado encontrado. Por favor, volte ao painel e clique em Gerar Relatório novamente.</div>`;
       return;
     }
 
-    // 2. Buscar as velas
-    const { data, error } = await supabase
-      .from('velas')
-      .select('*')
-      .gte('created_at', limiteISO)
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error('Erro detalhado do Supabase:', error);
-      throw error;
-    }
+    const lista = JSON.parse(dataStr);
+    renderVelas(lista);
     
-    renderVelas(data || []);
+    // Opcional: Limpa a memória após ler para não ocupar espaço
+    // localStorage.removeItem('velas_print_data');
   } catch (err) {
-    console.error('Erro ao buscar velas para o relatório:', err);
-    velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Erro ao carregar os dados. Verifique a conexão e seu acesso.</div>`;
+    console.error('Erro ao ler velas da memória:', err);
+    velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Erro ao montar o relatório. Tente novamente pelo painel.</div>`;
   }
 }
 

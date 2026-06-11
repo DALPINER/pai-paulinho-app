@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Função: Gerar Relatório de Preces (Nova Aba) ---
   if (printBtn) {
     printBtn.addEventListener('click', () => {
+      // Salva os dados na memória do navegador de forma infalível
+      localStorage.setItem('velas_print_data', JSON.stringify(velasLocais));
       window.open('relatorio-velas.html', '_blank');
     });
   }
