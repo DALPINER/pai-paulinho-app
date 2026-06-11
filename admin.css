@@ -696,6 +696,7 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  /* Adaptação do Layout do Painel */
   .admin-panel {
     grid-template-columns: 1fr;
   }
@@ -705,4 +706,23 @@ a { text-decoration: none; color: inherit; }
   }
   .admin-main { padding: 1.5rem; }
   .item-row-grid { grid-template-columns: 60px 1fr; }
+  
+  /* Adaptação da Tela de Login */
+  .login-screen {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 10vh;
+  }
+  .login-card {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  }
+  .login-emblem {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .login-title {
+    font-size: 1.4rem;
+  }
 }
