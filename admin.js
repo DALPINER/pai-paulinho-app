@@ -7,34 +7,34 @@
 'use strict';
 
 /* ===== CONSTANTS ===== */
-const DATA_KEY     = 'terreira_data';
-const PASS_KEY     = 'terreira_admin_pass';
-const SESSION_KEY  = 'terreira_admin_authed';
+const DATA_KEY = 'terreira_data';
+const PASS_KEY = 'terreira_admin_pass';
+const SESSION_KEY = 'terreira_admin_authed';
 const DEFAULT_PASS = 'Paulinho2024';
-const FS_COL       = 'site_config';
-const FS_DOC       = 'dados';
+const FS_COL = 'site_config';
+const FS_DOC = 'dados';
 
 /* ===== DEFAULT DATA (espelho do app.js) ===== */
 const DEFAULT_DATA = {
-  sobre_pai_paulinho: `Com mais de 30 anos de caminhada dedicada à espiritualidade e ao acolhimento humano, Sacerdote Paulo Silveira Gandor é um orientador espiritual consagrado nas tradições de Umbanda e Candomblé. Sob a regência de Xangô Aganjú — o orixá da justiça, do equilíbrio e da sabedoria —, Paulo conduz seus atendimentos com profundo amor, ética e respeito pela ancestralidade.
+  sobre_pai_paulinho: `Com mais de 30 anos de caminhada dedicada à espiritualidade e ao acolhimento humano, Pai Paulinho de Xangô é um orientador espiritual consagrado nas tradições de Umbanda e Quimbanda. Sob a regência de Xangô Aganjú — o orixá da justiça, do equilíbrio e da sabedoria —, Paulo conduz seus atendimentos com profundo amor, ética e respeito pela ancestralidade.
 
 Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem busca auxílio. Seja para encontrar clareza nos caminhos profissionais, proteção para a família ou simplesmente um ouvido amigo e uma palavra de luz nos momentos de incerteza, cada atendimento é realizado com acolhimento e total sigilo.
 
 "Minha missão é trazer clareza e paz para o seu coração. Aqui você encontra escuta sincera, acolhimento e a força dos orixás iluminando sua vida."`,
 
   servicos: [
-    { id: '1', nome: 'Consulta Espiritual',  descricao: 'Um momento de escuta atenta, respeito e direcionamento espiritual para acalmar seu coração e trazer clareza para suas decisões de vida.', icone: '🔮' },
-    { id: '2', nome: 'Jogo de Búzios',       descricao: 'Leitura acolhedora e precisa dos búzios para encontrar respostas claras e iluminar as áreas da sua jornada que parecem travadas.', icone: '🐚' },
-    { id: '3', nome: 'Limpeza Espiritual',   descricao: 'Um reequilíbrio energético suave para afastar a ansiedade, retirar cargas negativas acumuladas e devolver a leveza à sua alma.', icone: '🕯️' },
+    { id: '1', nome: 'Consulta Espiritual', descricao: 'Um momento de escuta atenta, respeito e direcionamento espiritual para acalmar seu coração e trazer clareza para suas decisões de vida.', icone: '🔮' },
+    { id: '2', nome: 'Jogo de Búzios', descricao: 'Leitura acolhedora e precisa dos búzios para encontrar respostas claras e iluminar as áreas da sua jornada que parecem travadas.', icone: '🐚' },
+    { id: '3', nome: 'Limpeza Espiritual', descricao: 'Um reequilíbrio energético suave para afastar a ansiedade, retirar cargas negativas acumuladas e devolver a leveza à sua alma.', icone: '🕯️' },
     { id: '4', nome: 'Abertura de Caminhos', descricao: 'Trabalhos direcionados sob a luz dos guias para remover obstáculos invisíveis, permitindo que a prosperidade, o amor e a saúde fluam livremente.', icone: '🌟' },
-    { id: '5', nome: 'Proteção Espiritual',  descricao: 'Rituais de fortalecimento espiritual para proteger você, seu lar ou seu negócio contra inveja e energias negativas.', icone: '🛡️' },
+    { id: '5', nome: 'Proteção Espiritual', descricao: 'Rituais de fortalecimento espiritual para proteger você, seu lar ou seu negócio contra inveja e energias negativas.', icone: '🛡️' },
     { id: '6', nome: 'Trabalhos de Harmonização', descricao: 'Realizados com alta ética e responsabilidade para restabelecer o entendimento nas relações, promovendo a paz e a harmonia familiar.', icone: '❤️' },
   ],
 
   depoimentos: [
-    { id: '1', nome_cliente: 'Maria S.',  texto: 'Paulo Silveira Gandor mudou minha história! Após a consulta de orientação espiritual, meus caminhos se abriram de formas incríveis. Gratidão por tanta luz!', estrelas: 5 },
-    { id: '2', nome_cliente: 'João R.',   texto: 'Um orientador espiritual de verdade. Acolhedor, honesto e cheio de axé. Senti uma paz e um acolhimento imenso desde a primeira conversa. Recomendo de coração!', estrelas: 5 },
-    { id: '3', nome_cliente: 'Ana L.',    texto: 'Depois da limpeza espiritual com o Sacerdote Paulo, senti uma leveza inexplicável. Parecia que um peso enorme tinha saído das minhas costas. Muito grata!', estrelas: 5 },
+    { id: '1', nome_cliente: 'Maria S.', texto: 'Paulo Silveira Gandor mudou minha história! Após a consulta de orientação espiritual, meus caminhos se abriram de formas incríveis. Gratidão por tanta luz!', estrelas: 5 },
+    { id: '2', nome_cliente: 'João R.', texto: 'Um orientador espiritual de verdade. Acolhedor, honesto e cheio de axé. Senti uma paz e um acolhimento imenso desde a primeira conversa. Recomendo de coração!', estrelas: 5 },
+    { id: '3', nome_cliente: 'Ana L.', texto: 'Depois da limpeza espiritual com o Sacerdote Paulo, senti uma leveza inexplicável. Parecia que um peso enorme tinha saído das minhas costas. Muito grata!', estrelas: 5 },
     { id: '4', nome_cliente: 'Carlos M.', texto: 'Cheguei desanimado e sem rumo, mas saí fortalecido. A leitura dos búzios me trouxe a clareza e as respostas que eu precisava. Excelente orientação!', estrelas: 5 },
   ],
 
@@ -42,7 +42,7 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
   whatsapp_numero: '',
   redes_sociais: {
     instagram: 'https://www.instagram.com/paulogandor',
-    facebook:  'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
+    facebook: 'https://www.facebook.com/babalorixapaulinho.dexangoaganju'
   }
 };
 
@@ -51,7 +51,7 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
    CRUD: Create, Read, Update, Delete para site_config/dados
    ================================================================ */
 const FirestoreDB = {
-  docRef:  null,
+  docRef: null,
   isReady: false,
 
   /* --- Inicializa a referência ao documento do Firestore --- */
@@ -61,7 +61,7 @@ const FirestoreDB = {
       return false;
     }
     try {
-      this.docRef  = window.db.collection(FS_COL).doc(FS_DOC);
+      this.docRef = window.db.collection(FS_COL).doc(FS_DOC);
       this.isReady = true;
       this.setStatus('firestore', '☁️ Firestore');
       console.log('[Admin] ✅ Firestore pronto para CRUD.');
@@ -103,7 +103,7 @@ const FirestoreDB = {
     const snap = await this.docRef.get();
     if (!snap.exists) return;
     const current = snap.data()[field] || [];
-    const updated  = current.filter(item => item.id !== id);
+    const updated = current.filter(item => item.id !== id);
     await this.docRef.update({ [field]: updated });
   },
 
@@ -112,7 +112,7 @@ const FirestoreDB = {
     const el = document.getElementById('dbStatus');
     if (!el) return;
     el.textContent = label;
-    el.className   = `sidebar-db-status db-${type}`;
+    el.className = `sidebar-db-status db-${type}`;
   }
 };
 
@@ -127,7 +127,7 @@ const DataManager = {
     } catch { return { ...DEFAULT_DATA }; }
   },
   save(data) { localStorage.setItem(DATA_KEY, JSON.stringify(data)); },
-  reset()    { localStorage.setItem(DATA_KEY, JSON.stringify(DEFAULT_DATA)); }
+  reset() { localStorage.setItem(DATA_KEY, JSON.stringify(DEFAULT_DATA)); }
 };
 
 /* --- Carrega dados: Firestore → localStorage → DEFAULT --- */
@@ -144,11 +144,11 @@ async function loadCurrentData() {
    AUTH MANAGER
    ================================================================ */
 const Auth = {
-  getPass()        { return localStorage.getItem(PASS_KEY) || DEFAULT_PASS; },
+  getPass() { return localStorage.getItem(PASS_KEY) || DEFAULT_PASS; },
   setPass(newPass) { localStorage.setItem(PASS_KEY, newPass); },
-  login(pass)      { const ok = pass === this.getPass(); if (ok) sessionStorage.setItem(SESSION_KEY, '1'); return ok; },
-  logout()         { sessionStorage.removeItem(SESSION_KEY); },
-  isLoggedIn()     { return sessionStorage.getItem(SESSION_KEY) === '1'; }
+  login(pass) { const ok = pass === this.getPass(); if (ok) sessionStorage.setItem(SESSION_KEY, '1'); return ok; },
+  logout() { sessionStorage.removeItem(SESSION_KEY); },
+  isLoggedIn() { return sessionStorage.getItem(SESSION_KEY) === '1'; }
 };
 
 /* ================================================================
@@ -160,7 +160,7 @@ function showToast(msg, type = 'success') {
   if (!toast) return;
   clearTimeout(_toastTimer);
   toast.textContent = msg;
-  toast.className   = `toast ${type} show`;
+  toast.className = `toast ${type} show`;
   _toastTimer = setTimeout(() => { toast.className = 'toast'; }, 3800);
 }
 
@@ -179,7 +179,7 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
    ================================================================ */
 async function saveSection(section) {
   const currentData = await loadCurrentData();
-  let updateFields  = {};
+  let updateFields = {};
 
   switch (section) {
     case 'sobre': {
@@ -206,9 +206,9 @@ async function saveSection(section) {
     }
     case 'contato':
       updateFields.whatsapp_numero = document.getElementById('whatsappNumero')?.value.trim() || '';
-      updateFields.redes_sociais   = {
-        instagram: document.getElementById('instagramUrl')?.value.trim()  || '',
-        facebook:  document.getElementById('facebookUrl')?.value.trim()   || ''
+      updateFields.redes_sociais = {
+        instagram: document.getElementById('instagramUrl')?.value.trim() || '',
+        facebook: document.getElementById('facebookUrl')?.value.trim() || ''
       };
       break;
   }
@@ -240,9 +240,9 @@ function renderServicos(servicos = []) {
   list.innerHTML = '';
   servicos.forEach((s, i) => {
     const row = document.createElement('div');
-    row.className  = 'item-row';
+    row.className = 'item-row';
     row.dataset.id = s.id;
-    row.innerHTML  = `
+    row.innerHTML = `
       <div class="item-row-header">
         <span class="item-row-label">Serviço ${i + 1}</span>
         <button class="item-row-remove" data-remove-servico="${s.id}" type="button">✕ Remover</button>
@@ -275,9 +275,9 @@ function renderDepoimentos(depoimentos = []) {
   list.innerHTML = '';
   depoimentos.forEach((d, i) => {
     const row = document.createElement('div');
-    row.className  = 'item-row';
+    row.className = 'item-row';
     row.dataset.id = d.id;
-    row.innerHTML  = `
+    row.innerHTML = `
       <div class="item-row-header">
         <span class="item-row-label">Depoimento ${i + 1}</span>
         <button class="item-row-remove" data-remove-dep="${d.id}" type="button">✕ Remover</button>
@@ -293,9 +293,9 @@ function renderDepoimentos(depoimentos = []) {
       <div class="form-group">
         <label class="form-label">Avaliação (estrelas)</label>
         <div class="estrelas-select">
-          ${[1,2,3,4,5].map(n =>
-            `<button type="button" class="estrela-btn${n <= (d.estrelas || 5) ? ' selected' : ''}" data-stars="${n}">★ ${n}</button>`
-          ).join('')}
+          ${[1, 2, 3, 4, 5].map(n =>
+      `<button type="button" class="estrela-btn${n <= (d.estrelas || 5) ? ' selected' : ''}" data-stars="${n}">★ ${n}</button>`
+    ).join('')}
         </div>
       </div>
     `;
@@ -318,10 +318,10 @@ function renderDepoimentos(depoimentos = []) {
 function collectServicos() {
   return Array.from(document.querySelectorAll('#servicosList .item-row'))
     .map(row => ({
-      id:       row.dataset.id,
-      icone:    row.querySelector('[data-field="icone"]')?.value.trim()     || '🌟',
-      nome:     row.querySelector('[data-field="nome"]')?.value.trim()      || '',
-      descricao:row.querySelector('[data-field="descricao"]')?.value.trim() || ''
+      id: row.dataset.id,
+      icone: row.querySelector('[data-field="icone"]')?.value.trim() || '🌟',
+      nome: row.querySelector('[data-field="nome"]')?.value.trim() || '',
+      descricao: row.querySelector('[data-field="descricao"]')?.value.trim() || ''
     }))
     .filter(s => s.nome.trim());
 }
@@ -331,10 +331,10 @@ function collectDepoimentos() {
     .map(row => {
       const selected = [...row.querySelectorAll('.estrela-btn')].filter(b => b.classList.contains('selected'));
       return {
-        id:           row.dataset.id,
+        id: row.dataset.id,
         nome_cliente: row.querySelector('[data-field="nome_cliente"]')?.value.trim() || '',
-        texto:        row.querySelector('[data-field="texto"]')?.value.trim()         || '',
-        estrelas:     selected.length || 5
+        texto: row.querySelector('[data-field="texto"]')?.value.trim() || '',
+        estrelas: selected.length || 5
       };
     })
     .filter(d => d.nome_cliente.trim());
@@ -359,7 +359,7 @@ function populateForms(data) {
   const fb = document.getElementById('facebookUrl');
   if (fb) fb.value = (data.redes_sociais?.facebook !== '#' ? data.redes_sociais?.facebook : '') || '';
 
-  renderServicos(data.servicos   || []);
+  renderServicos(data.servicos || []);
   renderDepoimentos(data.depoimentos || []);
 }
 
@@ -368,7 +368,7 @@ function populateForms(data) {
    ================================================================ */
 function initTabs() {
   const buttons = document.querySelectorAll('.sidebar-btn[data-tab]');
-  const tabs    = document.querySelectorAll('.admin-tab');
+  const tabs = document.querySelectorAll('.admin-tab');
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -398,12 +398,12 @@ async function initAdminPanel() {
   document.querySelectorAll('.btn-save[data-section]').forEach(btn => {
     btn.addEventListener('click', async () => {
       const origHTML = btn.innerHTML;
-      btn.disabled   = true;
-      btn.innerHTML  = '<span>⏳</span> Salvando...';
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳</span> Salvando...';
       try {
         await saveSection(btn.dataset.section);
       } finally {
-        btn.disabled  = false;
+        btn.disabled = false;
         btn.innerHTML = origHTML;
       }
     });
@@ -439,13 +439,13 @@ async function initAdminPanel() {
 
   // — Alterar Senha —
   document.getElementById('alterarSenha')?.addEventListener('click', () => {
-    const atual   = document.getElementById('senhaAtual')?.value;
-    const nova    = document.getElementById('senhaNova')?.value;
+    const atual = document.getElementById('senhaAtual')?.value;
+    const nova = document.getElementById('senhaNova')?.value;
     const confirm = document.getElementById('senhaConfirm')?.value;
 
-    if (atual !== Auth.getPass())  { showToast('Senha atual incorreta.', 'error'); return; }
-    if (!nova || nova.length < 6)  { showToast('Mínimo de 6 caracteres na nova senha.', 'error'); return; }
-    if (nova !== confirm)          { showToast('As senhas não coincidem.', 'error'); return; }
+    if (atual !== Auth.getPass()) { showToast('Senha atual incorreta.', 'error'); return; }
+    if (!nova || nova.length < 6) { showToast('Mínimo de 6 caracteres na nova senha.', 'error'); return; }
+    if (nova !== confirm) { showToast('As senhas não coincidem.', 'error'); return; }
 
     Auth.setPass(nova);
     ['senhaAtual', 'senhaNova', 'senhaConfirm'].forEach(id => {
@@ -489,7 +489,7 @@ async function initAdminPanel() {
    LOGIN
    ================================================================ */
 function initLogin() {
-  const form    = document.getElementById('loginForm');
+  const form = document.getElementById('loginForm');
   const errorEl = document.getElementById('loginError');
 
   form?.addEventListener('submit', e => {
