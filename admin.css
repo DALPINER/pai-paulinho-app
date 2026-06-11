@@ -745,11 +745,5 @@ a { text-decoration: none; color: inherit; }
     font-size: 1.4rem;
   }
   
-  /* Botões no Mobile */
-  .btn-print {
-    display: none !important;
-  }
-  .hidden-desktop {
-    display: flex !important;
-  }
+  /* O botão Gerar Relatório agora deve aparecer no mobile */
 }

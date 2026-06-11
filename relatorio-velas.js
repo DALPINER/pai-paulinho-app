@@ -27,18 +27,30 @@ async function fetchVelas() {
   const limiteISO = limiteTempo.toISOString();
 
   try {
+    // 1. Aguardar o Supabase restaurar a sessão do localStorage
+    const { data: { session }, error: authError } = await supabase.auth.getSession();
+    
+    if (authError || !session) {
+      velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Acesso negado. Por favor, volte ao painel e faça login novamente.</div>`;
+      return;
+    }
+
+    // 2. Buscar as velas
     const { data, error } = await supabase
       .from('velas')
       .select('*')
       .gte('created_at', limiteISO)
       .order('created_at', { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Erro detalhado do Supabase:', error);
+      throw error;
+    }
     
     renderVelas(data || []);
   } catch (err) {
     console.error('Erro ao buscar velas para o relatório:', err);
-    velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Erro ao carregar os dados. Verifique a conexão.</div>`;
+    velasGrid.innerHTML = `<div style="color:red; text-align:center; width:100%; padding:2rem;">Erro ao carregar os dados. Verifique a conexão e seu acesso.</div>`;
   }
 }
 
