@@ -250,6 +250,7 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 /* O corpo da vela */
@@ -419,4 +420,9 @@
 @keyframes glow-pulse {
   0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
   100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
