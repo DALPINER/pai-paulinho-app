@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Velas Virtuais</title>
+  <link rel="stylesheet" href="relatorio-velas.css?v=2">
+</head>
+<body>
+
+  <!-- Menu de Ações (Escondido na Impressão) -->
+  <div class="actions-bar" id="actionsBar">
+    <button id="btnImprimir" class="btn-imprimir">
+      <span>🖨️</span> Imprimir / Salvar PDF
+    </button>
+    <button id="btnVoltar" class="btn-voltar">
+      <span>⬅️</span> Voltar ao Painel
+    </button>
+  </div>
+
+  <div class="document-container">
+    <div class="document-header">
+      <h1>Relatório de Velas Virtuais</h1>
+      <p>Pai Paulinho de Xangô Aganjú — Últimas 24 Horas</p>
+    </div>
+
+    <!-- Lista Injetada Via JS -->
+    <div id="velasGrid" class="velas-grid">
+      <div style="text-align:center; padding:2rem; width:100%;">⏳ Carregando preces sagradas...</div>
+    </div>
+    
+  </div>
+
+  <!-- Script Principal -->
+  <script type="module" src="imprimir-velas.js"></script>
+
+</body>
+</html>
