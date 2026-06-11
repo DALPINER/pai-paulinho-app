@@ -208,12 +208,15 @@
               <h2 class="tab-title">Velas Virtuais (Área Segura)</h2>
               <p class="tab-desc">Nomes e intenções sigilosas das últimas 24 horas.</p>
             </div>
-            <div style="display: flex; gap: 1rem;">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <button class="btn-primary btn-print" id="printVelasBtn">
                 <span>🖨️</span> Imprimir Preces
               </button>
-              <button class="btn-primary btn-pdf hidden-desktop" id="pdfVelasBtn">
-                <span>📄</span> Gerar PDF & Compartilhar
+              <button class="btn-primary btn-pdf hidden-desktop" id="downloadPdfBtn" style="background: linear-gradient(135deg, #2b5876, #4e4376);">
+                <span>📥</span> Baixar PDF
+              </button>
+              <button class="btn-primary btn-pdf hidden-desktop" id="sharePdfBtn">
+                <span>📲</span> Compartilhar
               </button>
             </div>
           </div>

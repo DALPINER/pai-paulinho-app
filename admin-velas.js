@@ -104,31 +104,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Função de PDF e Compartilhamento (Mobile) ---
-  const pdfBtn = document.getElementById('pdfVelasBtn');
-  if (pdfBtn) {
-    pdfBtn.addEventListener('click', async () => {
-      const originalText = pdfBtn.innerHTML;
-      pdfBtn.innerHTML = '<span>⏳</span> Gerando...';
-      pdfBtn.disabled = true;
+  // --- Opções Globais do PDF ---
+  const pdfOpt = {
+    margin:       10,
+    filename:     'velas-virtuais-pai-paulinho.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
 
-      // Opções do html2pdf
-      const opt = {
-        margin:       10,
-        filename:     'velas-virtuais-pai-paulinho.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+  // --- Função: Baixar PDF ---
+  const downloadBtn = document.getElementById('downloadPdfBtn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', async () => {
+      const originalText = downloadBtn.innerHTML;
+      downloadBtn.innerHTML = '<span>⏳</span> Baixando...';
+      downloadBtn.disabled = true;
 
       try {
-        // Gera o arquivo em memória (blob)
-        const pdfBlob = await html2pdf().set(opt).from(adminVelasList).output('blob');
+        await html2pdf().set(pdfOpt).from(adminVelasList).save();
+      } catch (err) {
+        console.error('Erro ao baixar PDF:', err);
+        alert('Falha ao baixar o arquivo PDF.');
+      } finally {
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.disabled = false;
+      }
+    });
+  }
 
-        // Cria o arquivo virtual
-        const file = new File([pdfBlob], opt.filename, { type: 'application/pdf' });
+  // --- Função: Compartilhar PDF (WhatsApp) ---
+  const shareBtn = document.getElementById('sharePdfBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const originalText = shareBtn.innerHTML;
+      shareBtn.innerHTML = '<span>⏳</span> Gerando...';
+      shareBtn.disabled = true;
 
-        // Tenta usar o compartilhamento nativo do celular
+      try {
+        const pdfBlob = await html2pdf().set(pdfOpt).from(adminVelasList).output('blob');
+        const file = new File([pdfBlob], pdfOpt.filename, { type: 'application/pdf' });
+
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
             files: [file],
@@ -136,17 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
             text: 'Segue o relatório de velas para oração no Congá.'
           });
         } else {
-          // Fallback (Plano B): Força o download se o navegador não suportar share
-          html2pdf().set(opt).from(adminVelasList).save();
-          alert('PDF baixado na sua pasta de Downloads. O seu navegador não suporta compartilhamento direto.');
+          alert('O seu celular/navegador não suporta o envio direto de arquivos. Por favor, use o botão de Baixar PDF e envie manualmente.');
         }
-
       } catch (err) {
-        console.error('Erro ao gerar/compartilhar PDF:', err);
-        alert('Falha ao gerar o arquivo PDF.');
+        console.error('Erro ao compartilhar PDF:', err);
+        alert('Falha ao compartilhar o arquivo PDF.');
       } finally {
-        pdfBtn.innerHTML = originalText;
-        pdfBtn.disabled = false;
+        shareBtn.innerHTML = originalText;
+        shareBtn.disabled = false;
       }
     });
   }
