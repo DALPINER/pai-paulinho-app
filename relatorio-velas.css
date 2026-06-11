@@ -1,0 +1,181 @@
+/* ================================================================
+   RESET BÁSICO
+   ================================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  padding: 20px;
+}
+
+/* ================================================================
+   BARRA DE AÇÕES (TOPO)
+   ================================================================ */
+.actions-bar {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.actions-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-imprimir {
+  background: linear-gradient(135deg, #10a37f, #0a8264);
+  color: #fff;
+}
+
+.btn-imprimir:hover {
+  background: linear-gradient(135deg, #15c99d, #10a37f);
+  transform: translateY(-2px);
+}
+
+.btn-voltar {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.btn-voltar:hover {
+  background: #cbd5e1;
+}
+
+/* ================================================================
+   DOCUMENTO A4 (TELA)
+   ================================================================ */
+.document-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.document-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+}
+
+.document-header h1 {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.document-header p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================================================================
+   GRID DE VELAS
+   ================================================================ */
+.velas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  align-items: start;
+}
+
+.vela-card {
+  border: 1px solid #ddd;
+  border-left-width: 5px;
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 4px;
+  /* Evita quebra da caixa no meio durante a impressão nativa */
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.vela-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.vela-nome {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+.vela-data {
+  font-size: 12px;
+  color: #666;
+}
+
+.vela-intencao {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+.vela-footer {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* ================================================================
+   REGRAS DE IMPRESSÃO (O MAIS IMPORTANTE)
+   ================================================================ */
+@media print {
+  /* Reseta fundos e remove margens da tela */
+  body {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Esconde a barra de botões */
+  .actions-bar {
+    display: none !important;
+  }
+
+  /* Remove sombras e bordas do conteiner para economizar tinta e ajustar à folha */
+  .document-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  /* Reforça o page-break */
+  .vela-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border-color: #999; /* Borda mais escura pra imprimir bem */
+    background: #fff;
+  }
+}

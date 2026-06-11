@@ -97,102 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
     adminVelasList.innerHTML = html;
   }
 
-  // --- Função de Impressão (Desktop) ---
+  // --- Função: Gerar Relatório de Preces (Nova Aba) ---
   if (printBtn) {
     printBtn.addEventListener('click', () => {
-      window.print();
-    });
-  }
-
-  // --- Opções Globais do PDF ---
-  const pdfOpt = {
-    margin:       10,
-    filename:     'velas-virtuais-pai-paulinho.pdf',
-    image:        { type: 'jpeg', quality: 1 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak:    { mode: 'css', avoid: '.pdf-card' }
-  };
-
-  // Monta um HTML limpo exclusivo para o PDF
-  function getPdfContent() {
-    let content = `
-      <div style="font-family: Helvetica, Arial, sans-serif; color: #000; background: #fff;">
-        <h2 style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px;">
-          Relatório de Velas Virtuais
-        </h2>
-    `;
-    
-    velasLocais.forEach(vela => {
-      const dataStr = new Date(vela.created_at).toLocaleString('pt-BR');
-      content += `
-        <div class="pdf-card" style="border: 1px solid #ccc; border-left: 5px solid ${getCorHex(vela.cor_vela)}; padding: 12px; margin-bottom: 15px; page-break-inside: avoid; border-radius: 4px;">
-          <div style="border-bottom: 1px solid #eee; padding-bottom: 6px; margin-bottom: 8px; display: flex; justify-content: space-between;">
-            <strong style="font-size: 16px;">${escapeHTML(vela.nome)}</strong>
-            <span style="font-size: 12px; color: #555;">${dataStr}</span>
-          </div>
-          <div style="font-size: 14px; font-style: italic; margin-bottom: 10px; line-height: 1.4;">
-            "${escapeHTML(vela.intencao)}"
-          </div>
-          <div style="font-size: 12px; font-weight: bold; color: #333; text-transform: uppercase;">
-            Cor: ${formatarNomeCor(vela.cor_vela)} &nbsp;|&nbsp; Força: ${formatarOrixaDaCor(vela.categoria_intencao)}
-          </div>
-        </div>
-      `;
-    });
-
-    content += `</div>`;
-    return content;
-  }
-
-  // --- Função: Baixar PDF ---
-  const downloadBtn = document.getElementById('downloadPdfBtn');
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', async () => {
-      const originalText = downloadBtn.innerHTML;
-      downloadBtn.innerHTML = '<span>⏳</span> Baixando...';
-      downloadBtn.disabled = true;
-
-      try {
-        await html2pdf().set(pdfOpt).from(getPdfContent()).save();
-      } catch (err) {
-        console.error('Erro ao baixar PDF:', err);
-        alert('Falha ao baixar o arquivo PDF.');
-      } finally {
-        downloadBtn.innerHTML = originalText;
-        downloadBtn.disabled = false;
-      }
-    });
-  }
-
-  // --- Função: Compartilhar PDF (WhatsApp) ---
-  const shareBtn = document.getElementById('sharePdfBtn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const originalText = shareBtn.innerHTML;
-      shareBtn.innerHTML = '<span>⏳</span> Gerando...';
-      shareBtn.disabled = true;
-
-      try {
-        const pdfBlob = await html2pdf().set(pdfOpt).from(getPdfContent()).output('blob');
-        const file = new File([pdfBlob], pdfOpt.filename, { type: 'application/pdf' });
-
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-          await navigator.share({
-            files: [file],
-            title: 'Velas Virtuais - Pai Paulinho',
-            text: 'Segue o relatório de velas para oração no Congá.'
-          });
-        } else {
-          alert('O seu celular/navegador não suporta o envio direto de arquivos. Por favor, use o botão de Baixar PDF e envie manualmente.');
-        }
-      } catch (err) {
-        console.error('Erro ao compartilhar PDF:', err);
-        alert('Falha ao compartilhar o arquivo PDF.');
-      } finally {
-        shareBtn.innerHTML = originalText;
-        shareBtn.disabled = false;
-      }
+      window.open('relatorio-velas.html', '_blank');
     });
   }
 
