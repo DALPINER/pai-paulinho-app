@@ -316,11 +316,123 @@ a { text-decoration: none; color: inherit; }
   color: var(--gold);
   font-size: 0.875rem;
   font-weight: 700;
-  transition: var(--transition);
+  transition: filter 0.3s;
 }
 .sidebar-preview-btn:hover {
-  background: rgba(201, 168, 76, 0.22);
-  border-color: var(--gold);
+  filter: brightness(1.2);
+}
+
+/* ================================================================
+   ÁREA SEGURA DAS VELAS VIRTUAIS
+   ================================================================ */
+.velas-admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.vela-admin-card {
+  background: #fdfdfd;
+  border-left: 6px solid #333;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.vela-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.vela-admin-header strong {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: #2c251f;
+}
+
+.vela-admin-data {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.vela-admin-intencao {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+.vela-admin-footer {
+  font-size: 0.85rem;
+  color: #666;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+/* ================================================================
+   IMPRESSÃO DA LISTA DE VELAS
+   ================================================================ */
+@media print {
+  /* Esconde tudo que não for a lista de velas */
+  body {
+    background: #fff;
+    color: #000;
+  }
+  
+  .sidebar,
+  .login-screen,
+  .btn-print,
+  #adminToast {
+    display: none !important;
+  }
+  
+  .admin-panel {
+    display: block !important;
+  }
+  
+  .admin-main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .admin-tab {
+    display: none !important; /* esconde outras abas */
+  }
+  
+  #tab-velas {
+    display: block !important;
+  }
+
+  .tab-header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .vela-admin-card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+  
+  .vela-admin-header strong {
+    color: #000;
+  }
+  
+  .vela-admin-intencao {
+    color: #000;
+  }
 }
 
 .sidebar-logout {

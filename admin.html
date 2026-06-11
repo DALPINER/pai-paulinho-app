@@ -72,6 +72,9 @@
         <button class="sidebar-btn" data-tab="seguranca">
           <span>🔒</span> Segurança
         </button>
+        <button class="sidebar-btn" data-tab="velas">
+          <span>🕯️</span> Velas Virtuais
+        </button>
       </nav>
       <div class="sidebar-footer">
         <a href="index.html" target="_blank" class="sidebar-preview-btn">
@@ -228,6 +231,23 @@
         </div>
       </section>
 
+      <!-- Tab: Velas Virtuais -->
+      <section class="admin-tab" id="tab-velas">
+        <div class="tab-header">
+          <h2 class="tab-title">Velas Virtuais (Área Segura)</h2>
+          <p class="tab-desc">Nomes e intenções sigilosas para oração. Lista das últimas 24 horas.</p>
+          <button class="btn-primary btn-print" id="printVelasBtn" style="margin-top: 1rem;">
+            <span>🖨️</span> Imprimir Preces
+          </button>
+        </div>
+        
+        <div class="form-card" style="padding: 0; background: transparent; border: none; box-shadow: none;">
+          <div id="adminVelasList" class="velas-admin-list">
+            <p style="color: #9e9389; padding: 2rem;">⏳ Conectando ao Santuário...</p>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -236,5 +256,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
   <script src="admin.js"></script>
+  <script type="module" src="admin-velas.js"></script>
 </body>
 </html>
