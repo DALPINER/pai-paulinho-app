@@ -346,10 +346,10 @@ a { text-decoration: none; color: inherit; }
 }
 
 .velas-admin-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .vela-admin-card {
@@ -358,6 +358,8 @@ a { text-decoration: none; color: inherit; }
   padding: 1rem;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  flex: 1 1 280px;
+  max-width: 100%;
 }
 
 .vela-admin-header {
