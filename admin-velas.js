@@ -1,6 +1,6 @@
 /* ================================================================
    TERREIRA PAULINHO APP — admin-velas.js
-   Área Segura para Leitura e Impressão das Velas (Supabase)
+   Área Segura para Leitura e Impressão das Velas (Supabase Auth)
    ================================================================ */
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
@@ -10,6 +10,8 @@ const SUPABASE_URL = 'https://damdszytfqwgpfghffgo.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbWRzenl0ZnF3Z3BmZ2hmZmdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDI2MTgsImV4cCI6MjA5NjcxODYxOH0.i9Vsih5_OKiUWLYXAeuLZmLVtgTqMB9ZCf6KYLIiphA';
 
 let supabase = null;
+let realtimeChannel = null;
+
 if (SUPABASE_URL && SUPABASE_ANON_KEY) {
   supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
@@ -18,57 +20,148 @@ document.addEventListener('DOMContentLoaded', () => {
   const adminVelasList = document.getElementById('adminVelasList');
   const printBtn = document.getElementById('printVelasBtn');
   
+  // Elementos de Auth
+  const authBlock = document.getElementById('velasAuthBlock');
+  const dataBlock = document.getElementById('velasDataBlock');
+  const loginForm = document.getElementById('velasLoginForm');
+  const authError = document.getElementById('velasAuthError');
+  const logoutBtn = document.getElementById('velasLogoutBtn');
+  const authSubmitBtn = document.getElementById('velasAuthBtn');
+  
   // Escutar clique na aba de Velas (gerenciado pelo admin.js)
   const btnAbaVelas = document.querySelector('.sidebar-btn[data-tab="velas"]');
   
   if (btnAbaVelas) {
     btnAbaVelas.addEventListener('click', () => {
-      carregarVelasSeguras();
+      checkSessionAndLoad();
     });
   }
 
-  async function carregarVelasSeguras() {
-    // Verifica login
-    const isLoggedIn = sessionStorage.getItem('terreira_admin_authed') === '1';
-    if (!isLoggedIn) return;
+  // --- Lógica de Autenticação Supabase ---
 
+  async function checkSessionAndLoad() {
     if (!supabase) {
-      adminVelasList.innerHTML = '<p style="color: red;">Erro: Supabase não configurado no admin-velas.js</p>';
+      showError("Supabase não configurado.");
       return;
     }
 
+    const { data: { session }, error } = await supabase.auth.getSession();
+    
+    if (session) {
+      showDataBlock();
+      carregarVelasSeguras();
+      setupRealtime();
+    } else {
+      showAuthBlock();
+    }
+  }
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!supabase) return;
+
+    authError.style.display = 'none';
+    const originalBtnText = authSubmitBtn.innerHTML;
+    authSubmitBtn.disabled = true;
+    authSubmitBtn.innerHTML = '⏳ Autenticando...';
+
+    const email = document.getElementById('velasEmail').value;
+    const password = document.getElementById('velasSenha').value;
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    authSubmitBtn.disabled = false;
+    authSubmitBtn.innerHTML = originalBtnText;
+
+    if (error) {
+      authError.textContent = '❌ Credenciais inválidas ou erro no servidor.';
+      authError.style.display = 'block';
+      console.error('Auth error:', error.message);
+    } else {
+      // Sucesso no login
+      loginForm.reset();
+      showDataBlock();
+      carregarVelasSeguras();
+      setupRealtime();
+    }
+  });
+
+  logoutBtn.addEventListener('click', async () => {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+    if (realtimeChannel) {
+      await supabase.removeChannel(realtimeChannel);
+      realtimeChannel = null;
+    }
+    showAuthBlock();
+    adminVelasList.innerHTML = '';
+  });
+
+  function showAuthBlock() {
+    authBlock.classList.remove('hidden');
+    dataBlock.classList.add('hidden');
+  }
+
+  function showDataBlock() {
+    authBlock.classList.add('hidden');
+    dataBlock.classList.remove('hidden');
+  }
+
+  function showError(msg) {
+    authError.textContent = '❌ ' + msg;
+    authError.style.display = 'block';
+  }
+
+  // --- Lógica de Carregamento e Realtime ---
+
+  let velasLocais = [];
+
+  async function carregarVelasSeguras() {
     adminVelasList.innerHTML = '<p style="color: #9e9389; padding: 1rem;">⏳ Buscando intenções sagradas no banco de dados...</p>';
 
     try {
-      // Busca as velas das últimas 24 horas
       const vinteQuatroHorasAtras = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
       
       const { data, error } = await supabase
         .from('velas_virtuais')
-        // Aqui sim fazemos o select do NOME e da INTENÇÃO!
-        .select('nome, intencao, cor_vela, categoria_intencao, created_at') 
+        .select('id, nome, intencao, cor_vela, categoria_intencao, created_at') 
         .gte('created_at', vinteQuatroHorasAtras)
-        .order('created_at', { ascending: false }); // mais recentes primeiro
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
 
-      renderVelasSeguras(data);
+      velasLocais = data || [];
+      renderVelasSeguras();
 
     } catch (err) {
       console.error('Erro ao buscar velas seguras:', err);
-      adminVelasList.innerHTML = '<p style="color: red;">❌ Erro ao buscar dados. Verifique a conexão com o Supabase e as regras RLS (SELECT).</p>';
+      adminVelasList.innerHTML = '<p style="color: red;">❌ Erro ao buscar dados. O seu usuário do Supabase Auth tem permissão na política RLS?</p>';
     }
   }
 
-  function renderVelasSeguras(velas) {
-    if (!velas || velas.length === 0) {
+  function setupRealtime() {
+    if (realtimeChannel) return;
+
+    realtimeChannel = supabase.channel('admin_velas_virtuais')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'velas_virtuais' }, payload => {
+        velasLocais.unshift(payload.new); // Adiciona no início
+        renderVelasSeguras();
+      })
+      .subscribe();
+  }
+
+  function renderVelasSeguras() {
+    if (velasLocais.length === 0) {
       adminVelasList.innerHTML = '<p style="color: #9e9389; padding: 1rem;">Não há nenhuma vela acesa nas últimas 24 horas.</p>';
       return;
     }
 
     let html = '';
     
-    velas.forEach(vela => {
+    velasLocais.forEach(vela => {
       const dataFormatada = new Date(vela.created_at).toLocaleString('pt-BR');
       
       html += `
@@ -97,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Utilitários Locais
   function escapeHTML(str = '') {
+    if (!str) return '';
     const d = document.createElement('div');
     d.textContent = str;
     return d.innerHTML;
@@ -104,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getCorHex(corStr) {
     const cores = {
-      'branca': '#999999', // cinza para contraste no branco
+      'branca': '#999999',
       'vermelha': '#c62828',
       'azul-clara': '#42a5f5',
       'amarela': '#ffca28',

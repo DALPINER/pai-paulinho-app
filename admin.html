@@ -233,19 +233,53 @@
 
       <!-- Tab: Velas Virtuais -->
       <section class="admin-tab" id="tab-velas">
-        <div class="tab-header">
-          <h2 class="tab-title">Velas Virtuais (Área Segura)</h2>
-          <p class="tab-desc">Nomes e intenções sigilosas para oração. Lista das últimas 24 horas.</p>
-          <button class="btn-primary btn-print" id="printVelasBtn" style="margin-top: 1rem;">
-            <span>🖨️</span> Imprimir Preces
-          </button>
-        </div>
         
-        <div class="form-card" style="padding: 0; background: transparent; border: none; box-shadow: none;">
-          <div id="adminVelasList" class="velas-admin-list">
-            <p style="color: #9e9389; padding: 2rem;">⏳ Conectando ao Santuário...</p>
+        <!-- Estado 1: Deslogado (Supabase Auth) -->
+        <div id="velasAuthBlock" class="velas-auth-container">
+          <div class="tab-header" style="text-align: center; border-bottom: none;">
+            <h2 class="tab-title">🔐 Área Restrita</h2>
+            <p class="tab-desc">Acesso exclusivo com autenticação Supabase (JWT).</p>
+          </div>
+          <form id="velasLoginForm" class="form-card" style="max-width: 400px; margin: 0 auto;" novalidate>
+            <div class="form-group">
+              <label for="velasEmail" class="form-label">E-mail Administrativo</label>
+              <input type="email" id="velasEmail" class="form-input" placeholder="admin@terreira.com" required>
+            </div>
+            <div class="form-group">
+              <label for="velasSenha" class="form-label">Senha de Segurança</label>
+              <input type="password" id="velasSenha" class="form-input" placeholder="••••••••" required>
+            </div>
+            <div id="velasAuthError" class="login-error" style="display: none; color: #d32f2f; background: #ffebee; padding: 0.5rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.9rem;"></div>
+            <button type="submit" class="btn-primary" id="velasAuthBtn" style="width: 100%;">
+              <span>Autenticar Nuvem</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Estado 2: Logado (Lista de Velas) -->
+        <div id="velasDataBlock" class="hidden">
+          <div class="tab-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h2 class="tab-title">Velas Virtuais (Área Segura)</h2>
+              <p class="tab-desc">Nomes e intenções sigilosas das últimas 24 horas.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+              <button class="btn-primary btn-print" id="printVelasBtn">
+                <span>🖨️</span> Imprimir Preces
+              </button>
+              <button class="btn-danger btn-print" id="velasLogoutBtn" style="padding: 0.8rem 1.5rem; font-weight: 600;">
+                Sair (Auth)
+              </button>
+            </div>
+          </div>
+          
+          <div class="form-card" style="padding: 0; background: transparent; border: none; box-shadow: none;">
+            <div id="adminVelasList" class="velas-admin-list">
+              <!-- Velas injetadas aqui -->
+            </div>
           </div>
         </div>
+
       </section>
 
     </main>
