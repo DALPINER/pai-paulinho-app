@@ -1352,7 +1352,6 @@ function initWhatsAppFab() {
   if (!fab) return;
 
   const MARGIN    = 16;          // px de margem das bordas
-  const SIZE      = 60;          // px do botão
   const STORAGE_Y = 'whab_y';    // chave localStorage para posição Y
   const STORAGE_S = 'whab_side'; // chave localStorage para o lado
 
@@ -1367,12 +1366,22 @@ function initWhatsAppFab() {
   /* --- Helpers de posicionamento --- */
 
   function getViewport() {
-    return { w: window.innerWidth, h: window.innerHeight };
+    // clientWidth no document evita que o elemento fique escondido pela scrollbar em desktops
+    return { 
+      w: document.documentElement.clientWidth || window.innerWidth, 
+      h: window.innerHeight 
+    };
+  }
+
+  function getSize() {
+    // O tamanho do botão é dinâmico (60px desktop, 56px mobile)
+    return fab.offsetWidth || 60;
   }
 
   function clampY(y) {
     const { h } = getViewport();
-    return Math.max(MARGIN, Math.min(h - SIZE - MARGIN, y));
+    const size = getSize();
+    return Math.max(MARGIN, Math.min(h - size - MARGIN, y));
   }
 
   /**
@@ -1387,10 +1396,11 @@ function initWhatsAppFab() {
     fabTop = clampY(y);
 
     const { w } = getViewport();
+    const size = getSize();
     // Calcula sempre em termos de `left`
     const targetLeft = side === 'left'
       ? MARGIN
-      : w - SIZE - MARGIN;
+      : w - size - MARGIN;
 
     if (animate) fab.classList.add('snapping');
 
@@ -1418,17 +1428,23 @@ function initWhatsAppFab() {
   }
 
   /* --- Inicializa posição (localStorage ou padrão) --- */
-  (function initPosition() {
+  function initPosition() {
     let savedY    = parseFloat(localStorage.getItem(STORAGE_Y));
     let savedSide = localStorage.getItem(STORAGE_S) || 'right';
 
     const { h } = getViewport();
-    if (isNaN(savedY) || savedY < MARGIN || savedY > h - SIZE - MARGIN) {
-      savedY = h * 0.75 - SIZE / 2; // padrão: 75% da tela verticalmente
+    const size = getSize();
+    if (isNaN(savedY) || savedY < MARGIN || savedY > h - size - MARGIN) {
+      savedY = h * 0.75 - size / 2; // padrão: 75% da tela verticalmente
     }
 
     snapToSide(savedSide, savedY, false);
-  })();
+  }
+
+  initPosition();
+  
+  // Garantia: se os estilos/fontes demorarem a carregar o offsetWidth, reposiciona ao concluir a carga
+  window.addEventListener('load', () => initPosition());
 
   /* --- Atualiza posição ao redimensionar janela --- */
   window.addEventListener('resize', () => {
@@ -1467,9 +1483,10 @@ function initWhatsAppFab() {
       fabTop = newTop;
 
       // Atualiza posição horizontal livre durante o drag
-      const newLeft = e.clientX - SIZE / 2;
+      const size = getSize();
+      const newLeft = e.clientX - size / 2;
       fab.style.removeProperty('right');
-      fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - SIZE - MARGIN, newLeft)) + 'px';
+      fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - size - MARGIN, newLeft)) + 'px';
     }
 
     function onMouseUp(e) {
@@ -1520,9 +1537,10 @@ function initWhatsAppFab() {
     fab.style.bottom = 'auto';
     fabTop = newTop;
 
-    const newLeft = touch.clientX - SIZE / 2;
+    const size = getSize();
+    const newLeft = touch.clientX - size / 2;
     fab.style.removeProperty('right');
-    fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - SIZE - MARGIN, newLeft)) + 'px';
+    fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - size - MARGIN, newLeft)) + 'px';
   }, { passive: false });
 
   fab.addEventListener('touchend', (e) => {

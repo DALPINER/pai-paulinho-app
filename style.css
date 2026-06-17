@@ -3451,19 +3451,20 @@ a               { text-decoration: none; color: inherit; }
    nunca fica no meio da tela. Posição Y persiste em localStorage.
    ================================================================ */
 
-/* Container posicionado via JS (sempre `left` + `top`) */
+/* Container posicionado via JS, inicial seguro */
 .whab-fab {
   position: fixed;
   z-index: 9000;
   width: 60px;
   height: 60px;
+  left: 80vw; /* Fallback inicial */
+  top: 80vh;  /* Fallback inicial */
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
   outline: none;
   border-radius: 50%;
-  /* Posição definida inteiramente pelo JS via initPosition() */
 }
 
 .whab-fab.dragging {
@@ -3563,8 +3564,8 @@ a               { text-decoration: none; color: inherit; }
   opacity: 1;
 }
 
-@media (pointer: coarse) {
-  .whab-label { display: none; }
+@media (max-width: 768px) {
+  .whab-label { display: none !important; }
   .whab-fab   { width: 56px; height: 56px; }
   .whab-icon  { width: 56px; height: 56px; }
   .whab-pulse { inset: -6px; }
