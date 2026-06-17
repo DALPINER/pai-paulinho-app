@@ -1375,22 +1375,28 @@ function initWhatsAppFab() {
     return Math.max(MARGIN, Math.min(h - SIZE - MARGIN, y));
   }
 
-  /** Aplica snap para a lateral correta usando propriedades CSS (left/right) */
+  /**
+   * Aplica snap para a lateral correta.
+   * IMPORTANTE: usa SEMPRE a propriedade `left` para que o CSS possa
+   * animar a transição suavemente nos dois sentidos (esquerda e direita).
+   * Usar `right` vs `left` alternadamente quebra a animação por serem
+   * propriedades distintas e incompatíveis com CSS transition.
+   */
   function snapToSide(side, y, animate = true) {
     currentSide = side;
     fabTop = clampY(y);
 
+    const { w } = getViewport();
+    // Calcula sempre em termos de `left`
+    const targetLeft = side === 'left'
+      ? MARGIN
+      : w - SIZE - MARGIN;
+
     if (animate) fab.classList.add('snapping');
 
-    // Limpa ambos os lados antes de setar o correto
-    fab.style.removeProperty('left');
+    // Remove `right` se existir — usamos APENAS `left` daqui em diante
     fab.style.removeProperty('right');
-
-    if (side === 'left') {
-      fab.style.left = MARGIN + 'px';
-    } else {
-      fab.style.right = MARGIN + 'px';
-    }
+    fab.style.left   = targetLeft + 'px';
     fab.style.top    = fabTop + 'px';
     fab.style.bottom = 'auto';
     fab.dataset.side = side;
