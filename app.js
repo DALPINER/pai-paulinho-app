@@ -885,7 +885,7 @@ function initCarousel(totalSlides) {
 }
 
 /* ================================================================
-   NAVEGAÇÃO — sticky header + mobile menu + back-to-top
+   NAVEGAÇÃO — sticky header + menu dropdown/tela-cheia + back-to-top
    ================================================================ */
 function initNav() {
   const header    = document.getElementById('siteHeader');
@@ -895,61 +895,61 @@ function initNav() {
 
   if (!hamburger || !navLinks) return;
 
+  const isMobile = () => window.innerWidth <= 640;
+
   function openMenu() {
     hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
     navLinks.classList.add('open');
-    header?.classList.add('menu-open'); // Remove backdrop-filter para manter fixed estável
-    document.body.style.overflow = 'hidden'; // Bloqueia rolagem do fundo
+    // No mobile, bloqueia scroll e expande o header em tela cheia
+    if (isMobile()) {
+      header?.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   function closeMenu() {
     hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
     navLinks.classList.remove('open');
-    header?.classList.remove('menu-open'); // Restaura filtros do header
-    document.body.style.overflow = ''; // Restaura rolagem
+    header?.classList.remove('menu-open');
+    document.body.style.overflow = '';
   }
 
   function toggleMenu() {
     const isOpen = navLinks.classList.contains('open');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    isOpen ? closeMenu() : openMenu();
   }
 
   hamburger.addEventListener('click', (e) => {
-    e.stopPropagation(); // Impede propagação para não disparar clique fora
+    e.stopPropagation();
     toggleMenu();
   });
 
-  // Fecha o menu ao clicar em qualquer opção (links de navegação)
+  // Fecha ao clicar em qualquer link do menu
   navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      closeMenu();
-    });
+    a.addEventListener('click', () => closeMenu());
   });
 
-  // Fecha o menu ao clicar fora do menu (em qualquer lugar da tela fora das opções e do hamburger)
+  // Fecha ao clicar fora (apenas no dropdown desktop)
   document.addEventListener('click', (e) => {
-    const isOpen = navLinks.classList.contains('open');
-    if (!isOpen) return;
-
+    if (!navLinks.classList.contains('open')) return;
     const clickedInsideMenu = navLinks.contains(e.target);
-    const clickedHamburger = hamburger.contains(e.target);
-
-    if (!clickedInsideMenu && !clickedHamburger) {
-      closeMenu();
-    }
+    const clickedHamburger  = hamburger.closest('.nav-actions')?.contains(e.target);
+    if (!clickedInsideMenu && !clickedHamburger) closeMenu();
   });
 
-  // Destrava e fecha ao redimensionar a tela para desktop
+  // Fecha ao pressionar Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) closeMenu();
+  });
+
+  // Fecha ao redimensionar para desktop se estava aberto no mobile
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 640 && navLinks.classList.contains('open')) {
-      closeMenu();
-    }
+    if (navLinks.classList.contains('open')) closeMenu();
   }, { passive: true });
 
+  // Scroll: header sticky + botão voltar ao topo
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 60);
     backToTop?.classList.toggle('visible', window.scrollY > 400);

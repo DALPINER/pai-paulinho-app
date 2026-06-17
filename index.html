@@ -56,30 +56,32 @@
   <header id="siteHeader">
     <nav class="nav container">
       <a href="#" class="nav-brand">
-        <span class="nav-brand-icon">⚡</span>
+        <span class="nav-brand-icon">✦</span>
         <span class="nav-brand-text">Pai Paulinho de Xangô</span>
       </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#sobre" class="nav-link">Sobre</a></li>
-        <li><a href="#servicos" class="nav-link">Serviços</a></li>
-        <li><a href="#oraculo" class="nav-link">Oráculo</a></li>
-        <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
-        <li><a href="estudos.html" class="nav-link">Estudos</a></li>
-        <li><a href="santuario.html" class="nav-link">Santuário</a></li>
-        <li id="installAppLi" class="hidden">
-          <a href="#" class="nav-link" id="installAppBtn">
-            <span>⚡</span> Instalar Aplicativo
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-cta whatsapp-trigger" id="navWhatsApp">
-            <span>💬</span> Agendar
-          </a>
+
+      <!-- Botão Agendar sempre visível + Hamburger -->
+      <div class="nav-actions">
+        <a href="#" class="nav-cta whatsapp-trigger" id="navWhatsApp">
+          <span>💬</span> Agendar
+        </a>
+        <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Menu Dropdown (todos os links) -->
+      <ul class="nav-links" id="navLinks" role="menu">
+        <li role="none"><a href="#sobre"        class="nav-link" role="menuitem">Sobre</a></li>
+        <li role="none"><a href="#servicos"     class="nav-link" role="menuitem">Serviços</a></li>
+        <li role="none"><a href="#oraculo"      class="nav-link" role="menuitem">Oráculo</a></li>
+        <li role="none"><a href="#depoimentos"  class="nav-link" role="menuitem">Depoimentos</a></li>
+        <li role="none"><a href="estudos.html"  class="nav-link" role="menuitem">Estudos</a></li>
+        <li role="none"><a href="santuario.html" class="nav-link" role="menuitem">Santuário</a></li>
+        <li id="installAppLi" class="hidden" role="none">
+          <a href="#" class="nav-link nav-install-link" id="installAppBtn" role="menuitem">Instalar Aplicativo</a>
         </li>
       </ul>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
     </nav>
   </header>
 
