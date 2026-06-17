@@ -59,12 +59,7 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
     { id: '6', nome: 'Trabalhos de Harmonização', descricao: 'Realizados com alta ética e responsabilidade para restabelecer o entendimento nas relações, promovendo a paz e a harmonia familiar.', icone: '❤️' },
   ],
 
-  depoimentos: [
-    { id: '1', nome_cliente: 'Maria S.',  texto: 'Paulo Silveira Gandor mudou minha história! Após a consulta de orientação espiritual, meus caminhos se abriram de formas incríveis. Gratidão por tanta luz!', estrelas: 5 },
-    { id: '2', nome_cliente: 'João R.',   texto: 'Um orientador espiritual de verdade. Acolhedor, honesto e cheio de axé. Senti uma paz e um acolhimento imenso desde a primeira conversa. Recomendo de coração!', estrelas: 5 },
-    { id: '3', nome_cliente: 'Ana L.',    texto: 'Depois da limpeza espiritual com o Sacerdote Paulo, senti uma leveza inexplicável. Parecia que um peso enorme tinha saído das minhas costas. Muito grata!', estrelas: 5 },
-    { id: '4', nome_cliente: 'Carlos M.', texto: 'Cheguei desanimado e sem rumo, mas saí fortalecido. A leitura dos búzios me trouxe a clareza e as respostas que eu precisava. Excelente orientação!', estrelas: 5 },
-  ],
+
 
   mensagem_espiritual_do_dia: 'Que Xangô Aganjú ilumine os seus passos e que os orixás abram os caminhos da prosperidade, da saúde e do amor em sua vida.',
   whatsapp_numero: '5555999176726',
@@ -371,35 +366,7 @@ function animateScCounter(el, target, duration = 1800) {
   })(start);
 }
 
-function renderDepoimentos(depoimentos) {
-  const track = document.getElementById('depoimentosTrack');
-  const dots  = document.getElementById('depDots');
-  if (!track) return;
 
-  if (!depoimentos?.length) {
-    document.getElementById('depoimentos')?.style.setProperty('display', 'none');
-    return;
-  }
-
-  track.innerHTML = depoimentos.map(d => `
-    <div class="depoimento-slide">
-      <div class="depoimento-card">
-        <div class="depoimento-estrelas">${'★'.repeat(d.estrelas || 5)}</div>
-        <p   class="depoimento-texto">${escapeHTML(d.texto)}</p>
-        <div class="depoimento-autor">
-          <div class="depoimento-avatar">${escapeHTML((d.nome_cliente || '?')[0])}</div>
-          <span class="depoimento-nome">${escapeHTML(d.nome_cliente)}</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  if (dots) {
-    dots.innerHTML = depoimentos.map((_, i) =>
-      `<button class="dep-dot${i === 0 ? ' active' : ''}" data-index="${i}" aria-label="Depoimento ${i + 1}"></button>`
-    ).join('');
-  }
-}
 
 function renderSociais(redes) {
   const footer = document.getElementById('footerSocial');
@@ -462,11 +429,7 @@ function renderAll(data) {
   renderSobreSociais(data.redes_sociais);
   setupWhatsAppButtons(data.whatsapp_numero);
 
-  if (!_carouselReady && data.depoimentos?.length) {
-    renderDepoimentos(data.depoimentos);
-    initCarousel(data.depoimentos.length);
-    _carouselReady = true;
-  }
+
 
   // Re-observa elementos recém-criados
   observeRevealElements();
@@ -854,50 +817,7 @@ function observeRevealElements() {
   });
 }
 
-/* ================================================================
-   CARROSSEL DE DEPOIMENTOS
-   ================================================================ */
-function initCarousel(totalSlides) {
-  if (!totalSlides) return;
 
-  const track = document.getElementById('depoimentosTrack');
-  const prev  = document.getElementById('depPrev');
-  const next  = document.getElementById('depNext');
-  if (!track) return;
-
-  let current = 0;
-  let timer;
-
-  function goTo(idx) {
-    current = ((idx % totalSlides) + totalSlides) % totalSlides;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    document.querySelectorAll('.dep-dot').forEach((d, i) =>
-      d.classList.toggle('active', i === current)
-    );
-  }
-
-  function startAuto()  { timer = setInterval(() => goTo(current + 1), 5500); }
-  function restartAuto(){ clearInterval(timer); startAuto(); }
-
-  prev?.addEventListener('click', () => { goTo(current - 1); restartAuto(); });
-  next?.addEventListener('click', () => { goTo(current + 1); restartAuto(); });
-
-  document.getElementById('depDots')?.addEventListener('click', e => {
-    const dot = e.target.closest('[data-index]');
-    if (dot) { goTo(+dot.dataset.index); restartAuto(); }
-  });
-
-  // Suporte a swipe (touch)
-  let touchStartX = 0;
-  const viewport = track.parentElement;
-  viewport?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  viewport?.addEventListener('touchend',   e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); restartAuto(); }
-  });
-
-  startAuto();
-}
 
 /* ================================================================
    NAVEGAÇÃO — sticky header + menu dropdown/tela-cheia + back-to-top
@@ -1315,6 +1235,32 @@ function initLightbox() {
 }
 
 /* ================================================================
+   FAQ — DÚVIDAS FREQUENTES (Accordion)
+   ================================================================ */
+function initFAQ() {
+  const triggers = document.querySelectorAll('.faq-trigger');
+  
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      
+      // Opcional: Fecha todos antes de abrir (accordion clássico)
+      // triggers.forEach(t => {
+      //   t.setAttribute('aria-expanded', 'false');
+      //   const content = document.getElementById(t.getAttribute('aria-controls'));
+      //   if (content) content.setAttribute('aria-hidden', 'true');
+      // });
+      
+      trigger.setAttribute('aria-expanded', !isExpanded);
+      const content = document.getElementById(trigger.getAttribute('aria-controls'));
+      if (content) {
+        content.setAttribute('aria-hidden', isExpanded);
+      }
+    });
+  });
+}
+
+/* ================================================================
    ACORDEÃO DOCUMENTAL (LER MAIS)
    ================================================================ */
 function initAccordion() {
@@ -1593,6 +1539,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initOracle();
   initGalleryScroll();
   initLightbox();
+  initFAQ();
   initAccordion();
   observeRevealElements();
 

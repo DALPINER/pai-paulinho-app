@@ -38,12 +38,6 @@ Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem 
     { id: '6', nome: 'Trabalhos de Harmonização', descricao: 'Realizados com alta ética e responsabilidade para restabelecer o entendimento nas relações, promovendo a paz e a harmonia familiar.', icone: '❤️' },
   ],
 
-  depoimentos: [
-    { id: '1', nome_cliente: 'Maria S.', texto: 'Paulo Silveira Gandor mudou minha história! Após a consulta de orientação espiritual, meus caminhos se abriram de formas incríveis. Gratidão por tanta luz!', estrelas: 5 },
-    { id: '2', nome_cliente: 'João R.', texto: 'Um orientador espiritual de verdade. Acolhedor, honesto e cheio de axé. Senti uma paz e um acolhimento imenso desde a primeira conversa. Recomendo de coração!', estrelas: 5 },
-    { id: '3', nome_cliente: 'Ana L.', texto: 'Depois da limpeza espiritual com o Sacerdote Paulo, senti uma leveza inexplicável. Parecia que um peso enorme tinha saído das minhas costas. Muito grata!', estrelas: 5 },
-    { id: '4', nome_cliente: 'Carlos M.', texto: 'Cheguei desanimado e sem rumo, mas saí fortalecido. A leitura dos búzios me trouxe a clareza e as respostas que eu precisava. Excelente orientação!', estrelas: 5 },
-  ],
 
   mensagem_espiritual_do_dia: 'Que Xangô Aganjú ilumine os seus passos e que os orixás abram os caminhos da prosperidade, da saúde e do amor em sua vida.',
   whatsapp_numero: '',
@@ -210,9 +204,6 @@ async function saveSection(section) {
       updateFields.servicos = servs;
       break;
     }
-    case 'depoimentos':
-      updateFields.depoimentos = collectDepoimentos();
-      break;
 
     case 'mensagem': {
       const val = document.getElementById('mensagemDia')?.value.trim();
@@ -282,51 +273,6 @@ function renderServicos(servicos = []) {
   });
 }
 
-/* ================================================================
-   RENDER: DEPOIMENTOS
-   ================================================================ */
-function renderDepoimentos(depoimentos = []) {
-  const list = document.getElementById('depoimentosList');
-  if (!list) return;
-  list.innerHTML = '';
-  depoimentos.forEach((d, i) => {
-    const row = document.createElement('div');
-    row.className = 'item-row';
-    row.dataset.id = d.id;
-    row.innerHTML = `
-      <div class="item-row-header">
-        <span class="item-row-label">Depoimento ${i + 1}</span>
-        <button class="item-row-remove" data-remove-dep="${d.id}" type="button">✕ Remover</button>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Nome do Cliente</label>
-        <input type="text" class="form-input" data-field="nome_cliente" value="${escapeHTML(d.nome_cliente)}" placeholder="Nome...">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Depoimento</label>
-        <textarea class="form-textarea" data-field="texto" rows="3" placeholder="Texto do depoimento...">${escapeHTML(d.texto)}</textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Avaliação (estrelas)</label>
-        <div class="estrelas-select">
-          ${[1, 2, 3, 4, 5].map(n =>
-      `<button type="button" class="estrela-btn${n <= (d.estrelas || 5) ? ' selected' : ''}" data-stars="${n}">★ ${n}</button>`
-    ).join('')}
-        </div>
-      </div>
-    `;
-    list.appendChild(row);
-
-    // Lógica das estrelas
-    row.querySelectorAll('.estrela-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        row.querySelectorAll('.estrela-btn').forEach(b =>
-          b.classList.toggle('selected', +b.dataset.stars <= +btn.dataset.stars)
-        );
-      });
-    });
-  });
-}
 
 /* ================================================================
    COLLECT: Serializa formulários em objetos
@@ -342,19 +288,6 @@ function collectServicos() {
     .filter(s => s.nome.trim());
 }
 
-function collectDepoimentos() {
-  return Array.from(document.querySelectorAll('#depoimentosList .item-row'))
-    .map(row => {
-      const selected = [...row.querySelectorAll('.estrela-btn')].filter(b => b.classList.contains('selected'));
-      return {
-        id: row.dataset.id,
-        nome_cliente: row.querySelector('[data-field="nome_cliente"]')?.value.trim() || '',
-        texto: row.querySelector('[data-field="texto"]')?.value.trim() || '',
-        estrelas: selected.length || 5
-      };
-    })
-    .filter(d => d.nome_cliente.trim());
-}
 
 /* ================================================================
    POPULATE FORMS — Preenche o formulário com os dados carregados
@@ -376,7 +309,6 @@ function populateForms(data) {
   if (fb) fb.value = (data.redes_sociais?.facebook !== '#' ? data.redes_sociais?.facebook : '') || '';
 
   renderServicos(data.servicos || []);
-  renderDepoimentos(data.depoimentos || []);
 }
 
 /* ================================================================
@@ -433,13 +365,7 @@ async function initAdminPanel() {
     document.querySelector('#servicosList .item-row:last-child [data-field="nome"]')?.focus();
   });
 
-  // — Adicionar Depoimento —
-  document.getElementById('addDepoimento')?.addEventListener('click', () => {
-    const curr = DataManager.load();
-    curr.depoimentos.push({ id: uid(), nome_cliente: '', texto: '', estrelas: 5 });
-    renderDepoimentos(curr.depoimentos);
-    document.querySelector('#depoimentosList .item-row:last-child [data-field="nome_cliente"]')?.focus();
-  });
+
 
   // — Remove Serviço (delegado no container) —
   document.getElementById('servicosList')?.addEventListener('click', e => {
@@ -447,11 +373,7 @@ async function initAdminPanel() {
     if (btn) btn.closest('.item-row')?.remove();
   });
 
-  // — Remove Depoimento (delegado no container) —
-  document.getElementById('depoimentosList')?.addEventListener('click', e => {
-    const btn = e.target.closest('[data-remove-dep]');
-    if (btn) btn.closest('.item-row')?.remove();
-  });
+
 
   // — Aba Segurança removida —
 

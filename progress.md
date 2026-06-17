@@ -349,24 +349,23 @@
 
 ---
 
-## 📋 Template para Entradas Futuras
-
-```
-## 📅 YYYY-MM-DD — [Fase] — [Descrição]
+## 📅 2026-06-17 — Fase E (Integração) — Refatoração da Navegação (Menu Hamburger Universal)
 
 ### ✅ O que foi feito
--
+- **Remoção dos links da barra de navegação:** A barra de navegação agora exibe apenas o logo `✦ Pai Paulinho de Xangô` + botão `💬 Agendar` + botão hamburger. A tela inicial ficou completamente limpa e minimalista.
+- **Menu hamburger universal:** O botão hamburger agora aparece em **todos os tamanhos de tela** (desktop, tablet, celular, notepad, etc.). Todos os links foram movidos para dentro do menu: Sobre, Serviços, Oráculo, Depoimentos, Estudos, Santuário, Instalar Aplicativo.
+- **Dropdown elegante no desktop:** No desktop/tablet, o menu abre como um painel flutuante com `border-radius: 16px`, glassmorphism, animação de entrada suave (`opacity + transform`), linha decorativa dourada no topo e separadores entre os links.
+- **Tela cheia no mobile:** Em telas ≤640px, o menu continua cobrindo a tela inteira com links maiores e espaçados para toque confortável.
+- **Remoção do ⚡ de Instalar Aplicativo:** O emoji de raio foi removido. O item agora exibe apenas "Instalar Aplicativo" com destaque de cor terracota e uma seta `⬇` sutil.
+- **Acessibilidade:** Suporte a `aria-expanded`, fechar com `Escape`, e `role="menu"` / `role="menuitem"` corretos.
+- **Commit e push:** `feat(nav): menu hamburger universal - todos os links dentro do menu, barra limpa e minimalista` enviado ao GitHub com sucesso (commit `e1d44d9`).
 
 ### ❌ Erros encontrados
--
+- Nenhum.
 
 ### 🧪 Testes
--
+- Testado no Chrome via subagente de navegação. Screenshots confirmam: nav limpa (fechada), dropdown abrindo com todos os 7 itens corretos, sem ⚡ no Instalar Aplicativo, scroll funcionando, botão voltar ao topo funcional.
 
 ### 🚀 Próximo Passo
--
-```
-
-
-
+- Aguardando novas instruções do usuário para evolução do projeto.
 
