@@ -60,11 +60,8 @@
         <span class="nav-brand-text">Pai Paulinho de Xangô</span>
       </a>
 
-      <!-- Botão Agendar sempre visível + Hamburger -->
+      <!-- Apenas o Hamburger na nav -->
       <div class="nav-actions">
-        <a href="#" class="nav-cta whatsapp-trigger" id="navWhatsApp">
-          <span>💬</span> Agendar
-        </a>
         <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
@@ -479,6 +476,19 @@
     </div>
 
     <button class="lightbox-nav next" id="lightboxNext" aria-label="Próxima Foto" type="button">&#10095;</button>
+  </div>
+
+  <!-- ===== WHATSAPP FAB FLUTUANTE (drag-and-snap) ===== -->
+  <div id="whabFab" class="whab-fab" role="button" aria-label="Falar com Pai Paulinho pelo WhatsApp" tabindex="0">
+    <div class="whab-pulse" aria-hidden="true"></div>
+    <div class="whab-icon" aria-hidden="true">
+      <!-- SVG oficial do WhatsApp -->
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="16" fill="#25D366"/>
+        <path fill="#fff" d="M22.45 9.54A8.94 8.94 0 0 0 16 7a8.96 8.96 0 0 0-7.73 13.43L7 25l4.7-1.23A8.96 8.96 0 0 0 25 16.01c0-2.4-.93-4.65-2.55-6.47Zm-6.45 13.77a7.44 7.44 0 0 1-3.79-1.04l-.27-.16-2.79.73.75-2.72-.18-.28a7.43 7.43 0 0 1-1.14-3.99 7.45 7.45 0 0 1 12.7-5.27 7.38 7.38 0 0 1 2.13 5.27 7.46 7.46 0 0 1-7.41 7.46Zm4.08-5.58c-.22-.11-1.31-.64-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.17-.48.06a6.03 6.03 0 0 1-1.77-1.09 6.6 6.6 0 0 1-1.22-1.52c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.42c-.15 0-.39.06-.6.28-.2.22-.78.76-.78 1.85s.8 2.15.91 2.3c.11.15 1.57 2.4 3.8 3.36.53.23.94.37 1.27.47.53.17 1.01.15 1.39.09.42-.07 1.31-.54 1.5-1.06.18-.52.18-.97.13-1.06-.06-.09-.2-.15-.43-.26Z"/>
+      </svg>
+    </div>
+    <span class="whab-label">Falar com Pai Paulinho</span>
   </div>
 
   <!-- Firebase SDK (compat v9) -->

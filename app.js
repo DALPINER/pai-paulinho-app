@@ -150,18 +150,33 @@ function buildWhatsAppURL(numero) {
 }
 
 function setupWhatsAppButtons(numero) {
+  const url = buildWhatsAppURL(numero);
+
+  // Configura todos os botões/links com classe .whatsapp-trigger
   document.querySelectorAll('.whatsapp-trigger').forEach(btn => {
     if (!numero) {
       btn.style.opacity       = '0.5';
       btn.style.pointerEvents = 'none';
       btn.title               = 'WhatsApp em breve';
     } else {
-      btn.href   = buildWhatsAppURL(numero);
+      btn.href   = url;
       btn.target = '_blank';
       btn.rel    = 'noopener noreferrer';
       btn.removeAttribute('style');
     }
   });
+
+  // Configura o FAB flutuante (não é um <a>, usa data-href)
+  const fab = document.getElementById('whabFab');
+  if (fab) {
+    if (!numero) {
+      fab.dataset.href = '';
+      fab.style.opacity = '0.5';
+    } else {
+      fab.dataset.href = url;
+      fab.removeAttribute('style');
+    }
+  }
 }
 
 /* ================================================================
@@ -1321,6 +1336,220 @@ function initAccordion() {
 }
 
 /* ================================================================
+   WHATSAPP FAB FLUTUANTE — Drag-and-Snap Engine
+   Regras:
+   1. Arrastável via mouse (mousedown/move/up) e touch (touchstart/move/end)
+   2. Ao soltar, snap instantâneo para lateral mais próxima (esquerda ou direita)
+   3. Nunca posicionado no meio da tela horizontalmente
+   4. Margem de segurança de 16px de cada borda
+   5. Limite vertical: nunca sai da área visível (16px top/bottom)
+   6. Posição Y e lado (left/right) são salvos no localStorage
+   7. Clique simples (sem arrastar) abre WhatsApp
+   8. O link do WhatsApp é injetado pelo setupWhatsAppButtons
+   ================================================================ */
+function initWhatsAppFab() {
+  const fab = document.getElementById('whabFab');
+  if (!fab) return;
+
+  const MARGIN    = 16;          // px de margem das bordas
+  const SIZE      = 60;          // px do botão
+  const STORAGE_Y = 'whab_y';    // chave localStorage para posição Y
+  const STORAGE_S = 'whab_side'; // chave localStorage para o lado
+
+  let isDragging  = false;
+  let hasMoved    = false;       // distingue clique de drag
+  let startX      = 0;
+  let startY      = 0;
+  let startTop    = 0;
+  let fabTop      = 0;
+  let currentSide = 'right';     // 'left' | 'right'
+
+  /* --- Helpers de posicionamento --- */
+
+  function getViewport() {
+    return { w: window.innerWidth, h: window.innerHeight };
+  }
+
+  function clampY(y) {
+    const { h } = getViewport();
+    return Math.max(MARGIN, Math.min(h - SIZE - MARGIN, y));
+  }
+
+  /** Aplica snap para a lateral correta usando propriedades CSS (left/right) */
+  function snapToSide(side, y, animate = true) {
+    currentSide = side;
+    fabTop = clampY(y);
+
+    if (animate) fab.classList.add('snapping');
+
+    // Limpa ambos os lados antes de setar o correto
+    fab.style.removeProperty('left');
+    fab.style.removeProperty('right');
+
+    if (side === 'left') {
+      fab.style.left = MARGIN + 'px';
+    } else {
+      fab.style.right = MARGIN + 'px';
+    }
+    fab.style.top    = fabTop + 'px';
+    fab.style.bottom = 'auto';
+    fab.dataset.side = side;
+
+    // Persistência
+    try {
+      localStorage.setItem(STORAGE_Y, fabTop);
+      localStorage.setItem(STORAGE_S, side);
+    } catch (_) {}
+
+    if (animate) {
+      setTimeout(() => fab.classList.remove('snapping'), 420);
+    }
+  }
+
+  /** Determina para qual lado snapear com base na posição X do centro do botão */
+  function decideSide(fabCenterX) {
+    return fabCenterX < getViewport().w / 2 ? 'left' : 'right';
+  }
+
+  /* --- Inicializa posição (localStorage ou padrão) --- */
+  (function initPosition() {
+    let savedY    = parseFloat(localStorage.getItem(STORAGE_Y));
+    let savedSide = localStorage.getItem(STORAGE_S) || 'right';
+
+    const { h } = getViewport();
+    if (isNaN(savedY) || savedY < MARGIN || savedY > h - SIZE - MARGIN) {
+      savedY = h * 0.75 - SIZE / 2; // padrão: 75% da tela verticalmente
+    }
+
+    snapToSide(savedSide, savedY, false);
+  })();
+
+  /* --- Atualiza posição ao redimensionar janela --- */
+  window.addEventListener('resize', () => {
+    snapToSide(currentSide, fabTop, false);
+  }, { passive: true });
+
+  /* ================================================================
+     ENGINE DE DRAG — Mouse
+     ================================================================ */
+  fab.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return; // apenas botão esquerdo
+    e.preventDefault();
+
+    isDragging = false;
+    hasMoved   = false;
+    startX     = e.clientX;
+    startY     = e.clientY;
+    startTop   = fabTop;
+
+    function onMouseMove(e) {
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+
+      if (!isDragging && Math.abs(dx) + Math.abs(dy) > 4) {
+        isDragging = true;
+        hasMoved   = true;
+        fab.classList.add('dragging');
+      }
+
+      if (!isDragging) return;
+
+      // Move verticalmente (horizontal é só para determinar o lado no soltar)
+      const newTop = clampY(startTop + dy);
+      fab.style.top    = newTop + 'px';
+      fab.style.bottom = 'auto';
+      fabTop = newTop;
+
+      // Atualiza posição horizontal livre durante o drag
+      const newLeft = e.clientX - SIZE / 2;
+      fab.style.removeProperty('right');
+      fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - SIZE - MARGIN, newLeft)) + 'px';
+    }
+
+    function onMouseUp(e) {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup',   onMouseUp);
+
+      if (isDragging) {
+        fab.classList.remove('dragging');
+        const centerX = e.clientX;
+        snapToSide(decideSide(centerX), fabTop);
+        isDragging = false;
+      }
+      // Se não houve movimento: é um clique — o href do link cuida do WhatsApp
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup',   onMouseUp);
+  });
+
+  /* ================================================================
+     ENGINE DE DRAG — Touch
+     ================================================================ */
+  fab.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    isDragging  = false;
+    hasMoved    = false;
+    startX      = touch.clientX;
+    startY      = touch.clientY;
+    startTop    = fabTop;
+  }, { passive: true });
+
+  fab.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    const dx    = touch.clientX - startX;
+    const dy    = touch.clientY - startY;
+
+    if (!isDragging && Math.abs(dx) + Math.abs(dy) > 6) {
+      isDragging = true;
+      hasMoved   = true;
+      fab.classList.add('dragging');
+    }
+
+    if (!isDragging) return;
+    e.preventDefault(); // previne scroll da página durante drag
+
+    const newTop  = clampY(startTop + dy);
+    fab.style.top    = newTop + 'px';
+    fab.style.bottom = 'auto';
+    fabTop = newTop;
+
+    const newLeft = touch.clientX - SIZE / 2;
+    fab.style.removeProperty('right');
+    fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - SIZE - MARGIN, newLeft)) + 'px';
+  }, { passive: false });
+
+  fab.addEventListener('touchend', (e) => {
+    fab.classList.remove('dragging');
+
+    if (isDragging) {
+      const touch = e.changedTouches[0];
+      snapToSide(decideSide(touch.clientX), fabTop);
+      isDragging = false;
+    }
+    // Se não houve drag, o click handler do FAB cuidará da navegação
+  });
+
+  /* ================================================================
+     CLICK — Abre WhatsApp (só se não foi um drag)
+     ================================================================ */
+  fab.addEventListener('click', (e) => {
+    if (hasMoved) { hasMoved = false; return; } // era drag, ignora
+    const href = fab.dataset.href;
+    if (href) window.open(href, '_blank', 'noopener,noreferrer');
+  });
+
+  /* Teclado: Enter/Space ativa o WhatsApp */
+  fab.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const href = fab.dataset.href;
+      if (href) window.open(href, '_blank', 'noopener,noreferrer');
+    }
+  });
+}
+
+/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1335,6 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParticles();
   initOracleParticles();
   initNav();
+  initWhatsAppFab(); // FAB flutuante de WhatsApp
   initMagneticBtn();
   initOracle();
   initGalleryScroll();

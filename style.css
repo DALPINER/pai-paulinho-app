@@ -371,25 +371,8 @@ a               { text-decoration: none; color: inherit; }
   opacity: 0.75;
 }
 
-/* ===== NAV CTA (Agendar) ===== */
-.nav-cta {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 1.2rem;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: #fff;
-  font-size: 0.88rem;
-  font-weight: 700;
-  border-radius: 50px;
-  transition: var(--transition);
-  box-shadow: 0 2px 15px rgba(37, 211, 102, 0.3);
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 25px rgba(37, 211, 102, 0.45);
-}
+/* ===== NAV CTA — removido da nav, agora é o FAB flutuante ===== */
+/* O botão de WhatsApp vive no FAB #whabFab — ver seção WHATSAPP FAB */
 
 /* ===== HERO ===== */
 #hero {
@@ -3460,4 +3443,127 @@ a               { text-decoration: none; color: inherit; }
   .ervas-icone {
     font-size: 1.4rem;
   }
+}
+
+/* ================================================================
+   WHATSAPP FAB FLUTUANTE — drag-and-snap
+   Arrastável, sempre gruda em lateral esquerda ou direita,
+   nunca fica no meio da tela. Posição Y persiste em localStorage.
+   ================================================================ */
+
+.whab-fab {
+  position: fixed;
+  z-index: 9000;
+  width: 60px;
+  height: 60px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  outline: none;
+  border-radius: 50%;
+}
+
+.whab-fab.dragging {
+  cursor: grabbing;
+  transition: none !important;
+}
+
+.whab-fab.snapping {
+  transition: left 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              right 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+              top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.whab-pulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.22);
+  animation: whabPulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+.whab-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.12);
+  animation: whabPulse 2.4s ease-out 0.8s infinite;
+  pointer-events: none;
+}
+
+@keyframes whabPulse {
+  0%   { transform: scale(0.88); opacity: 0.8; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.whab-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  overflow: hidden;
+  background: #25D366;
+  z-index: 1;
+}
+
+.whab-icon svg { width: 100%; height: 100%; display: block; }
+
+.whab-fab:hover .whab-icon {
+  transform: scale(1.08);
+  box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55), 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.whab-fab:active .whab-icon,
+.whab-fab.dragging .whab-icon {
+  transform: scale(0.94);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+.whab-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  background: rgba(30, 36, 32, 0.94);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.42rem 0.9rem;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  right: calc(100% + 12px);
+  left: auto;
+}
+
+.whab-fab[data-side="right"] .whab-label {
+  right: calc(100% + 12px);
+  left: auto;
+}
+
+.whab-fab[data-side="left"] .whab-label {
+  left: calc(100% + 12px);
+  right: auto;
+}
+
+.whab-fab:not(.dragging):hover .whab-label {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .whab-label { display: none; }
+  .whab-fab   { width: 56px; height: 56px; }
+  .whab-icon  { width: 56px; height: 56px; }
+  .whab-pulse { inset: -6px; }
 }
