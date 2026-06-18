@@ -1578,6 +1578,80 @@ function initWhatsAppFab() {
 }
 
 /* ================================================================
+   MOTOR GSAP: SCROLL 3D PROGRESSIVO
+   ================================================================ */
+function initGSAPAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1. Hero Parallax (Scale-Down & Blur)
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    gsap.to(heroContent, {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      },
+      y: 150,
+      scale: 0.85,
+      opacity: 0,
+      filter: "blur(10px)",
+      ease: "none"
+    });
+  }
+
+  // 2. 3D Unfold Cartões de Serviço
+  gsap.set(".servicos-grid", { perspective: 1500 });
+  
+  // Usamos requestAnimationFrame ou timeout para garantir que o DOM (renderAll) já formou as tags
+  setTimeout(() => {
+    const servicos = document.querySelectorAll('.servico-card');
+    servicos.forEach(card => {
+      gsap.fromTo(card, 
+        { rotationX: -45, opacity: 0, y: 100, transformOrigin: "50% 100%", filter: "blur(5px)" },
+        {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 100%",
+            end: "top 60%",
+            scrub: 1
+          },
+          rotationX: 0,
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          ease: "power2.out"
+        }
+      );
+    });
+
+    // 3. Reveal Genérico Blur-on-Scroll
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+      if (el.classList.contains('servico-card') || el.classList.contains('hero-content')) return;
+
+      gsap.fromTo(el,
+        { opacity: 0, y: 50, filter: "blur(8px)" },
+        {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 95%",
+            end: "top 75%",
+            scrub: 0.5
+          },
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          ease: "power1.out"
+        }
+      );
+    });
+  }, 100);
+}
+
+/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1602,7 +1676,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initFAQ();
   initAccordion();
-  observeRevealElements();
+  // Substituindo a animação antiga pelo Motor GSAP 3D Scroll-Driven
+  initGSAPAnimations();
 
   // — Renderiza Dados do LocalStorage —
   renderAll(DataManager.load());

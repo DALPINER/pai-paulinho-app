@@ -1755,8 +1755,8 @@ function initStudyPlatform() {
       // Remove fade-out (inicia fade-in suave)
       palcoWrap.classList.remove('fade-out');
 
-      // Aplica animações de scroll aos elementos do artigo
-      initTopicRevealAnimations();
+      // Aplica animações 3D Scroll-Driven do Motor GSAP
+      initEstudosGSAP();
 
       // Motor 3D Físico nos cartões recém-carregados
       if (typeof VanillaTilt !== "undefined") {
@@ -2118,4 +2118,68 @@ function initLightbox() {
       closeLightbox();
     }
   });
+}
+
+/* ============================================================
+   MOTOR GSAP: SCROLL 3D PROGRESSIVO PARA ESTUDOS
+   ============================================================ */
+function initEstudosGSAP() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const corpoEl = document.getElementById('leituraCorpo');
+  if (!corpoEl) return;
+
+  // Usa setTimeout para garantir que as tags <img> e p estejam rendenizadas no DOM
+  setTimeout(() => {
+    // 1. Reveal Parallax no Título da Seção
+    gsap.fromTo("#leituraTitulo", 
+      { opacity: 0, y: -20, filter: "blur(5px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power2.out" }
+    );
+
+    // 2. Imagens com Levitation/Scale Fade In
+    const imgs = corpoEl.querySelectorAll('.artigo-imagem');
+    imgs.forEach(img => {
+      gsap.fromTo(img,
+        { opacity: 0, scale: 0.95, filter: "blur(10px)", rotationX: -15 },
+        {
+          scrollTrigger: {
+            trigger: img,
+            start: "top 95%",
+            end: "top 60%",
+            scrub: 1
+          },
+          opacity: 1,
+          scale: 1,
+          filter: "blur(0px)",
+          rotationX: 0,
+          ease: "power2.out"
+        }
+      );
+    });
+
+    // 3. Reveal Genérico Scroll-Driven para Textos e Acordeões
+    const reveals = corpoEl.querySelectorAll('.reveal, p, .dic-accordion-item');
+    reveals.forEach(el => {
+      // Ignorar imagens pois elas já têm a própria regra GSAP
+      if (el.tagName.toLowerCase() === 'img') return;
+
+      gsap.fromTo(el,
+        { opacity: 0, y: 30, filter: "blur(5px)" },
+        {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 100%",
+            end: "top 80%",
+            scrub: 0.5
+          },
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          ease: "power1.out"
+        }
+      );
+    });
+  }, 100);
 }
