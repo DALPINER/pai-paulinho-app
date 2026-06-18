@@ -213,8 +213,8 @@ async function saveSection(section) {
               payload: {
                 app_id: appId,
                 included_segments: ["Total Subscriptions"],
-                headings: { "pt": "🟢 Pai Paulinho: Teste Sucesso" },
-                contents: { "pt": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!" }
+                headings: { "en": "🟢 Pai Paulinho: Teste Sucesso", "pt": "🟢 Pai Paulinho: Teste Sucesso" },
+                contents: { "en": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!", "pt": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!" }
               }
             })
           });
