@@ -1677,69 +1677,11 @@ const DICIONARIO_DB = [
 
 // ===== RENDERIZADOR E CONTROLADOR DA PLATAFORMA =====
 document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu();
   initStudyAccordion();
   initStudyPlatform();
   initDynamicData();
   initLightbox();
 });
-
-/* ============================================================
-   1. MENU HAMBÚRGUER RESPONSIVO PRINCIPAL
-   ============================================================ */
-function initMobileMenu() {
-  const header = document.getElementById('siteHeader');
-  const navHamburger = document.getElementById('estudosHamburger');
-  const navLinks = document.getElementById('estudosNavLinks');
-
-  if (!navHamburger || !navLinks) return;
-
-  navHamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navHamburger.classList.contains('open');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      closeMenu();
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (header && header.classList.contains('menu-open') && !header.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  function openMenu() {
-    navHamburger.classList.add('open');
-    navLinks.classList.add('open');
-    if (header) header.classList.add('menu-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    navHamburger.classList.remove('open');
-    navLinks.classList.remove('open');
-    if (header) header.classList.remove('menu-open');
-    document.body.style.overflow = '';
-  }
-
-  window.addEventListener('scroll', () => {
-    if (header) {
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-  }, { passive: true });
-}
 
 /* ============================================================
    2. PLATAFORMA DE ESTUDOS DINÂMICA (FOCUS MODE)
