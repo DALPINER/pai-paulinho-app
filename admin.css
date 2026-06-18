@@ -8,24 +8,24 @@
 html { font-size: 16px; }
 body {
   font-family: 'Lato', sans-serif;
-  background: #06030a;
-  color: #e0d4c8;
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
 }
 
 /* ===== CSS VARIABLES ===== */
 :root {
-  --bg:           #06030a;
-  --bg-sidebar:   #0b060f;
-  --bg-card:      rgba(255, 255, 255, 0.04);
-  --gold:         #c9a84c;
-  --gold-light:   #e8c96a;
-  --gold-muted:   rgba(201, 168, 76, 0.14);
-  --border:       rgba(201, 168, 76, 0.14);
-  --border-input: rgba(255, 255, 255, 0.1);
-  --text:         #e0d4c8;
-  --text-muted:   #7a6a5a;
+  --bg:           #FCFAF8;
+  --bg-sidebar:   #F5F0EB;
+  --bg-card:      #FFFFFF;
+  --gold:         #8B1C1C;
+  --gold-light:   #B02828;
+  --gold-muted:   rgba(139, 28, 28, 0.10);
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-input: rgba(0, 0, 0, 0.15);
+  --text:         #2B1D14;
+  --text-muted:   #9C7B6A;
   --success:      #25d366;
   --danger:       #c0392b;
   --radius:       10px;
@@ -45,18 +45,18 @@ h1, h2, h3 { font-family: 'Cinzel', serif; }
   justify-content: center;
   min-height: 100vh;
   padding: 1.5rem;
-  background: radial-gradient(ellipse at 50% 40%, #180a24 0%, #06030a 70%);
+  background: radial-gradient(ellipse at 50% 40%, var(--bg-sidebar) 0%, var(--bg) 70%);
 }
 
 .login-card {
-  background: rgba(11, 6, 15, 0.95);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 3rem 2.5rem;
   width: 100%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
 }
 
 .login-emblem {
@@ -109,8 +109,8 @@ a { text-decoration: none; color: inherit; }
 .btn-primary {
   width: 100%;
   padding: 0.9rem 1.5rem;
-  background: linear-gradient(135deg, var(--gold) 0%, #a07830 100%);
-  color: #000;
+  background: var(--gold);
+  color: #ffffff;
   font-family: 'Lato', sans-serif;
   font-size: 1rem;
   font-weight: 700;
@@ -124,7 +124,7 @@ a { text-decoration: none; color: inherit; }
   transition: var(--transition);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--gold-light), #b8902c);
+  background: var(--gold-light);
   transform: translateY(-2px);
 }
 
@@ -145,8 +145,8 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.6rem;
-  background: linear-gradient(135deg, var(--gold), #8a6e28);
-  color: #000;
+  background: var(--gold);
+  color: #ffffff;
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
@@ -546,7 +546,7 @@ a { text-decoration: none; color: inherit; }
 .form-select {
   width: 100%;
   padding: 0.75rem 1rem;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg);
   border: 1px solid var(--border-input);
   border-radius: var(--radius);
   color: var(--text);
@@ -561,19 +561,19 @@ a { text-decoration: none; color: inherit; }
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--gold);
-  background: rgba(201, 168, 76, 0.04);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px var(--gold-muted);
 }
 
 .form-select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a84c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b1c1c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   padding-right: 2.5rem;
 }
-.form-select option { background: #12080f; }
+.form-select option { background: #FFFFFF; }
 
 /* ===== ITEM LISTS (Serviços / Depoimentos) ===== */
 .items-list {
@@ -584,7 +584,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .item-row {
-  background: rgba(255,255,255,0.03);
+  background: var(--bg);
   border: 1px solid var(--border-input);
   border-radius: var(--radius);
   padding: 1.25rem;
