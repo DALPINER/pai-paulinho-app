@@ -1593,18 +1593,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordion();
   observeRevealElements();
 
-  // — TASK 3: Dados em tempo real (Firestore → fallback localStorage) —
-  const firestoreActive = FirestoreManager.listenToChanges(data => {
-    renderAll(data);
-  });
-
-  if (!firestoreActive) {
-    // Firebase não configurado: usa localStorage / dados padrão
-    renderAll(DataManager.load());
-  }
+  // — Renderiza Dados do LocalStorage —
+  renderAll(DataManager.load());
 
   console.log(
-    '%c⚡ Terreira Paulinho v2.0 🙏\nOráculo + Firestore + Micro-interações + Preloader',
+    '%c⚡ Terreira Paulinho v2.0 🙏\nOráculo + Motor In-App Dourado + Micro-interações',
     'color:#c9a84c;font-weight:bold;font-family:serif;font-size:13px'
   );
 });
