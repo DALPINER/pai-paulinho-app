@@ -354,75 +354,54 @@
   <section id="oraculo" class="section">
     <div class="container">
       <div class="mensagem-card oracle-card reveal" id="oracleCard">
-        <div class="oracle-inner" id="oracleInner">
-          <!-- FACE FRONTAL: Intenções -->
-          <div class="oracle-front">
-            <canvas id="oracleCanvas" class="oracle-canvas"></canvas>
+        <canvas id="oracleCanvas" class="oracle-canvas"></canvas>
 
-            <!-- Velas — animação de brilho durante a consulta -->
-            <div class="mensagem-candles oracle-candles levitate" id="oracleCandles" aria-hidden="true">
-              <span class="candle">🕯️</span>
-              <span class="candle">🕯️</span>
-              <span class="candle">🕯️</span>
-            </div>
+        <!-- Velas — animação de brilho durante a consulta -->
+        <div class="mensagem-candles oracle-candles levitate" id="oracleCandles" aria-hidden="true">
+          <span class="candle">🕯️</span>
+          <span class="candle">🕯️</span>
+          <span class="candle">🕯️</span>
+        </div>
 
-            <span class="section-eyebrow">Orientação de Luz</span>
-            <h2 class="mensagem-titulo">Mensagem de Luz dos Orixás</h2>
-            <div class="mensagem-divider" aria-hidden="true">✦ ✦ ✦</div>
+        <span class="section-eyebrow">Orientação de Luz</span>
+        <h2 class="mensagem-titulo">Mensagem de Luz dos Orixás</h2>
+        <div class="mensagem-divider" aria-hidden="true">✦ ✦ ✦</div>
 
-            <!-- Estado 1: Chips de Intenção -->
-            <div class="oracle-cta" id="oracleCta">
-              <p class="oracle-intro">O que o seu coração busca hoje?</p>
-              <div class="oracle-intentions">
-                <button class="intention-chip" data-category="amor" type="button">
-                  <span class="chip-icon">💖</span>
-                  <span class="chip-text">Amor & Relações</span>
-                </button>
-                <button class="intention-chip" data-category="caminhos" type="button">
-                  <span class="chip-icon">🗝️</span>
-                  <span class="chip-text">Abertura de Caminhos</span>
-                </button>
-                <button class="intention-chip" data-category="paz" type="button">
-                  <span class="chip-icon">🕊️</span>
-                  <span class="chip-text">Paz & Saúde Mental</span>
-                </button>
-                <button class="intention-chip" data-category="protecao" type="button">
-                  <span class="chip-icon">⚖️</span>
-                  <span class="chip-text">Proteção & Justiça</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="mensagem-flores levitate" aria-hidden="true">🌺 ✨ 🌺</div>
-          </div>
-
-          <!-- FACE TRASEIRA: Resultado -->
-          <div class="oracle-back">
-            <canvas class="oracle-canvas"></canvas>
-            <div class="mensagem-candles oracle-candles levitate" aria-hidden="true">
-              <span class="candle">🕯️</span>
-              <span class="candle">🕯️</span>
-              <span class="candle">🕯️</span>
-            </div>
-
-            <span class="section-eyebrow">A Resposta</span>
-            <h2 class="mensagem-titulo">A Luz Revela</h2>
-            <div class="mensagem-divider" aria-hidden="true">✦ ✦ ✦</div>
-
-            <!-- Estado 2: Resultado -->
-            <div class="oracle-result" id="oracleResult">
-              <blockquote class="mensagem-texto oracle-msg" id="oracleMsgText"></blockquote>
-              <div class="oracle-footer hidden" id="oracleFooter">
-                <p class="mensagem-assinatura">— Pai Paulinho</p>
-                <button class="oracle-btn-again" id="oracleBtnAgain" type="button">
-                  ✨ Nova orientação
-                </button>
-              </div>
-            </div>
-
-            <div class="mensagem-flores levitate" aria-hidden="true">🌺 ✨ 🌺</div>
+        <!-- Estado 1: Chips de Intenção -->
+        <div class="oracle-cta" id="oracleCta">
+          <p class="oracle-intro">O que o seu coração busca hoje?</p>
+          <div class="oracle-intentions">
+            <button class="intention-chip" data-category="amor" type="button">
+              <span class="chip-icon">💖</span>
+              <span class="chip-text">Amor & Relações</span>
+            </button>
+            <button class="intention-chip" data-category="caminhos" type="button">
+              <span class="chip-icon">🗝️</span>
+              <span class="chip-text">Abertura de Caminhos</span>
+            </button>
+            <button class="intention-chip" data-category="paz" type="button">
+              <span class="chip-icon">🕊️</span>
+              <span class="chip-text">Paz & Saúde Mental</span>
+            </button>
+            <button class="intention-chip" data-category="protecao" type="button">
+              <span class="chip-icon">⚖️</span>
+              <span class="chip-text">Proteção & Justiça</span>
+            </button>
           </div>
         </div>
+
+        <!-- Estado 2: Resultado -->
+        <div class="oracle-result hidden" id="oracleResult">
+          <blockquote class="mensagem-texto oracle-msg" id="oracleMsgText"></blockquote>
+          <div class="oracle-footer hidden" id="oracleFooter">
+            <p class="mensagem-assinatura">— Pai Paulinho</p>
+            <button class="oracle-btn-again" id="oracleBtnAgain" type="button">
+              ✨ Nova orientação
+            </button>
+          </div>
+        </div>
+
+        <div class="mensagem-flores levitate" aria-hidden="true">🌺 ✨ 🌺</div>
       </div>
     </div>
   </section>

@@ -500,13 +500,12 @@ function initOracle() {
   const chips    = document.querySelectorAll('.intention-chip');
   const btnAgain = document.getElementById('oracleBtnAgain');
   const card     = document.getElementById('oracleCard');
-  const inner    = document.getElementById('oracleInner');
   const ctaEl    = document.getElementById('oracleCta');
   const resultEl = document.getElementById('oracleResult');
   const footerEl = document.getElementById('oracleFooter');
   const msgEl    = document.getElementById('oracleMsgText');
 
-  if (!chips.length || !card || !inner || !msgEl) return;
+  if (!chips.length || !card || !msgEl || !ctaEl || !resultEl) return;
 
   function runOracle(category) {
     const messages = ORACLE_MESSAGES_BY_CATEGORY[category];
@@ -523,8 +522,8 @@ function initOracle() {
 
     card.classList.add('oracle-shining');
     
-    // Girar o cartão fisicamente para 180 graus (traseira)
-    inner.classList.add('flipped');
+    // Esconde o menu de intenções e mostra o painel de resultado
+    ctaEl.classList.add('hidden');
     resultEl.classList.remove('hidden');
     if (footerEl) footerEl.classList.add('hidden');
     msgEl.classList.add('cycling');
@@ -558,9 +557,8 @@ function initOracle() {
         }, 650);
       }
     }
-
-    // Retarda o início do slot machine para o cartão ter tempo de virar
-    setTimeout(cycle, 600);
+    // Inicia o slot machine quase imediatamente
+    setTimeout(cycle, 100);
   }
 
   chips.forEach(btn => {
@@ -569,22 +567,17 @@ function initOracle() {
     });
   });
 
-  // Reset para virar o cartão de volta para a frente
+  // Reset para mostrar as intenções novamente
   btnAgain?.addEventListener('click', () => {
     if (typeof window.setOracleTheme === 'function') {
       window.setOracleTheme('default');
     }
 
-    inner.classList.remove('flipped');
-    
-    // Oculta resultado após virar de volta
-    setTimeout(() => {
-      resultEl.classList.add('hidden');
-      msgEl.textContent = '';
-      ctaEl.classList.remove('hidden');
-      ctaEl.classList.add('oracle-animate-in');
-      setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
-    }, 500); // 500ms é metade do flip, seguro esconder
+    resultEl.classList.add('hidden');
+    msgEl.textContent = '';
+    ctaEl.classList.remove('hidden');
+    ctaEl.classList.add('oracle-animate-in');
+    setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
   });
 }
 
