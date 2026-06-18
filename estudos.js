@@ -1288,246 +1288,7 @@ const DICIONARIO_DB = [
   { termo: 'Obrigação', desc: 'Ritual de renovação e fortalecimento do vínculo entre o iniciado e seus Orixás, realizado em intervalos regulares (geralmente 1 ano, 3 anos, 7 anos após a iniciação). Durante a obrigação, são realizadas oferendas, banhos de purificação e rituais específicos para alimentar o Axé do iniciado e renovar o contrato espiritual com seus Orixás e guias.' }
 ];
 
-// ===== RENDERIZADOR E CONTROLADOR DA PLATAFORMA =====
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileMenu();
-  initStudyAccordion();
-  initStudyPlatform();
-  initDynamicData();
-  initLightbox();
-});
-
-/* ============================================================
-   1. MENU HAMBÚRGUER RESPONSIVO PRINCIPAL
-   ============================================================ */
-function initMobileMenu() {
-  const header = document.getElementById('siteHeader');
-  const navHamburger = document.getElementById('navHamburger');
-  const navLinks = document.getElementById('navLinks');
-
-  if (!navHamburger || !navLinks) return;
-
-  navHamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = navHamburger.classList.contains('open');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      closeMenu();
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (header && header.classList.contains('menu-open') && !header.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  function openMenu() {
-    navHamburger.classList.add('open');
-    navLinks.classList.add('open');
-    if (header) header.classList.add('menu-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMenu() {
-    navHamburger.classList.remove('open');
-    navLinks.classList.remove('open');
-    if (header) header.classList.remove('menu-open');
-    document.body.style.overflow = '';
-  }
-
-  window.addEventListener('scroll', () => {
-    if (header) {
-      if (window.scrollY > 40) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-  }, { passive: true });
-}
-
-/* ============================================================
-   2. PLATAFORMA DE ESTUDOS DINÂMICA (FOCUS MODE)
-   ============================================================ */
-function initStudyPlatform() {
-  const sidebar = document.getElementById('livroSidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const btnToggleSidebar = document.getElementById('btnToggleSidebar');
-  const btnCloseSidebar = document.getElementById('btnCloseSidebar');
-
-  const topicoBtns = document.querySelectorAll('.topico-btn');
-  const moduloTriggers = document.querySelectorAll('.modulo-trigger');
-
-  const palcoWrap = document.getElementById('leituraPalco');
-  const tagEl = document.getElementById('leituraTag');
-  const tituloEl = document.getElementById('leituraTitulo');
-  const imgWrapperEl = document.getElementById('leituraImagemWrapper');
-  const imgEl = document.getElementById('leituraImagem');
-  const legendaEl = document.getElementById('leituraImagemLegenda');
-  const corpoEl = document.getElementById('leituraCorpo');
-
-  if (!palcoWrap || !corpoEl) return;
-
-  // --- Função para renderizar o tópico selecionado ---
-  function carregarTopico(topicoId, scroll = true) {
-    const data = ESTUDOS_DB[topicoId];
-    if (!data) return;
-
-    // Inicia animação de fade-out do palco de leitura
-    palcoWrap.classList.add('fade-out');
-
-    setTimeout(() => {
-      // Atualiza textos
-      tagEl.textContent = data.tag;
-      tituloEl.textContent = data.titulo;
-
-      // Atualiza imagem
-      if (data.imagem) {
-        imgEl.src = data.imagem;
-        imgEl.alt = data.titulo;
-        legendaEl.textContent = data.legenda || '';
-        imgWrapperEl.style.display = 'block';
-      } else {
-        imgWrapperEl.style.display = 'none';
-      }
-
-      // Injeta o corpo de texto
-      // Se for a aba bônus do Dicionário, monta a estrutura HTML com acordeão
-      if (topicoId === 'capitulobonus') {
-        corpoEl.innerHTML = data.htmlCorpo;
-      } else {
-        corpoEl.innerHTML = data.htmlCorpo;
-      }
-
-      // Adiciona classe capitular ao primeiro parágrafo do texto de leitura
-      const primeiroP = corpoEl.querySelector('p');
-      if (primeiroP) {
-        primeiroP.classList.add('capitular');
-      }
-
-      // Se for o Dicionário do Axé, ativa acordeões dinâmicos internos
-      if (topicoId === 'capitulobonus') {
-        renderDicionarioInterno();
-      }
-
-      // Se for um tópico da Esquerda, inicializa o Live Search
-      if (topicoId.startsWith('esquerda-')) {
-        initBuscaEsquerda();
-      }
-
-      // Remove fade-out (inicia fade-in suave)
-      palcoWrap.classList.remove('fade-out');
-
-      // Aplica animações de scroll aos elementos do artigo
-      initTopicRevealAnimations();
-
-      // Rola a tela para o topo da área de leitura
-      if (scroll) {
-        const offset = window.innerWidth <= 992 ? 140 : 100;
-        const rect = palcoWrap.getBoundingClientRect();
-        const topPosition = rect.top + window.scrollY - offset;
-        window.scrollTo({
-          top: topPosition,
-          behavior: 'smooth'
-        });
-      }
-
-    }, 380);
-
-    // Sincroniza botões ativos na Sidebar
-    topicoBtns.forEach(btn => {
-      if (btn.dataset.topico === topicoId) {
-        btn.classList.add('active');
-
-        // Garante que o módulo pai esteja aberto
-        const moduloPai = btn.closest('.modulo-item');
-        if (moduloPai) {
-          moduloPai.classList.add('open');
-        }
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    // Atualiza a hash na URL para links compartilháveis
-    if (window.location.hash !== '#' + topicoId) {
-      history.pushState(null, null, '#' + topicoId);
-    }
-  }
-
-  // --- Função para renderizar o Dicionário de Termos no Palco de Leitura ---
-  function renderDicionarioInterno() {
-    let html = `<p>Se você está iniciando a sua caminhada de estudos na Umbanda ou no Candomblé, é comum encontrar palavras de origem Iorubá, Banto ou Fon que parecem estranhas ao vocabulário diário. Criamos este glossário interativo para ajudar você a compreender as expressões sagradas usadas em nossa casa:</p>
-                <div class="dic-accordion-list" style="margin-top: 2rem;">`;
-
-    DICIONARIO_DB.forEach((item, index) => {
-      html += `
-        <div class="dic-accordion-item">
-          <button class="dic-accordion-trigger" aria-expanded="false" data-index="${index}">
-            <span class="dic-term"><span class="dic-term-icon">✦</span> ${item.termo}</span>
-            <span class="dic-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-          <div class="dic-accordion-content">
-            <div class="dic-accordion-inner">
-              ${item.desc}
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
-    html += `</div>`;
-    corpoEl.innerHTML = html;
-
-    // Ativa cliques dos acordeões recém-injetados
-    const items = corpoEl.querySelectorAll('.dic-accordion-item');
-    items.forEach(item => {
-      const trigger = item.querySelector('.dic-accordion-trigger');
-      if (trigger) {
-        trigger.addEventListener('click', () => {
-          const isActive = item.classList.contains('active');
-          items.forEach(i => i.classList.remove('active'));
-          if (!isActive) {
-            item.classList.add('active');
-          }
-        });
-      }
-    });
-  }
-
-  // --- Função para ativar o Live Search da Esquerda ---
-  function initBuscaEsquerda() {
-    const input = document.getElementById('buscaEsquerda');
-    if (!input) return;
-
-    input.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
-      const cards = corpoEl.querySelectorAll('.cartas-entidade');
-
-      cards.forEach(card => {
-        const content = card.textContent.toLowerCase();
-        if (content.includes(term)) {
-          card.classList.remove('hidden-card');
-        } else {
-          card.classList.add('hidden-card');
-        }
-      });
-    });
-  }
-
-  // Adiciona a rota do dicionário no banco de dados para unificação
+// Adiciona a rota do dicionário no banco de dados para unificação
   ESTUDOS_DB['capitulobonus'] = {
     modulo: 'Módulo 4: Rituais e Práticas',
     tag: 'Estudos · Glossário Sagrado',
@@ -1800,6 +1561,247 @@ function initStudyPlatform() {
       </div>
     `
   };
+
+  
+
+// ===== RENDERIZADOR E CONTROLADOR DA PLATAFORMA =====
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
+  initStudyAccordion();
+  initStudyPlatform();
+  initDynamicData();
+  initLightbox();
+});
+
+/* ============================================================
+   1. MENU HAMBÚRGUER RESPONSIVO PRINCIPAL
+   ============================================================ */
+function initMobileMenu() {
+  const header = document.getElementById('siteHeader');
+  const navHamburger = document.getElementById('navHamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  if (!navHamburger || !navLinks) return;
+
+  navHamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navHamburger.classList.contains('open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (header && header.classList.contains('menu-open') && !header.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  function openMenu() {
+    navHamburger.classList.add('open');
+    navLinks.classList.add('open');
+    if (header) header.classList.add('menu-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    navHamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    if (header) header.classList.remove('menu-open');
+    document.body.style.overflow = '';
+  }
+
+  window.addEventListener('scroll', () => {
+    if (header) {
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+  }, { passive: true });
+}
+
+/* ============================================================
+   2. PLATAFORMA DE ESTUDOS DINÂMICA (FOCUS MODE)
+   ============================================================ */
+function initStudyPlatform() {
+  const sidebar = document.getElementById('livroSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const btnToggleSidebar = document.getElementById('btnToggleSidebar');
+  const btnCloseSidebar = document.getElementById('btnCloseSidebar');
+
+  const topicoBtns = document.querySelectorAll('.topico-btn');
+  const moduloTriggers = document.querySelectorAll('.modulo-trigger');
+
+  const palcoWrap = document.getElementById('leituraPalco');
+  const tagEl = document.getElementById('leituraTag');
+  const tituloEl = document.getElementById('leituraTitulo');
+  const imgWrapperEl = document.getElementById('leituraImagemWrapper');
+  const imgEl = document.getElementById('leituraImagem');
+  const legendaEl = document.getElementById('leituraImagemLegenda');
+  const corpoEl = document.getElementById('leituraCorpo');
+
+  if (!palcoWrap || !corpoEl) return;
+
+  // --- Função para renderizar o tópico selecionado ---
+  function carregarTopico(topicoId, scroll = true) {
+    const data = ESTUDOS_DB[topicoId];
+    if (!data) return;
+
+    // Inicia animação de fade-out do palco de leitura
+    palcoWrap.classList.add('fade-out');
+
+    setTimeout(() => {
+      // Atualiza textos
+      tagEl.textContent = data.tag;
+      tituloEl.textContent = data.titulo;
+
+      // Atualiza imagem
+      if (data.imagem) {
+        imgEl.src = data.imagem;
+        imgEl.alt = data.titulo;
+        legendaEl.textContent = data.legenda || '';
+        imgWrapperEl.style.display = 'block';
+      } else {
+        imgWrapperEl.style.display = 'none';
+      }
+
+      // Injeta o corpo de texto
+      // Se for a aba bônus do Dicionário, monta a estrutura HTML com acordeão
+      if (topicoId === 'capitulobonus') {
+        corpoEl.innerHTML = data.htmlCorpo;
+      } else {
+        corpoEl.innerHTML = data.htmlCorpo;
+      }
+
+      // Adiciona classe capitular ao primeiro parágrafo do texto de leitura
+      const primeiroP = corpoEl.querySelector('p');
+      if (primeiroP) {
+        primeiroP.classList.add('capitular');
+      }
+
+      // Se for o Dicionário do Axé, ativa acordeões dinâmicos internos
+      if (topicoId === 'capitulobonus') {
+        renderDicionarioInterno();
+      }
+
+      // Se for um tópico da Esquerda, inicializa o Live Search
+      if (topicoId.startsWith('esquerda-')) {
+        initBuscaEsquerda();
+      }
+
+      // Remove fade-out (inicia fade-in suave)
+      palcoWrap.classList.remove('fade-out');
+
+      // Aplica animações de scroll aos elementos do artigo
+      initTopicRevealAnimations();
+
+      // Rola a tela para o topo da área de leitura
+      if (scroll) {
+        const offset = window.innerWidth <= 992 ? 140 : 100;
+        const rect = palcoWrap.getBoundingClientRect();
+        const topPosition = rect.top + window.scrollY - offset;
+        window.scrollTo({
+          top: topPosition,
+          behavior: 'smooth'
+        });
+      }
+
+    }, 380);
+
+    // Sincroniza botões ativos na Sidebar
+    topicoBtns.forEach(btn => {
+      if (btn.dataset.topico === topicoId) {
+        btn.classList.add('active');
+
+        // Garante que o módulo pai esteja aberto
+        const moduloPai = btn.closest('.modulo-item');
+        if (moduloPai) {
+          moduloPai.classList.add('open');
+        }
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Atualiza a hash na URL para links compartilháveis
+    if (window.location.hash !== '#' + topicoId) {
+      history.pushState(null, null, '#' + topicoId);
+    }
+  }
+
+  // --- Função para renderizar o Dicionário de Termos no Palco de Leitura ---
+  function renderDicionarioInterno() {
+    let html = `<p>Se você está iniciando a sua caminhada de estudos na Umbanda ou no Candomblé, é comum encontrar palavras de origem Iorubá, Banto ou Fon que parecem estranhas ao vocabulário diário. Criamos este glossário interativo para ajudar você a compreender as expressões sagradas usadas em nossa casa:</p>
+                <div class="dic-accordion-list" style="margin-top: 2rem;">`;
+
+    DICIONARIO_DB.forEach((item, index) => {
+      html += `
+        <div class="dic-accordion-item">
+          <button class="dic-accordion-trigger" aria-expanded="false" data-index="${index}">
+            <span class="dic-term"><span class="dic-term-icon">✦</span> ${item.termo}</span>
+            <span class="dic-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="dic-accordion-content">
+            <div class="dic-accordion-inner">
+              ${item.desc}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    html += `</div>`;
+    corpoEl.innerHTML = html;
+
+    // Ativa cliques dos acordeões recém-injetados
+    const items = corpoEl.querySelectorAll('.dic-accordion-item');
+    items.forEach(item => {
+      const trigger = item.querySelector('.dic-accordion-trigger');
+      if (trigger) {
+        trigger.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          items.forEach(i => i.classList.remove('active'));
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  // --- Função para ativar o Live Search da Esquerda ---
+  function initBuscaEsquerda() {
+    const input = document.getElementById('buscaEsquerda');
+    if (!input) return;
+
+    input.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const cards = corpoEl.querySelectorAll('.cartas-entidade');
+
+      cards.forEach(card => {
+        const content = card.textContent.toLowerCase();
+        if (content.includes(term)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    });
+  }
 
   // --- Gerenciamento da Sidebar Sanfona (Módulos) ---
   moduloTriggers.forEach(trigger => {
