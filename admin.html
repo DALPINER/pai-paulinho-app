@@ -66,6 +66,9 @@
         <button class="sidebar-btn" data-tab="velas">
           <span>🕯️</span> Velas Virtuais
         </button>
+        <button class="sidebar-btn" data-tab="eventos">
+          <span>🔔</span> Eventos & Push
+        </button>
       </nav>
       <div class="sidebar-footer">
         <a href="index.html" target="_blank" class="sidebar-preview-btn">
@@ -135,6 +138,50 @@
       </section>
 
 
+
+      <!-- Tab: Eventos e Push -->
+      <section class="admin-tab" id="tab-eventos">
+        <div class="tab-header">
+          <h2 class="tab-title">Notificações Push (OneSignal)</h2>
+          <p class="tab-desc">Agende eventos e avise seus seguidores automaticamente.</p>
+        </div>
+        
+        <div class="form-card">
+          <h3 style="font-family:'Cinzel',serif; margin-bottom:1rem; color:var(--gold);">1. Chaves da OneSignal</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Preencha com o App ID e API Key do seu painel OneSignal para habilitar os disparos automáticos.</p>
+          <div class="form-group">
+            <label for="osAppId" class="form-label">OneSignal App ID</label>
+            <input type="text" id="osAppId" class="form-input" placeholder="00000000-0000-0000-0000-000000000000">
+          </div>
+          <div class="form-group">
+            <label for="osApiKey" class="form-label">OneSignal REST API Key</label>
+            <input type="password" id="osApiKey" class="form-input" placeholder="Mzc0N...">
+          </div>
+          <button class="btn-save" data-section="onesignal_keys">
+            <span>🔑</span> Salvar Chaves
+          </button>
+        </div>
+
+        <div class="form-card">
+          <h3 style="font-family:'Cinzel',serif; margin-bottom:1rem; color:var(--gold);">2. Novo Evento (Disparo Automático)</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">O sistema programará 3 notificações no OneSignal (7 dias antes, 3 dias antes e no dia do evento às 08h).</p>
+          <div class="form-group">
+            <label for="eventoNome" class="form-label">Nome do Evento</label>
+            <input type="text" id="eventoNome" class="form-input" placeholder="Ex: Festa de Exu">
+          </div>
+          <div class="form-group">
+            <label for="eventoDescricao" class="form-label">Mensagem da Notificação</label>
+            <input type="text" id="eventoDescricao" class="form-input" placeholder="Ex: Hoje tem Gira de Esquerda às 20h. Venha receber seu axé!">
+          </div>
+          <div class="form-group">
+            <label for="eventoData" class="form-label">Data e Hora do Evento</label>
+            <input type="datetime-local" id="eventoData" class="form-input">
+          </div>
+          <button class="btn-save" data-section="eventos">
+            <span>📅</span> Agendar Notificações
+          </button>
+        </div>
+      </section>
 
       <!-- Tab: Velas Virtuais -->
       <section class="admin-tab" id="tab-velas">

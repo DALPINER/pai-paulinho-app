@@ -415,14 +415,62 @@ function renderSobreSociais(redes) {
    renderAll — Orquestra todos os renderers com um único dataset
    ================================================================ */
 let _carouselReady = false;
+let _oneSignalInited = false;
+
+function initOneSignal(appId) {
+  if (!appId || _oneSignalInited) return;
+  _oneSignalInited = true;
+  
+  const script = document.createElement('script');
+  script.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+  script.defer = true;
+  document.head.appendChild(script);
+
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  window.OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: appId,
+      safari_web_id: "",
+      notifyButton: {
+        enable: true,
+        size: 'medium',
+        theme: 'default',
+        position: 'bottom-left',
+        text: {
+            'tip.state.unsubscribed': 'Receber avisos de Giras e Eventos',
+            'tip.state.subscribed': 'Você já recebe nossos avisos',
+            'tip.state.blocked': 'Notificações bloqueadas',
+            'message.prenotify': 'Clique para receber avisos sobre giras e festas',
+            'message.action.subscribed': 'Obrigado por se inscrever!',
+            'message.action.resubscribed': 'Bem-vindo de volta!',
+            'message.action.unsubscribed': 'Inscrição cancelada'
+        },
+        colors: { 
+            'circle.background': '#8b1c1c', 
+            'circle.foreground': 'white', 
+            'badge.background': '#8b1c1c', 
+            'badge.foreground': 'white', 
+            'badge.bordercolor': 'white', 
+            'pulse.color': '#8b1c1c', 
+            'dialog.button.background.hovering': '#b02828', 
+            'dialog.button.background.active': '#b02828', 
+            'dialog.button.background': '#8b1c1c', 
+            'dialog.button.foreground': 'white' 
+        }
+      },
+    });
+  });
+}
 
 function renderAll(data) {
   renderServicos(data.servicos);
   renderSociais(data.redes_sociais);
   renderSobreSociais(data.redes_sociais);
   setupWhatsAppButtons(data.whatsapp_numero);
-
-
+  
+  if (data.onesignal_app_id) {
+    initOneSignal(data.onesignal_app_id);
+  }
 
   // Re-observa elementos recém-criados
   observeRevealElements();

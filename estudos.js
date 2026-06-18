@@ -2050,6 +2050,43 @@ function applyDynamicData(data) {
       footerSocial.innerHTML = links.join('');
     }
   }
+
+  // Acoplagem OneSignal
+  if (data.onesignal_app_id) {
+    if (!window._oneSignalInitedEstudos) {
+      window._oneSignalInitedEstudos = true;
+      const script = document.createElement('script');
+      script.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+      script.defer = true;
+      document.head.appendChild(script);
+
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      window.OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: data.onesignal_app_id,
+          safari_web_id: "",
+          notifyButton: {
+            enable: true,
+            size: 'medium',
+            theme: 'default',
+            position: 'bottom-left',
+            colors: { 
+                'circle.background': '#8b1c1c', 
+                'circle.foreground': 'white', 
+                'badge.background': '#8b1c1c', 
+                'badge.foreground': 'white', 
+                'badge.bordercolor': 'white', 
+                'pulse.color': '#8b1c1c', 
+                'dialog.button.background.hovering': '#b02828', 
+                'dialog.button.background.active': '#b02828', 
+                'dialog.button.background': '#8b1c1c', 
+                'dialog.button.foreground': 'white' 
+            }
+          },
+        });
+      });
+    }
+  }
 }
 
 /* ============================================================

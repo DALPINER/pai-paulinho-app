@@ -193,6 +193,87 @@ async function saveSection(section) {
 
   switch (section) {
 
+    case 'onesignal_keys':
+      updateFields.onesignal_app_id = document.getElementById('osAppId')?.value.trim() || '';
+      updateFields.onesignal_api_key = document.getElementById('osApiKey')?.value.trim() || '';
+      break;
+
+    case 'eventos': {
+      const nome = document.getElementById('eventoNome')?.value.trim();
+      const desc = document.getElementById('eventoDescricao')?.value.trim();
+      const dt   = document.getElementById('eventoData')?.value;
+
+      if (!nome || !desc || !dt) {
+        showToast('Preencha Nome, Mensagem e Data do Evento.', 'error');
+        return;
+      }
+
+      const appId = currentData.onesignal_app_id;
+      const apiKey = currentData.onesignal_api_key;
+
+      if (!appId || !apiKey) {
+        showToast('Erro: Salve as Chaves da OneSignal primeiro.', 'error');
+        return;
+      }
+
+      showToast('⏳ Agendando notificações no OneSignal...', 'success');
+      
+      const targetDate = new Date(dt);
+      
+      const d7 = new Date(targetDate);
+      d7.setDate(d7.getDate() - 7);
+      d7.setHours(8, 0, 0, 0);
+
+      const d3 = new Date(targetDate);
+      d3.setDate(d3.getDate() - 3);
+      d3.setHours(8, 0, 0, 0);
+
+      const d0 = new Date(targetDate);
+      d0.setHours(8, 0, 0, 0);
+
+      const msgs = [
+        { time: d7, prefix: 'Faltam 7 Dias: ' },
+        { time: d3, prefix: 'Faltam 3 Dias: ' },
+        { time: d0, prefix: 'É HOJE! ' }
+      ];
+
+      let sucesso = true;
+
+      for (let push of msgs) {
+        if (push.time < new Date()) continue; // pula datas no passado
+
+        try {
+          const resp = await fetch('https://api.onesignal.com/notifications', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Basic ${apiKey}`
+            },
+            body: JSON.stringify({
+              app_id: appId,
+              included_segments: ["Total Subscriptions"],
+              headings: { "en": push.prefix + nome, "pt": push.prefix + nome },
+              contents: { "en": desc, "pt": desc },
+              send_after: push.time.toUTCString()
+            })
+          });
+          if (!resp.ok) sucesso = false;
+        } catch (e) {
+          sucesso = false;
+        }
+      }
+
+      if (sucesso) {
+        showToast('✅ Evento agendado no OneSignal com sucesso!', 'success');
+        document.getElementById('eventoNome').value = '';
+        document.getElementById('eventoDescricao').value = '';
+        document.getElementById('eventoData').value = '';
+      } else {
+        showToast('⚠️ Houve erros ao agendar na API. Verifique sua API Key.', 'error');
+      }
+      return; // Return sem updateFields do supabase, pois o OneSignal já guardou.
+    }
+
     case 'servicos': {
       const servs = collectServicos();
       if (!servs.length) { showToast('Adicione pelo menos um serviço.', 'error'); return; }
@@ -283,6 +364,12 @@ function collectServicos() {
    POPULATE FORMS — Preenche o formulário com os dados carregados
    ================================================================ */
 function populateForms(data) {
+  const osId = document.getElementById('osAppId');
+  if (osId) osId.value = data.onesignal_app_id || '';
+
+  const osKey = document.getElementById('osApiKey');
+  if (osKey) osKey.value = data.onesignal_api_key || '';
+
   const wpp = document.getElementById('whatsappNumero');
   if (wpp) wpp.value = data.whatsapp_numero || '';
 
