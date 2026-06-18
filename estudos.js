@@ -1449,23 +1449,12 @@ const DICIONARIO_DB = [
   ESTUDOS_DB['esquerda-lira'] = {
     modulo: 'Módulo 5: A Esquerda',
     tag: 'Esquerda · Fundamento 3',
-    titulo: 'O Povo da Lira, Ciganos e Oriente',
+    titulo: 'O Povo da Lira e do Cabaré',
     imagem: '',
-    legenda: 'A Arte, o Ouro, o Encanto e o Movimento',
+    legenda: 'A Arte, a Sedução e os Mistérios da Noite',
     htmlCorpo: searchBarHTML + `
-      <p class="capitular">A Lira é o reino da prosperidade, da dança, das artes e do comércio fluídico. O Povo do Oriente e os Ciganos que trabalham na linha de Esquerda trazem o encanto, o poder de sedução (em todos os níveis, não apenas romântico) e a movimentação do dinheiro e da alegria de viver.</p>
+      <p class="capitular">A Lira é o reino da dança, das artes e do comércio fluídico. O Povo da Lira e os espíritos que atuam sob o manto do Cabaré trazem o encanto, o poder de atração magnética e a transmutação das dores amorosas e financeiras em alegria de viver.</p>
       <div class="esquerda-grid" id="esquerdaGrid">
-        <div class="cartas-entidade">
-          <div class="entidade-header">
-            <h3 class="entidade-nome">Pombagira Cigana</h3>
-            <span class="entidade-dominio">Senhora da Roda da Fortuna</span>
-          </div>
-          <div class="entidade-corpo">
-            <p><strong>Arquétipo:</strong> Alegre, envolvente, sempre em movimento, adornada de ouros, moedas e cores vivas.</p>
-            <p><strong>Ponto de Força:</strong> Praças, feiras livres e campos abertos.</p>
-            <p><strong>Missão Espiritual:</strong> Atrai oportunidades de negócios, abre os caminhos do amor e gira a roda da prosperidade a favor do consulente.</p>
-          </div>
-        </div>
         <div class="cartas-entidade">
           <div class="entidade-header">
             <h3 class="entidade-nome">Sete Saias</h3>
@@ -1486,6 +1475,128 @@ const DICIONARIO_DB = [
             <p><strong>Arquétipo:</strong> Fascinante, profunda e envolta nas energias lunares. Conhece os segredos das sombras.</p>
             <p><strong>Ponto de Força:</strong> Jardins noturnos e cabarés.</p>
             <p><strong>Missão Espiritual:</strong> Trabalha intensamente os traumas profundos e o campo afetivo de maneira a revelar a verdade.</p>
+          </div>
+        </div>
+      </div>
+    `
+  };
+
+  ESTUDOS_DB['esquerda-ciganos'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento Oculto',
+    titulo: 'O Povo Cigano de Esquerda',
+    imagem: '',
+    legenda: 'A Magia do Acampamento, o Ouro, a Dança e o Destino',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">O Povo Cigano que atua na Esquerda não trabalha com pactos densos, mas com a "negociação cósmica". Eles transmutam o chumbo emocional em ouro, desfazem nós cármicos através das fogueiras e leem o destino usando as cartas e os oráculos. Dividem-se em grandes Clãs ou Kumpanias de atuação mágica.</p>
+      
+      <h3 style="margin: 2.5rem 0 1rem; color: var(--gold); border-bottom: 1px solid rgba(166, 93, 55, 0.2); padding-bottom: 0.5rem; font-family: 'Cinzel', serif;">1. O Clã do Ouro e do Movimento</h3>
+      <div class="esquerda-grid" id="esquerdaGrid_1">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Cigano Wladimir</h3>
+            <span class="entidade-dominio">Senhor do Ouro e das Negociações</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Magnético, articulado. Trabalha com moedas de cobre e ouro, sempre com sorriso largo e punhal na cintura.</p>
+            <p><strong>Ponto de Força:</strong> Mercados, feiras e encruzilhadas comerciais.</p>
+            <p><strong>Missão Espiritual:</strong> Destrancar negócios falidos, atrair oportunidades financeiras e abrir rotas de comércio que parecem fechadas.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana Esmeralda</h3>
+            <span class="entidade-dominio">Mestra da Fartura e Feitiço</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Atua na força das pedras preciosas, punhais cravados e tachos de cobre. Energética e sábia.</p>
+            <p><strong>Ponto de Força:</strong> Acampamentos e campos verdes próximos a água.</p>
+            <p><strong>Missão Espiritual:</strong> Desfazer nós financeiros e amarrar a prosperidade aos caminhos de quem a procura, quebrando o "olho gordo".</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 2.5rem 0 1rem; color: var(--gold); border-bottom: 1px solid rgba(166, 93, 55, 0.2); padding-bottom: 0.5rem; font-family: 'Cinzel', serif;">2. O Clã do Encanto, Paixão e Libertação</h3>
+      <div class="esquerda-grid" id="esquerdaGrid_2">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana da Estrada</h3>
+            <span class="entidade-dominio">A Caminhante dos Destinos</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Nómade, livre, indomável. Não aceita amarras e veste cores exuberantes.</p>
+            <p><strong>Ponto de Força:</strong> As estradas de terra e rodovias.</p>
+            <p><strong>Missão Espiritual:</strong> Quebrar amarrações (principalmente amorosas e possessivas) que aprisionam a liberdade do consulente, resgatando seu amor-próprio.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana Carmem</h3>
+            <span class="entidade-dominio">Senhora da Castanhola</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Intensidade pura. Mestra das castanholas e da rosa vermelha, dominando o magnetismo feminino.</p>
+            <p><strong>Ponto de Força:</strong> Praças e locais de grande movimento.</p>
+            <p><strong>Missão Espiritual:</strong> Trabalha intensamente na autoestima, no brilho pessoal e levanta pessoas com depressão ou apatia.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana Rosa Vermelha</h3>
+            <span class="entidade-dominio">Conselheira dos Corações</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Profunda entendedora das mágoas. Suave, acolhedora, porém com a força dos espinhos para defender quem ama.</p>
+            <p><strong>Ponto de Força:</strong> Roseirais e jardins floridos.</p>
+            <p><strong>Missão Espiritual:</strong> Desfazer magias amorosas extremas, trazer paz para relacionamentos quebrados e curar mágoas.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana do Cabaré</h3>
+            <span class="entidade-dominio">A Sedução Noturna</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Aquela que domina a noite, a sedução absoluta e a persuasão, rindo dos perigos.</p>
+            <p><strong>Ponto de Força:</strong> Cabarés e centros boêmios.</p>
+            <p><strong>Missão Espiritual:</strong> Auxiliar quem precisa de jogo de cintura, carisma e dom da fala em ambientes difíceis e carregados.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin: 2.5rem 0 1rem; color: var(--gold); border-bottom: 1px solid rgba(166, 93, 55, 0.2); padding-bottom: 0.5rem; font-family: 'Cinzel', serif;">3. O Clã da Magia Oculta e das Almas</h3>
+      <div class="esquerda-grid" id="esquerdaGrid_3">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Cigano Pablo</h3>
+            <span class="entidade-dominio">Cigano do Pandeiro e da Magia</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Trabalha limpando energias pesadas no ritmo do pandeiro ou do violino, operando através do transe musical.</p>
+            <p><strong>Ponto de Força:</strong> Acampamentos iluminados por fogueiras.</p>
+            <p><strong>Missão Espiritual:</strong> Afastar obsessores (eguns) através do som, harmonizando o campo vibratório e mental do consulente.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana das Almas (Cruzeiro)</h3>
+            <span class="entidade-dominio">A Guardiã do Cemitério</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Veste saias roxas ou pretas. É a ligação misteriosa entre a magia nómade e o respeito aos ancestrais na Calunga.</p>
+            <p><strong>Ponto de Força:</strong> O cruzeiro das almas do cemitério.</p>
+            <p><strong>Missão Espiritual:</strong> Desobsessão gravíssima, leitura do karma de família nas cartas e no fogo, e limpeza de encostos.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Cigana Madalena</h3>
+            <span class="entidade-dominio">Mestra das Ervas e Poções</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> A grande "bruxa" ou curandeira do acampamento. Sabe o segredo de cada raiz e flor.</p>
+            <p><strong>Ponto de Força:</strong> Matas e florestas próximas a cachoeiras.</p>
+            <p><strong>Missão Espiritual:</strong> Domina a feitiçaria com ervas, poções, banhos e óleos essenciais para desmanchar demandas físicas e espirituais.</p>
           </div>
         </div>
       </div>
