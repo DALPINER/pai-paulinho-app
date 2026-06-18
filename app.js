@@ -500,54 +500,47 @@ function initOracle() {
   const chips    = document.querySelectorAll('.intention-chip');
   const btnAgain = document.getElementById('oracleBtnAgain');
   const card     = document.getElementById('oracleCard');
+  const inner    = document.getElementById('oracleInner');
   const ctaEl    = document.getElementById('oracleCta');
   const resultEl = document.getElementById('oracleResult');
   const footerEl = document.getElementById('oracleFooter');
   const msgEl    = document.getElementById('oracleMsgText');
 
-  if (!chips.length || !card || !msgEl) return;
+  if (!chips.length || !card || !inner || !msgEl) return;
 
   function runOracle(category) {
     const messages = ORACLE_MESSAGES_BY_CATEGORY[category];
     if (!messages || !messages.length) return;
 
-    // Sorteia a mensagem final da categoria correspondente
     const chosen = messages[Math.floor(Math.random() * messages.length)];
 
-    // — Desabilitar todos os chips para evitar cliques múltiplos —
     chips.forEach(btn => btn.disabled = true);
     if (btnAgain) btnAgain.disabled = true;
 
-    // — Dispara a mudança de tema e física do Canvas de partículas —
     if (typeof window.setOracleTheme === 'function') {
       window.setOracleTheme(category);
     }
 
-    // — Ativar animação de brilho e pulso no card —
     card.classList.add('oracle-shining');
-
-    // — Transição suave: esconde os chips, mostra resultado —
-    ctaEl.classList.add('hidden');
-    if (footerEl) footerEl.classList.add('hidden');
+    
+    // Girar o cartão fisicamente para 180 graus (traseira)
+    inner.classList.add('flipped');
     resultEl.classList.remove('hidden');
+    if (footerEl) footerEl.classList.add('hidden');
     msgEl.classList.add('cycling');
 
-    // — Slot Machine / Giro Etéreo: embaralha mensagens com desfoque —
     let cycles  = 0;
     const TOTAL = 22;
 
     function cycle() {
-      // Exibe mensagem aleatória da mesma categoria no giro
       msgEl.textContent = messages[Math.floor(Math.random() * messages.length)];
       cycles++;
 
       if (cycles < TOTAL) {
         const progress = cycles / TOTAL;
-        // Desaceleração exponencial (freio no giro etéreo)
         const delay = 50 + (progress > 0.55 ? Math.pow((progress - 0.55) * 2.2, 2.8) * 380 : 0);
         setTimeout(cycle, delay);
       } else {
-        // — Revelação final com fade-in e desfoque removido —
         card.classList.remove('oracle-shining');
         msgEl.classList.remove('cycling');
         msgEl.textContent = chosen;
@@ -555,45 +548,43 @@ function initOracle() {
 
         setTimeout(() => {
           msgEl.classList.remove('oracle-animate-in');
-
           if (footerEl) {
             footerEl.classList.remove('hidden');
             footerEl.classList.add('oracle-animate-in');
             setTimeout(() => footerEl.classList.remove('oracle-animate-in'), 700);
           }
-
           chips.forEach(btn => btn.disabled = false);
           if (btnAgain) btnAgain.disabled = false;
         }, 650);
       }
     }
 
-    cycle();
+    // Retarda o início do slot machine para o cartão ter tempo de virar
+    setTimeout(cycle, 600);
   }
 
-  // Cliques nos chips de intenção
   chips.forEach(btn => {
     btn.addEventListener('click', () => {
-      const cat = btn.dataset.category;
-      runOracle(cat);
+      runOracle(btn.dataset.category);
     });
   });
 
-  // Reset para nova orientação (retorna ao menu de chips)
+  // Reset para virar o cartão de volta para a frente
   btnAgain?.addEventListener('click', () => {
-    // Retorna as partículas para o estado flutuante padrão
     if (typeof window.setOracleTheme === 'function') {
       window.setOracleTheme('default');
     }
 
-    // Fade out suave do resultado
-    resultEl.classList.add('hidden');
-    msgEl.textContent = '';
+    inner.classList.remove('flipped');
     
-    // Mostra os chips novamente
-    ctaEl.classList.remove('hidden');
-    ctaEl.classList.add('oracle-animate-in');
-    setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
+    // Oculta resultado após virar de volta
+    setTimeout(() => {
+      resultEl.classList.add('hidden');
+      msgEl.textContent = '';
+      ctaEl.classList.remove('hidden');
+      ctaEl.classList.add('oracle-animate-in');
+      setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
+    }, 500); // 500ms é metade do flip, seguro esconder
   });
 }
 
@@ -650,6 +641,27 @@ function initParticles() {
 
   const ctx = canvas.getContext('2d');
   let particles = [];
+  
+  // Física Espacial
+  let gravityX = 0;
+  let gravityY = 0;
+
+  // Acelerômetro (Mobile)
+  window.addEventListener('deviceorientation', (e) => {
+    if (e.gamma !== null && e.beta !== null) {
+      // gamma (esq-dir), beta (frente-trás)
+      gravityX = e.gamma / 40; 
+      gravityY = (e.beta - 45) / 40; 
+    }
+  }, { passive: true });
+
+  // Mouse Parallax (Desktop)
+  window.addEventListener('mousemove', (e) => {
+    const mouseX = (e.clientX / window.innerWidth) * 2 - 1; 
+    const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    gravityX = mouseX * 1.5;
+    gravityY = mouseY * 1.5;
+  }, { passive: true });
 
   function resize() {
     canvas.width  = canvas.offsetWidth;
@@ -662,7 +674,8 @@ function initParticles() {
       this.x       = Math.random() * canvas.width;
       this.y       = initial ? Math.random() * canvas.height : canvas.height + 10;
       this.size    = Math.random() * 1.8 + 0.4;
-      this.speedY  = Math.random() * 0.8 + 0.3;
+      this.baseSpeedY = Math.random() * 0.8 + 0.3;
+      this.speedY  = this.baseSpeedY;
       this.speedX  = (Math.random() - 0.5) * 0.4;
       this.alpha   = Math.random() * 0.7 + 0.2;
       this.life    = 0;
@@ -670,11 +683,26 @@ function initParticles() {
       this.gold    = Math.random() > 0.3;
     }
     update() {
+      // Aplica a gravidade do giroscópio (Vento Magnético)
+      this.speedX += gravityX * 0.03;
+      this.speedY -= gravityY * 0.03;
+
+      // Friction / Drag para não acelerar infinitamente
+      this.speedX *= 0.98;
+      
+      // Retorna gradualmente à velocidade base de subida (para que não desçam muito)
+      this.speedY = this.speedY * 0.95 + this.baseSpeedY * 0.05;
+
       this.x += this.speedX;
       this.y -= this.speedY;
       this.life++;
+      
       if (this.life > this.maxLife * 0.72) this.alpha -= 0.008;
-      if (this.y < -15 || this.alpha <= 0) this.reset();
+      
+      // Reseta se sair da tela muito longe
+      if (this.y < -30 || this.y > canvas.height + 50 || this.x < -50 || this.x > canvas.width + 50 || this.alpha <= 0) {
+        this.reset();
+      }
     }
     draw() {
       ctx.save();
@@ -894,6 +922,10 @@ function initNav() {
     hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     navLinks.classList.add('open');
+    
+    // Spatial Drawer 3D
+    document.body.classList.add('spatial-drawer-open');
+
     // No mobile, bloqueia scroll e expande o header em tela cheia
     if (isMobile()) {
       header?.classList.add('menu-open');
@@ -906,6 +938,9 @@ function initNav() {
     hamburger.setAttribute('aria-expanded', 'false');
     navLinks.classList.remove('open');
     header?.classList.remove('menu-open');
+    
+    // Spatial Drawer 3D
+    document.body.classList.remove('spatial-drawer-open');
     document.body.style.overflow = '';
   }
 
