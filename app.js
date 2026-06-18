@@ -415,70 +415,12 @@ function renderSobreSociais(redes) {
    renderAll — Orquestra todos os renderers com um único dataset
    ================================================================ */
 let _carouselReady = false;
-let _oneSignalInited = false;
-
-function initOneSignal(appId) {
-  if (!appId || _oneSignalInited) return;
-  _oneSignalInited = true;
-  
-  const script = document.createElement('script');
-  script.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
-  script.defer = true;
-  document.head.appendChild(script);
-
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  window.OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: appId,
-      safari_web_id: ""
-    });
-
-    // Injeta o Sino Flutuante Personalizado da Terreira (Aguardando inicialização)
-    const checkPermissionAndInject = () => {
-      if (OneSignal.Notifications && OneSignal.Notifications.permission) return;
-
-      const bell = document.createElement('div');
-      bell.id = "terreira-push-bell";
-      bell.innerHTML = '🔔 Avisos da Casa';
-      bell.style.cssText = 'position:fixed; bottom:20px; left:20px; background:#8b1c1c; color:white; padding:12px 18px; border-radius:30px; font-size:13px; font-weight:bold; cursor:pointer; z-index:999999; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:1px solid #d4af37; transition: transform 0.3s ease, background 0.3s; display:flex; align-items:center; gap:8px; font-family:"Cinzel", serif;';
-      
-      bell.onmouseover = () => bell.style.transform = 'scale(1.05)';
-      bell.onmouseout = () => bell.style.transform = 'scale(1)';
-      bell.onclick = async () => {
-        try {
-          // Na v16, o Slidedown é mais seguro que o Native para forçar a integração em sites novos
-          await OneSignal.Slidedown.promptPush();
-          
-          if (OneSignal.Notifications.permission) {
-             bell.innerHTML = '✨ Inscrito!';
-             bell.style.background = '#2e7d32'; 
-             setTimeout(() => {
-               bell.style.transform = 'scale(0)';
-               setTimeout(() => bell.remove(), 300);
-             }, 2000);
-          } else {
-             alert("A Nuvem do OneSignal disse que você ainda não tem permissão concedida. Se já permitiu no cadeado, atualize a página inteira e tente de novo. (Se continuar: O endereço desse site Netlify está certinho lá na aba 'Settings -> Web Configuration' do painel do OneSignal?)");
-          }
-        } catch (e) {
-          alert("O SDK esbarrou em um muro: " + e.message);
-        }
-      };
-      document.body.appendChild(bell);
-    };
-
-    setTimeout(checkPermissionAndInject, 1500);
-  });
-}
 
 function renderAll(data) {
   renderServicos(data.servicos);
   renderSociais(data.redes_sociais);
   renderSobreSociais(data.redes_sociais);
   setupWhatsAppButtons(data.whatsapp_numero);
-  
-  if (data.onesignal_app_id) {
-    initOneSignal(data.onesignal_app_id);
-  }
 
   // Re-observa elementos recém-criados
   observeRevealElements();

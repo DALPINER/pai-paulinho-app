@@ -2051,57 +2051,7 @@ function applyDynamicData(data) {
     }
   }
 
-  // Acoplagem OneSignal
-  if (data.onesignal_app_id) {
-    if (!window._oneSignalInitedEstudos) {
-      window._oneSignalInitedEstudos = true;
-      const script = document.createElement('script');
-      script.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
-      script.defer = true;
-      document.head.appendChild(script);
 
-      window.OneSignalDeferred = window.OneSignalDeferred || [];
-      window.OneSignalDeferred.push(async function(OneSignal) {
-        await OneSignal.init({
-          appId: data.onesignal_app_id,
-          safari_web_id: ""
-        });
-
-        const checkPermissionAndInject = () => {
-          if (OneSignal.Notifications && OneSignal.Notifications.permission) return;
-
-          const bell = document.createElement('div');
-          bell.id = "terreira-push-bell";
-          bell.innerHTML = '🔔 Avisos da Casa';
-          bell.style.cssText = 'position:fixed; bottom:20px; left:20px; background:#8b1c1c; color:white; padding:12px 18px; border-radius:30px; font-size:13px; font-weight:bold; cursor:pointer; z-index:999999; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:1px solid #d4af37; transition: transform 0.3s ease, background 0.3s; display:flex; align-items:center; gap:8px; font-family:"Cinzel", serif;';
-          
-          bell.onmouseover = () => bell.style.transform = 'scale(1.05)';
-          bell.onmouseout = () => bell.style.transform = 'scale(1)';
-          bell.onclick = async () => {
-            try {
-              await OneSignal.Slidedown.promptPush();
-              
-              if (OneSignal.Notifications.permission) {
-                 bell.innerHTML = '✨ Inscrito!';
-                 bell.style.background = '#2e7d32'; // Verde
-                 setTimeout(() => {
-                   bell.style.transform = 'scale(0)';
-                   setTimeout(() => bell.remove(), 300);
-                 }, 2000);
-              } else {
-                 alert("A Nuvem do OneSignal disse que você ainda não tem permissão concedida. Se já permitiu no cadeado, atualize a página inteira e tente de novo. (Se continuar: O endereço desse site Netlify está certinho lá na aba 'Settings -> Web Configuration' do painel do OneSignal?)");
-              }
-            } catch (e) {
-              alert("O SDK esbarrou em um muro: " + e.message);
-            }
-          };
-          document.body.appendChild(bell);
-        };
-
-        setTimeout(checkPermissionAndInject, 1500);
-      });
-    }
-  }
 }
 
 /* ============================================================
