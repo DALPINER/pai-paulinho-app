@@ -6,7 +6,7 @@
    ============================================================ */
 
 // ⚠️ INCREMENTAR esta versão a cada deploy para forçar atualização
-const CACHE_VERSION = 'v12';
+const CACHE_VERSION = 'v13';
 const CACHE_NAME    = `terreira-paulinho-${CACHE_VERSION}`;
 
 // Recursos pré-cacheados na instalação (shell do app)
