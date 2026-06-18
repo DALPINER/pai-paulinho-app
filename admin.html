@@ -66,6 +66,9 @@
         <button class="sidebar-btn" data-tab="velas">
           <span>🕯️</span> Velas Virtuais
         </button>
+        <button class="sidebar-btn" data-tab="avisos">
+          <span>📣</span> Avisos Gerais
+        </button>
       </nav>
       <div class="sidebar-footer">
         <a href="index.html" target="_blank" class="sidebar-preview-btn">
@@ -135,6 +138,34 @@
       </section>
 
 
+
+      <!-- Tab: Avisos Gerais -->
+      <section class="admin-tab" id="tab-avisos">
+        <div class="tab-header">
+          <h2 class="tab-title">Mural de Avisos (App)</h2>
+          <p class="tab-desc">Escreva aqui o aviso de capa. Todo fiel que entrar no site hoje verá este aviso no centro da tela.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-group">
+            <label for="avisoStatus" class="form-label">Aviso Ativado?</label>
+            <select id="avisoStatus" class="form-input">
+              <option value="false">Não (Ocultar aviso na tela)</option>
+              <option value="true">Sim (Exibir para todos)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="avisoTitulo" class="form-label">Título do Aviso</label>
+            <input type="text" id="avisoTitulo" class="form-input" placeholder="Ex: Gira de Exu Hoje!">
+          </div>
+          <div class="form-group">
+            <label for="avisoMensagem" class="form-label">Mensagem Completa</label>
+            <textarea id="avisoMensagem" class="form-input" rows="4" placeholder="Ex: Hoje às 20h teremos nossa tradicional gira de esquerda. Venha receber seu axé!"></textarea>
+          </div>
+          <button class="btn-save" id="saveAvisoBtn">
+            <span>📢</span> Publicar Aviso no App
+          </button>
+        </div>
+      </section>
 
       <!-- Tab: Velas Virtuais -->
       <section class="admin-tab" id="tab-velas">

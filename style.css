@@ -3512,3 +3512,85 @@ a               { text-decoration: none; color: inherit; }
   .whab-icon  { width: 56px; height: 56px; }
   .whab-pulse { inset: -6px; }
 }
+
+/* ============================================================
+   AVISO IN-APP (SUPABASE MODAL)
+   ============================================================ */
+.inapp-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.inapp-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+.inapp-modal {
+  background: linear-gradient(145deg, #1f0b0b, #0d0303);
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8), inset 0 0 15px rgba(212, 175, 55, 0.1);
+}
+.inapp-overlay.show .inapp-modal {
+  transform: translateY(0) scale(1);
+}
+.inapp-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.inapp-title {
+  font-family: 'Cinzel', serif;
+  color: #f4e7c3;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.inapp-msg {
+  color: #d8c3a5;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+.inapp-btn {
+  background: linear-gradient(90deg, #8b1c1c, #b32424);
+  color: #fff;
+  border: 1px solid #d4af37;
+  padding: 12px 30px;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(139, 28, 28, 0.4);
+  transition: all 0.3s ease;
+}
+.inapp-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}

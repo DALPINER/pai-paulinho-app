@@ -332,6 +332,26 @@ async function initAdminPanel() {
   const data = await loadCurrentData();
   populateForms(data);
 
+  // --- CARREGA AVISO IN-APP DO SUPABASE ---
+  if (supabaseAuth) {
+    try {
+       const { data: aviso, error } = await supabaseAuth
+          .from('avisos_inapp')
+          .select('*')
+          .order('id', { ascending: false })
+          .limit(1)
+          .single();
+          
+       if (aviso) {
+          document.getElementById('avisoStatus').value = aviso.ativo ? "true" : "false";
+          document.getElementById('avisoTitulo').value = aviso.titulo || "";
+          document.getElementById('avisoMensagem').value = aviso.mensagem || "";
+       }
+    } catch(e) {
+       console.log("Aviso In-App vazio ou tabela não criada ainda.");
+    }
+  }
+
   initTabs();
 
   // — Botões Salvar (async) —
@@ -355,6 +375,44 @@ async function initAdminPanel() {
     curr.servicos.push({ id: uid(), nome: '', descricao: '', icone: '🌟' });
     renderServicos(curr.servicos);
     document.querySelector('#servicosList .item-row:last-child [data-field="nome"]')?.focus();
+  });
+
+  // — Salvar Aviso In-App Supabase —
+  document.getElementById('saveAvisoBtn')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    if (!supabaseAuth) {
+      showToast('⚠️ Supabase não configurado no topo do admin.js!', 'error');
+      return;
+    }
+    
+    const ativo = document.getElementById('avisoStatus').value === "true";
+    const titulo = document.getElementById('avisoTitulo').value.trim();
+    const msg = document.getElementById('avisoMensagem').value.trim();
+
+    if (ativo && (!titulo || !msg)) {
+      showToast('Preencha o título e a mensagem para ativar.', 'error');
+      return;
+    }
+
+    const origHTML = btn.innerHTML;
+    btn.innerHTML = '<span>⏳</span> Salvando...';
+    btn.disabled = true;
+
+    try {
+      const { error } = await supabaseAuth.from('avisos_inapp').insert([{
+        ativo: ativo,
+        titulo: titulo,
+        mensagem: msg
+      }]);
+      if (error) throw error;
+      showToast('📢 Aviso atualizado no App com sucesso!', 'success');
+    } catch(err) {
+      console.error(err);
+      showToast('❌ Erro ao salvar aviso na Nuvem. Crie a Tabela.', 'error');
+    } finally {
+      btn.innerHTML = origHTML;
+      btn.disabled = false;
+    }
   });
 
 

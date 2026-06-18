@@ -427,6 +427,62 @@ function renderAll(data) {
 }
 
 /* ================================================================
+   MOTOR IN-APP NOTIFICATIONS (SUPABASE REST API)
+   ================================================================ */
+async function fetchAndShowAvisosInApp() {
+  const SUPABASE_URL = 'https://damdszytfqwgpfghffgo.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbWRzenl0ZnF3Z3BmZ2hmZmdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDI2MTgsImV4cCI6MjA5NjcxODYxOH0.i9Vsih5_OKiUWLYXAeuLZmLVtgTqMB9ZCf6KYLIiphA';
+  
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/avisos_inapp?select=*&order=id.desc&limit=1`, {
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if(!res.ok) return;
+    const data = await res.json();
+    if(data && data.length > 0) {
+      const aviso = data[0];
+      if (aviso.ativo === true) {
+         // Verifica se o usuário já leu esse aviso
+         const lido = localStorage.getItem('aviso_lido_' + aviso.id);
+         if (!lido) {
+            renderAvisoInApp(aviso);
+         }
+      }
+    }
+  } catch(e) {
+    console.log("Sistema de avisos descansando.");
+  }
+}
+
+function renderAvisoInApp(aviso) {
+  const overlay = document.createElement('div');
+  overlay.className = 'inapp-overlay';
+  overlay.innerHTML = `
+    <div class="inapp-modal">
+      <div class="inapp-badge">🔔 Aviso Oficial</div>
+      <h3 class="inapp-title">${aviso.titulo}</h3>
+      <p class="inapp-msg">${aviso.mensagem.replace(/\n/g, '<br>')}</p>
+      <button class="inapp-btn">Entendido</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  
+  // Pequeno delay para a animação CSS pegar
+  setTimeout(() => overlay.classList.add('show'), 800);
+  
+  overlay.querySelector('.inapp-btn').onclick = () => {
+    localStorage.setItem('aviso_lido_' + aviso.id, 'true');
+    overlay.classList.remove('show');
+    setTimeout(() => overlay.remove(), 400); // Tempo da transição
+  };
+}
+
+/* ================================================================
    TASK 1 — ORÁCULO INTERATIVO (GUIADO POR INTENÇÃO)
    ================================================================ */
 function initOracle() {
@@ -1520,6 +1576,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicializa o PWA
   initPWA();
+
+  // Inicializa o Mural de Avisos da Casa (Motor Supabase In-App)
+  fetchAndShowAvisosInApp();
 
   // — Features que não dependem de dados —
   initParticles();
