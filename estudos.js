@@ -2129,32 +2129,36 @@ function initEstudosGSAP() {
 
   const corpoEl = document.getElementById('leituraCorpo');
   if (!corpoEl) return;
+  
+  // Perspectiva espacial profunda na base do artigo
+  gsap.set(corpoEl, { perspective: 2000 });
 
   // Usa setTimeout para garantir que as tags <img> e p estejam rendenizadas no DOM
   setTimeout(() => {
     // 1. Reveal Parallax no Título da Seção
     gsap.fromTo("#leituraTitulo", 
-      { opacity: 0, y: -20, filter: "blur(5px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power2.out" }
+      { opacity: 0, y: -40, z: -200, rotationX: 15, filter: "blur(12px)", scale: 0.9 },
+      { opacity: 1, y: 0, z: 0, rotationX: 0, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "expo.out" }
     );
 
-    // 2. Imagens com Levitation/Scale Fade In
+    // 2. Imagens com Deep Spatial Levitation
     const imgs = corpoEl.querySelectorAll('.artigo-imagem');
     imgs.forEach(img => {
       gsap.fromTo(img,
-        { opacity: 0, scale: 0.95, filter: "blur(10px)", rotationX: -15 },
+        { opacity: 0, scale: 0.85, z: -300, filter: "blur(15px)", rotationX: 25, transformOrigin: "50% 50%" },
         {
           scrollTrigger: {
             trigger: img,
-            start: "top 95%",
-            end: "top 60%",
-            scrub: 1
+            start: "top 110%",
+            end: "top 50%",
+            scrub: 1.5
           },
           opacity: 1,
           scale: 1,
+          z: 0,
           filter: "blur(0px)",
           rotationX: 0,
-          ease: "power2.out"
+          ease: "expo.out"
         }
       );
     });
@@ -2166,18 +2170,20 @@ function initEstudosGSAP() {
       if (el.tagName.toLowerCase() === 'img') return;
 
       gsap.fromTo(el,
-        { opacity: 0, y: 30, filter: "blur(5px)" },
+        { opacity: 0, y: 50, z: -100, rotationX: 10, filter: "blur(8px)" },
         {
           scrollTrigger: {
             trigger: el,
-            start: "top 100%",
-            end: "top 80%",
-            scrub: 0.5
+            start: "top 105%",
+            end: "top 70%",
+            scrub: 1.5
           },
           opacity: 1,
           y: 0,
+          z: 0,
+          rotationX: 0,
           filter: "blur(0px)",
-          ease: "power1.out"
+          ease: "power3.out"
         }
       );
     });

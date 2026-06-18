@@ -1584,7 +1584,7 @@ function initGSAPAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1. Hero Parallax (Scale-Down & Blur)
+  // 1. Hero Parallax Spatial (Scale-Down, Blur & Tilt profundo)
   const heroContent = document.querySelector('.hero-content');
   if (heroContent) {
     gsap.to(heroContent, {
@@ -1592,59 +1592,75 @@ function initGSAPAnimations() {
         trigger: "#hero",
         start: "top top",
         end: "bottom top",
-        scrub: true
+        scrub: 1.5
       },
-      y: 150,
-      scale: 0.85,
-      opacity: 0,
-      filter: "blur(10px)",
-      ease: "none"
+      y: 200,
+      scale: 0.75,
+      rotationX: -15,
+      opacity: -0.2,
+      filter: "blur(18px)",
+      ease: "power2.inOut"
     });
   }
 
-  // 2. 3D Unfold Cartões de Serviço
-  gsap.set(".servicos-grid", { perspective: 1500 });
+  // 2. 3D Unfold de Cartões com Deep Z-Translation e Y-Rotation
+  gsap.set(".servicos-grid", { perspective: 2000 });
   
-  // Usamos requestAnimationFrame ou timeout para garantir que o DOM (renderAll) já formou as tags
   setTimeout(() => {
     const servicos = document.querySelectorAll('.servico-card');
-    servicos.forEach(card => {
+    servicos.forEach((card, index) => {
+      // Cria uma alternância direcional sutil baseada em par/ímpar
+      const rotY = index % 2 === 0 ? -12 : 12;
+
       gsap.fromTo(card, 
-        { rotationX: -45, opacity: 0, y: 100, transformOrigin: "50% 100%", filter: "blur(5px)" },
+        { 
+          rotationX: 25, 
+          rotationY: rotY, 
+          z: -400, 
+          scale: 0.85, 
+          opacity: 0, 
+          y: 120, 
+          transformOrigin: "50% 50%", 
+          filter: "blur(12px)" 
+        },
         {
           scrollTrigger: {
             trigger: card,
-            start: "top 100%",
-            end: "top 60%",
-            scrub: 1
+            start: "top 110%",
+            end: "top 55%",
+            scrub: 2
           },
           rotationX: 0,
+          rotationY: 0,
+          z: 0,
+          scale: 1,
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          ease: "power2.out"
+          ease: "expo.out"
         }
       );
     });
 
-    // 3. Reveal Genérico Blur-on-Scroll
+    // 3. Reveal Genérico Suave e Aprofundado
     const reveals = document.querySelectorAll('.reveal');
     reveals.forEach(el => {
       if (el.classList.contains('servico-card') || el.classList.contains('hero-content')) return;
 
       gsap.fromTo(el,
-        { opacity: 0, y: 50, filter: "blur(8px)" },
+        { opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" },
         {
           scrollTrigger: {
             trigger: el,
             start: "top 95%",
-            end: "top 75%",
-            scrub: 0.5
+            end: "top 70%",
+            scrub: 1.5
           },
           opacity: 1,
           y: 0,
+          scale: 1,
           filter: "blur(0px)",
-          ease: "power1.out"
+          ease: "power3.out"
         }
       );
     });
