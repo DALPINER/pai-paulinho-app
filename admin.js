@@ -243,22 +243,25 @@ async function saveSection(section) {
         if (push.time < new Date()) continue; // pula datas no passado
 
         try {
-          const resp = await fetch('https://api.onesignal.com/notifications', {
+          const resp = await fetch('/.netlify/functions/onesignal', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Basic ${apiKey}`
+              'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              app_id: appId,
-              included_segments: ["Total Subscriptions"],
-              headings: { "en": push.prefix + nome, "pt": push.prefix + nome },
-              contents: { "en": desc, "pt": desc },
-              send_after: push.time.toUTCString()
+              apiKey: apiKey,
+              payload: {
+                app_id: appId,
+                included_segments: ["Total Subscriptions"],
+                headings: { "en": push.prefix + nome, "pt": push.prefix + nome },
+                contents: { "en": desc, "pt": desc },
+                send_after: push.time.toUTCString()
+              }
             })
           });
           if (!resp.ok) sucesso = false;
         } catch (e) {
+          console.error(e);
           sucesso = false;
         }
       }
