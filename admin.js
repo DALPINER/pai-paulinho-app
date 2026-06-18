@@ -193,10 +193,17 @@ async function saveSection(section) {
 
   switch (section) {
 
-    case 'onesignal_keys':
-      updateFields.onesignal_app_id = document.getElementById('osAppId')?.value.trim() || '';
-      updateFields.onesignal_api_key = document.getElementById('osApiKey')?.value.trim() || '';
+    case 'onesignal_keys': {
+      let rawId = document.getElementById('osAppId')?.value.trim() || '';
+      let rawKey = document.getElementById('osApiKey')?.value.trim() || '';
+      // Limpa possível prefixo "Basic " e espaços copiados acidentalmente
+      if (rawKey.toLowerCase().startsWith('basic ')) {
+        rawKey = rawKey.substring(6).trim();
+      }
+      updateFields.onesignal_app_id = rawId;
+      updateFields.onesignal_api_key = rawKey;
       break;
+    }
 
     case 'onesignal_test': {
       const appId = currentData.onesignal_app_id;
