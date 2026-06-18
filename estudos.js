@@ -2079,7 +2079,8 @@ function applyDynamicData(data) {
           bell.onmouseout = () => bell.style.transform = 'scale(1)';
           bell.onclick = async () => {
             try {
-              await OneSignal.Notifications.requestPermission();
+              await OneSignal.Slidedown.promptPush();
+              
               if (OneSignal.Notifications.permission) {
                  bell.innerHTML = '✨ Inscrito!';
                  bell.style.background = '#2e7d32'; // Verde
@@ -2088,10 +2089,10 @@ function applyDynamicData(data) {
                    setTimeout(() => bell.remove(), 300);
                  }, 2000);
               } else {
-                 alert("Ops! O navegador bloqueou o aviso ou a permissão foi negada. Clique no cadeado 🔒 ao lado do link do site, vá em 'Configurações do Site' e Permita as Notificações manualmente!");
+                 alert("A Nuvem do OneSignal disse que você ainda não tem permissão concedida. Se já permitiu no cadeado, atualize a página inteira e tente de novo. (Se continuar: O endereço desse site Netlify está certinho lá na aba 'Settings -> Web Configuration' do painel do OneSignal?)");
               }
             } catch (e) {
-              alert("Aconteceu um erro no motor do sino: " + e.message);
+              alert("O SDK esbarrou em um muro: " + e.message);
             }
           };
           document.body.appendChild(bell);
