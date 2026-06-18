@@ -430,52 +430,35 @@ function initOneSignal(appId) {
   window.OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: appId,
-      safari_web_id: "",
-      promptOptions: {
-        slidedown: {
-          prompts: [{
-            type: "push",
-            autoPrompt: true,
-            text: {
-              actionMessage: "Deseja receber avisos das Giras e Eventos da nossa Casa?",
-              acceptButton: "Sim, avisar!",
-              cancelButton: "Agora não"
-            },
-            delay: {
-              pageViews: 1,
-              timeDelay: 3
-            }
-          }]
-        }
-      },
-      notifyButton: {
-        enable: true,
-        size: 'medium',
-        theme: 'default',
-        position: 'bottom-left',
-        text: {
-            'tip.state.unsubscribed': 'Receber avisos de Giras e Eventos',
-            'tip.state.subscribed': 'Você já recebe nossos avisos',
-            'tip.state.blocked': 'Notificações bloqueadas',
-            'message.prenotify': 'Clique para receber avisos sobre giras e festas',
-            'message.action.subscribed': 'Obrigado por se inscrever!',
-            'message.action.resubscribed': 'Bem-vindo de volta!',
-            'message.action.unsubscribed': 'Inscrição cancelada'
-        },
-        colors: { 
-            'circle.background': '#8b1c1c', 
-            'circle.foreground': 'white', 
-            'badge.background': '#8b1c1c', 
-            'badge.foreground': 'white', 
-            'badge.bordercolor': 'white', 
-            'pulse.color': '#8b1c1c', 
-            'dialog.button.background.hovering': '#b02828', 
-            'dialog.button.background.active': '#b02828', 
-            'dialog.button.background': '#8b1c1c', 
-            'dialog.button.foreground': 'white' 
-        }
-      },
+      safari_web_id: ""
     });
+
+    // Injeta o Sino Flutuante Personalizado da Terreira (Aguardando inicialização)
+    const checkPermissionAndInject = () => {
+      if (OneSignal.Notifications && OneSignal.Notifications.permission) return;
+
+      const bell = document.createElement('div');
+      bell.id = "terreira-push-bell";
+      bell.innerHTML = '🔔 Avisos da Casa';
+      bell.style.cssText = 'position:fixed; bottom:20px; left:20px; background:#8b1c1c; color:white; padding:12px 18px; border-radius:30px; font-size:13px; font-weight:bold; cursor:pointer; z-index:999999; box-shadow:0 4px 15px rgba(0,0,0,0.5); border:1px solid #d4af37; transition: transform 0.3s ease, background 0.3s; display:flex; align-items:center; gap:8px; font-family:"Cinzel", serif;';
+      
+      bell.onmouseover = () => bell.style.transform = 'scale(1.05)';
+      bell.onmouseout = () => bell.style.transform = 'scale(1)';
+      bell.onclick = async () => {
+        await OneSignal.Notifications.requestPermission();
+        if (OneSignal.Notifications.permission) {
+           bell.innerHTML = '✨ Inscrito!';
+           bell.style.background = '#2e7d32'; // Verde
+           setTimeout(() => {
+             bell.style.transform = 'scale(0)';
+             setTimeout(() => bell.remove(), 300);
+           }, 2000);
+        }
+      };
+      document.body.appendChild(bell);
+    };
+
+    setTimeout(checkPermissionAndInject, 1500);
   });
 }
 
