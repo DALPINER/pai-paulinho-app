@@ -2065,6 +2065,23 @@ function applyDynamicData(data) {
         await OneSignal.init({
           appId: data.onesignal_app_id,
           safari_web_id: "",
+          promptOptions: {
+            slidedown: {
+              prompts: [{
+                type: "push",
+                autoPrompt: true,
+                text: {
+                  actionMessage: "Deseja receber avisos das Giras e Eventos da nossa Casa?",
+                  acceptButton: "Sim, avisar!",
+                  cancelButton: "Agora não"
+                },
+                delay: {
+                  pageViews: 1,
+                  timeDelay: 3
+                }
+              }]
+            }
+          },
           notifyButton: {
             enable: true,
             size: 'medium',
