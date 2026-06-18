@@ -1758,6 +1758,17 @@ function initStudyPlatform() {
       // Aplica animações de scroll aos elementos do artigo
       initTopicRevealAnimations();
 
+      // Motor 3D Físico nos cartões recém-carregados
+      if (typeof VanillaTilt !== "undefined") {
+        VanillaTilt.init(corpoEl.querySelectorAll(".cartas-entidade, .oracle-card"), {
+          max: 12,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.35,
+          scale: 1.02,
+        });
+      }
+
       // Rola a tela para o topo da área de leitura
       if (scroll) {
         const offset = window.innerWidth <= 992 ? 140 : 100;

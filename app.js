@@ -424,6 +424,17 @@ function renderAll(data) {
 
   // Re-observa elementos recém-criados
   observeRevealElements();
+
+  // Acopla a Física 3D Magnética aos Cartões de Serviço
+  if (typeof VanillaTilt !== "undefined") {
+    VanillaTilt.init(document.querySelectorAll(".servico-card"), {
+      max: 12,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.4,
+      scale: 1.02,
+    });
+  }
 }
 
 /* ================================================================

@@ -112,7 +112,7 @@
   <section id="hero">
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content">
-      <div class="hero-emblem" aria-hidden="true">
+      <div class="hero-emblem levitate" aria-hidden="true">
         <div class="hero-emblem-ring"></div>
         <img src="assets/pai_paulinho_portal.png" alt="Pai Paulinho" class="hero-emblem-img">
       </div>
@@ -355,7 +355,7 @@
         <canvas id="oracleCanvas" class="oracle-canvas"></canvas>
 
         <!-- Velas — animação de brilho durante a consulta -->
-        <div class="mensagem-candles oracle-candles" id="oracleCandles" aria-hidden="true">
+        <div class="mensagem-candles oracle-candles levitate" id="oracleCandles" aria-hidden="true">
           <span class="candle">🕯️</span>
           <span class="candle">🕯️</span>
           <span class="candle">🕯️</span>
@@ -399,7 +399,7 @@
           </div>
         </div>
 
-        <div class="mensagem-flores" aria-hidden="true">🌺 ✨ 🌺</div>
+        <div class="mensagem-flores levitate" aria-hidden="true">🌺 ✨ 🌺</div>
       </div>
     </div>
   </section>
@@ -550,6 +550,9 @@
     </div>
     <span class="whab-label">Falar com Pai Paulinho</span>
   </div>
+
+  <!-- Motor Físico de Gravidade 3D (VanillaTilt) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <!-- Firebase Removido -->
   <script src="app.js"></script>
