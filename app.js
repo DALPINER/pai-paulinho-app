@@ -44,12 +44,6 @@ const ORACLE_MESSAGES_BY_CATEGORY = {
    DADOS PADRÃO (fallback se Firestore não estiver configurado)
    ================================================================ */
 const DEFAULT_DATA = {
-  sobre_pai_paulinho: `Com mais de 30 anos de caminhada dedicada à espiritualidade e ao acolhimento humano, Sacerdote Paulo Silveira Gandor é um orientador espiritual consagrado nas tradições de Umbanda e Candomblé. Sob a regência de Xangô Aganjú — o orixá da justiça, do equilíbrio e da sabedoria —, Paulo conduz seus atendimentos com profundo amor, ética e respeito pela ancestralidade.
-
-Sua missão é estender a mão e ser um ponto de paz e conforto na vida de quem busca auxílio. Seja para encontrar clareza nos caminhos profissionais, proteção para a família ou simplesmente um ouvido amigo e uma palavra de luz nos momentos de incerteza, cada atendimento é realizado com acolhimento e total sigilo.
-
-"Minha missão é trazer clareza e paz para o seu coração. Aqui você encontra escuta sincera, acolhimento e a força dos orixás iluminando sua vida."`,
-
   servicos: [
     { id: '1', nome: 'Consulta Espiritual',  descricao: 'Um momento de escuta atenta, respeito e direcionamento espiritual para acalmar seu coração e trazer clareza para suas decisões de vida.', icone: '🔮' },
     { id: '2', nome: 'Jogo de Búzios',       descricao: 'Leitura acolhedora e precisa dos búzios para encontrar respostas claras e iluminar as áreas da sua jornada que parecem travadas.', icone: '🐚' },
@@ -423,7 +417,6 @@ function renderSobreSociais(redes) {
 let _carouselReady = false;
 
 function renderAll(data) {
-  renderSobre(data.sobre_pai_paulinho);
   renderServicos(data.servicos);
   renderSociais(data.redes_sociais);
   renderSobreSociais(data.redes_sociais);

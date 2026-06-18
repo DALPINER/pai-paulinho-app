@@ -57,15 +57,8 @@
         </div>
       </div>
       <nav class="sidebar-nav">
-        <button class="sidebar-btn active" data-tab="sobre">
-          <span>👤</span> Sobre
-        </button>
-        <button class="sidebar-btn" data-tab="servicos">
+        <button class="sidebar-btn active" data-tab="servicos">
           <span>🔮</span> Serviços
-        </button>
-
-        <button class="sidebar-btn" data-tab="mensagem">
-          <span>🙏</span> Mensagem Espiritual
         </button>
         <button class="sidebar-btn" data-tab="contato">
           <span>📱</span> Contato & Redes
@@ -90,26 +83,8 @@
       <!-- Toast notification -->
       <div class="toast" id="adminToast" role="status" aria-live="polite"></div>
 
-      <!-- Tab: Sobre -->
-      <section class="admin-tab active" id="tab-sobre">
-        <div class="tab-header">
-          <h2 class="tab-title">Sobre Pai Paulinho</h2>
-          <p class="tab-desc">Este texto aparece na seção "Sobre" do site.</p>
-        </div>
-        <div class="form-card">
-          <div class="form-group">
-            <label for="sobreTexto" class="form-label">Texto (separe parágrafos com uma linha em branco)</label>
-            <textarea id="sobreTexto" class="form-textarea" rows="10"
-              placeholder="Escreva a história e missão de Pai Paulinho..."></textarea>
-          </div>
-          <button class="btn-save" data-section="sobre">
-            <span>💾</span> Salvar Sobre
-          </button>
-        </div>
-      </section>
-
       <!-- Tab: Serviços -->
-      <section class="admin-tab" id="tab-servicos">
+      <section class="admin-tab active" id="tab-servicos">
         <div class="tab-header">
           <h2 class="tab-title">Serviços Espirituais</h2>
           <p class="tab-desc">Gerencie os serviços exibidos no site.</p>
@@ -121,25 +96,6 @@
           </button>
           <button class="btn-save" data-section="servicos">
             <span>💾</span> Salvar Serviços
-          </button>
-        </div>
-      </section>
-
-
-      <!-- Tab: Mensagem Espiritual -->
-      <section class="admin-tab" id="tab-mensagem">
-        <div class="tab-header">
-          <h2 class="tab-title">Mensagem Espiritual do Dia</h2>
-          <p class="tab-desc">Esta mensagem aparece na seção de destaque espiritual do site.</p>
-        </div>
-        <div class="form-card">
-          <div class="form-group">
-            <label for="mensagemDia" class="form-label">Mensagem / Oração do Dia</label>
-            <textarea id="mensagemDia" class="form-textarea" rows="5"
-              placeholder="Escreva a mensagem espiritual do dia..."></textarea>
-          </div>
-          <button class="btn-save" data-section="mensagem">
-            <span>💾</span> Salvar Mensagem
           </button>
         </div>
       </section>

@@ -192,12 +192,7 @@ async function saveSection(section) {
   let updateFields = {};
 
   switch (section) {
-    case 'sobre': {
-      const val = document.getElementById('sobreTexto')?.value.trim();
-      if (!val) { showToast('O texto não pode estar vazio.', 'error'); return; }
-      updateFields.sobre_pai_paulinho = val;
-      break;
-    }
+
     case 'servicos': {
       const servs = collectServicos();
       if (!servs.length) { showToast('Adicione pelo menos um serviço.', 'error'); return; }
@@ -205,12 +200,7 @@ async function saveSection(section) {
       break;
     }
 
-    case 'mensagem': {
-      const val = document.getElementById('mensagemDia')?.value.trim();
-      if (!val) { showToast('A mensagem não pode estar vazia.', 'error'); return; }
-      updateFields.mensagem_espiritual_do_dia = val;
-      break;
-    }
+
     case 'contato':
       updateFields.whatsapp_numero = document.getElementById('whatsappNumero')?.value.trim() || '';
       updateFields.redes_sociais = {
@@ -293,12 +283,6 @@ function collectServicos() {
    POPULATE FORMS — Preenche o formulário com os dados carregados
    ================================================================ */
 function populateForms(data) {
-  const sobreTexto = document.getElementById('sobreTexto');
-  if (sobreTexto) sobreTexto.value = data.sobre_pai_paulinho || '';
-
-  const mensagemDia = document.getElementById('mensagemDia');
-  if (mensagemDia) mensagemDia.value = data.mensagem_espiritual_do_dia || '';
-
   const wpp = document.getElementById('whatsappNumero');
   if (wpp) wpp.value = data.whatsapp_numero || '';
 
