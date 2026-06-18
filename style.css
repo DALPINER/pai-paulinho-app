@@ -3683,7 +3683,7 @@ body.spatial-drawer-open {
   transform-origin: 50% 50%;
   background: var(--bg-body);
   will-change: transform, filter, border-radius;
-  overflow: hidden; /* Corta vazamentos no scale */
+  /* overflow: hidden foi removido para não quebrar a perspectiva 3D do Oráculo */
 }
 
 body.spatial-drawer-open .page-wrapper {
