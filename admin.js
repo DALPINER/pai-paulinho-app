@@ -198,6 +198,39 @@ async function saveSection(section) {
       updateFields.onesignal_api_key = document.getElementById('osApiKey')?.value.trim() || '';
       break;
 
+    case 'onesignal_test': {
+      const appId = currentData.onesignal_app_id;
+      const apiKey = currentData.onesignal_api_key;
+      if (!appId || !apiKey) { showToast('Salve as chaves primeiro.', 'error'); return; }
+      
+      showToast('⏳ Disparando Teste de Conexão (Imediato)...', 'success');
+      try {
+          const resp = await fetch('/.netlify/functions/onesignal', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              apiKey: apiKey,
+              payload: {
+                app_id: appId,
+                included_segments: ["Total Subscriptions"],
+                headings: { "pt": "🟢 Pai Paulinho: Teste Sucesso" },
+                contents: { "pt": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!" }
+              }
+            })
+          });
+          const resJson = await resp.json();
+          if (resp.ok && !resJson.errors) {
+             showToast('✅ Teste disparado! Ele já deve estar na tela do seu celular ou no Delivery.', 'success');
+          } else {
+             console.error("Erro da OneSignal:", resJson);
+             showToast('⚠️ O OneSignal recusou o envio: Verifique suas chaves.', 'error');
+          }
+      } catch (e) {
+          showToast('❌ Falha crítica ao contatar o backend Netlify. Olhe o F12.', 'error');
+      }
+      return;
+    }
+
     case 'eventos': {
       const nome = document.getElementById('eventoNome')?.value.trim();
       const desc = document.getElementById('eventoDescricao')?.value.trim();
@@ -228,8 +261,14 @@ async function saveSection(section) {
       d3.setDate(d3.getDate() - 3);
       d3.setHours(8, 0, 0, 0);
 
-      const d0 = new Date(targetDate);
+      let d0 = new Date(targetDate);
       d0.setHours(8, 0, 0, 0);
+      
+      // Se o evento é hoje, mas já passou das 08:00h da manhã, agenda pra daqui a 1 minuto pra não ser ignorado
+      if (d0 < new Date() && dt.split('T')[0] === new Date().toISOString().split('T')[0]) {
+         d0 = new Date();
+         d0.setMinutes(d0.getMinutes() + 1);
+      }
 
       const msgs = [
         { time: d7, prefix: 'Faltam 7 Dias: ' },
@@ -259,7 +298,8 @@ async function saveSection(section) {
               }
             })
           });
-          if (!resp.ok) sucesso = false;
+          const resJson = await resp.json();
+          if (!resp.ok || resJson.errors) sucesso = false;
         } catch (e) {
           console.error(e);
           sucesso = false;
