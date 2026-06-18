@@ -1689,8 +1689,8 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================ */
 function initMobileMenu() {
   const header = document.getElementById('siteHeader');
-  const navHamburger = document.getElementById('navHamburger');
-  const navLinks = document.getElementById('navLinks');
+  const navHamburger = document.getElementById('estudosHamburger');
+  const navLinks = document.getElementById('estudosNavLinks');
 
   if (!navHamburger || !navLinks) return;
 
