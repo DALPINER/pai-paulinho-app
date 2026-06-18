@@ -369,3 +369,23 @@
 ### 🚀 Próximo Passo
 - Aguardando novas instruções do usuário para evolução do projeto.
 
+---
+
+## 📅 2026-06-18 — Fase E (Integração) — Otimização Final, Limpeza de Bugs e Reversão do Oráculo
+
+### ✅ O que foi feito
+- **Limpeza Profunda:** Remoção integral de features experimentais (WebGL Liquid Shaders, Three.js Gyroscope, Web Audio 8D ASMR) e seus Canvas/Scripts para retornar o site a uma estrutura levíssima e à prova de falhas em dispositivos móveis e browsers lentos.
+- **Isolamento de Stacking Context:** O cabeçalho e a seta "Voltar ao Topo" foram colocados fora do `.page-wrapper` do *Spatial Drawer*, sanando o afundamento indevido.
+- **Manutenção de Layout (Página de Estudos):** Removido o `.page-wrapper` do `estudos.html`. Como a página possui CSS Grid Master-Detail com "Sumário Sticky", a estrutura 3D quebrava o Sumário no final da página. A página foi limpa para uma leitura imersiva perfeita.
+- **Restauração do Oráculo:** O comando "Undo" executado pelo usuário no ambiente local apagou o CSS base do Oráculo. Extraímos o código CSS histórico do repositório Git e reinjetamos as classes de base. Removemos todo o mecanismo de rotação 3D (`Flip 180`). Agora o Oráculo atua de forma nativa e clássica (2D limpo), como a versão base que funcionava de forma impecável, e todo CSS/HTML encontra-se novamente unificado.
+- **Purgatório de Cache:** Implementação de versionamento (ex: `app.js?v=5`) para quebrar o bloqueio persistente do cache zumbi do Service Worker, garantindo a extinção do bug de "Áudio Fantasma".
+
+### ❌ Erros encontrados
+- Conflitos locais de versionamento ("Undo changes up to this point") que desincronizaram o HTML e CSS, o que corrompeu visualmente o Oráculo até a restauração feita pelo agente.
+
+### 🧪 Testes
+- Código HTML/JS reescrito para padrão flat, estrutura DOM purificada de lixo 3D, rodando 100% de forma estável.
+
+### 🚀 Próximo Passo
+- Memória Arquitetural salva. Repouso do Piloto e aguardando ativação ("amanhã") para a próxima fase.
+

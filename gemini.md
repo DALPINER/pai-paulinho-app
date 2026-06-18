@@ -129,3 +129,4 @@
 | 2026-06-04 | Fase A | JSON Data Schema definido — Blueprint criado para aprovação |
 | 2026-06-08 | Fase E | Melhorias UI/UX místicas avançadas (Lightbox, Vórtice de Partículas, Border Beam, Shimmer, Redes Animadas e Correção Estrutural de Viewport do Menu Mobile) |
 | 2026-06-11 | Fase E | Refatoração absoluta da Engenharia de Relatórios (PDF). Abandono de canvas bugados em favor de 'Página de Impressão Nativa' via transferência de memória offline (`localStorage`). Fim dos bugs de corte e fim dos bugs de conexão do banco de dados no mobile. |
+| 2026-06-18 | Fase E | Fix & Otimização Final | Expurgo de testes 4D pesados (WebGL, Audio 8D, SVG Shaders) para blindar a performance. Correção de Stacking Context no Spatial Drawer isolando o Header. Remoção de conflitos CSS no Layout Master-Detail de Estudos. Reversão do Oráculo ao estado 2D Físico Perfeito via ocultação de divs, abolindo o Z-Depth e o CSS 3D-Flip. Código purificado de bugs. |
