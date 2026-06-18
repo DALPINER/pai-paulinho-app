@@ -212,6 +212,7 @@ async function saveSection(section) {
               apiKey: apiKey,
               payload: {
                 app_id: appId,
+                target_channel: "push",
                 included_segments: ["Total Subscriptions"],
                 headings: { "en": "🟢 Pai Paulinho: Teste Sucesso", "pt": "🟢 Pai Paulinho: Teste Sucesso" },
                 contents: { "en": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!", "pt": "Se você recebeu isso, a máquina da Nuvem está conectada e operante!" }
@@ -223,10 +224,13 @@ async function saveSection(section) {
              showToast('✅ Teste disparado! Ele já deve estar na tela do seu celular ou no Delivery.', 'success');
           } else {
              console.error("Erro da OneSignal:", resJson);
-             showToast('⚠️ O OneSignal recusou o envio: Verifique suas chaves.', 'error');
+             const erroFormatado = resJson.errors ? JSON.stringify(resJson.errors) : JSON.stringify(resJson);
+             alert('A Nuvem recusou o envio! Erro exato: ' + erroFormatado);
+             showToast('⚠️ O OneSignal recusou o envio.', 'error');
           }
       } catch (e) {
-          showToast('❌ Falha crítica ao contatar o backend Netlify. Olhe o F12.', 'error');
+          alert('Falha ao acionar a Netlify Function. Detalhes: ' + e.message);
+          showToast('❌ Falha crítica ao contatar o backend.', 'error');
       }
       return;
     }
@@ -291,6 +295,7 @@ async function saveSection(section) {
               apiKey: apiKey,
               payload: {
                 app_id: appId,
+                target_channel: "push",
                 included_segments: ["Total Subscriptions"],
                 headings: { "en": push.prefix + nome, "pt": push.prefix + nome },
                 contents: { "en": desc, "pt": desc },
@@ -299,9 +304,13 @@ async function saveSection(section) {
             })
           });
           const resJson = await resp.json();
-          if (!resp.ok || resJson.errors) sucesso = false;
+          if (!resp.ok || resJson.errors) {
+             const erroFormatado = resJson.errors ? JSON.stringify(resJson.errors) : JSON.stringify(resJson);
+             alert('Um pacote da Nuvem falhou! Erro: ' + erroFormatado);
+             sucesso = false;
+          }
         } catch (e) {
-          console.error(e);
+          alert('Falha ao agendar na Nuvem. Detalhes: ' + e.message);
           sucesso = false;
         }
       }
