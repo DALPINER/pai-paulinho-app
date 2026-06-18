@@ -2078,14 +2078,20 @@ function applyDynamicData(data) {
           bell.onmouseover = () => bell.style.transform = 'scale(1.05)';
           bell.onmouseout = () => bell.style.transform = 'scale(1)';
           bell.onclick = async () => {
-            await OneSignal.Notifications.requestPermission();
-            if (OneSignal.Notifications.permission) {
-               bell.innerHTML = '✨ Inscrito!';
-               bell.style.background = '#2e7d32'; // Verde
-               setTimeout(() => {
-                 bell.style.transform = 'scale(0)';
-                 setTimeout(() => bell.remove(), 300);
-               }, 2000);
+            try {
+              await OneSignal.Notifications.requestPermission();
+              if (OneSignal.Notifications.permission) {
+                 bell.innerHTML = '✨ Inscrito!';
+                 bell.style.background = '#2e7d32'; // Verde
+                 setTimeout(() => {
+                   bell.style.transform = 'scale(0)';
+                   setTimeout(() => bell.remove(), 300);
+                 }, 2000);
+              } else {
+                 alert("Ops! O navegador bloqueou o aviso ou a permissão foi negada. Clique no cadeado 🔒 ao lado do link do site, vá em 'Configurações do Site' e Permita as Notificações manualmente!");
+              }
+            } catch (e) {
+              alert("Aconteceu um erro no motor do sino: " + e.message);
             }
           };
           document.body.appendChild(bell);
