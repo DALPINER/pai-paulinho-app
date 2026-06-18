@@ -639,3 +639,122 @@
     font-size: 1.5rem;
   }
 }
+
+/* ============================================================
+   MÓDULO 5: O TRABALHO PRÁTICO DA ESQUERDA (CARDS E BUSCA)
+   ============================================================ */
+
+/* Container da Barra de Busca */
+.esquerda-search-container {
+  position: relative;
+  max-width: 100%;
+  margin: 1rem 0 3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.esquerda-search-icon {
+  position: absolute;
+  left: 1.2rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.esquerda-search-input {
+  width: 100%;
+  padding: 1.2rem 1.5rem 1.2rem 3rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  background: rgba(252, 250, 248, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(166, 93, 55, 0.2);
+  border-radius: var(--radius-lg);
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.esquerda-search-input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.esquerda-search-input:focus {
+  border-color: #B85D19;
+  box-shadow: 0 0 15px rgba(184, 93, 25, 0.15), inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  background: rgba(252, 250, 248, 0.9);
+}
+
+/* Esquerda Grid (Para alinhar os Cards) */
+.esquerda-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  perspective: 1000px;
+}
+
+@media (min-width: 768px) {
+  .esquerda-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Estilo do Card de Entidade (3D Tilt) */
+.cartas-entidade {
+  background: rgba(252, 250, 248, 0.85);
+  border: 1px solid rgba(166, 93, 55, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(166, 93, 55, 0.06);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, opacity 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.cartas-entidade.hidden-card {
+  display: none !important;
+}
+
+.cartas-entidade:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(166, 93, 55, 0.12);
+  border-color: rgba(184, 93, 25, 0.4);
+}
+
+.entidade-header {
+  border-bottom: 1px dashed rgba(166, 93, 55, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.entidade-nome {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--wine);
+  margin-bottom: 0.3rem;
+}
+
+.entidade-dominio {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #B85D19;
+}
+
+.entidade-corpo p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.entidade-corpo p strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}

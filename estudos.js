@@ -1418,6 +1418,11 @@ function initStudyPlatform() {
         renderDicionarioInterno();
       }
 
+      // Se for um tópico da Esquerda, inicializa o Live Search
+      if (topicoId.startsWith('esquerda-')) {
+        initBuscaEsquerda();
+      }
+
       // Remove fade-out (inicia fade-in suave)
       palcoWrap.classList.remove('fade-out');
 
@@ -1502,6 +1507,26 @@ function initStudyPlatform() {
     });
   }
 
+  // --- Função para ativar o Live Search da Esquerda ---
+  function initBuscaEsquerda() {
+    const input = document.getElementById('buscaEsquerda');
+    if (!input) return;
+
+    input.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const cards = corpoEl.querySelectorAll('.cartas-entidade');
+
+      cards.forEach(card => {
+        const content = card.textContent.toLowerCase();
+        if (content.includes(term)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    });
+  }
+
   // Adiciona a rota do dicionário no banco de dados para unificação
   ESTUDOS_DB['capitulobonus'] = {
     modulo: 'Módulo 4: Rituais e Práticas',
@@ -1511,6 +1536,269 @@ function initStudyPlatform() {
     legenda: 'Preservando as palavras sagradas que dão voz ao nosso axé.',
     prompt: 'Cinematic 4K photography, ancient sacred book on table, light rays shining on pages, temple background, warm acolhedor lighting, spiritual glow.',
     htmlCorpo: '' // Montado programaticamente acima
+  };
+
+  // ============================================================
+  // --- Módulo 5: O Trabalho Prático da Esquerda ---
+  // ============================================================
+
+  const searchBarHTML = `
+    <div class="esquerda-search-container">
+      <span class="esquerda-search-icon">🔍</span>
+      <input type="text" id="buscaEsquerda" class="esquerda-search-input" placeholder="Procure por um Guardião, domínio ou nome...">
+    </div>
+  `;
+
+  ESTUDOS_DB['esquerda-encruzilhada'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento 1',
+    titulo: 'O Povo da Encruzilhada e dos Cruzeiros',
+    imagem: '',
+    legenda: 'Os Caminhos, as Decisões e a Lei do Retorno',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">O Povo da Encruzilhada e dos Cruzeiros representa a força das decisões, a abertura de caminhos e a execução da Lei Maior no plano físico. Eles são os senhores do movimento cósmico e material, guardiões que trancam a maldade e destrancam a evolução.</p>
+      <div class="esquerda-grid" id="esquerdaGrid">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Tranca Ruas</h3>
+            <span class="entidade-dominio">Senhor dos Caminhos</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Guardião absoluto, cavaleiro imponente de capa preta e vermelha. Trabalha como a primeira linha de defesa energética.</p>
+            <p><strong>Ponto de Força:</strong> As encruzilhadas (abertas e fechadas).</p>
+            <p><strong>Missão Espiritual:</strong> Trancar a maldade e as feitiçarias inimigas, destrancando simultaneamente os caminhos travados de quem sofre injustiças.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Tiriri</h3>
+            <span class="entidade-dominio">Senhor da Vidência</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Intenso, direto e observador. Conhecido pelo seu sorriso marcante e olhar profundo, não esconde o que vê.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas de terra e praças.</p>
+            <p><strong>Missão Espiritual:</strong> Traz a verdade à tona. Trabalha na quebra drástica de feitiços e aplica a justiça de forma muito rápida.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Marabô</h3>
+            <span class="entidade-dominio">Lorde dos Contratos</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Extremamente elegante, polido, de modos aristocráticos. O verdadeiro lorde das encruzilhadas.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas próximas aos trilhos de trem e comércio.</p>
+            <p><strong>Missão Espiritual:</strong> Senhor da palavra, atua resolvendo embates judiciais, abrindo negócios e fechando contratos irrompíveis.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Veludo</h3>
+            <span class="entidade-dominio">Mestre da Alta Magia</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Feições finas, comportamento reservado e sofisticado. Trabalhador profundo da alquimia.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas em formato de "X" e locais luxuosos.</p>
+            <p><strong>Missão Espiritual:</strong> Especialista no corte de feitiçarias antigas, protege contra magias mentais e atrai o luxo e a estabilidade.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Sete Encruzilhadas</h3>
+            <span class="entidade-dominio">Comandante Centralizador</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Um rei coroado da Esquerda, possui uma visão 360 graus de tudo o que ocorre nos planos físicos.</p>
+            <p><strong>Ponto de Força:</strong> O centro absoluto das encruzilhadas (o ponto onde os caminhos se encontram).</p>
+            <p><strong>Missão Espiritual:</strong> Gerencia e distribui a energia entre todas as outras falanges. Onde ele pisa, todas as encruzilhadas se abrem.</p>
+          </div>
+        </div>
+      </div>
+    `
+  };
+
+  ESTUDOS_DB['esquerda-calunga'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento 2',
+    titulo: 'O Povo da Calunga e das Almas',
+    imagem: '',
+    legenda: 'A Transformação, o Fim dos Ciclos e o Sagrado Oculto',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">A Calunga (o cemitério) e as Almas representam os mistérios da morte e do renascimento. Não é um plano de medo, mas de profunda transmutação. Este povo corta o que está podre e cede espaço para o novo germinar, sendo exímios desobsessores e guardiões da ancestralidade.</p>
+      <div class="esquerda-grid" id="esquerdaGrid">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Caveira</h3>
+            <span class="entidade-dominio">Senhor dos Mistérios da Calunga</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Sério, direto, não faz rodeios. Costuma se apresentar com vestes pretas ou roxas e carrega a força da terra.</p>
+            <p><strong>Ponto de Força:</strong> A cruz mestra dos cemitérios (cruzeiro das almas).</p>
+            <p><strong>Missão Espiritual:</strong> Trabalha na transmutação da dor, na desobsessão de espíritos densos e no ensino do desapego.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu João Caveira</h3>
+            <span class="entidade-dominio">Porteiro da Calunga</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Mais expansivo que os outros Caveiras, atua como o guardião dos portões de passagem.</p>
+            <p><strong>Ponto de Força:</strong> A porteira do cemitério.</p>
+            <p><strong>Missão Espiritual:</strong> Impede que espíritos sofredores e obsessores atinjam os encarnados e cuida da passagem de quem desencarnou.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Maria Padilha</h3>
+            <span class="entidade-dominio">Rainha do Fogo e da Calunga</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Mulher de força incomensurável, rainha, majestosa. Dona de si e do fogo da vitalidade.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas em T e o cruzeiro da Calunga.</p>
+            <p><strong>Missão Espiritual:</strong> Quebra amarrações, devolve a autoestima e o amor-próprio, além de ser uma implacável justiceira.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Maria Mulambo</h3>
+            <span class="entidade-dominio">Senhora da Transmutação</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Doce, mas firme. Abandonou a realeza para ajudar os sofredores. Trabalha na humildade.</p>
+            <p><strong>Ponto de Força:</strong> Lixeiras próximas a encruzilhadas ou cemitérios.</p>
+            <p><strong>Missão Espiritual:</strong> Transmuta o lixo emocional, varre a depressão e a angústia da vida do consulente.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Rosa Caveira</h3>
+            <span class="entidade-dominio">Guerreira das Almas</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Feiticeira habilidosa, empunha armas de corte. Uma Pombagira de firmeza inabalável.</p>
+            <p><strong>Ponto de Força:</strong> Cruzeiro das almas e portões de cemitério.</p>
+            <p><strong>Missão Espiritual:</strong> Excelente para cortar magias destrutivas e lidar com problemas graves de saúde espiritual.</p>
+          </div>
+        </div>
+      </div>
+    `
+  };
+
+  ESTUDOS_DB['esquerda-lira'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento 3',
+    titulo: 'O Povo da Lira, Ciganos e Oriente',
+    imagem: '',
+    legenda: 'A Arte, o Ouro, o Encanto e o Movimento',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">A Lira é o reino da prosperidade, da dança, das artes e do comércio fluídico. O Povo do Oriente e os Ciganos que trabalham na linha de Esquerda trazem o encanto, o poder de sedução (em todos os níveis, não apenas romântico) e a movimentação do dinheiro e da alegria de viver.</p>
+      <div class="esquerda-grid" id="esquerdaGrid">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Pombagira Cigana</h3>
+            <span class="entidade-dominio">Senhora da Roda da Fortuna</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Alegre, envolvente, sempre em movimento, adornada de ouros, moedas e cores vivas.</p>
+            <p><strong>Ponto de Força:</strong> Praças, feiras livres e campos abertos.</p>
+            <p><strong>Missão Espiritual:</strong> Atrai oportunidades de negócios, abre os caminhos do amor e gira a roda da prosperidade a favor do consulente.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Sete Saias</h3>
+            <span class="entidade-dominio">Gira-Mundo e Feiticeira</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Rodopia com suas saias coloridas, misturando os ventos da mudança. É leve, mas profundamente feiticeira.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas campestres.</p>
+            <p><strong>Missão Espiritual:</strong> Desembaraça as coisas que estão estagnadas, acelerando processos parados (trabalho, documentos, amores).</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Dama da Noite</h3>
+            <span class="entidade-dominio">Rainha dos Mistérios Ocultos</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Fascinante, profunda e envolta nas energias lunares. Conhece os segredos das sombras.</p>
+            <p><strong>Ponto de Força:</strong> Jardins noturnos e cabarés.</p>
+            <p><strong>Missão Espiritual:</strong> Trabalha intensamente os traumas profundos e o campo afetivo de maneira a revelar a verdade.</p>
+          </div>
+        </div>
+      </div>
+    `
+  };
+
+  ESTUDOS_DB['esquerda-malandros'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento 4',
+    titulo: 'A Linha dos Malandros',
+    imagem: '',
+    legenda: 'A Malandragem Sagrada, o Jogo de Cintura e a Cura',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">A Malandragem não significa marginalidade. O Malandro espiritual é o arquétipo do sobrevivente, daquele que tem "jogo de cintura" para escapar das armadilhas da vida. São mestres da cura física, da quebra de correntes pesadas e da alegria inabalável diante da dificuldade.</p>
+      <div class="esquerda-grid" id="esquerdaGrid">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Seu Zé Pelintra</h3>
+            <span class="entidade-dominio">Mestre da Luz e da Sombra</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Terno branco, chapéu panamá, fita vermelha. É o único guia que transita livremente da Direita (como Mestre Curador) para a Esquerda (como Malandro).</p>
+            <p><strong>Ponto de Força:</strong> Os morros, bares, e as ladeiras da cidade.</p>
+            <p><strong>Missão Espiritual:</strong> Corta feitiços pesados, atua com maestria na cura de doenças físicas e psíquicas e desmancha a inveja.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Camisa Preta / Sete Navalhas</h3>
+            <span class="entidade-dominio">Guardiões da Proteção Direta</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Ríspidos e velozes, cortam as amarras de uma só vez.</p>
+            <p><strong>Ponto de Força:</strong> Esquinas estreitas da cidade.</p>
+            <p><strong>Missão Espiritual:</strong> Proteger contra ataques violentos, desarmar os inimigos materiais e espirituais.</p>
+          </div>
+        </div>
+      </div>
+    `
+  };
+
+  ESTUDOS_DB['esquerda-mirim'] = {
+    modulo: 'Módulo 5: A Esquerda',
+    tag: 'Esquerda · Fundamento 5',
+    titulo: 'A Linha de Exu Mirim',
+    imagem: '',
+    legenda: 'O Elemento Surpresa e o Desfazimento de Nós',
+    htmlCorpo: searchBarHTML + `
+      <p class="capitular">Os Exus Mirins e as Pombagiras Meninas são falanges de entidades que se manifestam sob a roupagem fluídica infanto-juvenil. Eles não são crianças demonizadas. São a pura energia do elemento surpresa, capazes de desfazer os "nós" mais complexos da magia de forma simples e imediata.</p>
+      <div class="esquerda-grid" id="esquerdaGrid">
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Exu Mirim</h3>
+            <span class="entidade-dominio">O Desatador de Nós</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Rebelde, ágil, inquieto. Gosta de doces escuros, pimentas e guaraná.</p>
+            <p><strong>Ponto de Força:</strong> Encruzilhadas e pés de árvores.</p>
+            <p><strong>Missão Espiritual:</strong> Encontrar o ponto fraco das feitiçarias inimigas e desmantelá-las por dentro, atuando onde os adultos não conseguem entrar.</p>
+          </div>
+        </div>
+        <div class="cartas-entidade">
+          <div class="entidade-header">
+            <h3 class="entidade-nome">Pombagira Menina</h3>
+            <span class="entidade-dominio">A Feiticeira Veloz</span>
+          </div>
+          <div class="entidade-corpo">
+            <p><strong>Arquétipo:</strong> Astuta, ágil e muito inteligente. Tem o poder de encantar e resolver problemas financeiros e afetivos de forma meteórica.</p>
+            <p><strong>Ponto de Força:</strong> Jardins e pequenas encruzilhadas.</p>
+            <p><strong>Missão Espiritual:</strong> Movimenta a energia parada na casa do consulente, trazendo vitalidade e proteção intensa.</p>
+          </div>
+        </div>
+      </div>
+    `
   };
 
   // --- Gerenciamento da Sidebar Sanfona (Módulos) ---
