@@ -3688,7 +3688,7 @@ body.spatial-drawer-open {
 
 body.spatial-drawer-open .page-wrapper {
   transform: scale(0.92) translateY(20px) translateZ(-200px) rotateX(4deg);
-  filter: blur(4px) brightness(0.6);
+  filter: blur(2px) brightness(0.6) url('#liquid-distortion');
   border-radius: 20px;
   pointer-events: none;
 }

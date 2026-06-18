@@ -1034,6 +1034,9 @@ function initVideoPreloader() {
   // Fluxo de transição cinematográfica
   if (enterBtn && portal && videoWrapper && introVideo) {
     enterBtn.addEventListener('click', () => {
+      // Ativa o áudio 8D Binaural no clique do usuário (para desbloquear o AudioContext no navegador)
+      initSpatialAudio();
+
       // 1. Toca o vídeo IMEDIATAMENTE e de forma síncrona para herdar o gesto do usuário
       // Isso impede que navegadores (como Chrome e Safari) bloqueiem a reprodução com áudio ativo
       introVideo.muted = false;
@@ -1700,6 +1703,62 @@ function initGSAPAnimations() {
       );
     });
   }, 100);
+}
+
+/* ================================================================
+   ÁUDIO ESPACIAL ASMR 8D (Frequência Curadora)
+   ================================================================ */
+function initSpatialAudio() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+
+    // Drone Curador 432Hz
+    const osc = ctx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = 432;
+
+    const gain = ctx.createGain();
+    gain.gain.value = 0;
+
+    // Panner para efeito binaural (8D) rodando pela cabeça
+    const panner = ctx.createStereoPanner();
+    
+    osc.connect(panner);
+    panner.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    
+    // Fade in imersivo ultra-suave
+    gain.gain.setTargetAtTime(0.06, ctx.currentTime, 5);
+
+    // Harmônico "Vórtice" Oitava Abaixo
+    const osc2 = ctx.createOscillator();
+    osc2.type = 'triangle';
+    osc2.frequency.value = 216; 
+    const gain2 = ctx.createGain();
+    gain2.gain.value = 0;
+    osc2.connect(panner);
+    panner.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.start();
+    gain2.gain.setTargetAtTime(0.03, ctx.currentTime, 8);
+
+    // Efeito de movimento 8D (Som girando em torno da pessoa)
+    let pannerTime = 0;
+    function updateAudio() {
+      if (ctx.state !== 'running') return;
+      pannerTime += 0.015;
+      // Oscila suavemente entre a orelha esquerda e direita
+      panner.pan.value = Math.sin(pannerTime) * 0.85;
+      requestAnimationFrame(updateAudio);
+    }
+    updateAudio();
+
+  } catch (e) {
+    console.warn("Áudio espacial não suportado:", e);
+  }
 }
 
 /* ================================================================
