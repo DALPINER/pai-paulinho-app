@@ -2054,8 +2054,8 @@ function applyDynamicData(data) {
     const fb = (data.redes_sociais?.facebook || '').trim() || 'https://www.facebook.com/babalorixapaulinho.dexangoaganju';
 
     const links = [];
-    if (ig && ig !== '#') links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer"><span>📸</span> Instagram</a>`);
-    if (fb && fb !== '#') links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer"><span>📘</span> Facebook</a>`);
+    if (ig && ig !== '#') links.push(`<a href="${ig}" target="_blank" rel="noopener noreferrer" class="footer-social-link">Instagram</a>`);
+    if (fb && fb !== '#') links.push(`<a href="${fb}" target="_blank" rel="noopener noreferrer" class="footer-social-link">Facebook</a>`);
 
     if (links.length) {
       footerSocial.innerHTML = links.join('');
