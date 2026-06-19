@@ -460,9 +460,125 @@
   </section>
 
 
+  <!-- ===== LOCALIZAÇÃO ===== -->
+  <section id="localizacao" class="section loc-section">
+    <!-- Partículas de fundo decorativas -->
+    <div class="loc-bg-aura" aria-hidden="true"></div>
+    <div class="loc-bg-grid" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow reveal">Nos encontre</span>
+        <h2 class="section-title reveal">Como Chegar ao Centro</h2>
+        <div class="section-ornament reveal" aria-hidden="true">✦</div>
+        <p class="section-subtitle reveal">Nossa casa está de portas abertas para recebê-lo com amor e acolhimento.</p>
+      </div>
+
+      <!-- Layout bifocal: mapa à esquerda, info à direita -->
+      <div class="loc-layout reveal">
+
+        <!-- Painel de mapa 3D -->
+        <div class="loc-map-stage" id="locMapStage">
+          <!-- Anel orbital decorativo -->
+          <div class="loc-orbital-ring" aria-hidden="true"></div>
+          <!-- Brilho de canto -->
+          <div class="loc-corner-glow" aria-hidden="true"></div>
+
+          <div class="loc-map-card" id="locMapCard">
+            <!-- Tag flutuante no topo do mapa -->
+            <div class="loc-map-badge" aria-hidden="true">
+              <span class="loc-badge-dot"></span>
+              <span>Centro Africano de Xangô Aganjú</span>
+            </div>
+
+            <iframe
+              id="locMapIframe"
+              class="loc-iframe"
+              src="https://maps.google.com/maps?q=R.+Alfredo+Porci%C3%BAncula,+430,+S%C3%A3o+Gabriel,+RS,+97300-000&output=embed&hl=pt-BR&z=16"
+              title="Localização do Centro Africano de Xangô Aganjú — R. Alfredo Porciúncula, 430, São Gabriel, RS"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+
+            <!-- Overlay de vidro escuro nas bordas do mapa para blend perfeito -->
+            <div class="loc-map-vignette" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- Painel de informações -->
+        <div class="loc-info-panel">
+
+          <!-- Card principal de endereço -->
+          <div class="loc-info-card loc-card-main">
+            <div class="loc-info-icon-wrap">
+              <span class="loc-info-icon" aria-hidden="true">📍</span>
+            </div>
+            <div class="loc-info-body">
+              <h3 class="loc-info-label">Endereço</h3>
+              <address class="loc-info-value">
+                R. Alfredo Porciúncula, 430<br>
+                Passo da Lagoa<br>
+                São Gabriel — RS, 97300-000
+              </address>
+            </div>
+          </div>
+
+          <!-- Card de horário -->
+          <div class="loc-info-card">
+            <div class="loc-info-icon-wrap">
+              <span class="loc-info-icon" aria-hidden="true">⏰</span>
+            </div>
+            <div class="loc-info-body">
+              <h3 class="loc-info-label">Atendimento</h3>
+              <p class="loc-info-value">Presencial e à distância<br><span class="loc-info-sub">com hora marcada</span></p>
+            </div>
+          </div>
+
+          <!-- Card de contato -->
+          <div class="loc-info-card">
+            <div class="loc-info-icon-wrap">
+              <span class="loc-info-icon" aria-hidden="true">💬</span>
+            </div>
+            <div class="loc-info-body">
+              <h3 class="loc-info-label">Agendamento</h3>
+              <p class="loc-info-value">Via WhatsApp<br><span class="loc-info-sub">resposta rápida</span></p>
+            </div>
+          </div>
+
+          <!-- Botão de rotas -->
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=R.+Alfredo+Porci%C3%BAncula,+430,+S%C3%A3o+Gabriel,+RS,+97300-000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="loc-btn-rotas"
+            id="locBtnRotas"
+            aria-label="Abrir rotas no Google Maps"
+          >
+            <span class="loc-btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                <path d="M3 11L12 2L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 2V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5 22H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span>Traçar Rota no Google Maps</span>
+            <span class="loc-btn-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <!-- Frase espiritual do lugar -->
+          <p class="loc-spiritual-note">
+            <em>"Que os caminhos estejam abertos para que sua chegada seja abençoada."</em>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- ===== CTA CONTATO ===== -->
   <section id="contato" class="section section-cta">
+
     <div class="cta-bg-glow" aria-hidden="true"></div>
     <div class="container">
       <div class="cta-content">
@@ -562,5 +678,48 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script src="app.js?v=2"></script>
+
+  <!--
+    ===== SCRIPT: TILT 3D DO MAPA DE LOCALIZAÇÃO =====
+    IIFE isolada — não interfere com app.js nem nenhuma outra função.
+    Responsabilidade única: Mouse Parallax (tilt 3D) no card do mapa.
+  -->
+  <script>
+    (function locMapTilt() {
+      'use strict';
+      const card  = document.getElementById('locMapCard');
+      const stage = document.getElementById('locMapStage');
+      if (!card || !stage) return;
+
+      // Apenas desktop (pointer preciso)
+      if (window.matchMedia('(pointer: coarse)').matches) return;
+
+      const MAX_X = 10; // graus tilt vertical
+      const MAX_Y = 14; // graus tilt horizontal
+      let tX = 0, tY = 0, cX = 0, cY = 0;
+      let raf;
+
+      stage.addEventListener('mousemove', function(e) {
+        const r  = stage.getBoundingClientRect();
+        const nx = ((e.clientX - r.left)  / r.width)  * 2 - 1;
+        const ny = ((e.clientY - r.top)   / r.height) * 2 - 1;
+        tX = -ny * MAX_X;
+        tY =  nx * MAX_Y;
+      }, { passive: true });
+
+      stage.addEventListener('mouseleave', function() {
+        tX = 0; tY = 0;
+      }, { passive: true });
+
+      function tick() {
+        cX += (tX - cX) * 0.07;
+        cY += (tY - cY) * 0.07;
+        card.style.transform =
+          'perspective(900px) rotateX(' + cX.toFixed(2) + 'deg) rotateY(' + cY.toFixed(2) + 'deg) translateZ(10px)';
+        raf = requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
 </body>
 </html>
