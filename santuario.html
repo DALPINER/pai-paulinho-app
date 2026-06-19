@@ -322,69 +322,7 @@
 
     </section>
 
-    <!-- ===== OXÊ DE XANGÔ — RODAPÉ (posição decorativa final) ===== -->
-    <div class="oxe-footer-wrapper" id="oxeFooterWrapper" aria-hidden="true">
-      <span class="oxe-footer-blessing">Kaô Kabiecilê · Xangô Aganjú</span>
-      <svg
-        id="oxeSvgFooter"
-        class="oxe-svg-footer"
-        viewBox="0 0 200 240"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-label="Oxê de Xangô — Proteção e Axé"
-        role="img"
-      >
-        <!-- Reutilizamos os defs via xlink — por segurança, redefinimos inline -->
-        <defs>
-          <linearGradient id="goldBladeF" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%"   stop-color="#f5d06a"/>
-            <stop offset="30%"  stop-color="#c9a84c"/>
-            <stop offset="65%"  stop-color="#8b6320"/>
-            <stop offset="100%" stop-color="#f5d06a"/>
-          </linearGradient>
-          <linearGradient id="handleGradF" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stop-color="#4a2800"/>
-            <stop offset="40%"  stop-color="#7a4510"/>
-            <stop offset="60%"  stop-color="#5c3208"/>
-            <stop offset="100%" stop-color="#3a1e00"/>
-          </linearGradient>
-          <linearGradient id="bandGoldF" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%"   stop-color="#f5d06a"/>
-            <stop offset="50%"  stop-color="#a07820"/>
-            <stop offset="100%" stop-color="#f5d06a"/>
-          </linearGradient>
-          <filter id="lightningGlowF" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="depthShadowF" x="-10%" y="-10%" width="120%" height="120%">
-            <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
-          </filter>
-        </defs>
-        <!-- Cabo -->
-        <rect x="94" y="115" width="12" height="105" rx="4" ry="4" fill="url(#handleGradF)" filter="url(#depthShadowF)"/>
-        <rect x="94" y="115" width="3"  height="105" rx="2" ry="2" fill="rgba(255,220,120,0.18)"/>
-        <rect x="90" y="112" width="20" height="8"   rx="3" fill="url(#bandGoldF)"/>
-        <rect x="91" y="158" width="18" height="7"   rx="3" fill="url(#bandGoldF)"/>
-        <rect x="90" y="200" width="20" height="7"   rx="3" fill="url(#bandGoldF)"/>
-        <ellipse cx="100" cy="221" rx="11" ry="7" fill="url(#goldBladeF)"/>
-        <!-- Lâmina Esquerda -->
-        <path d="M 100 40 C 88 48, 52 52, 30 72 C 18 84, 22 102, 36 110 C 50 118, 78 112, 94 115 L 100 115 Z" fill="url(#goldBladeF)" filter="url(#depthShadowF)"/>
-        <!-- Lâmina Direita -->
-        <path d="M 100 40 C 112 48, 148 52, 170 72 C 182 84, 178 102, 164 110 C 150 118, 122 112, 106 115 L 100 115 Z" fill="url(#goldBladeF)" filter="url(#depthShadowF)"/>
-        <!-- Centro -->
-        <circle cx="100" cy="78" r="18" fill="url(#goldBladeF)" filter="url(#depthShadowF)"/>
-        <circle cx="100" cy="78" r="15" fill="#4a2800"/>
-        <g filter="url(#lightningGlowF)">
-          <path d="M 104 66 L 97 77 L 102 77 L 96 91 L 107 76 L 101 76 Z" fill="#fff8a0" stroke="#f5d06a" stroke-width="0.5"/>
-        </g>
-        <circle cx="100" cy="78" r="17.5" fill="none" stroke="rgba(212,175,55,0.55)" stroke-width="0.8" stroke-dasharray="3 2.5"/>
-        <!-- Topo e pontas -->
-        <path d="M 96 36 L 100 26 L 104 36 Z" fill="url(#goldBladeF)"/>
-        <circle cx="30"  cy="91" r="3.5" fill="url(#goldBladeF)"/>
-        <circle cx="170" cy="91" r="3.5" fill="url(#goldBladeF)"/>
-      </svg>
-    </div>
-    <!-- ===== /FIM OXÊ RODAPÉ ===== -->
+
 
   </main>
 
@@ -395,100 +333,54 @@
   <!--
     ===== SCRIPT DO OXÊ DE XANGÔ =====
     Isolado: não depende de nenhuma função global, não modifica nenhuma variável existente.
-    Duas responsabilidades únicas:
-      1. Mouse Parallax (Tilt 3D) no Hero — apenas desktop
-      2. Scroll Observer — troca de visibilidade Hero → Rodapé
+    Responsabilidade: Mouse Parallax (Tilt 3D) no Hero — apenas desktop
   -->
   <script>
     (function oxeController() {
       'use strict';
 
-      const heroWrapper  = document.getElementById('oxeHeroWrapper');
-      const footerWrapper = document.getElementById('oxeFooterWrapper');
-      const oxeSvgHero   = document.getElementById('oxeSvgHero');
+      const heroWrapper = document.getElementById('oxeHeroWrapper');
+      const oxeSvgHero  = document.getElementById('oxeSvgHero');
 
       // Saída segura: se os elementos não existirem, não faz nada
-      if (!heroWrapper || !footerWrapper || !oxeSvgHero) return;
+      if (!heroWrapper || !oxeSvgHero) return;
 
-      // ---- 1. MOUSE PARALLAX (Tilt 3D) — apenas desktop com mouse ----
+      // ---- MOUSE PARALLAX (Tilt 3D) — apenas desktop com mouse ----
       const isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (isTouch) return;
 
-      if (!isTouch) {
-        // Limites suaves para o tilt (graus)
-        const MAX_TILT_X = 14;
-        const MAX_TILT_Y = 18;
-        // Suavização via lerp
-        let targetX = 0, targetY = 0;
-        let currentX = 0, currentY = 0;
-        let rafId = null;
-        let isMouseOnHero = false;
+      const MAX_TILT_X = 14;
+      const MAX_TILT_Y = 18;
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
 
-        // Captura o mouse na seção hero
-        const heroSection = document.querySelector('.santuario-hero');
-        if (heroSection) {
-          heroSection.addEventListener('mousemove', function(e) {
-            isMouseOnHero = true;
-            const rect = heroSection.getBoundingClientRect();
-            // Normaliza de -1 a +1
-            const nx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
-            const ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
-            // Inverte Y para que mover o mouse para cima incline o machado para frente
-            targetX = -ny * MAX_TILT_X;
-            targetY =  nx * MAX_TILT_Y;
-          }, { passive: true });
+      const heroSection = document.querySelector('.santuario-hero');
+      if (heroSection) {
+        heroSection.addEventListener('mousemove', function(e) {
+          const rect = heroSection.getBoundingClientRect();
+          const nx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+          const ny = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+          targetX = -ny * MAX_TILT_X;
+          targetY =  nx * MAX_TILT_Y;
+        }, { passive: true });
 
-          heroSection.addEventListener('mouseleave', function() {
-            isMouseOnHero = false;
-            targetX = 0;
-            targetY = 0;
-          }, { passive: true });
-        }
-
-        function animateTilt() {
-          // Lerp suave (fator 0.06 = movimento fluido e orgânico)
-          currentX += (targetX - currentX) * 0.06;
-          currentY += (targetY - currentY) * 0.06;
-
-          // Aplica via CSS custom properties — compatível com a animação levitate
-          oxeSvgHero.style.setProperty('--tilt-x', currentX.toFixed(3) + 'deg');
-          oxeSvgHero.style.setProperty('--tilt-y', currentY.toFixed(3) + 'deg');
-
-          rafId = requestAnimationFrame(animateTilt);
-        }
-
-        // Inicia o loop de animação
-        animateTilt();
+        heroSection.addEventListener('mouseleave', function() {
+          targetX = 0;
+          targetY = 0;
+        }, { passive: true });
       }
 
-      // ---- 2. SCROLL OBSERVER — troca Hero ↔ Rodapé ----
-      // Quando o usuário chega perto do rodapé, o Oxê do hero some e o do rodapé aparece.
-      // Usamos IntersectionObserver para zero custo de performance.
+      function animateTilt() {
+        currentX += (targetX - currentX) * 0.06;
+        currentY += (targetY - currentY) * 0.06;
+        oxeSvgHero.style.setProperty('--tilt-x', currentX.toFixed(3) + 'deg');
+        oxeSvgHero.style.setProperty('--tilt-y', currentY.toFixed(3) + 'deg');
+        requestAnimationFrame(animateTilt);
+      }
 
-      // Sentinela: um div invisível logo acima do wrapper do rodapé
-      const sentinel = document.createElement('div');
-      sentinel.style.cssText = 'position:absolute;height:1px;width:1px;pointer-events:none;';
-      // Insere o sentinela imediatamente antes do wrapper do rodapé
-      footerWrapper.parentNode.insertBefore(sentinel, footerWrapper);
+      animateTilt();
 
-      const observer = new IntersectionObserver(function(entries) {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          // Usuário chegou ao fim: esconde Hero, mostra Rodapé
-          heroWrapper.classList.add('oxe-hidden');
-          footerWrapper.classList.add('oxe-visible');
-        } else {
-          // Usuário voltou para cima: mostra Hero, esconde Rodapé
-          heroWrapper.classList.remove('oxe-hidden');
-          footerWrapper.classList.remove('oxe-visible');
-        }
-      }, {
-        rootMargin: '-15% 0px',
-        threshold: 0
-      });
-
-      observer.observe(sentinel);
-
-    })(); // IIFE — completamente isolado
+    })();
   </script>
 
 </body>
