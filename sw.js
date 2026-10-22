@@ -6,15 +6,19 @@
    ============================================================ */
 
 // ⚠️ INCREMENTAR esta versão a cada deploy para forçar atualização
-const CACHE_VERSION = 'v13';
+const CACHE_VERSION = 'v44';
 const CACHE_NAME    = `terreira-paulinho-${CACHE_VERSION}`;
 
 // Recursos pré-cacheados na instalação (shell do app)
 const PRECACHE_ASSETS = [
   './',
   './index.html',
-  './style.css',
-  './app.js',
+  './style.css?v=20',
+  './app.js?v=20',
+  './agendamento.js?v=1',
+  './agendamento.css?v=1',
+  './site-ui.css?v=17',
+  './site-ui.js?v=4',
   './manifest.json',
   './assets/icon-192.png',
   './assets/icon-512.png',
@@ -64,13 +68,24 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // — Ignorar: admin, Firebase, métodos não-GET —
-  if (
-    url.pathname.includes('admin') ||
-    url.origin.includes('firebase') ||
-    url.hostname.includes('firestore') ||
-    request.method !== 'GET'
-  ) return;
+  // External APIs, maps and video players manage their own requests.
+  if (url.origin !== self.location.origin) return;
+
+  // Retired module: never revive old pages or scripts from the offline cache.
+  const file = url.pathname.split('/').pop();
+  const retiredPages = ['admin.html', 'santuario.html', 'imprimir-velas.html', 'relatorio-velas.html'];
+  const retiredAssets = ['admin.js', 'admin.css', 'backend-config.js', 'santuario.js', 'santuario.css', 'admin-velas.js', 'admin-velas-v2.js', 'imprimir-velas.js', 'relatorio-velas.js', 'relatorio-velas.css'];
+  if (request.method === 'GET' && retiredPages.includes(file)) {
+    event.respondWith(Response.redirect(new URL('index.html', self.registration.scope).href, 302));
+    return;
+  }
+  if (request.method === 'GET' && retiredAssets.includes(file)) {
+    event.respondWith(new Response('', { status: 410 }));
+    return;
+  }
+
+  // — Ignorar métodos não-GET —
+  if (request.method !== 'GET') return;
 
   // — Ignorar: vídeos e áudios (Safari exige Range requests) —
   if (

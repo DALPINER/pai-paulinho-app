@@ -7,9 +7,9 @@
 
 - **Nome:** Terreira Paulinho App
 - **Piloto:** Antigravity (V.L.A.E.G.)
-- **Protocolo Ativo:** V.L.A.E.G. — Fase atual: `⚙️ FASE A — ARQUITETURA (Blueprint aguardando aprovação)`
-- **Última atualização:** 2026-06-04
-- **Nicho:** Empresa religiosa / Direcionamento Espiritual (Umbanda/Candomblé)
+- **Estado atual:** Site público estático com estudos e contato pelo WhatsApp; sem painel administrativo ou banco conectado.
+- **Última atualização:** 2026-10-22
+- **Nicho:** Casa religiosa de matriz africana / Direcionamento Espiritual. Quimbanda foi mencionada pelo proprietário; a outra tradição da casa aguarda confirmação.
 - **Persona:** Pai Paulinho de Xangô Aganjú
 - **Slogan:** "Direcionamento espiritual, uma palavra de conforto, um abraço amigo, e a força dos guias abrindo seus caminhos. Aqui você encontra luz, acolhimento e verdade."
 
@@ -23,6 +23,8 @@
 | **2 — Navigation** | *(raciocínio do agente)* | Roteamento de dados entre POPs e Ferramentas |
 | **3 — Tools** | `tools/` | Scripts Python determinísticos e atômicos |
 
+O site publicado é executado nos arquivos HTML, CSS e JavaScript da raiz. O painel administrativo, o login e os avisos foram retirados em 22/10/2026. Os POPs vigentes e `database/README.md` documentam esse escopo; os registros antigos abaixo são históricos.
+
 ---
 
 ## 📐 Schemas de Dados
@@ -33,7 +35,7 @@
 |---|----------|----------|--------|
 | 1 | Estrela Guia | Site/app completo para empresa religiosa — Pai Paulinho de Xangô Aganjú | ✅ Respondida |
 | 2 | Integrações | WhatsApp (link wa.me) | ✅ Respondida |
-| 3 | Fonte da Verdade | Painel Admin separado para gerenciar conteúdo | ✅ Respondida |
+| 3 | Fonte da Verdade | Conteúdo publicado nos arquivos do projeto, sem edição por painel | ✅ Atualizada em 22/10/2026 |
 | 4 | Payload de Entrega | Resposta estruturada via WhatsApp | ✅ Respondida |
 | 5 | Regras Comportamentais | Tom totalmente amigo, acolhedor, espiritual | ✅ Respondida |
 
@@ -42,10 +44,10 @@
 ```json
 {
   "projeto": "terreira-paulinho-app",
-  "tipo": "site_landing_page + admin_panel + integracao_whatsapp",
+  "tipo": "site_publico_estatico + estudos + integracao_whatsapp",
 
   "input": {
-    "admin": {
+    "conteudo_publicado": {
       "sobre_pai_paulinho": "string (texto longo, história e missão)",
       "servicos": [
         {
@@ -54,14 +56,7 @@
           "icone": "string (emoji ou ícone)"
         }
       ],
-      "depoimentos": [
-        {
-          "nome_cliente": "string",
-          "texto": "string",
-          "estrelas": "integer (1-5)"
-        }
-      ],
-      "mensagem_espiritual_do_dia": "string",
+      "orientacao_de_luz": "mensagens locais organizadas por intenção",
       "whatsapp_numero": "string (formato: 5511999999999)",
       "redes_sociais": {
         "instagram": "string (url)",
@@ -74,24 +69,28 @@
     "site_publico": {
       "secoes": [
         "hero",
+        "orientacao_de_luz",
         "sobre_pai_paulinho",
+        "documentario_e_galeria",
         "servicos",
-        "mensagem_espiritual",
-        "depoimentos",
+        "duvidas_frequentes",
+        "localizacao",
         "agendamento_whatsapp",
         "rodape"
       ]
     },
     "whatsapp_payload": {
-      "mensagem_boas_vindas": "string (enviada ao clicar em Agendar)",
-      "formato": "texto estruturado com saudação espiritual"
+      "mensagem_preparada": "string (contato direto ou preferências revisadas no assistente)",
+      "envio": "o visitante decide enviar no WhatsApp; não há registro de consulta no site"
     }
   },
 
   "armazenamento": {
-    "tipo": "localStorage (MVP) → migrar para backend/DB quando necessário",
-    "admin_url": "/admin",
-    "protecao": "senha simples no admin panel"
+    "conteudo": "arquivos publicados do projeto",
+    "cache": "arquivos públicos no navegador para carregamento e uso offline",
+    "banco_conectado": false,
+    "registro_de_agendamento": false,
+    "leitura_terreira_data": false
   }
 }
 ```
@@ -116,7 +115,9 @@
 - `.env` guarda todos os segredos — jamais hardcodar credenciais em código.
 - `.tmp/` é efêmero — nenhum entregável final vive aqui.
 - `tools/` é atômico e testável — cada script faz UMA coisa.
-- O painel admin é protegido por senha — nunca acessível sem autenticação.
+- Não há painel administrativo, autenticação ou avisos conectados. `admin.html` é somente um redirecionamento de compatibilidade para o início.
+- Não restaurar painel, login, avisos ou santuário a partir de registros históricos. Qualquer retomada exige novo escopo confirmado pelo proprietário; consultar `database/README.md`.
+- As escolhas do agendamento são preparadas no navegador para envio pelo WhatsApp, sem gravação em banco.
 
 ---
 
@@ -130,3 +131,4 @@
 | 2026-06-08 | Fase E | Melhorias UI/UX místicas avançadas (Lightbox, Vórtice de Partículas, Border Beam, Shimmer, Redes Animadas e Correção Estrutural de Viewport do Menu Mobile) |
 | 2026-06-11 | Fase E | Refatoração absoluta da Engenharia de Relatórios (PDF). Abandono de canvas bugados em favor de 'Página de Impressão Nativa' via transferência de memória offline (`localStorage`). Fim dos bugs de corte e fim dos bugs de conexão do banco de dados no mobile. |
 | 2026-06-18 | Fase E | Fix & Otimização Final | Expurgo de testes 4D pesados (WebGL, Audio 8D, SVG Shaders) para blindar a performance. Correção de Stacking Context no Spatial Drawer isolando o Header. Remoção de conflitos CSS no Layout Master-Detail de Estudos. Reversão do Oráculo ao estado 2D Físico Perfeito via ocultação de divs, abolindo o Z-Depth e o CSS 3D-Flip. Código purificado de bugs. |
+| 2026-10-22 | Manutenção | Retirados painel, engrenagens do rodapé, autenticação, avisos e configuração de banco; removida a leitura de dados legados do painel. Mantidos site público, estudos, oráculo, galerias e contato pelo WhatsApp. |

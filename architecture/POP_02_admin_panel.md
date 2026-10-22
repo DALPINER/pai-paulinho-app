@@ -1,54 +1,25 @@
-# POP_02 — Painel Admin
+# POP_02 — Registro de retirada do painel administrativo
 
-**Versão:** 1.0  
-**Data:** 2026-06-04  
-**Status:** ✅ Ativo
+Atualizado em 22/10/2026.
 
----
+## Estado vigente
 
-## Objetivo
+O painel administrativo foi retirado do projeto. Não há tela de login, autenticação, edição administrativa, criação de usuários ou publicação de avisos pelo site.
 
-Permitir que o administrador (Pai Paulinho) edite o conteúdo do site sem precisar mexer no código, usando uma interface web protegida por senha.
+## Retirada
 
----
+- Removidos `admin.js`, `admin.css` e os links de engrenagem dos rodapés.
+- `admin.html` permanece somente como redirecionamento mínimo para `index.html`, sem indexação, formulários ou scripts de autenticação.
+- Removidos o cliente Supabase Auth, o sistema de avisos e `backend-config.js`.
+- Retirada a leitura de `terreira_data` nas páginas públicas. Serviços e contato usam o conteúdo publicado nos arquivos do projeto.
+- O service worker redireciona o endereço antigo e impede que scripts ou estilos administrativos aposentados retornem pelo cache.
 
-## Entradas
+As páginas antigas do santuário e de relatórios também permanecem somente como redirecionamentos. Nenhum leitor de nomes, preces ou velas faz parte do site vigente.
 
-| Campo | Tipo | Interface |
-|-------|------|-----------|
-| Senha de acesso | string | Tela de login (verificada contra `localStorage['terreira_admin_pass']`) |
-| `sobre_pai_paulinho` | string | Textarea |
-| `servicos` | array | Formulário dinâmico (adicionar/remover) |
-| `depoimentos` | array | Formulário dinâmico (adicionar/remover) |
-| `mensagem_espiritual_do_dia` | string | Textarea |
-| `whatsapp_numero` | string | Input text |
-| `redes_sociais.instagram` | string | Input URL |
-| `redes_sociais.facebook` | string | Input URL |
+## Manutenção do conteúdo
 
----
+Atualizar serviços e contato em `app.js` e `estudos.js`; textos fixos no HTML; artigos em `estudos.js` e `estudos-guia.js`. O assistente de agendamento apenas prepara uma mensagem para o WhatsApp e não salva registros no site.
 
-## Lógica de Ferramentas (admin.js)
+## Limites para mudanças futuras
 
-1. Ao carregar: verificar `localStorage.getItem('terreira_admin_authed')`
-2. Se não autenticado: exibir tela de login
-3. Validar senha contra `localStorage.getItem('terreira_admin_pass')` (default: `Paulinho2024`)
-4. Se autenticado: carregar dados atuais do `localStorage.getItem('terreira_data')`
-5. Preencher formulários com dados atuais
-6. Ao salvar: serializar formulários e salvar em `localStorage.setItem('terreira_data', JSON.stringify(data))`
-7. Exibir toast de confirmação "Salvo com sucesso!"
-
----
-
-## Segurança
-
-- Senha padrão: `Paulinho2024` (orientar admin a trocar no primeiro acesso)
-- Sessão dura até fechar o navegador (`sessionStorage`)
-- URL acessível via link discreto no rodapé do site
-
----
-
-## Casos de Borda
-
-- Senha incorreta: exibir erro "Senha incorreta. Tente novamente."
-- Dados corrompidos no localStorage: resetar para `DEFAULT_DATA`
-- Serviço sem nome: bloquear salvar com validação de campo
+Consultar [database/README.md](../database/README.md) antes de propor qualquer integração. Não recriar painel, autenticação, avisos, tabelas ou permissões com base em documentação histórica. Uma retomada depende de nova decisão do proprietário e de um escopo próprio.

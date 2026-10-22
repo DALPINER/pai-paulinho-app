@@ -1,0 +1,12 @@
+# Keep project notes and retired source images out of the GitHub Pages output.
+exclude:
+  - architecture
+  - database
+  - tools
+  - protocolo
+  - protocolo_vlaeg.md
+  - gemini.md
+  - findings.md
+  - progress.md
+  - task_plan.md
+  - pai_paulinho_portrait.png

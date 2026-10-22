@@ -18,4 +18,11 @@ Exemplo:
 
 ---
 
-*Nenhum POP criado ainda — aguardando Fase V (Visão) e aprovação do Blueprint.*
+Escopo vigente: site público com conteúdo nos arquivos do projeto e agendamento pelo WhatsApp. Não há painel, autenticação, avisos conectados ou banco de dados.
+
+- Funcionamento público: [POP_01_site_publico.md](POP_01_site_publico.md).
+- Registro de retirada do painel em 22/10/2026: [POP_02_admin_panel.md](POP_02_admin_panel.md).
+- Contato e assistente de agendamento: [POP_03_whatsapp_payload.md](POP_03_whatsapp_payload.md).
+- Limites para uma futura integração: [database/README.md](../database/README.md).
+
+Revisão e limpeza dos rastros de funcionalidades removidas: [auditoria histórica de 19/10/2026](AUDITORIA_CODIGO_2026-10-19.md). As referências nela ao painel e a conexões desativadas descrevem o estado anterior à retirada de 22/10/2026; não são instruções para restaurá-los.

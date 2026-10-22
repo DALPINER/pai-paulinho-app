@@ -4,15 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://paipaulinhors.com.br/">
   <title>Pai Paulinho — Orientação & Direcionamento Espiritual</title>
   <meta name="description"
-    content="Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos. Encontre luz, clareza e paz com o Sacerdote Paulo Silveira Gandor.">
+    content="Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos. Encontre luz, clareza e paz com Pai Paulinho.">
   <meta name="keywords"
     content="Pai Paulinho, orientador espiritual, sacerdote de luz, consulta espiritual, umbanda, quimbanda, Xangô, direcionamento espiritual, jogo de búzios">
   <meta property="og:title" content="Pai Paulinho — Orientação & Direcionamento Espiritual">
   <meta property="og:description" content="Acolhimento, orientação e caminhos de luz sob a regência de Xangô Aganjú.">
-  <meta property="og:image" content="https://dalpiner.github.io/pai-paulinho-app/assets/icon-512.png">
-  <meta property="og:url" content="https://dalpiner.github.io/pai-paulinho-app/">
+  <meta property="og:image" content="https://paipaulinhors.com.br/assets/icon-512.png">
+  <meta property="og:url" content="https://paipaulinhors.com.br/">
   <meta property="og:type" content="website">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +21,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="agendamento.css?v=1">
 
   <!-- PWA & Mobile Optimization -->
   <link rel="manifest" href="manifest.json">
@@ -28,7 +30,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Paulo Silveira">
+  <meta name="apple-mobile-web-app-title" content="Pai Paulinho">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
 
   <!-- Schema Markup (Negócio Local / Organização Religiosa) -->
@@ -37,139 +39,127 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Pai Paulinho - Sacerdote de Xangô Aganjú",
-    "image": "https://dalpiner.github.io/pai-paulinho-app/assets/icon-512.png",
-    "@id": "https://dalpiner.github.io/pai-paulinho-app/",
-    "url": "https://dalpiner.github.io/pai-paulinho-app/",
+    "image": "https://paipaulinhors.com.br/assets/icon-512.png",
+    "@id": "https://paipaulinhors.com.br/",
+    "url": "https://paipaulinhors.com.br/",
     "telephone": "+5555999176726",
     "description": "Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos."
   }
   </script>
 
-  <!-- Google Analytics (Placeholder para Ativação) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script> -->
+  <link rel="stylesheet" href="site-ui.css?v=17">
 </head>
 
-<body>
+<body class="home-professional">
+  <a class="skip-content" href="#conteudo">Ir para o conteúdo</a>
 
-  <!-- ===== VIDEO PRELOADER MÍSTICO ===== -->
-  <div id="video-preloader">
-    <!-- Portal de entrada para pedir licença e liberar áudio -->
-    <div id="portal-entrada" class="portal-container">
-      <div class="portal-content">
-        <div class="portal-avatar-wrapper">
-          <img src="assets/pai_paulinho_portal.png" alt="Pai Paulinho" class="portal-avatar">
-          <div class="portal-avatar-glow" aria-hidden="true"></div>
-        </div>
-        <p class="portal-eyebrow">Que os orixás abram seus caminhos</p>
-        <h2 class="portal-title">Peça licença para entrar na casa de Pai Paulinho de Xangô</h2>
-        <button id="enterBtn" class="portal-btn">Entrar com Respeito (Acessar)</button>
-      </div>
-    </div>
-
-    <!-- Contêiner do vídeo (oculto inicialmente) -->
-    <div class="video-container hidden" id="videoWrapper">
-      <video src="assets/bemvindo.mp4" playsinline id="introVideo" class="preloader-video"></video>
-      <button id="skipIntro" class="skip-btn">Pular Introdução ➔</button>
-    </div>
-  </div>
+  <dialog id="introPresentation" class="intro-dialog" aria-labelledby="introTitle">
+    <div class="intro-heading"><h2 id="introTitle">Boas-vindas à nossa casa</h2><button type="button" id="introClose" aria-label="Fechar apresentação">×</button></div>
+    <video src="assets/bemvindo.mp4" controls playsinline preload="none"></video>
+  </dialog>
 
   <!-- ===== NAVIGATION ===== -->
   <header id="siteHeader">
-    <nav class="nav container">
+    <nav class="nav container" aria-label="Navegação principal">
       <a href="#" class="nav-brand">
-        <span class="nav-brand-icon">⚡</span>
         <span class="nav-brand-text">Pai Paulinho de Xangô</span>
       </a>
 
       <!-- Menu Dropdown (todos os links) -->
-      <ul class="nav-links" id="navLinks" role="menu">
-        <li role="none"><a href="#sobre"        class="nav-link" role="menuitem">Sobre</a></li>
-        <li role="none"><a href="#servicos"     class="nav-link" role="menuitem">Serviços</a></li>
-        <li role="none"><a href="#oraculo"      class="nav-link" role="menuitem">Oráculo</a></li>
-        <li role="none"><a href="estudos.html"  class="nav-link" role="menuitem">Estudos</a></li>
-        <li role="none"><a href="santuario.html" class="nav-link" role="menuitem">Santuário</a></li>
-        <li id="installAppLi" class="hidden" role="none">
-          <a href="#" class="nav-link nav-install-link" id="installAppBtn" role="menuitem">Instalar Aplicativo</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#sobre"        class="nav-link">Sobre</a></li>
+        <li><a href="#servicos"     class="nav-link">Serviços</a></li>
+        <li><a href="#oraculo"      class="nav-link">Orientação de Luz</a></li>
+        <li><a href="estudos.html"  class="nav-link">Estudos</a></li>
+        <li id="installAppLi" class="hidden">
+          <a href="#" class="nav-link nav-install-link" id="installAppBtn">Instalar Aplicativo</a>
         </li>
       </ul>
 
       <div class="nav-actions">
-        <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false">
-          <span></span><span></span><span></span>
+        <a class="nav-book" href="index.html#contato">Agendar</a>
+        <button class="nav-hamburger" id="navHamburger" aria-controls="navLinks" aria-label="Abrir menu" aria-expanded="false">
+          Menu <svg class="menu-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     </nav>
   </header>
   <!-- ===== PAGE WRAPPER (Para Spatial Drawer) ===== -->
-  <div class="page-wrapper">
+  <main class="page-wrapper" id="conteudo" tabindex="-1">
 
-  <!-- ===== HERO ===== -->
-  <section id="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="hero-emblem levitate" aria-hidden="true">
-        <div class="hero-emblem-ring"></div>
-        <img src="assets/pai_paulinho_portal.png" alt="Pai Paulinho" class="hero-emblem-img">
+  <!-- ===== APRESENTAÇÃO ===== -->
+  <section id="hero" class="hero-renewed" aria-labelledby="heroTitle">
+    <div class="hero-layout container">
+      <div class="hero-copy">
+        <p class="hero-kicker">Centro Africano de Xangô Aganjú</p>
+        <h1 id="heroTitle">Pai Paulinho <span>de Xangô</span></h1>
+        <p class="hero-introduction">Fé que acolhe.<br>Orientação para a sua caminhada.</p>
+        <p class="hero-description">Um espaço de escuta e respeito, onde a tradição dos orixás e o cuidado com cada pessoa se encontram.</p>
+        <div class="hero-actions">
+          <a href="#contato" class="btn-whatsapp whatsapp-trigger hero-cta" id="heroWhatsApp">Agendar atendimento</a>
+          <button type="button" class="intro-open" id="introOpen">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.4"/><path d="m10 8 6 4-6 4V8Z" fill="currentColor"/></svg>
+            Boas-vindas de Pai Paulinho
+          </button>
+        </div>
+        <div class="hero-details">
+          <p><span>Encontre a casa</span>São Gabriel, RS</p>
+          <p><span>Planeje sua visita</span>Atendimento com hora marcada</p>
+        </div>
       </div>
-      <p class="hero-eyebrow reveal">Pai Paulinho</p>
-      <h1 class="hero-title reveal">
-        Paulo Silveira gandor
-        <span class="hero-title-sub">de Xangô</span>
-      </h1>
-      <div class="hero-divider reveal" aria-hidden="true">
-        <span class="divider-line"></span>
-        <span class="divider-ornament">✦ ✦ ✦</span>
-        <span class="divider-line"></span>
-      </div>
-      <p class="hero-slogan reveal">
-        Direcionamento espiritual, acolhimento e a força dos guias abrindo seus caminhos.<br>
-        Encontre paz de espírito e clareza para a sua jornada.
-      </p>
-      <p class="hero-tagline reveal">Aqui você encontra <em>luz</em>, <em>acolhimento</em> e <em>verdade</em>.</p>
-      <a href="#" class="btn-whatsapp whatsapp-trigger hero-cta reveal" id="heroWhatsApp">
-        <span class="btn-icon">💬</span>
-        <span>Falar com Pai Paulinho</span>
-        <span class="btn-arrow">→</span>
-      </a>
     </div>
-    <a href="#sobre" class="hero-scroll-hint" aria-label="Rolar para baixo">
-      <span class="scroll-text">Conheça mais</span>
-      <span class="scroll-chevron">↓</span>
-    </a>
+  </section>
+
+  <!-- ===== ORIENTAÇÃO DE LUZ ===== -->
+  <section id="oraculo" class="section" aria-labelledby="reflectionTitle">
+    <div class="container">
+      <div class="reflection-panel reveal">
+        <header class="reflection-header">
+          <p class="reflection-kicker">Orientação de Luz</p>
+          <h2 id="reflectionTitle">Uma palavra para o seu dia.</h2>
+          <p>Uma mensagem de fé por dia, para acolher com calma e levar com você na sua caminhada.</p>
+        </header>
+        <div class="reflection-reading" id="reflectionAccess" data-state="ready">
+          <p class="reflection-date"><time id="reflectionDate"></time></p>
+          <div class="reflection-state" id="reflectionReady">
+            <p class="reflection-result-label">Um momento para você</p>
+            <p class="reflection-message">Quando estiver pronto, receba sua mensagem de fé e leia com calma.</p>
+            <button type="button" class="reflection-receive" id="reflectionReceive" aria-controls="reflectionReading" disabled>Receber a orientação de hoje</button>
+          </div>
+          <div class="reflection-state" id="reflectionReading" hidden>
+            <p class="reflection-result-label" id="reflectionCategory"></p>
+            <p class="reflection-message" id="reflectionMessage" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div class="reflection-state" id="reflectionReceived" role="status" aria-live="polite" hidden>
+            <p class="reflection-received-title">Você já recebeu sua orientação de hoje.</p>
+            <p class="reflection-message">Acolha essa palavra e leve-a com você. Volte amanhã para receber uma nova mensagem de fé.</p>
+          </div>
+          <a href="https://wa.me/5555999176726" class="reflection-contact whatsapp-trigger" aria-haspopup="dialog" aria-controls="bookingDialog">Conversar com Pai Paulinho</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== SOBRE ===== -->
   <section id="sobre" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow reveal">Conheça</span>
         <h2 class="section-title reveal">O Pai Paulinho</h2>
         <div class="section-ornament reveal" aria-hidden="true">✦</div>
       </div>
       <div class="sobre-layout">
-        <div class="sobre-image reveal">
-          <div class="sobre-image-frame">
-            <img src="./assets/30anos/pai.png" alt="Pai Paulinho" class="sobre-img" id="sobreImg">
-            <div class="sobre-image-glow" aria-hidden="true"></div>
-          </div>
-          <div class="sobre-badge" aria-hidden="true">
-            <span>⚡</span>
-            <span>Pai Paulinho</span>
-          </div>
-        </div>
+        <figure class="sobre-image sobre-portrait">
+          <img src="assets/pai_paulinho_portal.png" alt="Pai Paulinho em sua casa" width="907" height="908" decoding="async">
+          <figcaption>Pai Paulinho · Xangô Aganjú</figcaption>
+        </figure>
         <div class="sobre-text reveal">
           <div class="sobre-corpo" id="sobreCorpo">
-            <!-- Preenchido pelo app.js -->
+            <p>Pai Paulinho é sacerdote de Xangô Aganjú e conduz uma história dedicada à fé, à caridade e à sua família espiritual.</p>
+            <p>Na casa, cada pessoa encontra escuta e respeito. Conheça essa trajetória e converse com Pai Paulinho para saber mais sobre os atendimentos.</p>
           </div>
           <div class="sobre-action-row">
-            <a href="#" class="btn-whatsapp whatsapp-trigger border-beam-active" id="sobreWhatsApp">
-              <span class="btn-icon">💬</span>
+            <a href="#" class="btn-whatsapp whatsapp-trigger border-beam-active" id="sobreWhatsApp" aria-haspopup="dialog" aria-controls="bookingDialog">
+              <span class="btn-icon" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/><path d="M8 11h8"/></svg></span>
               <span>Agendar uma consulta</span>
             </a>
             <div class="sobre-redes" id="sobreRedes">
@@ -196,8 +186,9 @@
         <div class="documental-info">
           <h3 class="documental-titulo">30 Anos de Axé, Fé e Tradição</h3>
           <p class="documental-desc">
-            Uma jornada forjada no amor, no respeito e na força dos Orixás. Do começo humilde à firmeza de hoje, este registro eterniza a história de uma família espiritual unida pela fé. Assista, sinta a energia e o acolhimento que sustentam o nosso sagrado.
+            Conheça a trajetória da casa e os laços de uma família espiritual construída ao longo de três décadas de fé, dedicação e acolhimento.
           </p>
+          <a class="documental-external" href="https://www.youtube.com/watch?v=ZDaTSNCOBqg" target="_blank" rel="noopener noreferrer">Assistir diretamente no YouTube</a>
         </div>
 
         <!-- ===== ACORDEÃO DOCUMENTAL (LER MAIS) ===== -->
@@ -308,7 +299,7 @@
 
         <div class="galeria-scroll-hint" aria-hidden="true">
           <span class="hint-line"></span>
-          <span class="hint-text">Deslize lateralmente para ver mais</span>
+          <span class="hint-text">Toque em uma foto para ampliar</span>
           <span class="hint-line"></span>
         </div>
       </div>
@@ -320,28 +311,36 @@
   <section id="servicos" class="section section-dark">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow reveal">O que ofereço</span>
-        <h2 class="section-title reveal">Serviços Espirituais</h2>
         <div class="section-ornament reveal" aria-hidden="true">✦</div>
         <p class="section-subtitle reveal">Cada atendimento é conduzido com amor, ética e a força dos orixás.</p>
       </div>
-      <!-- Stats bar — prova social e autoridade -->
-      <div class="sc-stats-bar reveal">
-        <div class="sc-stat">
-          <span class="sc-stat-num">30+</span>
-          <span class="sc-stat-label">Anos de experiência</span>
-        </div>
-        <span class="sc-stat-divider">✦</span>
-        <div class="sc-stat">
-          <span class="sc-stat-num">500+</span>
-          <span class="sc-stat-label">Atendimentos realizados</span>
-        </div>
-        <span class="sc-stat-divider">✦</span>
-        <div class="sc-stat">
-          <span class="sc-stat-num">100%</span>
-          <span class="sc-stat-label">Sigilo garantido</span>
-        </div>
-      </div>
+      <ul class="care-values reveal" role="list" aria-label="Experiência e acolhimento">
+        <li class="care-value care-value--experience">
+          <span class="care-value-years">30<span>+</span></span>
+          <div class="care-value-copy">
+            <p class="care-value-title">Anos de experiência</p>
+            <p class="care-value-description">Uma história de fé e dedicação</p>
+          </div>
+        </li>
+        <li class="care-value care-value--listening">
+          <span class="care-value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20 11.5a7.6 7.6 0 0 1-.8 3.4 7.7 7.7 0 0 1-6.9 4.3 7.6 7.6 0 0 1-3.4-.8L4 20l1.6-4.9a7.6 7.6 0 0 1-.8-3.4 7.7 7.7 0 0 1 4.3-6.9 7.6 7.6 0 0 1 3.4-.8h.4a7.7 7.7 0 0 1 7.1 7.1v.4Z"/><path d="M9 10h7M9 13.5h4"/></svg>
+          </span>
+          <div class="care-value-copy">
+            <p class="care-value-title">Escuta</p>
+            <p class="care-value-description">Respeito à sua história</p>
+          </div>
+        </li>
+        <li class="care-value care-value--care">
+          <span class="care-value-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20.2 5.8a4.8 4.8 0 0 0-6.8 0L12 7.2l-1.4-1.4a4.8 4.8 0 0 0-6.8 6.8L12 21l8.2-8.4a4.8 4.8 0 0 0 0-6.8Z"/></svg>
+          </span>
+          <div class="care-value-copy">
+            <p class="care-value-title">Cuidado</p>
+            <p class="care-value-description">Acolhimento em cada atendimento</p>
+          </div>
+        </li>
+      </ul>
       <div class="servicos-grid" id="servicosGrid">
         <!-- Preenchido pelo app.js -->
       </div>
@@ -349,75 +348,27 @@
     </div>
   </section>
 
-  <!-- ===== ORÁCULO ESPIRITUAL ===== -->
-  <section id="oraculo" class="section">
-    <div class="container">
-      <div class="mensagem-card oracle-card reveal" id="oracleCard">
-        <canvas id="oracleCanvas" class="oracle-canvas"></canvas>
-
-        <!-- Velas — animação de brilho durante a consulta -->
-        <div class="mensagem-candles oracle-candles levitate" id="oracleCandles" aria-hidden="true">
-          <span class="candle">🕯️</span>
-          <span class="candle">🕯️</span>
-          <span class="candle">🕯️</span>
-        </div>
-
-        <span class="section-eyebrow">Orientação de Luz</span>
-        <h2 class="mensagem-titulo">Mensagem de Luz dos Orixás</h2>
-        <div class="mensagem-divider" aria-hidden="true">✦ ✦ ✦</div>
-
-        <!-- Estado 1: Chips de Intenção -->
-        <div class="oracle-cta" id="oracleCta">
-          <p class="oracle-intro">O que o seu coração busca hoje?</p>
-          <div class="oracle-intentions">
-            <button class="intention-chip" data-category="amor" type="button">
-              <span class="chip-icon">💖</span>
-              <span class="chip-text">Amor & Relações</span>
-            </button>
-            <button class="intention-chip" data-category="caminhos" type="button">
-              <span class="chip-icon">🗝️</span>
-              <span class="chip-text">Abertura de Caminhos</span>
-            </button>
-            <button class="intention-chip" data-category="paz" type="button">
-              <span class="chip-icon">🕊️</span>
-              <span class="chip-text">Paz & Saúde Mental</span>
-            </button>
-            <button class="intention-chip" data-category="protecao" type="button">
-              <span class="chip-icon">⚖️</span>
-              <span class="chip-text">Proteção & Justiça</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Estado 2: Resultado -->
-        <div class="oracle-result hidden" id="oracleResult">
-          <blockquote class="mensagem-texto oracle-msg" id="oracleMsgText"></blockquote>
-          <div class="oracle-footer hidden" id="oracleFooter">
-            <p class="mensagem-assinatura">— Pai Paulinho</p>
-            <button class="oracle-btn-again" id="oracleBtnAgain" type="button">
-              ✨ Nova orientação
-            </button>
-          </div>
-        </div>
-
-        <div class="mensagem-flores levitate" aria-hidden="true">🌺 ✨ 🌺</div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===== FAQ / DÚVIDAS FREQUENTES ===== -->
   <section id="faq" class="section section-dark">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow reveal">Esclarecimentos</span>
-        <h2 class="section-title reveal">Dúvidas Frequentes</h2>
-        <div class="section-ornament reveal" aria-hidden="true">✦</div>
+        <h2 class="section-title">Dúvidas frequentes</h2>
       </div>
       <div class="faq-wrapper reveal">
-        
+        <div class="faq-item">
+          <button class="faq-trigger" aria-expanded="false" aria-controls="faq-content-first-visit" type="button">
+            <span class="faq-question">É minha primeira vez. Como posso começar?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-content" id="faq-content-first-visit" aria-hidden="true">
+            <p>Comece pelo WhatsApp: conte brevemente o que procura e tire suas dúvidas. Pai Paulinho explica como funciona o atendimento e combina os próximos passos com você.</p>
+            <a href="https://wa.me/5555999176726" class="faq-contact whatsapp-trigger" aria-haspopup="dialog" aria-controls="bookingDialog">Conversar sobre a primeira visita</a>
+          </div>
+        </div>
+
         <div class="faq-item">
           <button class="faq-trigger" aria-expanded="false" aria-controls="faq-content-1" type="button">
-            <span class="faq-question">Precisa pagar para agendar uma consulta?</span>
+            <span class="faq-question">O primeiro contato pelo WhatsApp tem custo?</span>
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-content" id="faq-content-1" aria-hidden="true">
@@ -451,7 +402,7 @@
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
           <div class="faq-content" id="faq-content-4" aria-hidden="true">
-            <p>Sim! Para consulentes que moram em outras cidades ou fora do país, o Sacerdote Paulo realiza consultas, jogo de búzios e direcionamentos de forma remota, com o mesmo respeito, sigilo e firmeza energética do atendimento presencial.</p>
+            <p>Sim. Pai Paulinho também atende pessoas de outras cidades ou países à distância. Converse pelo WhatsApp para confirmar a modalidade adequada ao seu atendimento.</p>
           </div>
         </div>
 
@@ -459,71 +410,91 @@
     </div>
   </section>
 
-  <!-- ===== LOCALIZAÇÃO (MAPA 3D) ===== -->
-  <section id="localizacao" class="section">
+  <!-- ===== LOCALIZAÇÃO ===== -->
+  <section id="localizacao" class="section" aria-labelledby="locationTitle">
     <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow reveal">Onde Estamos</span>
-        <h2 class="section-title reveal">Centro Africano de Xangô Aganjú</h2>
-        <div class="section-ornament reveal" aria-hidden="true">✦</div>
-      </div>
-      
-      <div class="loc-wrapper reveal" data-tilt data-tilt-max="4" data-tilt-speed="400" data-tilt-perspective="1200" data-tilt-glare="true" data-tilt-max-glare="0.15">
-        <div class="loc-glass-card">
-          <div class="loc-info">
-            <div class="loc-icon-3d" aria-hidden="true">
-              <span class="loc-pin-pulse"></span>
-              📍
-            </div>
-            <h3 class="loc-title">Nossa Casa</h3>
-            <p class="loc-address">
-              R. Alfredo Porciúncula, 430<br>
-              Passo da Lagoa, São Gabriel - RS<br>
-              CEP 97300-000
-            </p>
-            <a href="https://www.google.com/maps/place/R.+Alfredo+Porci%C3%BAncula,+430+-+Passo+da+Lagoa,+S%C3%A3o+Gabriel+-+RS,+97300-000/@-30.3373817,-54.3060985,17z/data=!3m1!4b1!4m6!3m5!1s0x95014f06f92991d1:0x3dc3a5eefd0bb467!8m2!3d-30.3373817!4d-54.3060985!16s%2Fg%2F11pw0w6j5s?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn-outline-gold loc-btn">
-              <span class="btn-icon">🗺️</span>
-              Abrir no Mapa
+      <header class="location-header">
+        <h2 id="locationTitle">Onde estamos</h2>
+        <p>Nossa casa fica em São Gabriel, no Rio Grande do Sul. Veja o endereço e combine sua visita.</p>
+      </header>
+
+      <div class="location-layout reveal">
+        <div class="location-details">
+          <h3>Centro Africano de Xangô Aganjú</h3>
+          <address class="location-address">
+            <strong>Rua Alfredo Porciúncula, 430</strong>
+            <span>Bairro Passo da Lagoa</span>
+            <span>São Gabriel, RS <span class="location-postcode">· CEP 97300-000</span></span>
+          </address>
+
+          <div class="location-visit">
+            <p><strong>Atendimento com hora marcada.</strong><br>Converse com Pai Paulinho antes de vir.</p>
+          </div>
+
+          <div class="location-actions">
+            <a href="https://www.google.com/maps/place/R.+Alfredo+Porci%C3%BAncula,+430+-+Passo+da+Lagoa,+S%C3%A3o+Gabriel+-+RS,+97300-000/@-30.3373817,-54.3060985,17z/data=!3m1!4b1!4m6!3m5!1s0x95014f06f92991d1:0x3dc3a5eefd0bb467!8m2!3d-30.3373817!4d-54.3060985!16s%2Fg%2F11pw0w6j5s?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="location-directions" aria-label="Como chegar pelo Google Maps (abre em outra aba)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-12m-6 0H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/><path d="m9 6 6 2m-6 10 6 2"/></svg>
+              Como chegar
             </a>
+            <a href="https://wa.me/5555999176726" class="location-booking whatsapp-trigger" aria-haspopup="dialog" aria-controls="bookingDialog">Agendar visita</a>
           </div>
-          
-          <div class="loc-map-container">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.278385686036!2d-54.340058323565985!3d-30.37130004245649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95074fec9c3c13e5%3A0xe54e6ffbcf23efd6!2sR.%20Alfredo%20Porci%C3%BAncula%2C%20430%20-%20Passo%20da%20Lagoa%2C%20S%C3%A3o%20Gabriel%20-%20RS%2C%2097300-000!5e0!3m2!1spt-BR!2sbr!4v1718780336214!5m2!1spt-BR!2sbr" 
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Mapa de Localização do Terreiro"
-              class="loc-iframe">
-            </iframe>
-            <!-- Glow Overlay para unificar as cores do mapa ao tema do site -->
-            <div class="loc-map-overlay" aria-hidden="true"></div>
-          </div>
+          <p class="location-map-help">“Como chegar” abre o endereço no Google Maps.</p>
+        </div>
+
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3442.278385686036!2d-54.340058323565985!3d-30.37130004245649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95074fec9c3c13e5%3A0xe54e6ffbcf23efd6!2sR.%20Alfredo%20Porci%C3%BAncula%2C%20430%20-%20Passo%20da%20Lagoa%2C%20S%C3%A3o%20Gabriel%20-%20RS%2C%2097300-000!5e0!3m2!1spt-BR!2sbr!4v1718780336214!5m2!1spt-BR!2sbr"
+            width="100%"
+            height="100%"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa da Rua Alfredo Porciúncula, 430, São Gabriel, RS">
+          </iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA CONTATO ===== -->
-  <section id="contato" class="section section-cta">
-    <div class="cta-bg-glow" aria-hidden="true"></div>
+  <!-- ===== CONVITE PARA ATENDIMENTO ===== -->
+  <section id="contato" class="section contact-invitation" aria-labelledby="contactTitle">
     <div class="container">
-      <div class="cta-content">
-        <div class="cta-emblem reveal" aria-hidden="true">⚡</div>
-        <h2 class="cta-titulo reveal">Abra seus caminhos hoje</h2>
-        <p class="cta-texto reveal">
-          Dê o primeiro passo. Uma conversa com Pai Paulinho pode mudar tudo.<br>
-          Os orixás estão te esperando com os braços abertos.
-        </p>
-        <a href="#" class="btn-whatsapp btn-whatsapp-lg whatsapp-trigger reveal" id="ctaWhatsApp">
-          <span class="btn-icon">💬</span>
-          <span>Agendar pelo WhatsApp</span>
-          <span class="btn-arrow">→</span>
-        </a>
-        <p class="cta-info reveal">📅 Atendimento com hora marcada · Presencial e à distância</p>
+      <div class="contact-panel reveal">
+        <div class="contact-art" aria-hidden="true">
+          <svg viewBox="0 0 480 480" fill="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="contactLight">
+                <stop stop-color="#E7BC77" stop-opacity=".42"/>
+                <stop offset=".45" stop-color="#D6AA70" stop-opacity=".18"/>
+                <stop offset="1" stop-color="#D6AA70" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="contactPath" x1="260" y1="130" x2="260" y2="480" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A56A3A" stop-opacity=".6"/>
+                <stop offset="1" stop-color="#C38B57" stop-opacity=".12"/>
+              </linearGradient>
+            </defs>
+            <circle cx="270" cy="164" r="164" fill="url(#contactLight)"/>
+            <circle cx="270" cy="164" r="91" stroke="#B17E48" stroke-opacity=".16"/>
+            <circle cx="270" cy="164" r="124" stroke="#B17E48" stroke-opacity=".1"/>
+            <g stroke="url(#contactPath)" stroke-width="1.3" stroke-linecap="round">
+              <path d="M-32 480C55 384 139 332 195 266C232 223 251 186 270 151"/>
+              <path d="M105 480C145 388 185 326 222 264C246 222 260 184 270 151"/>
+              <path d="M253 480C240 391 241 327 254 266C264 222 269 185 270 151"/>
+              <path d="M398 480C341 390 309 328 288 265C274 223 271 184 270 151"/>
+              <path d="M520 480C408 381 347 323 310 263C284 221 276 184 270 151"/>
+            </g>
+          </svg>
+        </div>
+        <div class="contact-copy">
+          <p class="contact-kicker">Fé, respeito e acolhimento</p>
+          <h2 id="contactTitle">Abra seus <span>caminhos</span> hoje</h2>
+          <p class="contact-message">Converse com Pai Paulinho para tirar suas dúvidas e combinar seu atendimento. Você será recebido com respeito e acolhimento.</p>
+          <a href="#" class="btn-whatsapp btn-whatsapp-lg whatsapp-trigger contact-button" id="ctaWhatsApp" aria-haspopup="dialog" aria-controls="bookingDialog">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg>
+            <span>Agendar atendimento</span>
+          </a>
+          <p class="contact-note">Atendimento com hora marcada · Presencial e à distância</p>
+        </div>
       </div>
     </div>
   </section>
@@ -533,8 +504,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand-col">
-          <div class="footer-emblem" aria-hidden="true">⚡</div>
-          <h3 class="footer-nome">Paulo Silveira Gandor<br><span>Sacerdote de Xangô Aganjú</span></h3>
+          <h3 class="footer-nome">Pai Paulinho<br><span>Sacerdote de Xangô Aganjú</span></h3>
           <p class="footer-slogan">Luz, acolhimento e verdade.</p>
         </div>
         <div class="footer-nav-col">
@@ -542,10 +512,9 @@
           <ul class="footer-links">
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#oraculo">Oráculo</a></li>
+            <li><a href="#oraculo">Orientação de Luz</a></li>
             <li><a href="#faq">Dúvidas Frequentes</a></li>
             <li><a href="estudos.html">Estudos</a></li>
-            <li><a href="santuario.html">Santuário</a></li>
             <li><a href="#contato">Agendar</a></li>
           </ul>
         </div>
@@ -561,16 +530,14 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Paulo Silveira Gandor · Todos os direitos reservados</p>
+        <p>© 2026 Pai Paulinho · Todos os direitos reservados</p>
         <p><a href="politica-privacidade.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Política de Privacidade</a></p>
-        <a href="admin.html" class="footer-admin-link" aria-label="Painel administrativo" title="Admin">⚙</a>
       </div>
     </div>
   </footer>
-  </div> <!-- Final do page-wrapper -->
+  </main> <!-- Final do page-wrapper -->
 
   <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
-  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
 
   <!-- ===== LIGHTBOX CINEMÁTICO GALERIA ===== -->
   <div class="galeria-lightbox hidden" id="galeriaLightbox" role="dialog" aria-modal="true"
@@ -588,26 +555,55 @@
     <button class="lightbox-nav next" id="lightboxNext" aria-label="Próxima Foto" type="button">&#10095;</button>
   </div>
 
-  <!-- ===== WHATSAPP FAB FLUTUANTE (drag-and-snap) ===== -->
-  <div id="whabFab" class="whab-fab" role="button" aria-label="Falar com Pai Paulinho pelo WhatsApp" tabindex="0">
-    <div class="whab-pulse" aria-hidden="true"></div>
-    <div class="whab-icon" aria-hidden="true">
-      <!-- SVG oficial do WhatsApp -->
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="16" fill="#25D366"/>
-        <path fill="#fff" d="M22.45 9.54A8.94 8.94 0 0 0 16 7a8.96 8.96 0 0 0-7.73 13.43L7 25l4.7-1.23A8.96 8.96 0 0 0 25 16.01c0-2.4-.93-4.65-2.55-6.47Zm-6.45 13.77a7.44 7.44 0 0 1-3.79-1.04l-.27-.16-2.79.73.75-2.72-.18-.28a7.43 7.43 0 0 1-1.14-3.99 7.45 7.45 0 0 1 12.7-5.27 7.38 7.38 0 0 1 2.13 5.27 7.46 7.46 0 0 1-7.41 7.46Zm4.08-5.58c-.22-.11-1.31-.64-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.17-.48.06a6.03 6.03 0 0 1-1.77-1.09 6.6 6.6 0 0 1-1.22-1.52c-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.2-.68-1.64-.18-.43-.36-.37-.5-.38h-.42c-.15 0-.39.06-.6.28-.2.22-.78.76-.78 1.85s.8 2.15.91 2.3c.11.15 1.57 2.4 3.8 3.36.53.23.94.37 1.27.47.53.17 1.01.15 1.39.09.42-.07 1.31-.54 1.5-1.06.18-.52.18-.97.13-1.06-.06-.09-.2-.15-.43-.26Z"/>
-      </svg>
+  <dialog id="bookingDialog" class="booking-dialog" aria-labelledby="bookingTitle" aria-describedby="bookingDescription">
+    <div class="booking-shell">
+      <header class="booking-header">
+        <p class="booking-eyebrow">PAI PAULINHO · AGENDAMENTO</p>
+        <button type="button" class="booking-close" id="bookingClose" aria-label="Fechar agendamento">×</button>
+      </header>
+      <h2 id="bookingTitle">Vamos organizar sua visita.</h2>
+      <p id="bookingDescription">Escolha suas preferências. Pai Paulinho confirma os detalhes pelo WhatsApp.</p>
+      <ol class="booking-progress" aria-label="Etapas do agendamento">
+        <li aria-current="step">1. Atendimento</li><li>2. Preferências</li><li>3. Revisão</li>
+      </ol>
+      <form id="bookingForm">
+        <section class="booking-step" data-step="0" aria-labelledby="bookingStepOne">
+          <h3 id="bookingStepOne" tabindex="-1">Como podemos acolher você?</h3>
+          <label for="bookingService">Atendimento de interesse</label>
+          <select id="bookingService" name="service" required><option value="">Selecione um atendimento</option></select>
+          <p class="booking-hint">Se estiver em dúvida, escolha “Quero orientação para escolher”.</p>
+        </section>
+        <section class="booking-step" data-step="1" aria-labelledby="bookingStepTwo" hidden>
+          <h3 id="bookingStepTwo" tabindex="-1">O que funciona melhor para você?</h3>
+          <label for="bookingMode">Preferência de atendimento</label>
+          <select id="bookingMode" name="mode" required>
+            <option value="">Selecione uma opção</option><option>Presencial</option><option>À distância</option><option>Quero combinar pelo WhatsApp</option>
+          </select>
+          <p class="booking-hint">A modalidade depende do atendimento e será confirmada na conversa.</p>
+          <div class="booking-fields">
+            <div><label for="bookingDay">Melhor dia</label><select id="bookingDay" name="day"><option>Tenho flexibilidade</option><option>Segunda-feira</option><option>Terça-feira</option><option>Quarta-feira</option><option>Quinta-feira</option><option>Sexta-feira</option><option>Sábado</option><option>Domingo</option></select></div>
+            <div><label for="bookingPeriod">Melhor período</label><select id="bookingPeriod" name="period"><option>Tenho flexibilidade</option><option>Manhã</option><option>Tarde</option><option>Noite</option></select></div>
+          </div>
+          <p class="booking-hint">Essas são suas preferências, sujeitas à disponibilidade da casa.</p>
+        </section>
+        <section class="booking-step" data-step="2" aria-labelledby="bookingStepThree" hidden>
+          <h3 id="bookingStepThree" tabindex="-1">Tudo certo para conversar?</h3>
+          <p class="booking-hint">Esta é a mensagem que você poderá enviar:</p>
+          <p id="bookingPreview" class="booking-preview"></p>
+          <p class="booking-notice">O horário só estará reservado após a confirmação de Pai Paulinho.</p>
+        </section>
+        <footer class="booking-footer">
+          <button type="button" id="bookingBack" class="booking-secondary" hidden>Voltar</button>
+          <button type="submit" id="bookingNext" class="booking-primary">Continuar</button>
+          <a id="bookingSend" class="booking-primary" target="_blank" rel="noopener noreferrer" hidden>Continuar no WhatsApp</a>
+        </footer>
+      </form>
+      <p class="booking-privacy">Sem cadastro. Suas escolhas só são compartilhadas quando você envia a mensagem no WhatsApp.</p>
     </div>
-    <span class="whab-label">Falar com Pai Paulinho</span>
-  </div>
+  </dialog>
 
-  <!-- Motor Físico de Gravidade 3D (VanillaTilt) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-
-  <!-- GSAP: Motor de Animação Scroll-Driven -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=20"></script>
+  <script src="agendamento.js?v=1"></script>
+  <script src="site-ui.js?v=4"></script>
 </body>
 </html>

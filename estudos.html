@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://paipaulinhors.com.br/estudos.html">
   <title>Plataforma de Estudos — Pai Paulinho de Xangô</title>
   <meta name="description"
-    content="Explore a Plataforma de Estudos Espirituais de Pai Paulinho. Conheça a teologia dos Orixás, a hierarquia das linhas de trabalho e a profundidade espiritual do Axé.">
+    content="Conheça os conceitos básicos, os orixás e os guias em estudos com explicações iniciais e palavras de apoio.">
   <meta name="keywords"
     content="Estudos Umbanda, Orixás, Xangô Aganjú, Exu, Linhas de Trabalho, Pretos Velhos, Caboclos, Quimbanda, Dicionário de Umbanda">
   <meta property="og:title" content="Estudos Espirituais — Pai Paulinho de Xangô">
-  <meta property="og:description" content="Um ambiente imersivo de estudo e luz sobre o universo dos Orixás e dos Guias de Lei.">
+  <meta property="og:description" content="Estudos com explicações iniciais para quem está conhecendo a religião.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,36 +20,37 @@
     rel="stylesheet">
   
   <!-- Estilos Globais e Específicos -->
-  <link rel="stylesheet" href="style.css?v=7">
-  <link rel="stylesheet" href="estudos.css">
+  <link rel="stylesheet" href="style.css?v=20">
+  <link rel="stylesheet" href="estudos.css?v=2">
 
   <!-- PWA & Mobile Optimization -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8B1C1C">
+  <link rel="stylesheet" href="site-ui.css?v=17">
 </head>
 
-<body>
+<body class="public-page">
+  <a class="skip-content" href="#conteudo">Ir para o conteúdo</a>
 
   <!-- ===== NAVIGATION ===== -->
   <header id="siteHeader">
-    <nav class="nav container">
+    <nav class="nav container" aria-label="Navegação principal">
       <a href="index.html" class="nav-brand">
-        <span class="nav-brand-icon">⚡</span>
         <span class="nav-brand-text">Pai Paulinho de Xangô</span>
       </a>
-      <ul class="nav-links" id="navLinks" role="menu">
-        <li role="none"><a href="index.html#sobre" class="nav-link" role="menuitem">Sobre</a></li>
-        <li role="none"><a href="index.html#servicos" class="nav-link" role="menuitem">Serviços</a></li>
-        <li role="none"><a href="index.html#oraculo" class="nav-link" role="menuitem">Oráculo</a></li>
-        <li role="none"><a href="estudos.html" class="nav-link active" role="menuitem">Estudos</a></li>
-        <li role="none"><a href="santuario.html" class="nav-link" role="menuitem">Santuário</a></li>
-        <li id="installAppLi" class="hidden" role="none">
-          <a href="#" class="nav-link nav-install-link" id="installAppBtn" role="menuitem">Instalar Aplicativo</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="index.html#servicos" class="nav-link">Serviços</a></li>
+        <li><a href="index.html#oraculo" class="nav-link">Orientação de Luz</a></li>
+        <li><a href="estudos.html" class="nav-link active" aria-current="page">Estudos</a></li>
+        <li id="installAppLi" class="hidden">
+          <a href="#" class="nav-link nav-install-link" id="installAppBtn">Instalar Aplicativo</a>
         </li>
       </ul>
       <div class="nav-actions">
-        <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
+        <a class="nav-book" href="index.html#agendar">Agendar</a>
+        <button class="nav-hamburger" id="navHamburger" aria-controls="navLinks" aria-label="Abrir menu" aria-expanded="false">
+          Menu <svg class="menu-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     </nav>
@@ -57,23 +59,22 @@
   <!-- ===== HERO SECTION ===== -->
   <section class="estudos-hero">
     <div class="estudos-hero-content">
-      <h1 class="estudos-hero-title">Conhecimento & Luz: O Universo Espiritual</h1>
+      <h1 class="estudos-hero-title">Estudos espirituais</h1>
       <div class="estudos-hero-divider" aria-hidden="true">
         <span class="line"></span>
         <span class="symbol">✦ ✦ ✦</span>
         <span class="line"></span>
       </div>
       <p class="estudos-hero-subtitle">
-        Bem-vindo ao Livro Sagrado Digital. Um espaço de estudo dedicado a explicar com amor,
-        clareza e profundidade os fundamentos do Axé, a beleza das divindades e o acolhimento de nossos guias.
+        Comece pelos conceitos básicos e avance no seu ritmo. Você pode seguir a ordem sugerida ou escolher um assunto no sumário.
       </p>
     </div>
   </section>
 
   <!-- ===== BOTÃO FLUTUANTE DO SUMÁRIO (MOBILE DRAWER TRIGGER) ===== -->
-  <button id="btnToggleSidebar" class="btn-flutuante-sumario" aria-label="Abrir Sumário de Estudos" title="Abrir Sumário">
+  <button id="btnToggleSidebar" class="btn-flutuante-sumario" aria-label="Escolher assunto" title="Escolher assunto">
     <span class="icon">📖</span>
-    <span class="text">Sumário</span>
+    <span class="text">Escolher assunto</span>
   </button>
 
   <!-- ===== OVERLAY DA GAVETA (MOBILE BACKDROP) ===== -->
@@ -84,134 +85,115 @@
     <div class="container livro-grid">
       
       <!-- SIDEBAR DE NAVEGAÇÃO DOS MÓDULOS (MASTER) -->
-      <aside id="livroSidebar" class="livro-sidebar" aria-label="Sumário da Plataforma">
+      <aside id="livroSidebar" class="livro-sidebar" aria-label="Escolha um assunto">
         
         <!-- Botão Fechar no Mobile -->
         <button id="btnCloseSidebar" class="btn-close-sidebar" aria-label="Fechar Sumário">&times;</button>
         
-        <h2 class="sidebar-title">Módulos</h2>
+        <h2 class="sidebar-title">Escolha um assunto</h2>
         
         <div class="sidebar-modulos-container">
-          
-          <!-- MÓDULO 1 -->
-          <div class="modulo-item open">
-            <button class="modulo-trigger">
-              <span class="modulo-num">01</span> Módulo 1: Fundamentos
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item open" data-group-title="Comece pelo básico">
+            <button class="modulo-trigger" type="button" aria-expanded="true" aria-controls="studyGroup1">
+              <span class="modulo-num">01</span><span class="modulo-label">Comece pelo básico</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <button class="topico-btn active" data-topico="umbanda-candomble">Umbanda vs. Candomblé</button>
-              <button class="topico-btn" data-topico="orixas-entidades">Orixás vs. Entidades</button>
-              <button class="topico-btn" data-topico="quimbanda-fundamentos">Quimbanda: A Força da Esquerda</button>
+            <div class="modulo-conteudo" id="studyGroup1">
+              <button type="button" class="topico-btn" data-topico="umbanda-candomble">Umbanda e Candomblé</button>
+              <button type="button" class="topico-btn" data-topico="orixas-entidades">Orixás e entidades</button>
+              <button type="button" class="topico-btn" data-topico="capitulobonus">Palavras e significados</button>
             </div>
           </div>
-
-          <!-- MÓDULO ALQUIMIA DAS ERVAS (NOVO) -->
-          <div class="modulo-item">
-            <button class="modulo-trigger">
-              <span class="modulo-num">02</span> Módulo 2: Alquimia das Ervas e Banhos
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item" data-group-title="Conheça os orixás">
+            <button class="modulo-trigger" type="button" aria-expanded="false" aria-controls="studyGroup2">
+              <span class="modulo-num">02</span><span class="modulo-label">Conheça os orixás</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <div class="modulo-subtitulo-sec">🔥 Ervas Quentes</div>
-              <button class="topico-btn" data-topico="ervas-quentes">Descarrego Pesado</button>
-              <div class="modulo-subtitulo-sec">🪵 Ervas Mornas</div>
-              <button class="topico-btn" data-topico="ervas-mornas">Equilíbrio Geral</button>
-              <div class="modulo-subtitulo-sec">❄️ Ervas Frias</div>
-              <button class="topico-btn" data-topico="ervas-frias">Atração e Sutileza</button>
+            <div class="modulo-conteudo" id="studyGroup2">
+              <button type="button" class="topico-btn" data-topico="exu-orixa">Exu como orixá</button>
+              <button type="button" class="topico-btn" data-topico="ogum">Ogum</button>
+              <button type="button" class="topico-btn" data-topico="oxossi">Oxóssi</button>
+              <button type="button" class="topico-btn" data-topico="xango">Xangô Aganjú</button>
+              <button type="button" class="topico-btn" data-topico="oxumare">Oxumarê</button>
+              <button type="button" class="topico-btn" data-topico="ossaim">Ossaim</button>
+              <button type="button" class="topico-btn" data-topico="omulu">Obaluaiê / Omulu</button>
+              <button type="button" class="topico-btn" data-topico="oxum">Oxum</button>
+              <button type="button" class="topico-btn" data-topico="iansa">Iansã</button>
+              <button type="button" class="topico-btn" data-topico="iemanja">Iemanjá</button>
+              <button type="button" class="topico-btn" data-topico="nana">Nanã</button>
+              <button type="button" class="topico-btn" data-topico="oxala">Oxalá</button>
             </div>
           </div>
-
-          <!-- MÓDULO 2 (antigo) — renumerado para 03 -->
-
-          <div class="modulo-item">
-            <button class="modulo-trigger">
-              <span class="modulo-num">03</span> Módulo 3: Panteão Orixás
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item" data-group-title="Conheça os guias">
+            <button class="modulo-trigger" type="button" aria-expanded="false" aria-controls="studyGroup3">
+              <span class="modulo-num">03</span><span class="modulo-label">Conheça os guias</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <div class="modulo-subtitulo-sec">Forças da Natureza</div>
-              <button class="topico-btn" data-topico="exu-orixa">Exu (Orixá)</button>
-              <button class="topico-btn" data-topico="ogum">Ogum</button>
-              <button class="topico-btn" data-topico="oxossi">Oxóssi</button>
-              <button class="topico-btn" data-topico="xango">Xangô</button>
-              <button class="topico-btn" data-topico="oxumare">Oxumarê</button>
-              <button class="topico-btn" data-topico="ossaim">Ossaim</button>
-              <button class="topico-btn" data-topico="omulu">Obaluaiê / Omulu</button>
-              
-              <div class="modulo-subtitulo-sec">Águas e Fem.</div>
-              <button class="topico-btn" data-topico="oxum">Oxum</button>
-              <button class="topico-btn" data-topico="iansa">Iansã</button>
-              <button class="topico-btn" data-topico="iemanja">Iemanjá</button>
-              <button class="topico-btn" data-topico="nana">Nanã</button>
-              
-              <div class="modulo-subtitulo-sec">Criação & Sabedoria</div>
-              <button class="topico-btn" data-topico="oxala">Oxalá</button>
+            <div class="modulo-conteudo" id="studyGroup3">
+              <button type="button" class="topico-btn" data-topico="pretos-velhos">Pretos Velhos</button>
+              <button type="button" class="topico-btn" data-topico="caboclos">Caboclos</button>
+              <button type="button" class="topico-btn" data-topico="baianos">Baianos</button>
+              <button type="button" class="topico-btn" data-topico="boiadeiros">Boiadeiros</button>
+              <button type="button" class="topico-btn" data-topico="marinheiros">Marinheiros</button>
+              <button type="button" class="topico-btn" data-topico="eres">Erês / Crianças</button>
             </div>
           </div>
-
-          <!-- MÓDULO 3 -->
-          <div class="modulo-item">
-            <button class="modulo-trigger">
-              <span class="modulo-num">03</span> Módulo 3: As Entidades
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item" data-group-title="Entenda as práticas">
+            <button class="modulo-trigger" type="button" aria-expanded="false" aria-controls="studyGroup4">
+              <span class="modulo-num">04</span><span class="modulo-label">Entenda as práticas</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <button class="topico-btn" data-topico="pretos-velhos">Pretos Velhos</button>
-              <button class="topico-btn" data-topico="caboclos">Caboclos</button>
-              <button class="topico-btn" data-topico="baianos">Baianos</button>
-              <button class="topico-btn" data-topico="boiadeiros">Boiadeiros</button>
-              <button class="topico-btn" data-topico="marinheiros">Marinheiros</button>
-              <button class="topico-btn" data-topico="eres">Erês / Crianças</button>
-              <button class="topico-btn" data-topico="guardioes-esquerda">Guardiões da Esquerda</button>
+            <div class="modulo-conteudo" id="studyGroup4">
+              <button type="button" class="topico-btn" data-topico="firmeza-espiritual">Firmeza espiritual</button>
+              <button type="button" class="topico-btn" data-topico="jogo-buzios">Jogo de búzios</button>
+              <button type="button" class="topico-btn" data-topico="limpeza-espiritual">Limpeza espiritual</button>
             </div>
           </div>
-
-          <!-- MÓDULO 4 -->
-          <div class="modulo-item">
-            <button class="modulo-trigger">
-              <span class="modulo-num">04</span> Módulo 4: Rituais e Práticas
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item" data-group-title="Ervas e banhos">
+            <button class="modulo-trigger" type="button" aria-expanded="false" aria-controls="studyGroup5">
+              <span class="modulo-num">05</span><span class="modulo-label">Ervas e banhos</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <button class="topico-btn" data-topico="firmeza-espiritual">Firmeza Espiritual</button>
-              <button class="topico-btn" data-topico="jogo-buzios">Jogo de Búzios</button>
-              <button class="topico-btn" data-topico="limpeza-espiritual">Limpeza Espiritual</button>
-              <div class="modulo-subtitulo-sec">Referência</div>
-              <button class="topico-btn" data-topico="capitulobonus">📖 Dicionário do Axé</button>
+            <div class="modulo-conteudo" id="studyGroup5">
+              <button type="button" class="topico-btn" data-topico="ervas-quentes">Ervas quentes</button>
+              <button type="button" class="topico-btn" data-topico="ervas-mornas">Ervas mornas</button>
+              <button type="button" class="topico-btn" data-topico="ervas-frias">Ervas frias</button>
             </div>
           </div>
-
-          <!-- MÓDULO 5 -->
-          <div class="modulo-item">
-            <button class="modulo-trigger">
-              <span class="modulo-num">05</span> Módulo 5: A Esquerda
-              <span class="modulo-chevron">▾</span>
+          <div class="modulo-item" data-group-title="Exu, Pombagira e outras linhas">
+            <button class="modulo-trigger" type="button" aria-expanded="false" aria-controls="studyGroup6">
+              <span class="modulo-num">06</span><span class="modulo-label">Exu, Pombagira e outras linhas</span><span class="modulo-chevron" aria-hidden="true">▾</span>
             </button>
-            <div class="modulo-conteudo">
-              <button class="topico-btn" data-topico="esquerda-encruzilhada">Povo da Encruzilhada</button>
-              <button class="topico-btn" data-topico="esquerda-calunga">Povo da Calunga</button>
-              <button class="topico-btn" data-topico="esquerda-lira">Povo da Lira</button>
-              <button class="topico-btn" data-topico="esquerda-ciganos">Linha dos Ciganos</button>
-              <button class="topico-btn" data-topico="esquerda-malandros">Linha dos Malandros</button>
-              <button class="topico-btn" data-topico="esquerda-mirim">Linha de Mirim</button>
+            <div class="modulo-conteudo" id="studyGroup6">
+              <button type="button" class="topico-btn" data-topico="quimbanda-fundamentos">Conhecendo a Quimbanda</button>
+              <button type="button" class="topico-btn" data-topico="guardioes-esquerda">Exu e Pombagira</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-encruzilhada">Povo da Encruzilhada</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-calunga">Povo da Calunga</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-lira">Povo da Lira</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-ciganos">Linha dos Ciganos</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-malandros">Linha dos Malandros</button>
+              <button type="button" class="topico-btn" data-topico="esquerda-mirim">Linha de Exu Mirim</button>
             </div>
           </div>
-
         </div>
       </aside>
 
       <!-- PALCO DE LEITURA DINÂMICO (DETAIL) -->
-      <main class="livro-leitura" aria-label="Área de Leitura">
+      <main id="conteudo" tabindex="-1" class="livro-leitura" aria-label="Área de Leitura">
         <div id="leituraPalco" class="leitura-palco-wrap">
           
           <header class="capitulo-header">
-            <span id="leituraTag" class="capitulo-tag">Módulo 1</span>
-            <h2 id="leituraTitulo" class="capitulo-titulo">Carregando conteúdo...</h2>
+            <span id="leituraTag" class="capitulo-tag">Comece pelo básico</span>
+            <p id="studyProgress" class="study-progress" aria-live="polite" aria-atomic="true"></p>
+            <h2 id="leituraTitulo" class="capitulo-titulo" tabindex="-1">Carregando conteúdo...</h2>
           </header>
           
+          <section class="study-intro" aria-labelledby="studyIntroTitle">
+            <h3 id="studyIntroTitle">Para começar</h3>
+            <p id="studySummary"></p>
+            <details id="studyTerms" class="study-terms">
+              <summary>Palavras deste assunto</summary>
+              <dl id="studyTermsList"></dl>
+            </details>
+          </section>
+          <h3 class="study-deeper-title">Entenda melhor</h3>
           <div id="leituraImagemWrapper" class="artigo-imagem-wrapper">
-            <img id="leituraImagem" src="" alt="Imagem do estudo" class="artigo-imagem">
+            <img id="leituraImagem" alt="Imagem do estudo" class="artigo-imagem" role="button" tabindex="0" aria-label="Ampliar imagem do estudo">
             <p id="leituraImagemLegenda" class="artigo-imagem-legenda"></p>
           </div>
           
@@ -219,15 +201,11 @@
             <!-- Injetado dinamicamente pelo JS -->
           </div>
 
-          <!-- PROMPTS DE IMAGEM COMENTADOS PARA FUTURA REFERÊNCIA (MIDJOURNEY/DALL-E) -->
-          <!-- 
-            Prompt Orixás da Natureza:
-            "Ultra-realistic 4K portrait, cinematic lighting, representing the African deity [NOME DO ORIXÁ], glowing aura of [ELEMENTO DO ORIXÁ], highly detailed, sacred, majestic, ethereal background."
-
-            Prompt Entidades:
-            "Cinematic 4K photography, Umbanda spirit [TIPO DA ENTIDADE, ex: Preto Velho], deeply emotional face, holding [ELEMENTO, ex: cachimbo/arruda], temple background, warm and acolhedor lighting, spiritual glow."
-          -->
-
+          <nav class="study-pagination" aria-label="Continuar os estudos">
+            <button type="button" id="studyPrevious" class="study-nav-button" disabled><strong>Assunto anterior</strong><span></span></button>
+            <button type="button" id="studyChoose" class="study-choose">Escolher assunto</button>
+            <button type="button" id="studyNext" class="study-nav-button"><strong>Próximo assunto</strong><span></span></button>
+          </nav>
         </div>
       </main>
 
@@ -239,8 +217,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand-col">
-          <div class="footer-emblem" aria-hidden="true">⚡</div>
-          <h3 class="footer-nome">Paulo Silveira Gandor<br><span>Sacerdote de Xangô Aganjú</span></h3>
+          <h3 class="footer-nome">Pai Paulinho<br><span>Sacerdote de Xangô Aganjú</span></h3>
           <p class="footer-slogan">Luz, acolhimento e verdade.</p>
         </div>
         <div class="footer-nav-col">
@@ -248,9 +225,8 @@
           <ul class="footer-links">
             <li><a href="index.html#sobre">Sobre</a></li>
             <li><a href="index.html#servicos">Serviços</a></li>
-            <li><a href="index.html#oraculo">Oráculo</a></li>
+            <li><a href="index.html#oraculo">Orientação de Luz</a></li>
             <li><a href="estudos.html">Estudos</a></li>
-            <li><a href="santuario.html">Santuário</a></li>
             <li><a href="index.html#contato">Agendar</a></li>
           </ul>
         </div>
@@ -266,24 +242,19 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 Paulo Silveira Gandor · Todos os direitos reservados</p>
+        <p>© 2026 Pai Paulinho · Todos os direitos reservados</p>
         <p><a href="politica-privacidade.html" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Política de Privacidade</a></p>
-        <a href="admin.html" class="footer-admin-link" aria-label="Painel administrativo" title="Admin">⚙</a>
       </div>
     </div>
   </footer>
 
-  <!-- Motor Físico de Gravidade 3D (VanillaTilt) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-  <!-- GSAP: Motor de Animação Scroll-Driven -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=20"></script>
   
   <!-- Banco de Dados e Motor da Plataforma de Estudos -->
-  <script src="estudos.js?v=7"></script>
+  <script src="estudos-guia.js?v=1"></script>
+  <script src="estudos.js?v=11"></script>
+  <script src="site-ui.js?v=4"></script>
 </body>
 
 </html>

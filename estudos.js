@@ -15,7 +15,7 @@ const ESTUDOS_DB = {
 
   'umbanda-candomble': {
     modulo: 'Módulo 1: Fundamentos',
-    tag: 'Módulo 1 · Fundamentos e Diferenças',
+    tag: 'Fundamentos e Diferenças',
     titulo: 'Umbanda vs. Candomblé: O Entendimento Respeitoso',
     imagem: './assets/estudos/umbanda_candomble.png',
     legenda: 'A união dos tambores celebra a riqueza ancestral sob diferentes ritos.',
@@ -52,7 +52,7 @@ const ESTUDOS_DB = {
 
   'orixas-entidades': {
     modulo: 'Módulo 1: Fundamentos',
-    tag: 'Módulo 1 · Fundamentos e Diferenças',
+    tag: 'Fundamentos e Diferenças',
     titulo: 'Orixás vs. Entidades: Compreendendo a Linha de Lei',
     imagem: './assets/estudos/axe_criacao.png',
     legenda: 'O Orixá brilha no topo como energia pura; a Entidade atua na terra estendendo a mão.',
@@ -92,7 +92,7 @@ const ESTUDOS_DB = {
 
   'quimbanda-fundamentos': {
     modulo: 'Módulo 1: Fundamentos',
-    tag: 'Módulo 1 · Fundamentos e Diferenças',
+    tag: 'Fundamentos e Diferenças',
     titulo: 'Quimbanda: A Força, a Lei e o Trono da Esquerda',
     imagem: './assets/estudos/quimbanda_fundamentos.jpg',
     legenda: 'A chama vermelha e negra da proteção, do movimento e do descarrego.',
@@ -146,7 +146,7 @@ const ESTUDOS_DB = {
 
   'ervas-quentes': {
     modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
-    tag: 'Módulo 2 · Ervas Quentes · Descarrego Pesado',
+    tag: 'Ervas Quentes · Descarrego Pesado',
     titulo: '🔥 Ervas Quentes: Descarrego Pesado e Corte de Demanda',
     imagem: '',
     legenda: '',
@@ -250,7 +250,7 @@ const ESTUDOS_DB = {
 
   'ervas-mornas': {
     modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
-    tag: 'Módulo 2 · Ervas Mornas · Equilíbrio Geral',
+    tag: 'Ervas Mornas · Equilíbrio Geral',
     titulo: '🪵 Ervas Mornas: Equilíbrio, Paz e Uso Geral',
     imagem: '',
     legenda: '',
@@ -354,7 +354,7 @@ const ESTUDOS_DB = {
 
   'ervas-frias': {
     modulo: 'Módulo 2: Alquimia das Ervas e Banhos',
-    tag: 'Módulo 2 · Ervas Frias · Atração e Sutileza',
+    tag: 'Ervas Frias · Atração e Sutileza',
     titulo: '❄️ Ervas Frias: Atração, Magnetismo e Pós-Limpeza',
     imagem: '',
     legenda: '',
@@ -448,10 +448,9 @@ const ESTUDOS_DB = {
   // --- Módulo 3: Panteão dos Orixás ---
   // ============================================================
 
-
   'exu-orixa': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Exu: O Senhor do Movimento, dos Caminhos e da Comunicação',
     imagem: './assets/estudos/exu_orixa.png',
     legenda: 'Um tridente rústico de ferro na encruzilhada abre os caminhos materiais.',
@@ -490,7 +489,7 @@ const ESTUDOS_DB = {
 
   'ogum': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Ogum: A Força do Ferro, do Trabalho e da Coragem Inabalável',
     imagem: './assets/estudos/ogum_orixa.png',
     legenda: 'A espada forjada e as folhas de São Jorge simbolizam a defesa inabalável.',
@@ -529,7 +528,7 @@ const ESTUDOS_DB = {
 
   'oxossi': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Oxóssi: O Caçador Sagrado da Fartura, do Saber e da Providência',
     imagem: './assets/estudos/oxossi_orixa.png',
     legenda: 'O Ofá de bronze no coração da floresta traz a fartura espiritual e material.',
@@ -568,7 +567,7 @@ const ESTUDOS_DB = {
 
   'xango': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Xangô Aganjú: A Justiça do Trovão, a Força da Pedreira Sagrada',
     imagem: './assets/estudos/xango_orixa.png',
     legenda: 'O Oxê duplo cravado na pedreira sob a força do raio simboliza a lei justa.',
@@ -607,7 +606,7 @@ const ESTUDOS_DB = {
 
   'oxumare': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Oxumarê: A Serpente Arco-Íris do Ciclo Infinito e da Renovação',
     imagem: './assets/estudos/oxumare_orixa.png',
     legenda: 'A névoa da cachoeira e o arco-íris anunciam tempos de transformação.',
@@ -646,7 +645,7 @@ const ESTUDOS_DB = {
 
   'ossaim': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Ossaim: O Segredo Sagrado das Folhas e da Medicina do Axé',
     imagem: './assets/estudos/ossaim_orixa.png',
     legenda: 'O cajado com o pássaro de ferro e as folhas curativas de Ossaim.',
@@ -685,7 +684,7 @@ const ESTUDOS_DB = {
 
   'omulu': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Forças da Natureza',
+    tag: 'Orixás · Forças da Natureza',
     titulo: 'Obaluaiê / Omulu: O Senhor da Saúde e o Mistério da Transmutação',
     imagem: './assets/estudos/omulu_orixa.png',
     legenda: 'A palha da costa e as flores de pipoca consagram a transmutação e a saúde.',
@@ -724,7 +723,7 @@ const ESTUDOS_DB = {
 
   'oxum': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Águas e Femininos',
+    tag: 'Orixás · Águas e Femininos',
     titulo: 'Oxum: O Rio Dourado da Prosperidade, do Amor e da Fertilidade',
     imagem: './assets/estudos/oxum_orixa.png',
     legenda: 'O Abebê de latão dourado flutua sobre as águas doces e lírios amarelos.',
@@ -763,7 +762,7 @@ const ESTUDOS_DB = {
 
   'iansa': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Águas e Femininos',
+    tag: 'Orixás · Águas e Femininos',
     titulo: 'Iansã: O Vento da Coragem, o Raio da Transformação Necessária',
     imagem: './assets/estudos/iansa_orixa.png',
     legenda: 'A espada de cobre e o Eruxim reluzem sob céus avermelhados de tempestade.',
@@ -802,7 +801,7 @@ const ESTUDOS_DB = {
 
   'iemanja': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Águas e Femininos',
+    tag: 'Orixás · Águas e Femininos',
     titulo: 'Iemanjá: A Mãe dos Oceanos, Guardiã do Equilíbrio Mental',
     imagem: './assets/estudos/iemanja_orixa.png',
     legenda: 'Pérolas, conchas e um espelho prateado sob o luar na praia sagrada.',
@@ -841,7 +840,7 @@ const ESTUDOS_DB = {
 
   'nana': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Águas e Femininos',
+    tag: 'Orixás · Águas e Femininos',
     titulo: 'Nanã Buruquê: A Anciã Primordial, a Lama da Criação e o Descanso das Almas',
     imagem: './assets/estudos/nana_orixa.png',
     legenda: 'O feixe do Ibiri repousa junto a raízes ancestrais sobre as águas do pântano.',
@@ -880,7 +879,7 @@ const ESTUDOS_DB = {
 
   'oxala': {
     modulo: 'Módulo 2: O Panteão dos Orixás',
-    tag: 'Módulo 2 · Orixás · Criação e Sabedoria',
+    tag: 'Orixás · Criação e Sabedoria',
     titulo: 'Oxalá: O Manto Branco da Paz Universal e da Fé Inabalável',
     imagem: './assets/estudos/oxala_orixa.png',
     legenda: 'A luz branca e o Opaxorô de prata de Oxalá consagram a concórdia.',
@@ -923,7 +922,7 @@ const ESTUDOS_DB = {
 
   'pretos-velhos': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Pretos Velhos: A Sabedoria da Senzala, o Amor que Venceu o Ódio',
     imagem: './assets/estudos/pretovelho.jpg',
     legenda: 'O Preto Velho transmite a sabedoria e a doçura de um abraço curador.',
@@ -959,7 +958,7 @@ const ESTUDOS_DB = {
 
   'caboclos': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Caboclos: A Força Guerreira das Matas e o Passe de Cura Vigoroso',
     imagem: './assets/estudos/caboclo.jpg',
     legenda: 'O Caboclo sustenta a firmeza do arco nas matas da cura.',
@@ -994,7 +993,7 @@ const ESTUDOS_DB = {
 
   'baianos': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Baianos: A Gingada da Resistência, a Alegria como Medicina',
     imagem: './assets/estudos/baiano.jpg',
     legenda: 'O sorriso e a ginga do Baiano trazem alegria e descarrego das dores.',
@@ -1027,7 +1026,7 @@ const ESTUDOS_DB = {
 
   'boiadeiros': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Boiadeiros: Os Laçadores das Energias Densas do Campo Áurico',
     imagem: './assets/estudos/boiadeiro.jpg',
     legenda: 'O Boiadeiro laça as energias negativas e protege a retidão espiritual.',
@@ -1061,7 +1060,7 @@ const ESTUDOS_DB = {
 
   'marinheiros': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Marinheiros: O Balanço das Ondas que Limpa o Peito Apertado',
     imagem: './assets/estudos/marinheiro.jpg',
     legenda: 'O Marinheiro navega nas águas das emoções para acalmar a tormenta.',
@@ -1094,7 +1093,7 @@ const ESTUDOS_DB = {
 
   'eres': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Erês e Crianças: A Pureza que Dissolve o que a Seriedade não Alcança',
     imagem: './assets/estudos/ere.jpg',
     legenda: 'A pureza e o sorriso do Erê renovam a alegria de viver.',
@@ -1128,7 +1127,7 @@ const ESTUDOS_DB = {
 
   'guardioes-esquerda': {
     modulo: 'Módulo 3: As Entidades',
-    tag: 'Módulo 3 · Entidades · Linhas de Trabalho',
+    tag: 'Entidades · Linhas de Trabalho',
     titulo: 'Os Guardiões da Esquerda: Desmistificando Exu e Pombagira',
     imagem: './assets/estudos/guardioes.png',
     legenda: 'A elegância e o mistério dos Guardiões da Esquerda na proteção da lei.',
@@ -1167,7 +1166,7 @@ const ESTUDOS_DB = {
 
   'firmeza-espiritual': {
     modulo: 'Módulo 4: Rituais e Práticas',
-    tag: 'Módulo 4 · Rituais · Práticas Sagradas',
+    tag: 'Rituais · Práticas Sagradas',
     titulo: 'Firmeza Espiritual: Fixando o Axé e Protegendo o Lar',
     imagem: './assets/estudos/firmeza.jpg',
     legenda: 'As velas, as pedras e os elementos sagrados que ancoraram o Axé no mundo material.',
@@ -1202,7 +1201,7 @@ const ESTUDOS_DB = {
 
   'jogo-buzios': {
     modulo: 'Módulo 4: Rituais e Práticas',
-    tag: 'Módulo 4 · Rituais · Práticas Sagradas',
+    tag: 'Rituais · Práticas Sagradas',
     titulo: 'O Jogo de Búzios: O Oráculo Sagrado dos Orixás',
     imagem: './assets/estudos/buzios.jpg',
     legenda: 'Os búzios revelam ao sacerdote iniciado a mensagem dos Orixás para cada consulente.',
@@ -1234,7 +1233,7 @@ const ESTUDOS_DB = {
 
   'limpeza-espiritual': {
     modulo: 'Módulo 4: Rituais e Práticas',
-    tag: 'Módulo 4 · Rituais · Práticas Sagradas',
+    tag: 'Rituais · Práticas Sagradas',
     titulo: 'Limpeza Espiritual: O Reequilíbrio do Corpo, da Mente e do Axé',
     imagem: './assets/estudos/axe_criacao.png',
     legenda: 'O passe magnético e as ervas sagradas devolvem o equilíbrio ao campo áurico.',
@@ -1271,21 +1270,66 @@ const ESTUDOS_DB = {
 
 // ===== DICIONÁRIO DO AXÉ (expandido de 5 para 15 termos) =====
 const DICIONARIO_DB = [
-  { termo: 'Axé', desc: 'A força vital sagrada que permeia todos os seres vivos, objetos e locais do universo na cosmologia afro-brasileira. O Axé é transmitido de ser para ser, de geração em geração, e é o que confere poder espiritual e vitalidade a uma pessoa, a um ritual ou a um local sagrado. Um terreiro com "muito Axé" é aquele onde a energia espiritual é intensa e bem cuidada.' },
-  { termo: 'Congá', desc: 'O altar sagrado do terreiro de Umbanda. É o ponto focal de concentração de energia do templo, onde ficam dispostas as imagens dos Orixás e santos sincréticos, as guias de miçangas, as velas e as oferendas de flores. É o coração espiritual da casa, de onde toda a energia do trabalho espiritual irradia para os presentes.' },
-  { termo: 'Firmeza', desc: 'O ato ritualístico de fixar e ancorar a energia de um Guia protetor ou Orixá em determinado objeto ou local. Pode ser feita acendendo uma vela de cor específica, riscando um ponto sagrado com pemba (giz ritual) ou montando assentamentos com elementos da natureza. Sem firmeza, a energia espiritual circula sem ponto de ancoragem.' },
-  { termo: 'Amaci', desc: 'Líquido sagrado preparado à base de ervas frescas trituradas e maceradas em água limpa, consagrado ao Orixá regente do médium. É derramado na cabeça (Ori) do iniciado em rituais de consagração mediúnica. O amaci "desperta" e "firma" a mediunidade, fortalecendo a ligação entre o médium e seus guias espirituais.' },
-  { termo: 'Padê', desc: 'Alimento ritual oferecido a Exu antes de qualquer cerimônia, para pedir proteção e caminhos abertos. É preparado misturando farinha de mandioca crua com azeite de dendê, mel ou cachaça, servido em alguidar de barro. O Padê é o respeito formal ao guardião que, ao ser honrado, garante que a cerimônia aconteça sem interferências negativas.' },
-  { termo: 'Bori', desc: 'Do iorubá "Bo Ori" (alimentar a cabeça). Um dos rituais mais importantes do culto aos Orixás, destinado a harmonizar e nutrir espiritualmente o Ori (a cabeça sagrada) do indivíduo. O Bori oferece alimentos e energia diretamente ao Orixá pessoal do consulente, fortalecendo o seu destino e equilíbrio mental.' },
-  { termo: 'Ori', desc: 'Do iorubá, significa literalmente "cabeça". Na teologia afro-brasileira, o Ori é muito mais do que o órgão físico: é a sede da alma individual, o guardião pessoal que cada ser humano traz consigo ao encarnar. O Ori é o Orixá mais próximo de cada pessoa — aquele que sempre está presente, que nunca se afasta, e que acompanha o ser humano por todas as vidas.' },
-  { termo: 'Gira', desc: 'A cerimônia principal da Umbanda, na qual os médiuns incorporam seus guias espirituais para o trabalho de cura e orientação dos consulentes. O nome "gira" vem do movimento circular que os médiuns realizam durante os rituais, representando a roda da vida e do Axé em movimento. Cada gira tem uma linha de trabalho temática.' },
-  { termo: 'Pemba', desc: 'Giz ritual sagrado usado para riscar os "pontos riscados" — símbolos geométricos sagrados que representam e invocam a presença de Orixás e entidades específicas. Cada entidade tem seu ponto riscado único, como uma assinatura espiritual. A pemba é fabricada com ingredientes naturais como mandioca ou osso de animal e consagrada ritualmente.' },
-  { termo: 'Defumação', desc: 'Ritual de purificação que utiliza a fumaça de ervas, resinas e incensos sagrados para limpar o campo energético de pessoas e ambientes. A fumaça sagrada tem a propriedade de romper campos de energia densa, afastar vibrações negativas e preparar o espaço para o trabalho espiritual. É realizada no início de toda cerimônia séria.' },
-  { termo: 'Desobsessão', desc: 'Trabalho espiritual específico destinado a afastar espíritos perturbadores (obsessores) que estejam influenciando o campo energético de uma pessoa, prejudicando sua saúde mental, comportamento e equilíbrio emocional. Requer médiuns experientes e devidamente protegidos para realizar o trabalho com segurança e eficácia espiritual.' },
-  { termo: 'Eguns', desc: 'Os espíritos dos mortos. Na tradição africana, os eguns são os ancestrais desencarnados que continuam existindo no plano espiritual e que têm influência sobre os vivos. Distintos das entidades de trabalho (que evoluíram e escolheram servir), alguns eguns podem ser perturbadores quando não recebem as devidas honras e orações dos familiares vivos.' },
-  { termo: 'Orun', desc: 'O plano espiritual na cosmologia ioruba — o "outro lado", o mundo invisível onde habitam os Orixás, os ancestrais e os espíritos desencarnados. O Orun e o Ayê (mundo material) coexistem e se interpenetram constantemente. Os rituais das religiões afro-brasileiras são precisamente as tecnologias espirituais que facilitam essa comunicação entre os dois planos.' },
-  { termo: 'Initiação (Feitura de Santo)', desc: 'O processo formal pelo qual uma pessoa é apresentada, consagrada e vinculada ao seu Orixá de cabeça no Candomblé. É um processo longo (pode durar de 7 a 21 dias de reclusão), complexo e profundamente transformador. Após a iniciação, o iniciado recebe um novo nome espiritual e uma nova identidade como filho do Axé.' },
-  { termo: 'Obrigação', desc: 'Ritual de renovação e fortalecimento do vínculo entre o iniciado e seus Orixás, realizado em intervalos regulares (geralmente 1 ano, 3 anos, 7 anos após a iniciação). Durante a obrigação, são realizadas oferendas, banhos de purificação e rituais específicos para alimentar o Axé do iniciado e renovar o contrato espiritual com seus Orixás e guias.' }
+  {
+    "termo": "Axé",
+    "desc": "Palavra usada para falar da força espiritual presente na vida e nas práticas religiosas."
+  },
+  {
+    "termo": "Congá",
+    "desc": "Nome dado ao altar em muitas casas de Umbanda."
+  },
+  {
+    "termo": "Firmeza",
+    "desc": "Prática religiosa ligada à sustentação espiritual. Seu sentido e sua forma variam conforme a casa."
+  },
+  {
+    "termo": "Amaci",
+    "desc": "Preparação de ervas usada em rituais específicos, sob orientação da casa."
+  },
+  {
+    "termo": "Padê",
+    "desc": "Oferenda relacionada ao culto a Exu, preparada conforme a tradição da casa."
+  },
+  {
+    "termo": "Bori",
+    "desc": "Ritual de cuidado com o Ori, conduzido por pessoas responsáveis dentro de uma tradição."
+  },
+  {
+    "termo": "Ori",
+    "desc": "Palavra de origem iorubá que significa cabeça. No contexto religioso, também tem um sentido espiritual."
+  },
+  {
+    "termo": "Gira",
+    "desc": "Encontro religioso da Umbanda, com cantos, orações e trabalhos espirituais conforme a casa."
+  },
+  {
+    "termo": "Pemba",
+    "desc": "Giz usado em desenhos e sinais religiosos chamados pontos riscados."
+  },
+  {
+    "termo": "Defumação",
+    "desc": "Uso religioso da fumaça de ervas ou resinas em um ritual orientado pela casa."
+  },
+  {
+    "termo": "Desobsessão",
+    "desc": "Nome dado, em algumas tradições, a um trabalho espiritual de amparo diante de influências consideradas perturbadoras."
+  },
+  {
+    "termo": "Eguns",
+    "desc": "Termo usado para espíritos de pessoas falecidas. O significado e a forma de tratar o assunto variam entre tradições."
+  },
+  {
+    "termo": "Orun",
+    "desc": "Na tradição iorubá, nome relacionado ao mundo espiritual."
+  },
+  {
+    "termo": "Iniciação (feitura de santo)",
+    "desc": "Processo de entrada e preparação dentro de uma tradição religiosa, acompanhado pelos responsáveis da casa."
+  },
+  {
+    "termo": "Obrigação",
+    "desc": "Compromisso ou rito de renovação dos vínculos religiosos, conforme cada tradição."
+  }
 ];
 
 // Adiciona a rota do dicionário no banco de dados para unificação
@@ -1673,14 +1717,12 @@ const DICIONARIO_DB = [
     `
   };
 
-  
-
+// The sidebar is the reading-order reference; its labels also identify each topic.
 // ===== RENDERIZADOR E CONTROLADOR DA PLATAFORMA =====
 document.addEventListener('DOMContentLoaded', () => {
-  initStudyAccordion();
   initStudyPlatform();
   initDynamicData();
-  initLightbox();
+  initStudyLightbox();
 });
 
 /* ============================================================
@@ -1693,6 +1735,10 @@ function initStudyPlatform() {
   const btnCloseSidebar = document.getElementById('btnCloseSidebar');
 
   const topicoBtns = document.querySelectorAll('.topico-btn');
+  topicoBtns.forEach(button => {
+    const data = ESTUDOS_DB[button.dataset.topico];
+    if (data) data.modulo = button.closest('.modulo-item').dataset.groupTitle;
+  });
   const moduloTriggers = document.querySelectorAll('.modulo-trigger');
 
   const palcoWrap = document.getElementById('leituraPalco');
@@ -1705,107 +1751,138 @@ function initStudyPlatform() {
 
   if (!palcoWrap || !corpoEl) return;
 
-  // --- Função para renderizar o tópico selecionado ---
-  function carregarTopico(topicoId, scroll = true) {
-    const data = ESTUDOS_DB[topicoId];
-    if (!data) return;
+  const summaryEl = document.getElementById('studySummary');
+  const termsEl = document.getElementById('studyTerms');
+  const termsList = document.getElementById('studyTermsList');
+  const progressEl = document.getElementById('studyProgress');
+  const previous = document.getElementById('studyPrevious');
+  const next = document.getElementById('studyNext');
+  const choose = document.getElementById('studyChoose');
+  const topicOrder = [...topicoBtns].map(button => button.dataset.topico).filter(id => ESTUDOS_DB[id]);
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let currentTopic = '';
+  let renderTimer;
+  let drawerReturnFocus;
+  let bodyOverflow = '';
 
-    // Inicia animação de fade-out do palco de leitura
+  function topicLabel(id) {
+    return [...topicoBtns].find(button => button.dataset.topico === id)?.textContent.trim() || '';
+  }
+
+  function scrollToReading() {
+    const headerHeight = document.getElementById('siteHeader')?.getBoundingClientRect().height || 76;
+    window.scrollTo({
+      top: palcoWrap.getBoundingClientRect().top + window.scrollY - headerHeight - 16,
+      behavior: reducedMotion.matches ? 'auto' : 'smooth'
+    });
+  }
+
+  function updateReadingNavigation(index) {
+    progressEl.textContent = `Assunto ${index + 1} de ${topicOrder.length}`;
+    previous.disabled = index === 0;
+    next.disabled = index === topicOrder.length - 1;
+    previous.querySelector('span').textContent = index > 0 ? topicLabel(topicOrder[index - 1]) : 'Você está no primeiro assunto';
+    next.querySelector('span').textContent = index < topicOrder.length - 1 ? topicLabel(topicOrder[index + 1]) : 'Você chegou ao último assunto';
+  }
+
+  function renderIntroduction(topicId) {
+    const intro = typeof STUDY_GUIDE !== 'undefined' ? STUDY_GUIDE[topicId] : null;
+    summaryEl.textContent = intro?.resumo || '';
+    summaryEl.closest('.study-intro').hidden = !intro;
+    termsList.replaceChildren();
+    termsEl.open = false;
+    const keys = intro?.termos || [];
+    termsEl.hidden = !keys.length;
+    keys.forEach(key => {
+      const term = STUDY_TERMS[key];
+      if (!term) return;
+      const name = document.createElement('dt');
+      const meaning = document.createElement('dd');
+      name.textContent = term[0];
+      meaning.textContent = term[1];
+      termsList.append(name, meaning);
+    });
+  }
+
+  function carregarTopico(topicId, { scroll = true, updateHistory = true, focus = true } = {}) {
+    const data = ESTUDOS_DB[topicId];
+    const index = topicOrder.indexOf(topicId);
+    if (!data || index < 0) return;
+    if (currentTopic === topicId && !renderTimer) {
+      if (scroll) scrollToReading();
+      if (focus) tituloEl.focus({ preventScroll: true });
+      return;
+    }
+    clearTimeout(renderTimer);
+    currentTopic = topicId;
     palcoWrap.classList.add('fade-out');
+    palcoWrap.setAttribute('aria-busy', 'true');
 
-    setTimeout(() => {
-      // Atualiza textos
-      tagEl.textContent = data.tag;
-      tituloEl.textContent = data.titulo;
-
-      // Atualiza imagem
-      if (data.imagem) {
-        imgEl.src = data.imagem;
-        imgEl.alt = data.titulo;
-        legendaEl.textContent = data.legenda || '';
-        imgWrapperEl.style.display = 'block';
-      } else {
-        imgWrapperEl.style.display = 'none';
-      }
-
-      // Injeta o corpo de texto
-      // Se for a aba bônus do Dicionário, monta a estrutura HTML com acordeão
-      if (topicoId === 'capitulobonus') {
-        corpoEl.innerHTML = data.htmlCorpo;
-      } else {
-        corpoEl.innerHTML = data.htmlCorpo;
-      }
-
-      // Adiciona classe capitular ao primeiro parágrafo do texto de leitura
-      const primeiroP = corpoEl.querySelector('p');
-      if (primeiroP) {
-        primeiroP.classList.add('capitular');
-      }
-
-      // Se for o Dicionário do Axé, ativa acordeões dinâmicos internos
-      if (topicoId === 'capitulobonus') {
-        renderDicionarioInterno();
-      }
-
-      // Se for um tópico da Esquerda, inicializa o Live Search
-      if (topicoId.startsWith('esquerda-')) {
-        initBuscaEsquerda();
-      }
-
-      // Remove fade-out (inicia fade-in suave)
-      palcoWrap.classList.remove('fade-out');
-
-      // Aplica animações 3D Scroll-Driven do Motor GSAP
-      initEstudosGSAP();
-
-      // Motor 3D Físico nos cartões recém-carregados
-      if (typeof VanillaTilt !== "undefined") {
-        VanillaTilt.init(corpoEl.querySelectorAll(".cartas-entidade, .oracle-card"), {
-          max: 12,
-          speed: 400,
-          glare: true,
-          "max-glare": 0.35,
-          scale: 1.02,
-        });
-      }
-
-      // Rola a tela para o topo da área de leitura
-      if (scroll) {
-        const offset = window.innerWidth <= 992 ? 140 : 100;
-        const rect = palcoWrap.getBoundingClientRect();
-        const topPosition = rect.top + window.scrollY - offset;
-        window.scrollTo({
-          top: topPosition,
-          behavior: 'smooth'
-        });
-      }
-
-    }, 380);
-
-    // Sincroniza botões ativos na Sidebar
-    topicoBtns.forEach(btn => {
-      if (btn.dataset.topico === topicoId) {
-        btn.classList.add('active');
-
-        // Garante que o módulo pai esteja aberto
-        const moduloPai = btn.closest('.modulo-item');
-        if (moduloPai) {
-          moduloPai.classList.add('open');
-        }
-      } else {
-        btn.classList.remove('active');
-      }
+    topicoBtns.forEach(button => {
+      const active = button.dataset.topico === topicId;
+      button.classList.toggle('active', active);
+      if (active) {
+        button.setAttribute('aria-current', 'true');
+        const group = button.closest('.modulo-item');
+        group.classList.add('open');
+        group.querySelector('.modulo-trigger').setAttribute('aria-expanded', 'true');
+      } else button.removeAttribute('aria-current');
     });
 
-    // Atualiza a hash na URL para links compartilháveis
-    if (window.location.hash !== '#' + topicoId) {
-      history.pushState(null, null, '#' + topicoId);
+    if (updateHistory && window.location.hash !== '#' + topicId) {
+      history.pushState(null, '', '#' + topicId);
     }
+    renderTimer = setTimeout(() => {
+      const intro = typeof STUDY_GUIDE !== 'undefined' ? STUDY_GUIDE[topicId] : null;
+      const activeButton = [...topicoBtns].find(button => button.dataset.topico === topicId);
+      tagEl.textContent = activeButton.closest('.modulo-item').dataset.groupTitle;
+      tituloEl.textContent = intro?.titulo || data.titulo;
+      renderIntroduction(topicId);
+      if (data.imagem) {
+        imgEl.src = data.imagem;
+        imgEl.alt = tituloEl.textContent;
+        legendaEl.textContent = data.legenda || '';
+        imgWrapperEl.hidden = false;
+        imgWrapperEl.style.display = 'block';
+      } else {
+        imgWrapperEl.hidden = true;
+        imgWrapperEl.style.display = 'none';
+      }
+      corpoEl.innerHTML = data.htmlCorpo;
+      if (topicId === 'capitulobonus') renderDicionarioInterno();
+      if (topicId.startsWith('esquerda-')) initBuscaEsquerda();
+      updateReadingNavigation(index);
+      palcoWrap.classList.remove('fade-out');
+      palcoWrap.setAttribute('aria-busy', 'false');
+      renderTimer = null;
+      if (scroll) scrollToReading();
+      if (focus) tituloEl.focus({ preventScroll: true });
+    }, reducedMotion.matches ? 0 : 120);
   }
+
+  previous.addEventListener('click', () => {
+    const index = topicOrder.indexOf(currentTopic);
+    if (index > 0) carregarTopico(topicOrder[index - 1]);
+  });
+  next.addEventListener('click', () => {
+    const index = topicOrder.indexOf(currentTopic);
+    if (index < topicOrder.length - 1) carregarTopico(topicOrder[index + 1]);
+  });
+  choose.addEventListener('click', () => {
+    if (window.innerWidth <= 992) abrirDrawer(choose);
+    else {
+      const active = sidebar.querySelector('[aria-current="true"]');
+      sidebar.scrollIntoView({ block: 'nearest', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+      if (active) {
+        sidebar.scrollTop = active.offsetTop - sidebar.clientHeight / 2;
+        active.focus({ preventScroll: true });
+      }
+    }
+  });
 
   // --- Função para renderizar o Dicionário de Termos no Palco de Leitura ---
   function renderDicionarioInterno() {
-    let html = `<p>Se você está iniciando a sua caminhada de estudos na Umbanda ou no Candomblé, é comum encontrar palavras de origem Iorubá, Banto ou Fon que parecem estranhas ao vocabulário diário. Criamos este glossário interativo para ajudar você a compreender as expressões sagradas usadas em nossa casa:</p>
+    let html = `<p>Escolha uma palavra para ler uma explicação curta. Os nomes e seus significados podem variar entre casas e tradições.</p>
                 <div class="dic-accordion-list" style="margin-top: 2rem;">`;
 
     DICIONARIO_DB.forEach((item, index) => {
@@ -1838,9 +1915,13 @@ function initStudyPlatform() {
       if (trigger) {
         trigger.addEventListener('click', () => {
           const isActive = item.classList.contains('active');
-          items.forEach(i => i.classList.remove('active'));
+          items.forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.dic-accordion-trigger').setAttribute('aria-expanded', 'false');
+          });
           if (!isActive) {
             item.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
           }
         });
       }
@@ -1872,7 +1953,8 @@ function initStudyPlatform() {
     trigger.addEventListener('click', () => {
       const item = trigger.closest('.modulo-item');
       if (item) {
-        item.classList.toggle('open');
+        const expanded = item.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(expanded));
       }
     });
   });
@@ -1881,115 +1963,72 @@ function initStudyPlatform() {
   topicoBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const topicoId = btn.dataset.topico;
+      if (sidebar.classList.contains('open')) fecharDrawer(false);
       carregarTopico(topicoId);
-
-      // Fecha a gaveta (drawer) no mobile após selecionar
-      if (sidebar.classList.contains('open')) {
-        fecharDrawer();
-      }
     });
   });
 
   // --- Lógica de Abertura/Fechamento do Drawer (Mobile) ---
-  function abrirDrawer() {
+  function abrirDrawer(returnFocus = btnToggleSidebar) {
+    drawerReturnFocus = returnFocus;
+    bodyOverflow = document.body.style.overflow;
     sidebar.classList.add('open');
+    btnToggleSidebar?.setAttribute('aria-expanded', 'true');
+    choose.setAttribute('aria-expanded', 'true');
+    btnCloseSidebar?.focus();
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
-  function fecharDrawer() {
+  function fecharDrawer(restoreFocus = true) {
     sidebar.classList.remove('open');
+    btnToggleSidebar?.setAttribute('aria-expanded', 'false');
+    choose.setAttribute('aria-expanded', 'false');
     overlay.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.style.overflow = bodyOverflow;
+    if (restoreFocus) drawerReturnFocus?.focus({ preventScroll: true });
   }
 
-  if (btnToggleSidebar) btnToggleSidebar.addEventListener('click', abrirDrawer);
-  if (btnCloseSidebar) btnCloseSidebar.addEventListener('click', fecharDrawer);
-  if (overlay) overlay.addEventListener('click', fecharDrawer);
-
-  // --- Carregamento inicial de tópicos via Hash da URL ---
-  function carregarDoHash() {
-    const hash = window.location.hash.substring(1);
-    if (hash && ESTUDOS_DB[hash]) {
-      carregarTopico(hash, false);
-
-      // Satura scroll do botão da sidebar ativa após renderizar
-      setTimeout(() => {
-        const activeBtn = document.querySelector(`.topico-btn[data-topico="${hash}"]`);
-        if (activeBtn) {
-          activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 500);
-    } else {
-      // Tópico padrão inicial
-      carregarTopico('umbanda-candomble', false);
+  choose.setAttribute('aria-controls', 'livroSidebar');
+  choose.setAttribute('aria-expanded', 'false');
+  btnToggleSidebar?.setAttribute('aria-controls', 'livroSidebar');
+  btnToggleSidebar?.setAttribute('aria-expanded', 'false');
+  document.addEventListener('keydown', event => {
+    if (!sidebar.classList.contains('open')) return;
+    if (event.key === 'Escape') fecharDrawer();
+    if (event.key === 'Tab') {
+      const items = [...sidebar.querySelectorAll('button, a[href], input')].filter(el => el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden');
+      const first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     }
-  }
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 992 && sidebar.classList.contains('open')) fecharDrawer();
+  });
+  if (btnToggleSidebar) btnToggleSidebar.addEventListener('click', () => abrirDrawer());
+  if (btnCloseSidebar) btnCloseSidebar.addEventListener('click', () => fecharDrawer());
+  if (overlay) overlay.addEventListener('click', () => fecharDrawer());
 
-  // Inicializa o hash
+  // Shared links, browser back and browser forward follow the same reading order.
+  function carregarDoHash() {
+    let id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { id = ''; }
+    if (!topicOrder.includes(id)) {
+      id = topicOrder[0];
+      history.replaceState(null, '', '#' + id);
+    }
+    carregarTopico(id, { scroll: false, updateHistory: false, focus: false });
+  }
+  window.addEventListener('popstate', carregarDoHash);
   window.addEventListener('hashchange', carregarDoHash);
   carregarDoHash();
 }
 
-/* ============================================================
-   3. ACORDEÕES DO DICIONÁRIO DO AXÉ (DEPRECATED: Tratado dinamicamente)
-   ============================================================ */
-function initStudyAccordion() {
-  // Mantido para compatibilidade caso existam outros acordeões no DOM
-}
-
-/* ============================================================
-   4. ANIMAÇÕES DE REVELAÇÃO FADE-IN (INTERSECTION OBSERVER)
-   ============================================================ */
-function initRevealAnimations() {
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { root: null, threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
 // Anima os elementos revelados dinamicamente injetados no palco de leitura
-function initTopicRevealAnimations() {
-  const palco = document.getElementById('leituraPalco');
-  if (!palco) return;
-
-  const imgs = palco.querySelectorAll('.artigo-imagem-wrapper');
-  const quotes = palco.querySelectorAll('.artigo-citacao');
-  const subs = palco.querySelectorAll('.artigo-subsecao');
-
-  if (!('IntersectionObserver' in window)) {
-    [...imgs, ...quotes, ...subs].forEach(el => el.classList.add('visible'));
-    return;
-  }
-
-  const itemObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05 });
-
-  [...imgs, ...quotes, ...subs].forEach(el => {
-    el.classList.add('reveal');
-    itemObserver.observe(el);
-  });
-}
 
 /* ============================================================
-   5. INTEGRAÇÃO DINÂMICA DO WHATSAPP E REDES SOCIAIS (FIRESTORE)
+   CONTATO E REDES SOCIAIS — dados locais
    ============================================================ */
 function initDynamicData() {
   const DEFAULT_DATA = {
@@ -2000,41 +2039,8 @@ function initDynamicData() {
     }
   };
 
-  let siteData = { ...DEFAULT_DATA };
-  try {
-    const raw = localStorage.getItem('terreira_data');
-    if (raw) {
-      const saved = JSON.parse(raw);
-      siteData = {
-        ...DEFAULT_DATA,
-        ...saved,
-        redes_sociais: {
-          ...DEFAULT_DATA.redes_sociais,
-          ...(saved.redes_sociais || {})
-        }
-      };
-    }
-  } catch (e) {
-    console.warn('[LocalStorage] Erro ao carregar dados em estudos.js — usando padrão.', e);
-  }
+  applyDynamicData(DEFAULT_DATA);
 
-  applyDynamicData(siteData);
-
-  if (window.FIREBASE_CONFIGURED && window.db) {
-    try {
-      window.db.collection('site_config').doc('dados')
-        .onSnapshot(snap => {
-          if (snap.exists) {
-            const updatedData = { ...DEFAULT_DATA, ...snap.data() };
-            applyDynamicData(updatedData);
-          }
-        }, err => {
-          console.warn('[Firestore] Erro no listener em estudos.js:', err.message);
-        });
-    } catch (e) {
-      console.error('[Firestore] Falha ao iniciar listener em estudos.js:', e.message);
-    }
-  }
 }
 
 function applyDynamicData(data) {
@@ -2062,130 +2068,69 @@ function applyDynamicData(data) {
     }
   }
 
-
 }
 
 /* ============================================================
    6. LIGHTBOX (GALERIA DE IMAGENS)
    ============================================================ */
-function initLightbox() {
-  // Cria os elementos do Lightbox dinamicamente
+function initStudyLightbox() {
+  const article = document.getElementById('leituraPalco');
+  if (!article || document.getElementById('studyLightbox')) return;
   const overlay = document.createElement('div');
+  overlay.id = 'studyLightbox';
   overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Imagem ampliada');
+  overlay.setAttribute('aria-hidden', 'true');
   overlay.innerHTML = `
     <div class="lightbox-img-container">
-      <button class="lightbox-close" aria-label="Fechar">&times;</button>
-      <img class="lightbox-img" src="" alt="Imagem expandida">
+      <button type="button" class="lightbox-close" aria-label="Fechar imagem ampliada">&times;</button>
+      <img class="lightbox-img" alt="Imagem ampliada">
     </div>
   `;
   document.body.appendChild(overlay);
-
   const lightboxImg = overlay.querySelector('.lightbox-img');
   const closeBtn = overlay.querySelector('.lightbox-close');
-
-  // Abre o Lightbox ao clicar nas imagens do artigo
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('artigo-imagem')) {
-      const imgSrc = e.target.getAttribute('src');
-      const imgAlt = e.target.getAttribute('alt');
-
-      lightboxImg.src = imgSrc;
-      lightboxImg.alt = imgAlt || 'Imagem Expandida';
-
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Impede o scroll de fundo
-    }
-  });
-
-  // Fecha o Lightbox
-  function closeLightbox() {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-    // Limpa a fonte após a animação para não piscar
-    setTimeout(() => { lightboxImg.src = ''; }, 400);
+  let previousOverflow = '';
+  let previousFocus;
+  let clearImageTimer;
+  function openLightbox(image) {
+    if (!image?.classList.contains('artigo-imagem') || !image.getAttribute('src')) return;
+    clearTimeout(clearImageTimer);
+    previousOverflow = document.body.style.overflow;
+    previousFocus = document.activeElement;
+    lightboxImg.src = image.src;
+    lightboxImg.alt = image.alt || 'Imagem ampliada';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
-
+  function closeLightbox() {
+    if (!overlay.classList.contains('active')) return;
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = previousOverflow;
+    previousFocus?.focus({ preventScroll: true });
+    clearImageTimer = setTimeout(() => lightboxImg.removeAttribute('src'), 400);
+  }
+  article.addEventListener('click', event => openLightbox(event.target));
+  article.addEventListener('keydown', event => {
+    if ((event.key === 'Enter' || event.key === ' ') && event.target.classList.contains('artigo-imagem')) {
+      event.preventDefault();
+      openLightbox(event.target);
+    }
+  });
   closeBtn.addEventListener('click', closeLightbox);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay || e.target.classList.contains('lightbox-img-container')) {
-      closeLightbox();
+  overlay.addEventListener('click', event => {
+    if (event.target === overlay || event.target.classList.contains('lightbox-img-container')) closeLightbox();
+  });
+  overlay.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      closeBtn.focus();
     }
   });
-
-  // Fecha com tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
-}
-
-/* ============================================================
-   MOTOR GSAP: SCROLL 3D PROGRESSIVO PARA ESTUDOS
-   ============================================================ */
-function initEstudosGSAP() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  const corpoEl = document.getElementById('leituraCorpo');
-  if (!corpoEl) return;
-  
-  // Perspectiva espacial profunda na base do artigo
-  gsap.set(corpoEl, { perspective: 2000 });
-
-  // Usa setTimeout para garantir que as tags <img> e p estejam rendenizadas no DOM
-  setTimeout(() => {
-    // 1. Reveal Parallax no Título da Seção
-    gsap.fromTo("#leituraTitulo", 
-      { opacity: 0, y: -40, z: -200, rotationX: 15, filter: "blur(12px)", scale: 0.9 },
-      { opacity: 1, y: 0, z: 0, rotationX: 0, scale: 1, filter: "blur(0px)", duration: 1.2, ease: "expo.out" }
-    );
-
-    // 2. Imagens com Deep Spatial Levitation
-    const imgs = corpoEl.querySelectorAll('.artigo-imagem');
-    imgs.forEach(img => {
-      gsap.fromTo(img,
-        { opacity: 0, scale: 0.85, z: -300, filter: "blur(15px)", rotationX: 25, transformOrigin: "50% 50%" },
-        {
-          scrollTrigger: {
-            trigger: img,
-            start: "top 110%",
-            end: "top 50%",
-            scrub: 1.5
-          },
-          opacity: 1,
-          scale: 1,
-          z: 0,
-          filter: "blur(0px)",
-          rotationX: 0,
-          ease: "expo.out"
-        }
-      );
-    });
-
-    // 3. Reveal Genérico Scroll-Driven para Textos e Acordeões
-    const reveals = corpoEl.querySelectorAll('.reveal, p, .dic-accordion-item');
-    reveals.forEach(el => {
-      // Ignorar imagens pois elas já têm a própria regra GSAP
-      if (el.tagName.toLowerCase() === 'img') return;
-
-      gsap.fromTo(el,
-        { opacity: 0, y: 50, z: -100, rotationX: 10, filter: "blur(8px)" },
-        {
-          scrollTrigger: {
-            trigger: el,
-            start: "top 105%",
-            end: "top 70%",
-            scrub: 1.5
-          },
-          opacity: 1,
-          y: 0,
-          z: 0,
-          rotationX: 0,
-          filter: "blur(0px)",
-          ease: "power3.out"
-        }
-      );
-    });
-  }, 100);
 }

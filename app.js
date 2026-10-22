@@ -1,61 +1,122 @@
-/* ============================================================
-   TERREIRA PAULINHO APP — app.js (v2.0)
-   Fase E: Oráculo Interativo + Micro-interações + Firestore
-   Piloto: Antigravity V.L.A.E.G.
-   ============================================================ */
+/* Site público — navegação, serviços, galeria, reflexões e contato. */
 
 'use strict';
 
-/* ================================================================
-   TASK 1 — ORÁCULO: 20 Mensagens Espirituais
-   ================================================================ */
-const ORACLE_MESSAGES_BY_CATEGORY = {
-  amor: [
-    "Oraieiêô, Mamãe Oxum! As águas doces da cachoeira limpam e curam a alma. O amor verdadeiro só floresce onde há solo fértil de amor-próprio e respeito. Cure as feridas do passado, perdoe-se e compreenda que você não precisa aceitar migalhas afetivas. O amor que é seu te cobrirá de ouro e paz.",
-    "O amor não prende, não sufoca e não machuca. Oxum sussurra que a responsabilidade afetiva começa consigo mesmo. Antes de buscar o abraço do outro, acolha a si mesmo. Quando a sua própria fonte transbordar, o afeto de verdade chegará sem esforço para somar à sua felicidade.",
-    "Nas águas de Oxum reside a alquimia do afeto. Curar o próprio coração é um processo paciente, feito gota a gota. Não tenha pressa em preencher espaços vazios. Deixe o rio fluir naturalmente. O amor de qualidade exige maturidade e cura mútua.",
-    "A doçura de Oxum não deve ser confundida com fraqueza. Amar exige limites. Proteja a sua energia e não permita que drenem a sua paz em nome de um afeto incompleto. Seja assertivo em suas relações. O verdadeiro direcionamento amoroso vem de quem se valoriza primeiro.",
-    "O rio de Oxum sempre encontra o oceano, não importa o caminho. O amor sincero e curador chegará no momento exato em que você estiver pronto para receber a reciprocidade. Cure o que dói no silêncio e confie na doçura dos orixás para reerguer a sua vida afetiva."
-  ],
-  caminhos: [
-    "Sob a força de Ogum que empunha a espada da lei, nenhuma barreira ficará de pé diante do seu avanço. Os caminhos não apenas se abrirão: você está sendo preparado para liderar e prosperar. Mantenha o foco em seus objetivos e lembre-se de que a vitória é de quem tem coragem de dar o primeiro passo.",
-    "Laroyé, Exu! A boca do mundo fala quando o mensageiro da encruzilhada se move. Abertura financeira não é sorte, é merecimento e movimento. Saia da inércia. As chaves das portas que pareciam trancadas já estão em suas mãos, basta ter a determinação de girá-las com fé e sabedoria.",
-    "A força de Ogum abre as matas da indecisão. Se as finanças pareciam travadas, compreenda que o reajuste energético exige que você limpe a sua mente de crenças limitantes. Você é merecedor da abundância da terra. Foque na ação e o axé guiará os seus negócios.",
-    "Ogum não vence batalhas no silêncio da dúvida, ele vence marchando. A prosperidade que você busca demanda atitude e clareza de intenções. Não espere pelas circunstâncias perfeitas. Inicie o que precisa hoje e os guias abrirão os atalhos invisíveis para o seu sucesso.",
-    "O mensageiro das encruzilhadas avisa: o dinheiro é energia fluida que corre para quem respeita o trabalho e sabe pedir licença. Exu abre os caminhos de quem age com verdade e ética. Mantenha a cabeça erguida, livre-se da autopiedade e avance em direção ao seu destino financeiro."
-  ],
-  paz: [
-    "Odoyá, Iemanjá! Epa Babá, Oxalá! Deite a sua mente ansiosa no mar de leite e deixe que as ondas limpem a perturbação do seu espírito. A paz que você procura não está nas respostas externas, mas na calma que você cultiva no silêncio. Entregue os seus anseios e confie no manto branco protetor.",
-    "As águas de Iemanjá lavam o peito apertado e a mente cansada. Respire fundo e sinta o acolhimento da mãe de todas as cabeças (Ori). A ansiedade é o medo do amanhã, mas o amanhã é guardado pelo olhar terno de Oxalá. Acalme o seu coração; nada de ruim vai te acontecer.",
-    "Oxalá derrama a sua luz branca e pacífica sobre o seu pensamento acelerado. Quando o barulho do mundo estiver ensurdecedor, feche os olhos e peça licença para silenciar. A paz é uma escolha de entrega aos orixás. Deixe que a calma guie as suas decisões.",
-    "Iemanjá acalma as marés mais tempestuosas da sua mente. Confie que a angústia que hoje aperta o seu peito é passageira. O oceano leva embora todas as cargas e traz de volta a lucidez. Mantenha a maré firme e vista-se com a serenidade dos sábios.",
-    "No colo de Iemanjá e sob a coroa de Oxalá, a sua cabeça encontra o descanso necessário para recobrar as forces. Não tente carregar o peso do mundo nas suas costas. Entregue o controle ao fluxo do sagrado e permita-se viver em paz."
-  ],
-  protecao: [
-    "Kaô Kabecilê! A justiça de Xangô Aganjú é como o raio que corta a tempestade: implacável e verdadeira. Na firmeza da pedreira, nenhuma inveja ou maldade disfarçada de amizade tem poder para te derrubar. Deixe que o tribunal divino pese as ações de cada um. Você está blindado pelo machado da lei.",
-    "Xangô Aganjú sustenta a rocha onde você apoia os seus pés. Quando os ventos da maledicência e do olho gordo soprarem forte, mantenha-se em silêncio. A lei do retorno é exata e age no tempo certo. O escudo invisível dos seus guias bloqueia as setas enviadas contra a sua estabilidade.",
-    "Nenhum mal resiste ao calor do fogo purificador de Xangô. Se o momento exige vigilância, saiba que a sua proteção está garantida desde que você ande na retidão. A inveja alheia é apenas um reflexo da incapacidade do outro de gerar sua própria luz. Siga firme na justiça divina.",
-    "A rocha não se move com o vento. Da mesma forma, a sua proteção espiritual está calcada na força ancestral de Xangô Aganjú. A inveja tenta perturbar, mas o seu axé é um escudo intransponível. A verdade sempre prevalecerá e os seus inimigos cairão por terra.",
-    "O julgamento de Xangô é calmo, justo e absoluto. Confie a ele os seus temores e as injustiças que sofreu. Concentre-se em fazer o bem e a sua casa espiritual estará guardada. O mal que te desejaram se transformará em combustível para o seu crescimento pessoal."
-  ]
+/* Reflexões locais de fé e acolhimento, sem atribuição pessoal. */
+const REFLECTIONS = {
+  "amor": {
+    "label": "Amor e relações",
+    "messages": [
+      "Que a fé em Pombagiras inspire você a reconhecer seu próprio valor. Afeto também se expressa em liberdade, respeito e escolhas conscientes; não precisa ser demonstrado pela renúncia à sua dignidade.",
+      "A devoção a Exus e Pombagiras pode acompanhar um olhar honesto para suas relações. Observe atitudes, não apenas promessas, e reserve lugar para o diálogo que respeita ambas as pessoas.",
+      "Na família de axé, o carinho ganha forma quando há espaço para diferenças. Escutar alguém mais novo, acolher uma dúvida e reconhecer um limite são maneiras concretas de fortalecer a convivência.",
+      "Na sua fé em Exus e Pombagiras, reconheça a força de permanecer inteiro nas relações. Honre sua ancestralidade e faça escolhas que preservem sua dignidade e o respeito por quem caminha ao seu lado.",
+      "Que a fé inspire relações com mais respeito e cuidado. Observe como você se sente, reconheça seus limites e dê espaço ao diálogo.",
+      "Acolher o outro também pede cuidado consigo. Relações podem ser construídas com escuta, sinceridade e respeito ao tempo de cada pessoa.",
+      "Na sua caminhada, reserve espaço para o afeto que se expressa em atitudes. Uma conversa tranquila pode ser um primeiro passo para compreender melhor o outro.",
+      "Entre pessoas da mesma família, o afeto nem sempre aparece da mesma maneira. Perguntar como alguém gostaria de ser acolhido pode aproximar mais do que tentar adivinhar suas necessidades.",
+      "Pedir desculpas ganha sentido quando vem acompanhado de disposição para mudar. Reconhecer um gesto que machucou não diminui ninguém; pode ser um começo honesto para reconstruir uma relação.",
+      "Reserve um momento para reconhecer quem esteve ao seu lado. Um agradecimento simples, uma visita combinada ou uma mensagem atenciosa podem expressar o carinho que às vezes fica guardado.",
+      "Em uma conversa difícil, procure compreender antes de preparar a resposta. Você pode discordar sem humilhar e dizer o que sente sem transformar a diferença em uma disputa.",
+      "Gostar de alguém não exige concordar com tudo. Cultivar uma relação respeitosa inclui aceitar escolhas diferentes e perceber quando uma distância é necessária para preservar a dignidade de cada pessoa."
+    ]
+  },
+  "caminhos": {
+    "label": "Caminhos e escolhas",
+    "messages": [
+      "Ao encontrar inspiração na Quimbanda, leve suas perguntas com sinceridade. A coragem de escolher pode caminhar junto da humildade para aprender e da responsabilidade de considerar as consequências dos próprios atos.",
+      "Que sua fé em Exus acompanhe a coragem de encarar uma decisão adiada. Examine o que depende de você, reconheça o que ainda precisa compreender e escolha sem atropelar outras pessoas.",
+      "A história de uma casa de axé carrega trabalho, memória e dedicação de muitas pessoas. Escute quem preserva essas trajetórias e reconheça o valor de aprender com respeito antes de seguir seus próprios passos.",
+      "Ao buscar força na devoção a Pombagiras, dê atenção também à sua própria voz. Reconheça o que deseja, examine seus motivos e converse com honestidade sobre os caminhos que pretende seguir.",
+      "A fé pode acompanhar os pequenos passos. Olhe para o que está ao seu alcance hoje e escolha uma atitude que faça sentido para a sua caminhada.",
+      "Diante de uma mudança, permita-se ouvir, perguntar e aprender. Caminhar com responsabilidade também é reconhecer quando precisamos de orientação.",
+      "Nem toda escolha precisa ser feita com pressa. Reflita sobre o que importa para você e siga com respeito à sua história e aos seus valores.",
+      "Antes de assumir um novo compromisso, considere o tempo e a atenção que você realmente tem. Escolher com honestidade ajuda a cuidar também daquilo que já faz parte da sua vida.",
+      "Quando algo novo parecer complicado, comece por entender uma parte de cada vez. Pergunte sem vergonha e reconheça o que aprendeu; ninguém precisa chegar sabendo para poder participar.",
+      "Um plano pode mudar sem apagar o valor do esforço que veio antes. Rever uma decisão, depois de conhecer melhor a situação, também é uma forma de caminhar com responsabilidade.",
+      "Reconhecer um erro permite escolher o próximo gesto com mais atenção. Em vez de tentar esconder o ocorrido, pense no que pode ser reparado e no aprendizado que deseja levar.",
+      "Sua caminhada não precisa repetir a de outra pessoa. Observe as comparações que trazem pressão e volte às perguntas que importam: o que faz sentido para você, hoje, com o tempo que tem?"
+    ]
+  },
+  "paz": {
+    "label": "Paz e equilíbrio",
+    "messages": [
+      "Na sua aproximação com a Quimbanda, permita que a escuta venha antes da pressa. Acolher uma orientação também é dar tempo para compreender seu sentido, respeitando a casa e a sua própria caminhada.",
+      "O respeito a quem veio antes pode conviver com perguntas sinceras. Na família religiosa, aprender não precisa ser uma disputa; ouvir com atenção também inclui reconhecer quando algo ainda não ficou claro.",
+      "Que a fé em Exus e Pombagiras acompanhe um momento de recolhimento e honestidade consigo. Você pode reconhecer o que sente sem transformar cada dificuldade numa cobrança por respostas imediatas.",
+      "Encontre na fé um espaço para baixar a pressa e reconhecer seu momento. Na família de axé, oferecer presença e escuta também é uma forma de cuidar de quem compartilha a caminhada.",
+      "Que a fé nos orixás inspire um momento de serenidade. Dê espaço ao descanso, à escuta e ao cuidado com aquilo que você sente.",
+      "Você não precisa encontrar todas as respostas de uma vez. Faça uma pausa e permita-se conversar com alguém de confiança sobre o seu momento.",
+      "O cuidado também está nas pequenas escolhas do dia. Respeitar o seu ritmo e acolher seus sentimentos pode abrir espaço para uma caminhada mais serena.",
+      "Diminua por alguns minutos o barulho das telas e das conversas apressadas. Escolha um momento tranquilo para estar presente no que faz, sem exigir que essa pausa resolva tudo.",
+      "Nem todo silêncio pede uma resposta. Às vezes, oferecer companhia sem perguntas é uma maneira delicada de acolher alguém. Pergunte se a pessoa prefere conversar ou apenas ter você por perto.",
+      "Há dias em que a disposição é diferente, e isso merece ser reconhecido. Ajuste as expectativas quando for possível e procure tratar suas dificuldades com a mesma gentileza que oferece aos outros.",
+      "Se a rotina estiver cheia, escolha o que realmente precisa da sua atenção neste momento. Algumas tarefas podem esperar, e outras podem ser divididas com quem está disposto a ajudar.",
+      "Uma casa acolhedora também se constrói na convivência: pedir licença, respeitar o descanso e cuidar dos espaços comuns. Gestos discretos podem tornar o dia mais agradável para quem vive ao seu lado."
+    ]
+  },
+  "protecao": {
+    "label": "Proteção e firmeza",
+    "messages": [
+      "Que a devoção a Exus e Pombagiras inspire firmeza nas suas atitudes. Sustente uma palavra honesta, respeite os limites alheios e reconheça o direito de cuidar dos seus próprios limites.",
+      "Preservar a memória da família religiosa também é cuidar das pessoas presentes. Compartilhe histórias com respeito, peça licença antes de expor uma experiência e reconheça o que pertence à intimidade de alguém.",
+      "Na devoção aos guardiões, reflita sobre a firmeza que você deseja cultivar. Proteger sua dignidade também passa por reconhecer seus limites, agir com responsabilidade e buscar orientação sem entregar suas escolhas à pressa.",
+      "Sua fé pode acompanhar a coragem de dizer uma verdade difícil sem ferir de propósito. Escolha palavras claras, reconheça sua responsabilidade e procure apoio quando uma conversa exigir mais cuidado.",
+      "Firmeza também é agir com respeito e verdade. Cuide dos seus limites e procure cultivar relações que tenham espaço para o diálogo.",
+      "Na fé de Xangô, a justiça convida à responsabilidade. Antes de agir, considere suas escolhas e o cuidado com você e com as outras pessoas.",
+      "Fortalecer a sua caminhada pode começar com atitudes simples: honrar seus valores, cuidar da sua casa e buscar apoio quando precisar.",
+      "Cuidar da sua intimidade é escolher com quem compartilhar cada parte da sua história. Você pode guardar assuntos pessoais e recusar perguntas que não deseja responder, sem precisar se justificar.",
+      "Ao discordar de alguém, preserve o respeito que deseja receber. A firmeza de uma posição não depende de gritos ou ameaças; pode aparecer numa fala clara e numa atitude coerente.",
+      "Respeitar uma pessoa não significa aceitar qualquer tratamento. Quando uma situação ultrapassar seus limites, procure apoio de alguém em quem confia e pense no que precisa para se sentir respeitado.",
+      "A firmeza pode ser cultivada nos compromissos cotidianos: cumprir uma palavra, reconhecer uma falha e agir com honestidade. A fé pode acompanhar essas escolhas, junto da responsabilidade pelos próprios atos.",
+      "Na comunidade, o cuidado cresce quando ninguém precisa enfrentar todas as tarefas sozinho. Ofereça ajuda dentro das suas possibilidades e aceite colaboração; pertencer também é poder contar com outras pessoas."
+    ]
+  }
 };
 
 /* ================================================================
-   DADOS PADRÃO (fallback se Firestore não estiver configurado)
+   DADOS LOCAIS DO SITE
    ================================================================ */
 const DEFAULT_DATA = {
   servicos: [
-    { id: '1', nome: 'Consulta Espiritual',  descricao: 'Um momento de escuta atenta, respeito e direcionamento espiritual para acalmar seu coração e trazer clareza para suas decisões de vida.', icone: '🔮' },
-    { id: '2', nome: 'Jogo de Búzios',       descricao: 'Leitura acolhedora e precisa dos búzios para encontrar respostas claras e iluminar as áreas da sua jornada que parecem travadas.', icone: '🐚' },
-    { id: '3', nome: 'Limpeza Espiritual',   descricao: 'Um reequilíbrio energético suave para afastar a ansiedade, retirar cargas negativas acumuladas e devolver a leveza à sua alma.', icone: '🕯️' },
-    { id: '4', nome: 'Abertura de Caminhos', descricao: 'Trabalhos direcionados sob a luz dos guias para remover obstáculos invisíveis, permitindo que a prosperidade, o amor e a saúde fluam livremente.', icone: '🌟' },
-    { id: '5', nome: 'Proteção Espiritual',  descricao: 'Rituais de fortalecimento espiritual para proteger você, seu lar ou seu negócio contra inveja e energias negativas.', icone: '🛡️' },
-    { id: '6', nome: 'Trabalhos de Harmonização', descricao: 'Realizados com alta ética e responsabilidade para restabelecer o entendimento nas relações, promovendo a paz e a harmonia familiar.', icone: '❤️' },
-  ],
+  {
+    "id": "1",
+    "nome": "Consulta Espiritual",
+    "descricao": "Uma conversa com escuta e respeito para compreender seu momento e buscar orientação espiritual.",
+    "icone": "conversa"
+  },
+  {
+    "id": "2",
+    "nome": "Jogo de Búzios",
+    "descricao": "Consulta por meio dos búzios para conversar sobre suas questões e receber orientação espiritual.",
+    "icone": "buzios"
+  },
+  {
+    "id": "3",
+    "nome": "Limpeza Espiritual",
+    "descricao": "Atendimento voltado ao cuidado espiritual e à busca de equilíbrio no dia a dia.",
+    "icone": "folha"
+  },
+  {
+    "id": "4",
+    "nome": "Abertura de Caminhos",
+    "descricao": "Orientação espiritual para momentos de mudança, escolhas e novos passos na sua caminhada.",
+    "icone": "caminho"
+  },
+  {
+    "id": "5",
+    "nome": "Proteção Espiritual",
+    "descricao": "Cuidado espiritual para você, sua casa ou seu trabalho, com atenção à sua situação.",
+    "icone": "protecao"
+  },
+  {
+    "id": "6",
+    "nome": "Trabalhos de Harmonização",
+    "descricao": "Acolhimento e orientação para buscar mais diálogo, respeito e harmonia nas relações.",
+    "icone": "coracao"
+  }
+],
 
-
-
-  mensagem_espiritual_do_dia: 'Que Xangô Aganjú ilumine os seus passos e que os orixás abram os caminhos da prosperidade, da saúde e do amor em sua vida.',
   whatsapp_numero: '5555999176726',
   redes_sociais: {
     instagram: 'https://www.instagram.com/paulogandor',
@@ -64,83 +125,18 @@ const DEFAULT_DATA = {
 };
 
 /* ================================================================
-   TASK 3 — FIRESTORE MANAGER (Real-time listener)
-   ================================================================ */
-const FirestoreManager = {
-  COLLECTION: 'site_config',
-  DOCUMENT:   'dados',
-
-  /**
-   * Inicia um listener em tempo real no Firestore.
-   * @param {Function} onData — callback chamado a cada atualização
-   * @returns {boolean} true se o listener foi iniciado
-   */
-  listenToChanges(onData) {
-    if (!window.FIREBASE_CONFIGURED || !window.db) return false;
-
-    try {
-      window.db
-        .collection(this.COLLECTION)
-        .doc(this.DOCUMENT)
-        .onSnapshot(
-          snap => {
-            const data = snap.exists
-              ? { ...DEFAULT_DATA, ...snap.data() }
-              : { ...DEFAULT_DATA };
-            onData(data);
-          },
-          err => {
-            console.warn('[Firestore] onSnapshot erro — usando padrão.', err.message);
-            onData({ ...DEFAULT_DATA });
-          }
-        );
-      return true;
-    } catch (e) {
-      console.error('[Firestore] Falha ao iniciar listener:', e.message);
-      return false;
-    }
-  }
-};
-
-/* ================================================================
-   DATA MANAGER — localStorage (fallback quando Firestore não configurado)
-   ================================================================ */
-const DataManager = {
-  KEY: 'terreira_data',
-
-  load() {
-    try {
-      const raw = localStorage.getItem(this.KEY);
-      if (!raw) return { ...DEFAULT_DATA };
-      const saved = JSON.parse(raw);
-      // Deep merge: objetos aninhados (ex: redes_sociais) são mesclados campo a campo
-      // para que DEFAULT_DATA preencha campos vazios do localStorage antigo
-      return {
-        ...DEFAULT_DATA,
-        ...saved,
-        redes_sociais: {
-          ...DEFAULT_DATA.redes_sociais,
-          ...(saved.redes_sociais || {})
-        }
-      };
-    } catch (e) {
-      console.warn('[LocalStorage] Dados corrompidos — usando padrão.', e);
-      return { ...DEFAULT_DATA };
-    }
-  }
-};
-
-/* ================================================================
    WHATSAPP HELPER — POP_03
    ================================================================ */
-function buildWhatsAppURL(numero) {
-  const msg = `🙏 Olá, Pai Paulinho!\nVim pelo site e gostaria de agendar uma consulta espiritual.\nQue os orixás me guiem até você! ✨`;
+function buildWhatsAppURL(numero, servico = '') {
+  const interesse = servico.trim();
+  const pedido = interesse
+    ? `Vim pelo site e gostaria de saber mais sobre o atendimento: ${interesse}.\nComo funciona e quais são os horários disponíveis?`
+    : 'Vim pelo site e gostaria de agendar uma consulta espiritual.';
+  const msg = `🙏 Olá, Pai Paulinho!\n${pedido}\nQue os orixás me guiem até você! ✨`;
   return `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
 }
 
 function setupWhatsAppButtons(numero) {
-  const url = buildWhatsAppURL(numero);
-
   // Configura todos os botões/links com classe .whatsapp-trigger
   document.querySelectorAll('.whatsapp-trigger').forEach(btn => {
     if (!numero) {
@@ -148,35 +144,28 @@ function setupWhatsAppButtons(numero) {
       btn.style.pointerEvents = 'none';
       btn.title               = 'WhatsApp em breve';
     } else {
-      btn.href   = url;
+      const servico = btn.closest('.servico-card')?.querySelector('.sc-title')?.textContent || '';
+      btn.href   = buildWhatsAppURL(numero, servico);
       btn.target = '_blank';
       btn.rel    = 'noopener noreferrer';
       btn.removeAttribute('style');
     }
   });
 
-  // Configura o FAB flutuante (não é um <a>, usa data-href)
-  const fab = document.getElementById('whabFab');
-  if (fab) {
-    if (!numero) {
-      fab.dataset.href = '';
-      fab.style.opacity = '0.5';
-    } else {
-      fab.dataset.href = url;
-      fab.removeAttribute('style');
-    }
-  }
+
 }
 
-/* ================================================================
-   RENDERERS — Preenche o DOM com os dados
-   ================================================================ */
+const SERVICE_ICON_PATHS = {
+  conversa: '<path d="M20 11.5a7.7 7.7 0 0 1-7.7 7.7 7.6 7.6 0 0 1-3.4-.8L4 20l1.6-4.9a7.6 7.6 0 0 1-.8-3.4A7.7 7.7 0 0 1 12.5 4a7.7 7.7 0 0 1 7.5 7.5Z"/><path d="M9 10h7M9 13.5h4"/>',
+  buzios: '<path d="M17.5 4.5c3 3 2.5 8.5-1.5 12.5s-8.5 4-11.5 1-2.5-8.5 1.5-12.5 8.5-4 11.5-1Z"/><path d="M7 17 17 7M9 13l2 2M12 10l2 2M15 7l2 2M6 16l2 2"/>',
+  folha: '<path d="M5 19c10 1 15-5 14-14C10 4 4 9 5 19ZM5 19 15 9M10 14h5M10 14V9"/>',
+  caminho: '<path d="M4 20h5a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h12M16 4l4 4-4 4"/>',
+  protecao: '<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m9 12 2 2 4-4"/>',
+  coracao: '<path d="M20.2 5.8a4.8 4.8 0 0 0-6.8 0L12 7.2l-1.4-1.4a4.8 4.8 0 0 0-6.8 6.8L12 21l8.2-8.4a4.8 4.8 0 0 0 0-6.8Z"/>'
+};
 
-function renderSobre(texto) {
-  const el = document.getElementById('sobreCorpo');
-  if (!el) return;
-  el.innerHTML = texto.trim().split('\n\n').filter(Boolean)
-    .map(p => `<p>${p.trim()}</p>`).join('');
+function serviceIcon(name) {
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false">${SERVICE_ICON_PATHS[name] || SERVICE_ICON_PATHS.conversa}</svg>`;
 }
 
 function renderServicos(servicos) {
@@ -188,185 +177,22 @@ function renderServicos(servicos) {
     return;
   }
 
-  /* Metadados de marketing por posição (alinhado com DEFAULT_DATA.servicos) */
-  const meta = [
-    {
-      featured: true,
-      badge: '⭐ Mais procurado',
-      demand: 95, demandLabel: 'Altíssima procura',
-      tags: ['Online', 'Presencial'],
-      scarcity: '📅 ÚItimas vagas desta semana',
-      proof: true, particles: true
-    },
-    { demand: 88, demandLabel: 'Alta procura',    tags: ['Presencial'] },
-    { demand: 82, demandLabel: 'Alta procura',    tags: ['Online', 'Presencial'] },
-    { demand: 90, demandLabel: 'Alta procura',    tags: ['Presencial'] },
-    { demand: 78, demandLabel: 'Muito procurado', tags: ['Online', 'Presencial'] },
-    { demand: 85, demandLabel: 'Alta procura',    tags: ['Online', 'Presencial'] },
-  ];
-
-  const totalCards = servicos.length;
-
-  grid.innerHTML = servicos.map((s, i) => {
-    const m        = meta[i] || {};
-    const delay    = Math.min(i * 90, 450);
-    const isLast   = i === totalCards - 1;
-    const isFeatured = !!m.featured;
-
-    /* --- Partes reutilizáveis --- */
-    const tagsHtml = (m.tags || []).map(t => `<span class="sc-tag">${t}</span>`).join('');
-
-    const demandHtml = `
-      <div class="sc-demand">
-        <div class="sc-demand-bar">
-          <div class="sc-demand-fill" style="--demand:${m.demand || 80}%"></div>
-        </div>
-        <span class="sc-demand-label">${m.demandLabel || 'Procurado'}</span>
-      </div>`;
-
-    const statusHtml = (label = 'Disponível') => `
-      <div class="sc-status">
-        <span class="sc-dot"></span>
-        <span>${label}</span>
-      </div>`;
-
-    const iconHtml = `
-      <div class="sc-icon-wrap">
-        <span class="sc-icon-ring" aria-hidden="true"></span>
-        <span class="sc-icon" aria-hidden="true">${s.icone || '🌟'}</span>
-      </div>`;
-
-    /* --- Card FEATURED --- */
-    if (isFeatured) {
-      return `
-        <div class="servico-card sc-featured reveal"
-             style="transition-delay:${delay}ms"
-             role="article" aria-label="${escapeHTML(s.nome)}">
-          <div class="sc-particles" aria-hidden="true">
-            <span class="sc-particle"></span><span class="sc-particle"></span>
-            <span class="sc-particle"></span><span class="sc-particle"></span>
-            <span class="sc-particle"></span><span class="sc-particle"></span>
-          </div>
-          ${statusHtml('Disponível agora')}
-          ${iconHtml}
-          <span class="sc-badge">${m.badge}</span>
-          <h3 class="sc-title">${escapeHTML(s.nome)}</h3>
-          ${demandHtml}
-          <p class="sc-desc">${escapeHTML(s.descricao)}</p>
-          <div class="sc-social-proof">
-            <div class="sc-avatars" aria-hidden="true">
-              <span class="sc-av">M</span><span class="sc-av">J</span>
-              <span class="sc-av">A</span><span class="sc-av">🙏</span>
-            </div>
-            <p class="sc-proof-text">Mais de <strong><span id="scCounter">0</span>+</strong> atendimentos</p>
-          </div>
-          <div class="sc-scarcity">
-            <span class="sc-scarcity-dot"></span>
-            <span>${m.scarcity}</span>
-          </div>
-          <div class="sc-tags">${tagsHtml}</div>
-          <a class="sc-cta sc-cta-primary whatsapp-trigger" href="#"
-             aria-label="Agendar ${escapeHTML(s.nome)} via WhatsApp">Agendar minha consulta</a>
-        </div>`;
-    }
-
-    /* --- Card HORIZONTAL (6º — full width) --- */
-    if (isLast) {
-      return `
-        <div class="servico-card reveal"
-             style="transition-delay:${delay}ms"
-             role="article" aria-label="${escapeHTML(s.nome)}">
-          ${iconHtml}
-          <div class="sc-body">
-            ${statusHtml()}
-            <h3 class="sc-title">${escapeHTML(s.nome)}</h3>
-            ${demandHtml}
-            <p class="sc-desc">${escapeHTML(s.descricao)}</p>
-            <div class="sc-tags">${tagsHtml}</div>
-          </div>
-          <a class="sc-cta whatsapp-trigger" href="#"
-             aria-label="Agendar ${escapeHTML(s.nome)} via WhatsApp">Saber mais</a>
-        </div>`;
-    }
-
-    /* --- Card REGULAR --- */
-    return `
-      <div class="servico-card reveal"
-           style="transition-delay:${delay}ms"
-           role="article" aria-label="${escapeHTML(s.nome)}">
-        ${statusHtml()}
-        ${iconHtml}
-        <h3 class="sc-title">${escapeHTML(s.nome)}</h3>
-        ${demandHtml}
-        <p class="sc-desc">${escapeHTML(s.descricao)}</p>
-        <div class="sc-tags">${tagsHtml}</div>
-        <a class="sc-cta whatsapp-trigger" href="#"
-           aria-label="Agendar ${escapeHTML(s.nome)} via WhatsApp">Saber mais</a>
-      </div>`;
-  }).join('');
-
-  setTimeout(() => {
-    observeRevealElements();
-    initServiceCards();
-  }, 80);
+  grid.innerHTML = servicos.map(s => `
+    <article class="servico-card reveal" aria-label="${escapeHTML(s.nome)}">
+      <div class="service-symbol" aria-hidden="true">${serviceIcon(s.icone)}</div>
+      <h3 class="sc-title">${escapeHTML(s.nome)}</h3>
+      <p class="sc-desc">${escapeHTML(s.descricao)}</p>
+      <a class="sc-cta whatsapp-trigger" href="#"
+         aria-label="Conversar sobre ${escapeHTML(s.nome)} pelo WhatsApp">Consultar atendimento</a>
+    </article>`).join('');
+  observeRevealElements();
 }
-
-/* ================================================================
-   INTERAÇÕES PREMIUM DOS CARDS
-   Tilt 3D (desktop) + Counter animado (featured)
-   ================================================================ */
-function initServiceCards() {
-  const isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-  document.querySelectorAll('.servico-card').forEach(card => {
-    if (card.dataset.scInit) return;
-    card.dataset.scInit = '1';
-
-    if (!isTouch) {
-      card.addEventListener('mousemove', e => {
-        const r  = card.getBoundingClientRect();
-        const rX = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -4;
-        const rY = ((e.clientX - r.left - r.width  / 2) / (r.width  / 2)) *  4;
-        card.style.transform =
-          `perspective(1000px) rotateX(${rX}deg) rotateY(${rY}deg) translateZ(8px)`;
-      });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    }
-  });
-
-  /* Counter animado para prova social */
-  const counterEl = document.getElementById('scCounter');
-  if (counterEl && !counterEl.dataset.animated) {
-    counterEl.dataset.animated = '1';
-    const featuredCard = counterEl.closest('.sc-featured');
-    if (featuredCard) {
-      const obs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) {
-          animateScCounter(counterEl, 500);
-          obs.disconnect();
-        }
-      }, { threshold: 0.3 });
-      obs.observe(featuredCard);
-    }
-  }
-}
-
-function animateScCounter(el, target, duration = 1800) {
-  const start = performance.now();
-  (function tick(now) {
-    const p = Math.min((now - start) / duration, 1);
-    el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target);
-    if (p < 1) requestAnimationFrame(tick);
-  })(start);
-}
-
-
 
 function renderSociais(redes) {
   const footer = document.getElementById('footerSocial');
   if (!footer) return;
 
-  // Usa DEFAULT_DATA como fallback para campos vazios (ex: localStorage antigo)
+  // Usa os dados publicados como padrão para campos vazios.
   const ig = (redes?.instagram || '').trim() || DEFAULT_DATA.redes_sociais.instagram;
   const fb = (redes?.facebook  || '').trim() || DEFAULT_DATA.redes_sociais.facebook;
 
@@ -414,7 +240,6 @@ function renderSobreSociais(redes) {
 /* ================================================================
    renderAll — Orquestra todos os renderers com um único dataset
    ================================================================ */
-let _carouselReady = false;
 
 function renderAll(data) {
   renderServicos(data.servicos);
@@ -425,445 +250,115 @@ function renderAll(data) {
   // Re-observa elementos recém-criados
   observeRevealElements();
 
-  // Acopla a Física 3D Magnética aos Cartões de Serviço
-  if (typeof VanillaTilt !== "undefined") {
-    VanillaTilt.init(document.querySelectorAll(".servico-card"), {
-      max: 12,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.4,
-      scale: 1.02,
-    });
-  }
 }
 
-/* ================================================================
-   MOTOR IN-APP NOTIFICATIONS (SUPABASE REST API)
-   ================================================================ */
-async function fetchAndShowAvisosInApp() {
-  const SUPABASE_URL = 'https://damdszytfqwgpfghffgo.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhbWRzenl0ZnF3Z3BmZ2hmZmdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDI2MTgsImV4cCI6MjA5NjcxODYxOH0.i9Vsih5_OKiUWLYXAeuLZmLVtgTqMB9ZCf6KYLIiphA';
-  
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/avisos_inapp?select=*&order=id.desc&limit=1`, {
-      headers: {
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    
-    if(!res.ok) return;
-    const data = await res.json();
-    if(data && data.length > 0) {
-      const aviso = data[0];
-      if (aviso.ativo === true) {
-         // Verifica se o usuário já leu esse aviso
-         const lido = localStorage.getItem('aviso_lido_' + aviso.id);
-         if (!lido) {
-            renderAvisoInApp(aviso);
-         }
-      }
-    }
-  } catch(e) {
-    console.log("Sistema de avisos descansando.");
-  }
+/* A mensagem segue a data da casa; o acesso registra apenas o dia no navegador. */
+const REFLECTION_TIME_ZONE = 'America/Sao_Paulo';
+const DAILY_REFLECTIONS = [];
+const reflectionTopics = Object.values(REFLECTIONS);
+for (let index = 0; reflectionTopics.some(topic => topic.messages[index]); index++) {
+  reflectionTopics.forEach(topic => {
+    if (topic.messages[index]) DAILY_REFLECTIONS.push({ category: topic.label, message: topic.messages[index] });
+  });
 }
 
-function renderAvisoInApp(aviso) {
-  const overlay = document.createElement('div');
-  overlay.className = 'inapp-overlay';
-  overlay.innerHTML = `
-    <div class="inapp-modal">
-      <div class="inapp-badge">🔔 Aviso Oficial</div>
-      <h3 class="inapp-title">${aviso.titulo}</h3>
-      <p class="inapp-msg">${aviso.mensagem.replace(/\n/g, '<br>')}</p>
-      <button class="inapp-btn">Entendido</button>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  
-  // Pequeno delay para a animação CSS pegar
-  setTimeout(() => overlay.classList.add('show'), 800);
-  
-  overlay.querySelector('.inapp-btn').onclick = () => {
-    localStorage.setItem('aviso_lido_' + aviso.id, 'true');
-    overlay.classList.remove('show');
-    setTimeout(() => overlay.remove(), 400); // Tempo da transição
+function getDailyReflection(now = new Date()) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+    timeZone: REFLECTION_TIME_ZONE, year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(now).filter(part => part.type !== 'literal').map(part => [part.type, part.value]));
+  const dayNumber = Math.floor(Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day)) / 86400000);
+  const index = ((dayNumber % DAILY_REFLECTIONS.length) + DAILY_REFLECTIONS.length) % DAILY_REFLECTIONS.length;
+  return {
+    ...DAILY_REFLECTIONS[index],
+    dayKey: `${parts.year}-${parts.month}-${parts.day}`,
+    dateLabel: new Intl.DateTimeFormat('pt-BR', { timeZone: REFLECTION_TIME_ZONE, dateStyle: 'long' }).format(now)
   };
 }
 
-/* ================================================================
-   TASK 1 — ORÁCULO INTERATIVO (GUIADO POR INTENÇÃO)
-   ================================================================ */
-function initOracle() {
-  const chips    = document.querySelectorAll('.intention-chip');
-  const btnAgain = document.getElementById('oracleBtnAgain');
-  const card     = document.getElementById('oracleCard');
-  const ctaEl    = document.getElementById('oracleCta');
-  const resultEl = document.getElementById('oracleResult');
-  const footerEl = document.getElementById('oracleFooter');
-  const msgEl    = document.getElementById('oracleMsgText');
+// Guarda apenas o dia em que a orientação foi recebida neste navegador.
+const REFLECTION_RECEIVED_KEY = 'pai_paulinho_reflection_received_day';
 
-  if (!chips.length || !card || !msgEl || !ctaEl || !resultEl) return;
+function createReflectionAccess(storage) {
+  let openedDay = '';
+  let receivedInMemory = '';
 
-  function runOracle(category) {
-    const messages = ORACLE_MESSAGES_BY_CATEGORY[category];
-    if (!messages || !messages.length) return;
-
-    const chosen = messages[Math.floor(Math.random() * messages.length)];
-
-    chips.forEach(btn => btn.disabled = true);
-    if (btnAgain) btnAgain.disabled = true;
-
-    if (typeof window.setOracleTheme === 'function') {
-      window.setOracleTheme(category);
-    }
-
-    card.classList.add('oracle-shining');
-    
-    // Esconde o menu de intenções e mostra o painel de resultado
-    ctaEl.classList.add('hidden');
-    resultEl.classList.remove('hidden');
-    if (footerEl) footerEl.classList.add('hidden');
-    msgEl.classList.add('cycling');
-
-    let cycles  = 0;
-    const TOTAL = 22;
-
-    function cycle() {
-      msgEl.textContent = messages[Math.floor(Math.random() * messages.length)];
-      cycles++;
-
-      if (cycles < TOTAL) {
-        const progress = cycles / TOTAL;
-        const delay = 50 + (progress > 0.55 ? Math.pow((progress - 0.55) * 2.2, 2.8) * 380 : 0);
-        setTimeout(cycle, delay);
-      } else {
-        card.classList.remove('oracle-shining');
-        msgEl.classList.remove('cycling');
-        msgEl.textContent = chosen;
-        msgEl.classList.add('oracle-animate-in');
-
-        setTimeout(() => {
-          msgEl.classList.remove('oracle-animate-in');
-          if (footerEl) {
-            footerEl.classList.remove('hidden');
-            footerEl.classList.add('oracle-animate-in');
-            setTimeout(() => footerEl.classList.remove('oracle-animate-in'), 700);
-          }
-          chips.forEach(btn => btn.disabled = false);
-          if (btnAgain) btnAgain.disabled = false;
-        }, 650);
-      }
-    }
-    // Inicia o slot machine quase imediatamente
-    setTimeout(cycle, 100);
+  function stateFor(dayKey) {
+    if (openedDay === dayKey) return 'reading';
+    if (receivedInMemory === dayKey) return 'received';
+    try {
+      if (storage?.getItem(REFLECTION_RECEIVED_KEY) === dayKey) return 'received';
+    } catch { /* Continua funcionando se o navegador bloquear o armazenamento. */ }
+    return 'ready';
   }
 
-  chips.forEach(btn => {
-    btn.addEventListener('click', () => {
-      runOracle(btn.dataset.category);
-    });
-  });
-
-  // Reset para mostrar as intenções novamente
-  btnAgain?.addEventListener('click', () => {
-    if (typeof window.setOracleTheme === 'function') {
-      window.setOracleTheme('default');
-    }
-
-    resultEl.classList.add('hidden');
-    msgEl.textContent = '';
-    ctaEl.classList.remove('hidden');
-    ctaEl.classList.add('oracle-animate-in');
-    setTimeout(() => ctaEl.classList.remove('oracle-animate-in'), 600);
-  });
-}
-
-/* ================================================================
-   TASK 2 — EFEITO MAGNÉTICO no botão WhatsApp do Hero
-   Física: o botão é "atraído" pelo cursor com inércia suave
-   ================================================================ */
-function initMagneticBtn() {
-  const btn = document.getElementById('heroWhatsApp');
-  if (!btn || window.matchMedia('(pointer: coarse)').matches) return; // Sem efeito em touch
-
-  const STRENGTH = 0.32; // intensidade do magnetismo (0 = nada, 1 = segue cursor)
-  let leaving     = false;
-
-  btn.addEventListener('mousemove', e => {
-    if (leaving) return;
-    const r  = btn.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width  / 2)) * STRENGTH;
-    const dy = (e.clientY - (r.top  + r.height / 2)) * STRENGTH;
-
-    btn.style.transition = 'transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    btn.style.transform  = `translate(${dx}px, ${dy}px) scale(1.05)`;
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    leaving = true;
-    // Efeito "mola" ao soltar: ultrapassa um pouco e volta
-    btn.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-    btn.style.transform  = 'translate(0, 0) scale(1)';
-    setTimeout(() => {
-      btn.style.transition = '';
-      btn.style.transform  = '';
-      leaving = false;
-    }, 600);
-  });
-
-  // Feedback de click
-  btn.addEventListener('mousedown', () => {
-    btn.style.transform  = 'scale(0.94)';
-    btn.style.transition = 'transform 0.1s ease';
-  });
-  btn.addEventListener('mouseup', () => {
-    btn.style.transform  = 'scale(1)';
-    btn.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-  });
-}
-
-/* ================================================================
-   CANVAS PARTICLES — Partículas douradas no Hero
-   ================================================================ */
-function initParticles() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  
-  // Física Espacial
-  let gravityX = 0;
-  let gravityY = 0;
-
-  // Acelerômetro (Mobile)
-  window.addEventListener('deviceorientation', (e) => {
-    if (e.gamma !== null && e.beta !== null) {
-      // gamma (esq-dir), beta (frente-trás)
-      gravityX = e.gamma / 40; 
-      gravityY = (e.beta - 45) / 40; 
-    }
-  }, { passive: true });
-
-  // Mouse Parallax (Desktop)
-  window.addEventListener('mousemove', (e) => {
-    const mouseX = (e.clientX / window.innerWidth) * 2 - 1; 
-    const mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    gravityX = mouseX * 1.5;
-    gravityY = mouseY * 1.5;
-  }, { passive: true });
-
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(initial = false) {
-      this.x       = Math.random() * canvas.width;
-      this.y       = initial ? Math.random() * canvas.height : canvas.height + 10;
-      this.size    = Math.random() * 1.8 + 0.4;
-      this.baseSpeedY = Math.random() * 0.8 + 0.3;
-      this.speedY  = this.baseSpeedY;
-      this.speedX  = (Math.random() - 0.5) * 0.4;
-      this.alpha   = Math.random() * 0.7 + 0.2;
-      this.life    = 0;
-      this.maxLife = Math.random() * 260 + 120;
-      this.gold    = Math.random() > 0.3;
-    }
-    update() {
-      // Aplica a gravidade do giroscópio (Vento Magnético)
-      this.speedX += gravityX * 0.03;
-      this.speedY -= gravityY * 0.03;
-
-      // Friction / Drag para não acelerar infinitamente
-      this.speedX *= 0.98;
-      
-      // Retorna gradualmente à velocidade base de subida (para que não desçam muito)
-      this.speedY = this.speedY * 0.95 + this.baseSpeedY * 0.05;
-
-      this.x += this.speedX;
-      this.y -= this.speedY;
-      this.life++;
-      
-      if (this.life > this.maxLife * 0.72) this.alpha -= 0.008;
-      
-      // Reseta se sair da tela muito longe
-      if (this.y < -30 || this.y > canvas.height + 50 || this.x < -50 || this.x > canvas.width + 50 || this.alpha <= 0) {
-        this.reset();
-      }
-    }
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      const c = this.gold ? '#c9a84c' : '#e8c96a';
-      ctx.shadowColor = c;
-      ctx.shadowBlur  = 6;
-      ctx.fillStyle   = c;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  function initPool() { particles = Array.from({ length: 90 }, () => new Particle()); }
-  function tick() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(tick);
-  }
-
-  resize();
-  window.addEventListener('resize', () => { resize(); initPool(); }, { passive: true });
-  initPool();
-  tick();
-}
-
-/* ================================================================
-   ORACLE CANVAS PARTICLES — Partículas dinâmicas e interativas no Oráculo
-   ================================================================ */
-function initOracleParticles() {
-  const canvas = document.getElementById('oracleCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let currentCategory = 'default';
-  let forceFieldCenter = { x: 0, y: 0 };
-  let isVortexActive = false;
-
-  const COLORS = {
-    default:   ['#c9a84c', '#e8c96a', '#b5923b'],
-    amor:      ['#8b1c1c', '#ff5a5a', '#ff85a1', '#e29578'],
-    caminhos:  ['#c9a84c', '#ffb703', '#ffd166', '#ffffff'],
-    paz:       ['#ffffff', '#cbd5e1', '#b0c4de', '#f0f8ff'],
-    protecao:  ['#2a9d8f', '#a65d37', '#52796f', '#e76f51']
+  return {
+    stateFor,
+    receive(dayKey) {
+      const state = stateFor(dayKey);
+      if (state !== 'ready') return state;
+      openedDay = dayKey;
+      receivedInMemory = dayKey;
+      try { storage?.setItem(REFLECTION_RECEIVED_KEY, dayKey); } catch { /* Mantém o controle nesta página. */ }
+      return 'reading';
+    },
+    revisit() { openedDay = ''; }
   };
+}
 
-  function resize() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    forceFieldCenter.x = canvas.width / 2;
-    forceFieldCenter.y = canvas.height / 2;
+function initReflections() {
+  const container = document.getElementById('reflectionAccess');
+  const ready = document.getElementById('reflectionReady');
+  const reading = document.getElementById('reflectionReading');
+  const received = document.getElementById('reflectionReceived');
+  const receive = document.getElementById('reflectionReceive');
+  const message = document.getElementById('reflectionMessage');
+  const category = document.getElementById('reflectionCategory');
+  const date = document.getElementById('reflectionDate');
+  if (!container || !ready || !reading || !received || !receive || !message || !category || !date) return;
+
+  let storage;
+  try { storage = window.localStorage; } catch { /* O visitante pode bloquear o armazenamento. */ }
+  const access = createReflectionAccess(storage);
+  let renderedDay = '';
+  let renderedState = '';
+
+  function render(reflection = getDailyReflection()) {
+    const state = access.stateFor(reflection.dayKey);
+    if (reflection.dayKey === renderedDay && state === renderedState) return;
+    renderedDay = reflection.dayKey;
+    renderedState = state;
+    container.dataset.state = state;
+    date.dateTime = reflection.dayKey;
+    date.textContent = reflection.dateLabel;
+    ready.hidden = state !== 'ready';
+    reading.hidden = state !== 'reading';
+    received.hidden = state !== 'received';
+    receive.disabled = state !== 'ready';
+    category.textContent = state === 'reading' ? reflection.category : '';
+    message.textContent = state === 'reading' ? reflection.message : '';
   }
 
-  class OracleParticle {
-    constructor() {
-      this.reset(true);
+  receive.addEventListener('click', () => {
+    const reflection = getDailyReflection();
+    if (!reflection.message) return;
+    access.receive(reflection.dayKey);
+    render(reflection);
+    if (!reading.hidden) {
+      message.tabIndex = -1;
+      message.focus({ preventScroll: true });
     }
+  });
 
-    reset(initial = false) {
-      this.x = Math.random() * canvas.width;
-      this.y = initial ? Math.random() * canvas.height : canvas.height + 15;
-      this.size = Math.random() * 2.2 + 0.6;
-      this.alpha = Math.random() * 0.5 + 0.1;
-      this.baseAlpha = this.alpha;
-      this.life = 0;
-      this.maxLife = Math.random() * 200 + 150;
-      
-      this.speedY = Math.random() * 0.4 + 0.15;
-      this.speedX = (Math.random() - 0.5) * 0.3;
-      
-      const dx = this.x - forceFieldCenter.x;
-      const dy = this.y - forceFieldCenter.y;
-      this.radius = Math.sqrt(dx * dx + dy * dy);
-      this.angle = Math.atan2(dy, dx);
-      this.orbitSpeed = (Math.random() * 0.01 + 0.004) * (Math.random() > 0.5 ? 1 : -1);
-
-      const palette = COLORS[currentCategory] || COLORS.default;
-      this.color = palette[Math.floor(Math.random() * palette.length)];
-    }
-
-    update() {
-      this.life++;
-      
-      if (isVortexActive) {
-        this.angle += this.orbitSpeed * 1.5;
-        this.radius -= 0.6;
-        if (this.radius < 5) {
-          this.reset(false);
-          this.radius = Math.max(canvas.width, canvas.height) * 0.6;
-        }
-        this.x = forceFieldCenter.x + Math.cos(this.angle) * this.radius;
-        this.y = forceFieldCenter.y + Math.sin(this.angle) * this.radius;
-      } else {
-        this.x += this.speedX;
-        this.y -= this.speedY;
-        
-        if (this.orbitSpeed) {
-          this.x += Math.cos(this.life * 0.02) * 0.15;
-        }
-      }
-
-      if (this.life > this.maxLife * 0.8) {
-        this.alpha -= 0.01;
-      }
-      
-      if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20 || this.alpha <= 0) {
-        this.reset(false);
-      }
-    }
-
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = Math.max(0, this.alpha);
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  function initPool() {
-    particles = Array.from({ length: 65 }, () => new OracleParticle());
-  }
-
-  function tick() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(tick);
-  }
-
-  resize();
-  initPool();
-  tick();
-
-  window.addEventListener('resize', () => {
-    resize();
-    initPool();
-  }, { passive: true });
-
-  window.setOracleTheme = function(category) {
-    currentCategory = category;
-    if (category === 'default') {
-      isVortexActive = false;
-    } else {
-      isVortexActive = true;
-      setTimeout(() => {
-        isVortexActive = false;
-      }, 3500);
-    }
-    
-    particles.forEach(p => {
-      const palette = COLORS[currentCategory] || COLORS.default;
-      p.color = palette[Math.floor(Math.random() * palette.length)];
-      if (isVortexActive) {
-        const dx = p.x - forceFieldCenter.x;
-        const dy = p.y - forceFieldCenter.y;
-        p.radius = Math.sqrt(dx * dx + dy * dy);
-        p.angle = Math.atan2(dy, dx);
-      }
-    });
-  };
+  render();
+  setInterval(() => { if (!document.hidden) render(); }, 60000);
+  window.addEventListener('pageshow', event => {
+    if (event.persisted) access.revisit();
+    render();
+  });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) render(); });
+  window.addEventListener('storage', event => {
+    if (event.key === REFLECTION_RECEIVED_KEY || event.key === null) render();
+  });
 }
 
 /* ================================================================
@@ -896,89 +391,46 @@ function observeRevealElements() {
   });
 }
 
-
-
 /* ================================================================
-   NAVEGAÇÃO — sticky header + menu dropdown/tela-cheia + back-to-top
+   NAVEGAÇÃO — cabeçalho fixo e menu
    ================================================================ */
 function initNav() {
-  const header    = document.getElementById('siteHeader');
+  const header = document.getElementById('siteHeader');
   const hamburger = document.getElementById('navHamburger');
-  const navLinks  = document.getElementById('navLinks');
-  const backToTop = document.getElementById('backToTop');
-
+  const navLinks = document.getElementById('navLinks');
   if (!hamburger || !navLinks) return;
 
-  const isMobile = () => window.innerWidth <= 640;
-
-  function openMenu() {
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    navLinks.classList.add('open');
-    
-    // Spatial Drawer 3D
-    document.body.classList.add('spatial-drawer-open');
-
-    // No mobile, bloqueia scroll e expande o header em tela cheia
-    if (isMobile()) {
-      header?.classList.add('menu-open');
-      document.body.style.overflow = 'hidden';
-    }
+  function setMenu(open, restoreFocus = false) {
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    navLinks.classList.toggle('open', open);
+    if (restoreFocus) hamburger.focus();
   }
-
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    navLinks.classList.remove('open');
-    header?.classList.remove('menu-open');
-    
-    // Spatial Drawer 3D
-    document.body.classList.remove('spatial-drawer-open');
-    document.body.style.overflow = '';
-  }
-
-  function toggleMenu() {
-    const isOpen = navLinks.classList.contains('open');
-    isOpen ? closeMenu() : openMenu();
-  }
-
-  hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
+  hamburger.addEventListener('click', () => {
+    setMenu(hamburger.getAttribute('aria-expanded') !== 'true');
   });
-
-  // Fecha ao clicar em qualquer link do menu
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => closeMenu());
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMenu(false));
   });
-
-  // Fecha ao clicar fora (apenas no dropdown desktop)
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', event => {
     if (!navLinks.classList.contains('open')) return;
-    const clickedInsideMenu = navLinks.contains(e.target);
-    const clickedHamburger  = hamburger.closest('.nav-actions')?.contains(e.target);
-    if (!clickedInsideMenu && !clickedHamburger) closeMenu();
+    if (!navLinks.contains(event.target) && !hamburger.contains(event.target)) setMenu(false);
   });
-
-  // Fecha ao pressionar Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) closeMenu();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) setMenu(false, true);
   });
-
-  // Fecha ao redimensionar para desktop se estava aberto no mobile
+  header?.addEventListener('focusout', event => {
+    if (navLinks.classList.contains('open') && !header.contains(event.relatedTarget)) setMenu(false);
+  });
   window.addEventListener('resize', () => {
-    if (navLinks.classList.contains('open')) closeMenu();
+    if (window.innerWidth >= 1120 && navLinks.classList.contains('open')) setMenu(false);
   }, { passive: true });
-
-  // Scroll: header sticky + botão voltar ao topo
-  window.addEventListener('scroll', () => {
+  function syncScroll() {
     header?.classList.toggle('scrolled', window.scrollY > 60);
-    backToTop?.classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-
-  backToTop?.addEventListener('click', () =>
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  );
+  }
+  window.addEventListener('scroll', syncScroll, { passive: true });
+  syncScroll();
 }
 
 /* ================================================================
@@ -988,96 +440,6 @@ function escapeHTML(str = '') {
   const d = document.createElement('div');
   d.textContent = str;
   return d.innerHTML;
-}
-
-/* ================================================================
-   VIDEO PRELOADER (TELA DE INTRODUÇÃO RESPONSIVA)
-   ================================================================ */
-function initVideoPreloader() {
-  const preloader     = document.getElementById('video-preloader');
-  const portal        = document.getElementById('portal-entrada');
-  const enterBtn      = document.getElementById('enterBtn');
-  const videoWrapper  = document.getElementById('videoWrapper');
-  const introVideo    = document.getElementById('introVideo');
-  const skipBtn       = document.getElementById('skipIntro');
-  if (!preloader) return;
-
-  const portalContent = portal?.querySelector('.portal-content');
-  const avatarWrapper = portal?.querySelector('.portal-avatar-wrapper');
-
-  let hidden = false;
-  let fallbackTimer;
-
-  function hidePreloader() {
-    if (hidden) return;
-    hidden = true;
-    clearTimeout(fallbackTimer);
-
-    // Para o vídeo para evitar áudio fantasma
-    if (introVideo) introVideo.pause();
-
-    preloader.classList.add('hide-preloader');
-  }
-
-  // Evento de clique para Pular Introdução
-  if (skipBtn) {
-    skipBtn.addEventListener('click', hidePreloader);
-  }
-
-  // Fluxo de transição cinematográfica
-  if (enterBtn && portal && videoWrapper && introVideo) {
-    enterBtn.addEventListener('click', () => {
-      // 1. Toca o vídeo IMEDIATAMENTE e de forma síncrona para herdar o gesto do usuário
-      // Isso impede que navegadores (como Chrome e Safari) bloqueiem a reprodução com áudio ativo
-      introVideo.muted = false;
-      introVideo.volume = 1.0;
-
-      introVideo.play()
-        .then(() => {
-          console.log('[Preloader] Vídeo de boas-vindas iniciado síncronamente com áudio.');
-        })
-        .catch(err => {
-          console.warn('[Preloader] Autoplay com áudio bloqueado pelo navegador. Tentando reproduzir sem som...', err);
-          introVideo.muted = true;
-          introVideo.play().catch(e => {
-            console.error('[Preloader] Falha crítica de reprodução:', e);
-            hidePreloader(); // Se falhar totalmente, pula a intro
-          });
-        });
-
-      // 2. Oculta o portal de entrada e exibe o contêiner do vídeo de forma instantânea
-      portal.classList.add('hidden');
-      videoWrapper.classList.remove('hidden');
-      introVideo.classList.add('active');
-
-      // Ocultar preloader quando o vídeo de boas-vindas terminar (com proteção contra encerramento precoce)
-      introVideo.addEventListener('ended', () => {
-        if (introVideo.currentTime > 6) {
-          hidePreloader();
-        } else {
-          console.warn('[Preloader] O vídeo disparou ended precocemente em:', introVideo.currentTime);
-          setTimeout(hidePreloader, 6500); // Garante a exibição mínima do vídeo completo
-        }
-      }, { once: true });
-
-      // Fallback global de segurança ampliado para 25 segundos
-      fallbackTimer = setTimeout(hidePreloader, 25000);
-    });
-  } else {
-    // Fallback genérico caso faltem elementos
-    if (introVideo) {
-      introVideo.muted = true;
-      introVideo.play().catch(() => {});
-      introVideo.addEventListener('ended', () => {
-        if (introVideo.currentTime > 6) {
-          hidePreloader();
-        } else {
-          setTimeout(hidePreloader, 6500);
-        }
-      }, { once: true });
-    }
-    fallbackTimer = setTimeout(hidePreloader, 8000);
-  }
 }
 
 /* ================================================================
@@ -1141,71 +503,48 @@ function initPWA() {
    GALERIA HORIZONTAL — drag-to-scroll, wheel-scroll e navegação por setas
    ================================================================ */
 function initGalleryScroll() {
-  const carrossel = document.querySelector('.galeria-carrossel');
-  const btnPrev = document.querySelector('.galeria-nav-btn.prev');
-  const btnNext = document.querySelector('.galeria-nav-btn.next');
-  if (!carrossel) return;
-
-  // 1. Navegação pelas setas laterais
-  const cardWidth = 290 + 29; // 290px + gap (aprox 29px)
-
-  btnPrev?.addEventListener('click', () => {
-    carrossel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+  const gallery = document.querySelector('.galeria-carrossel');
+  if (!gallery || gallery.dataset.automatic) return;
+  gallery.dataset.automatic = 'true';
+  const originals = [...gallery.children];
+  if (originals.length < 2) return;
+  originals.forEach(item => {
+    const copy = item.cloneNode(true);
+    copy.dataset.galleryClone = 'true';
+    copy.setAttribute('aria-hidden', 'true');
+    copy.addEventListener('click', () => item.click());
+    gallery.appendChild(copy);
   });
-
-  btnNext?.addEventListener('click', () => {
-    carrossel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-  });
-
-  // 2. Comportamento Drag-to-Scroll (arrastar com o mouse)
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  carrossel.addEventListener('mousedown', (e) => {
-    isDown = true;
-    carrossel.classList.add('dragging');
-    startX = e.pageX - carrossel.offsetLeft;
-    scrollLeft = carrossel.scrollLeft;
-    carrossel.style.scrollSnapType = 'none';
-  });
-
-  carrossel.addEventListener('mouseleave', () => {
-    if (isDown) {
-      isDown = false;
-      carrossel.classList.remove('dragging');
-      carrossel.style.scrollSnapType = 'x mandatory';
-    }
-  });
-
-  carrossel.addEventListener('mouseup', () => {
-    if (isDown) {
-      isDown = false;
-      carrossel.classList.remove('dragging');
-      carrossel.style.scrollSnapType = 'x mandatory';
-    }
-  });
-
-  carrossel.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - carrossel.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    carrossel.scrollLeft = scrollLeft - walk;
-  });
-
-  // 3. Wheel Scroll Horizontal Inteligente (roda do mouse vertical vira horizontal)
-  carrossel.addEventListener('wheel', (e) => {
-    if (e.deltaY !== 0) {
-      const isAtStart = carrossel.scrollLeft <= 2;
-      const isAtEnd = carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 5;
-      
-      if ((e.deltaY < 0 && !isAtStart) || (e.deltaY > 0 && !isAtEnd)) {
-        e.preventDefault();
-        carrossel.scrollLeft += e.deltaY * 0.9;
+  let visible = false;
+  let touching = false;
+  let last = 0;
+  let position = gallery.scrollLeft;
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; }).observe(gallery);
+  gallery.addEventListener('pointerdown', () => { touching = true; });
+  window.addEventListener('pointerup', () => { touching = false; position = gallery.scrollLeft; });
+  window.addEventListener('pointercancel', () => { touching = false; });
+  gallery.addEventListener('scroll', () => { if (touching) position = gallery.scrollLeft; }, { passive: true });
+  function move(direction) {
+    const gap = parseFloat(getComputedStyle(gallery).gap) || 0;
+    gallery.scrollLeft += direction * (originals[0].getBoundingClientRect().width + gap);
+    position = gallery.scrollLeft;
+  }
+  document.querySelector('.galeria-nav-btn.prev')?.addEventListener('click', () => move(-1));
+  document.querySelector('.galeria-nav-btn.next')?.addEventListener('click', () => move(1));
+  function tick(time) {
+    const elapsed = last ? Math.min(time - last, 50) : 0;
+    last = time;
+    const lightboxOpen = document.getElementById('galeriaLightbox')?.classList.contains('active');
+    if (visible && !touching && !document.hidden && !lightboxOpen) {
+      const distance = gallery.children[originals.length].offsetLeft - originals[0].offsetLeft;
+      if (distance > 0) {
+        position = (position + elapsed * 0.035) % distance;
+        gallery.scrollLeft = position;
       }
     }
-  }, { passive: false });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 }
 
 /* ================================================================
@@ -1223,7 +562,7 @@ const GALERIA_CAPTIONS = {
   "10": "A caridade silenciosa e acolhedora que abraça, cura e acalma os aflitos.",
   "11": "Ritual sagrado de purificação e fortalecimento espiritual da nossa egrégora mística.",
   "12": "Sob o olhar protetor dos orixás, nossa fé se renova a cada comemoração de amor.",
-  "13": "Sacerdote Paulo conduzindo com dedicação e amor as bênçãos para nossa comunidade.",
+  "13": "Pai Paulinho conduzindo com dedicação e amor as bênçãos para nossa comunidade.",
   "14": "O Axé que emana das pedreiras sagradas e se espalha para o coração de cada filho.",
   "15": "Celebração das três décadas de dedicação ao sagrado com profunda reverência à ancestralidade.",
   "16": "A beleza do Altar que irradia as vibrações elevadas de paz, saúde e tranquilidade.",
@@ -1233,7 +572,7 @@ const GALERIA_CAPTIONS = {
   "21": "Pai Paulinho de Xangô Aganjú: trinta anos estendendo a mão para trazer luz e conforto."
 };
 
-function initLightbox() {
+function initGalleryLightbox() {
   const lightbox = document.getElementById('galeriaLightbox');
   const img = document.getElementById('lightboxImg');
   const caption = document.getElementById('lightboxCaption');
@@ -1241,8 +580,9 @@ function initLightbox() {
   const prevBtn = document.getElementById('lightboxPrev');
   const nextBtn = document.getElementById('lightboxNext');
   
-  const items = Array.from(document.querySelectorAll('.galeria-item img'));
-  if (!lightbox || !img || !caption || !items.length) return;
+  const items = Array.from(document.querySelectorAll('.galeria-item:not([data-gallery-clone]) img'));
+  if (!lightbox || !img || !caption || !items.length || lightbox.dataset.initialized) return;
+  lightbox.dataset.initialized = 'true';
   
   let currentIndex = 0;
   
@@ -1368,367 +708,25 @@ function initAccordion() {
 }
 
 /* ================================================================
-   WHATSAPP FAB FLUTUANTE — Drag-and-Snap Engine
-   Regras:
-   1. Arrastável via mouse (mousedown/move/up) e touch (touchstart/move/end)
-   2. Ao soltar, snap instantâneo para lateral mais próxima (esquerda ou direita)
-   3. Nunca posicionado no meio da tela horizontalmente
-   4. Margem de segurança de 16px de cada borda
-   5. Limite vertical: nunca sai da área visível (16px top/bottom)
-   6. Posição Y e lado (left/right) são salvos no localStorage
-   7. Clique simples (sem arrastar) abre WhatsApp
-   8. O link do WhatsApp é injetado pelo setupWhatsAppButtons
-   ================================================================ */
-function initWhatsAppFab() {
-  const fab = document.getElementById('whabFab');
-  if (!fab) return;
-
-  const MARGIN    = 16;          // px de margem das bordas
-  const STORAGE_Y = 'whab_y';    // chave localStorage para posição Y
-  const STORAGE_S = 'whab_side'; // chave localStorage para o lado
-
-  let isDragging  = false;
-  let hasMoved    = false;       // distingue clique de drag
-  let startX      = 0;
-  let startY      = 0;
-  let startTop    = 0;
-  let fabTop      = 0;
-  let currentSide = 'right';     // 'left' | 'right'
-
-  /* --- Helpers de posicionamento --- */
-
-  function getViewport() {
-    // clientWidth no document evita que o elemento fique escondido pela scrollbar em desktops
-    return { 
-      w: document.documentElement.clientWidth || window.innerWidth, 
-      h: window.innerHeight 
-    };
-  }
-
-  function getSize() {
-    // O tamanho do botão é dinâmico (60px desktop, 56px mobile)
-    return fab.offsetWidth || 60;
-  }
-
-  function clampY(y) {
-    const { h } = getViewport();
-    const size = getSize();
-    return Math.max(MARGIN, Math.min(h - size - MARGIN, y));
-  }
-
-  /**
-   * Aplica snap para a lateral correta.
-   * IMPORTANTE: usa SEMPRE a propriedade `left` para que o CSS possa
-   * animar a transição suavemente nos dois sentidos (esquerda e direita).
-   * Usar `right` vs `left` alternadamente quebra a animação por serem
-   * propriedades distintas e incompatíveis com CSS transition.
-   */
-  function snapToSide(side, y, animate = true) {
-    currentSide = side;
-    fabTop = clampY(y);
-
-    const { w } = getViewport();
-    const size = getSize();
-    // Calcula sempre em termos de `left`
-    const targetLeft = side === 'left'
-      ? MARGIN
-      : w - size - MARGIN;
-
-    if (animate) fab.classList.add('snapping');
-
-    // Remove `right` se existir — usamos APENAS `left` daqui em diante
-    fab.style.removeProperty('right');
-    fab.style.left   = targetLeft + 'px';
-    fab.style.top    = fabTop + 'px';
-    fab.style.bottom = 'auto';
-    fab.dataset.side = side;
-
-    // Persistência
-    try {
-      localStorage.setItem(STORAGE_Y, fabTop);
-      localStorage.setItem(STORAGE_S, side);
-    } catch (_) {}
-
-    if (animate) {
-      setTimeout(() => fab.classList.remove('snapping'), 420);
-    }
-  }
-
-  /** Determina para qual lado snapear com base na posição X do centro do botão */
-  function decideSide(fabCenterX) {
-    return fabCenterX < getViewport().w / 2 ? 'left' : 'right';
-  }
-
-  /* --- Inicializa posição (localStorage ou padrão) --- */
-  function initPosition() {
-    let savedY    = parseFloat(localStorage.getItem(STORAGE_Y));
-    let savedSide = localStorage.getItem(STORAGE_S) || 'right';
-
-    const { h } = getViewport();
-    const size = getSize();
-    if (isNaN(savedY) || savedY < MARGIN || savedY > h - size - MARGIN) {
-      savedY = h * 0.75 - size / 2; // padrão: 75% da tela verticalmente
-    }
-
-    snapToSide(savedSide, savedY, false);
-  }
-
-  initPosition();
-  
-  // Garantia: se os estilos/fontes demorarem a carregar o offsetWidth, reposiciona ao concluir a carga
-  window.addEventListener('load', () => initPosition());
-
-  /* --- Atualiza posição ao redimensionar janela --- */
-  window.addEventListener('resize', () => {
-    snapToSide(currentSide, fabTop, false);
-  }, { passive: true });
-
-  /* ================================================================
-     ENGINE DE DRAG — Mouse
-     ================================================================ */
-  fab.addEventListener('mousedown', (e) => {
-    if (e.button !== 0) return; // apenas botão esquerdo
-    e.preventDefault();
-
-    isDragging = false;
-    hasMoved   = false;
-    startX     = e.clientX;
-    startY     = e.clientY;
-    startTop   = fabTop;
-
-    function onMouseMove(e) {
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-
-      if (!isDragging && Math.abs(dx) + Math.abs(dy) > 4) {
-        isDragging = true;
-        hasMoved   = true;
-        fab.classList.add('dragging');
-      }
-
-      if (!isDragging) return;
-
-      // Move verticalmente (horizontal é só para determinar o lado no soltar)
-      const newTop = clampY(startTop + dy);
-      fab.style.top    = newTop + 'px';
-      fab.style.bottom = 'auto';
-      fabTop = newTop;
-
-      // Atualiza posição horizontal livre durante o drag
-      const size = getSize();
-      const newLeft = e.clientX - size / 2;
-      fab.style.removeProperty('right');
-      fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - size - MARGIN, newLeft)) + 'px';
-    }
-
-    function onMouseUp(e) {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup',   onMouseUp);
-
-      if (isDragging) {
-        fab.classList.remove('dragging');
-        const centerX = e.clientX;
-        snapToSide(decideSide(centerX), fabTop);
-        isDragging = false;
-      }
-      // Se não houve movimento: é um clique — o href do link cuida do WhatsApp
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup',   onMouseUp);
-  });
-
-  /* ================================================================
-     ENGINE DE DRAG — Touch
-     ================================================================ */
-  fab.addEventListener('touchstart', (e) => {
-    const touch = e.touches[0];
-    isDragging  = false;
-    hasMoved    = false;
-    startX      = touch.clientX;
-    startY      = touch.clientY;
-    startTop    = fabTop;
-  }, { passive: true });
-
-  fab.addEventListener('touchmove', (e) => {
-    const touch = e.touches[0];
-    const dx    = touch.clientX - startX;
-    const dy    = touch.clientY - startY;
-
-    if (!isDragging && Math.abs(dx) + Math.abs(dy) > 6) {
-      isDragging = true;
-      hasMoved   = true;
-      fab.classList.add('dragging');
-    }
-
-    if (!isDragging) return;
-    e.preventDefault(); // previne scroll da página durante drag
-
-    const newTop  = clampY(startTop + dy);
-    fab.style.top    = newTop + 'px';
-    fab.style.bottom = 'auto';
-    fabTop = newTop;
-
-    const size = getSize();
-    const newLeft = touch.clientX - size / 2;
-    fab.style.removeProperty('right');
-    fab.style.left = Math.max(MARGIN, Math.min(getViewport().w - size - MARGIN, newLeft)) + 'px';
-  }, { passive: false });
-
-  fab.addEventListener('touchend', (e) => {
-    fab.classList.remove('dragging');
-
-    if (isDragging) {
-      const touch = e.changedTouches[0];
-      snapToSide(decideSide(touch.clientX), fabTop);
-      isDragging = false;
-    }
-    // Se não houve drag, o click handler do FAB cuidará da navegação
-  });
-
-  /* ================================================================
-     CLICK — Abre WhatsApp (só se não foi um drag)
-     ================================================================ */
-  fab.addEventListener('click', (e) => {
-    if (hasMoved) { hasMoved = false; return; } // era drag, ignora
-    const href = fab.dataset.href;
-    if (href) window.open(href, '_blank', 'noopener,noreferrer');
-  });
-
-  /* Teclado: Enter/Space ativa o WhatsApp */
-  fab.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const href = fab.dataset.href;
-      if (href) window.open(href, '_blank', 'noopener,noreferrer');
-    }
-  });
-}
-
-/* ================================================================
-   MOTOR GSAP: SCROLL 3D PROGRESSIVO
-   ================================================================ */
-function initGSAPAnimations() {
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  // 1. Hero Parallax Spatial (Scale-Down, Blur & Tilt profundo)
-  const heroContent = document.querySelector('.hero-content');
-  if (heroContent) {
-    gsap.to(heroContent, {
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5
-      },
-      y: 200,
-      scale: 0.75,
-      rotationX: -15,
-      opacity: -0.2,
-      filter: "blur(18px)",
-      ease: "power2.inOut"
-    });
-  }
-
-  // 2. 3D Unfold de Cartões com Deep Z-Translation e Y-Rotation
-  gsap.set(".servicos-grid", { perspective: 2000 });
-  
-  setTimeout(() => {
-    const servicos = document.querySelectorAll('.servico-card');
-    servicos.forEach((card, index) => {
-      // Cria uma alternância direcional sutil baseada em par/ímpar
-      const rotY = index % 2 === 0 ? -12 : 12;
-
-      gsap.fromTo(card, 
-        { 
-          rotationX: 25, 
-          rotationY: rotY, 
-          z: -400, 
-          scale: 0.85, 
-          opacity: 0, 
-          y: 120, 
-          transformOrigin: "50% 50%", 
-          filter: "blur(12px)" 
-        },
-        {
-          scrollTrigger: {
-            trigger: card,
-            start: "top 110%",
-            end: "top 55%",
-            scrub: 2
-          },
-          rotationX: 0,
-          rotationY: 0,
-          z: 0,
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          ease: "expo.out"
-        }
-      );
-    });
-
-    // 3. Reveal Genérico Suave e Aprofundado
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-      if (el.classList.contains('servico-card') || el.classList.contains('hero-content')) return;
-
-      gsap.fromTo(el,
-        { opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" },
-        {
-          scrollTrigger: {
-            trigger: el,
-            start: "top 95%",
-            end: "top 70%",
-            scrub: 1.5
-          },
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          filter: "blur(0px)",
-          ease: "power3.out"
-        }
-      );
-    });
-  }, 100);
-}
-
-/* ================================================================
    INICIALIZAÇÃO PRINCIPAL
    ================================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Inicializa o Video Preloader (introdução de 10s)
-  initVideoPreloader();
-
   // Inicializa o PWA
   initPWA();
 
-  // Inicializa o Mural de Avisos da Casa (Motor Supabase In-App)
-  fetchAndShowAvisosInApp();
-
   // — Features que não dependem de dados —
-  initParticles();
-  initOracleParticles();
   initNav();
-  initWhatsAppFab(); // FAB flutuante de WhatsApp
-  initMagneticBtn();
-  initOracle();
+  // Botões estáveis para facilitar a interação.
+  initReflections();
   initGalleryScroll();
-  initLightbox();
+  initGalleryLightbox();
   initFAQ();
   initAccordion();
-  // Substituindo a animação antiga pelo Motor GSAP 3D Scroll-Driven
-  initGSAPAnimations();
+  observeRevealElements();
 
-  // — Renderiza Dados do LocalStorage —
-  renderAll(DataManager.load());
+  // — Renderiza o conteúdo publicado do site —
+  renderAll(DEFAULT_DATA);
 
-  console.log(
-    '%c⚡ Terreira Paulinho v2.0 🙏\nOráculo + Motor In-App Dourado + Micro-interações',
-    'color:#c9a84c;font-weight:bold;font-family:serif;font-size:13px'
-  );
 });
 
