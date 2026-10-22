@@ -2,11 +2,12 @@
 
 Site público estático, sem banco de dados e sem painel administrativo. O agendamento prepara uma mensagem para o visitante enviar pelo WhatsApp. A orientação diária guarda somente a data de leitura no navegador.
 
-## Publicação na Cloudflare
+## Publicação no Cloudflare Pages
 
 - Repositório: `DALPINER/pai-paulinho-app`, branch `main`.
 - Build: `node scripts/build-site.mjs`.
-- Implantação: `npx wrangler deploy`.
+- Framework: nenhum. Diretório de saída: `dist`.
+- A integração existente do Cloudflare Pages com o GitHub publica os commits da branch `main`; não é necessário criar um token de API para a build.
 - Arquivos públicos: pasta `dist`, gerada pela build e ignorada pelo Git.
 - Domínio desejado: `paipaulinhors.com.br`.
 
