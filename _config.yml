@@ -3,6 +3,8 @@ exclude:
   - architecture
   - database
   - tools
+  - scripts
+  - wrangler.json
   - protocolo
   - protocolo_vlaeg.md
   - gemini.md
